@@ -13,6 +13,9 @@ limitations under the License.
 
 # MONAI VISTA Models 
 
+<div align="center"> <img src="./assets/imgs/demo_gif.png" width="800"/> </div>
+
+
 <div align="center"> <img src="./assets/imgs/wholeBody.png" width="800"/> </div>
 
 
