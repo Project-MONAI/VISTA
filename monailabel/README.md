@@ -11,4 +11,27 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# TODO add readme
+# MONAI VISTA Models 
+
+<img src="./assets/imgs/lung_sample.png" width="70%"/>
+
+
+### Table of Contents
+- [Overview](#Overview)
+  - [Highlights and Features](#Highlights-and-Features)
+- [Getting Started with MONAI Label](#Getting-Started-with-MONAI-Label)
+  - [Step 1. Installation](#Step-1-Installation)
+  - [Step 2. MONAI Label monaivista app](#Step-2-MONAI-Label-Sample-Applications)
+  - [Step 3. MONAI Label Supported Viewers](#Step-3-MONAI-Label-Supported-Viewers)
+  - [Step 4. Data Preparation](#Step-4-Data-Preparation)
+  - [Step 5. Start MONAI Label Server and Start Annotating!](#Step-5-Start-MONAI-Label-Server-and-Start-Annotating)
+- [Tutorials](#MONAI-Label-Tutorials)
+- [Contributing](#Contributing)
+- [Community](#Community)
+
+## Overview
+
+
+## MONAI Label Integration
+
+
