@@ -44,14 +44,73 @@ sample 3D Slicer plugin UIs.
 
 ### Installation
 
+MONAI VISTA models are integrated based on [MONAI Label](https://docs.monai.io/projects/label/en/latest/index.html#).
+Start using MONAI Label locally and run installlation with your familiar visualization tools. 
+Stable version software represents the currently tested and supported visualization tools with 
+latest release of MONAI Label. Weekly preview version is available if users want the latest feature, 
+not fully tested.
+
+Refer to [MONAI Label installation](https://docs.monai.io/projects/label/en/latest/installation.html) page
+for details. 
+
+For milestone release, users can install from PyPl with command:
+
 ```bash
 pip install monailabel
 
 ```
 
+For Docker and Github installation, refer to MONAI Label [Github](https://github.com/Project-MONAI/MONAILabel)
+
 ### MONAI VISTA APP
 
+Based on MONAI Label, MONAI VISTA is developed as an app. This app has example models 
+to do both interactive and "Everything" segmentation over medical images. 
+Prompt-based segment experience is highlighted. Including class prompts and point click prompts, 
+Segmentation with latest deep learning architectures (e.g., Segmentation Anything Model (SAM)) for multiple lung, abdominal, and pelvis
+organs. Interactive tools includes comptrol points, class prompt check boxes are developed with viewer plugins. 
+
+The MONAI VISTA app contains several tasks:
+
+- Inferencing tasks: These tasks allow end-users to invoke pre-trained models for image analysis.
+- Training and fine-tuning tasks: TBD
+
+#### Step 1. Implementing an Inference Task
+To implement an inference task, developers must inherit the  [InferTask](https://github.com/Project-MONAI/MONAILabel/blob/main/monailabel/tasks/infer/basic_infer.py) interface, which specifies a list of pre- and post-transforms and an inferer.
+
+The code snippet below demonstrates an example implementation of `InferTask`. In this example, the image is pre-processed to a Numpy array and input into the `SimpleInferer`. The resulting output is post-processed by applying sigmoid activation with binary discretization.
+
+<pre style="background: #f4f4f4; border: 1px solid #ddd; border-left: 3px solid #02a3a3; line-height: 1.6; padding: 1.5em;">
+from monai.inferers import SimpleInferer
+from monai.transforms import (LoadImaged, ToNumpyd, Activationsd AsDiscreted, ToNumpyd)
+from monailabel.interfaces.tasks import InferTask
+
+class MyInfer(InferTask):
+  def pre_transforms(self, data=None):
+      return [
+          LoadImaged(keys="image"),
+          ToNumpyd(keys="image"),
+      ]
+  def inferer(self, data=None):
+      return SimpleInferer()
+
+  def post_transforms(self, data=None):
+      return [
+          Activationsd(keys="pred", sigmoid=True),
+          AsDiscreted(keys="pred", threshold=0.5),
+          ToNumpyd(keys="pred"),
+      ]
+</pre>
+
+Note that `inferer` needs to be defined by developers.
+
+For more details of `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/add_monailabel_integration/monailabel/monaivista)
+
 ### MONAI VISTA Viewer Plugins
+
+
+<div align="center"> <img src="./assets/imgs/3dslicer_plugin.png" width="500"/> </div>
+
 
 
 ### Sample Data
