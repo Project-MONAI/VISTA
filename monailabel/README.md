@@ -135,7 +135,7 @@ monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --
 ```
 
 - Open 3D Slicer and MONAI VISTA-Label plugin.
-<div align="center"> <img src="./assets/imgs/3dslicer_open.jepg" width="800"/> </div>
+<div align="center"> <img src="./assets/imgs/3dslicer_open.jpeg" width="800"/> </div>
 
 - Connect to the monailabel server, start annotating!
 <div align="center"> <img src="./assets/imgs/3dslicer_annotating.png" width="800"/> </div>
