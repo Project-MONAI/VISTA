@@ -15,10 +15,6 @@ limitations under the License.
 
 <div align="center"> <img src="./assets/imgs/demo_gif.gif" width="800"/> </div>
 
-
-<!-- <div align="center"> <img src="./assets/imgs/wholeBody.png" width="800"/> </div> -->
-
-
 ### Table of Contents
 - [Overview](#Overview)
 - [Start MONAI VISTA with MONAI Label](#MONAI-Label-Integration)
@@ -42,6 +38,9 @@ MONAI VISTA - MONAI Label integration is an intelligent opem source ecosystem th
 to create and deploy vision foundation models especially for medical segmenation. It provides 
 interfaces of class- and point-prompts that AI models can take as input. The integration also provides
 sample 3D Slicer plugin UIs.
+
+<div align="center"> <img src="./assets/imgs/montage.png" width="800"/> </div>
+
 
 ## MONAI Label Integration
 
