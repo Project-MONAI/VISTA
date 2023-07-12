@@ -79,7 +79,7 @@ git clone git@github.com:Project-MONAI/VISTA.git
 cd VISTA/monailabel 
 ```
 
-For more details of `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/add_monailabel_integration/monailabel/monaivista)
+For more details of `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/add_monailabel_integration/monailabel/monaivista).
 
 ### MONAI VISTA Viewer Plugins
 
@@ -105,8 +105,9 @@ The plugin needs to be added in developer mode. Please follow following steps.
 ##### Plugin in Developer Mode
 
 - `git clone git@github.com:Project-MONAI/VISTA.git`
+- Find the plugin folder: `plugins/slicer/MONAILabel`
 - Open 3D Slicer: Go to **Edit** -> **Application Settings** -> **Modules** -> **Additional Module Paths**
-- Add New Module Path: _<FULL_PATH>_/plugins/slicer/MONAILabel
+- Add New Module Path: _<FULL_PATH>_/plugins/slicer/MONAILabel (You can drag the slicer/MONAILabel folder to the module panel.)
 - _**Restart**_ 3D Slicer
 
 <div align="center"> <img src="./assets/imgs/3dslicer_module.png" width="500"/> </div>
@@ -134,7 +135,7 @@ monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --
 ```
 
 - Open 3D Slicer and MONAI VISTA-Label plugin.
-<div align="center"> <img src="./assets/imgs/3dslicer_open.png" width="800"/> </div>
+<div align="center"> <img src="./assets/imgs/3dslicer_open.jepg" width="800"/> </div>
 
 - Connect to the monailabel server, start annotating!
 <div align="center"> <img src="./assets/imgs/3dslicer_annotating.png" width="800"/> </div>
