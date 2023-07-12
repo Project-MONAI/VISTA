@@ -145,9 +145,3 @@ monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --
 
 
 ## Video Demo
-
-## Contributing
-
-## Community
-
-## Reference
