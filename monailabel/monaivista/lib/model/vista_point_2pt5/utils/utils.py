@@ -15,6 +15,7 @@ import torch
 
 SAM_IMAGE_SIZE = 1024
 
+
 def resample_3d(img, target_size):
     imx, imy, imz = img.shape
     tx, ty, tz = target_size
@@ -52,7 +53,6 @@ class AverageMeter(object):
 def distributed_all_gather(
     tensor_list, valid_batch_size=None, out_numpy=False, world_size=None, no_barrier=False, is_valid=None
 ):
-
     if world_size is None:
         world_size = torch.distributed.get_world_size()
     if valid_batch_size is not None:
@@ -82,22 +82,22 @@ def distributed_all_gather(
 
 def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, original_affine=None):
     # Don't exclude background in val but will ignore it in metric calculation
-    H,W = inputs.shape[1:]
+    H, W = inputs.shape[1:]
     foreground_all = point_prompts["foreground"]
     background_all = point_prompts["background"]
 
-    class_list = [[i+1] for i in class_prompts]
+    class_list = [[i + 1] for i in class_prompts]
     unique_labels = torch.tensor(class_list).long().cuda()
 
     volume_point_coords = [cp for cp in foreground_all]
-    volume_point_labels = [1]*len(foreground_all)
+    volume_point_labels = [1] * len(foreground_all)
 
     for cp in background_all:
         volume_point_coords.append(cp)
         volume_point_labels.append(0)
 
     point_coords = [[]]
-    point_labels = [[]]      
+    point_labels = [[]]
 
     # Reoriente point coord if not in RAS
     if original_affine is not None:
@@ -109,33 +109,29 @@ def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, origi
                 volume_point_coords[idx][negative_indices[1]] = W - volume_point_coords[idx][negative_indices[1]]
 
     for idx, cp in enumerate(volume_point_coords):
-        if cp[2]+4 == start_idx:
+        if cp[2] + 4 == start_idx:
             new_H = cp[0] * (SAM_IMAGE_SIZE / H)
             new_W = cp[1] * (SAM_IMAGE_SIZE / W)
             point_coords[0].append([new_H, new_W])
             point_labels[0].append(volume_point_labels[idx])
 
-
     if len(point_coords[0]) == 0:
-        point_coords = None 
+        point_coords = None
         point_labels = None
 
     prepared_input = [{"image": inputs, "original_size": tuple(inputs.shape[1:])}]
-        
+
     if len(class_prompts) == 0:
         class_enabled = False
     else:
         class_enabled = True
     if class_enabled:
-        prepared_input[0].update(
-            {"labels": unique_labels})
+        prepared_input[0].update({"labels": unique_labels})
 
     if point_coords:
         point_coords = torch.tensor(point_coords).long().cuda()
         point_labels = torch.tensor(point_labels).long().cuda()
 
+        prepared_input[0].update({"point_coords": point_coords, "point_labels": point_labels})
 
-        prepared_input[0].update(
-            {"point_coords": point_coords, "point_labels": point_labels})
-        
     return prepared_input, unique_labels

@@ -25,6 +25,7 @@ from monailabel.interfaces.exception import MONAILabelError, MONAILabelException
 from monailabel.interfaces.tasks.infer_v2 import InferTask, InferType
 from monailabel.interfaces.utils.transform import dump_data, run_transforms
 from monailabel.transform.cache import CacheTransformDatad
+
 # from monailabel.transform.writer import ClassificationWriter, DetectionWriter, Writer
 from monailabel.utils.others.generic import device_list, device_map, name_to_device
 from .writer import ClassificationWriter, DetectionWriter, Writer
@@ -308,13 +309,16 @@ class BasicInferTask(InferTask):
 
         start = time.time()
 
-        self._cachedData = {} if self._cachedData and data.get("image_path") != self._cachedData.get("image_path") else self._cachedData or {}
+        self._cachedData = (
+            {}
+            if self._cachedData and data.get("image_path") != self._cachedData.get("image_path")
+            else self._cachedData or {}
+        )
 
         if self.type == InferType.DETECTION:
             data = self.run_detector(data, device=device)
         else:
             data = self.run_inferer(data, self._cachedEmbedding, self._cachedData, device=device)
-
 
         if not self.computeEmbedding:
             self._cachedData = data.copy()
@@ -482,7 +486,6 @@ class BasicInferTask(InferTask):
 
                     network.load_state_dict(load_dict, strict=True)
 
-
             else:
                 network = torch.jit.load(path, map_location=torch.device(device))
 
@@ -511,9 +514,8 @@ class BasicInferTask(InferTask):
         image_meta_dict = data.get("image_meta_dict", None)
         if image_meta_dict:
             original_affine = image_meta_dict.get("original_affine", None)
-        else: 
+        else:
             original_affine = None
-
 
         network = self._get_network(device, data)
         if network:
@@ -522,25 +524,25 @@ class BasicInferTask(InferTask):
             inputs = inputs[None] if convert_to_batch else inputs
             inputs = inputs.to(torch.device(device))
 
-
             with torch.no_grad():
                 if self.computeEmbedding:
-                    outputs = inferer(inputs, network, computeEmbedding=self.computeEmbedding, labels=self.labels, device=device)
+                    outputs = inferer(
+                        inputs, network, computeEmbedding=self.computeEmbedding, labels=self.labels, device=device
+                    )
                     return outputs
                 else:
                     outputs = inferer(
-                        inputs, 
-                        network, 
-                        class_prompts=self.class_prompts, 
-                        point_prompts=self.point_prompts, 
-                        cachedEmbedding=cachedEmbedding, 
-                        cached_data=cachedData, 
-                        computeEmbedding=self.computeEmbedding, 
+                        inputs,
+                        network,
+                        class_prompts=self.class_prompts,
+                        point_prompts=self.point_prompts,
+                        cachedEmbedding=cachedEmbedding,
+                        cached_data=cachedData,
+                        computeEmbedding=self.computeEmbedding,
                         labels=self.labels,
                         device=device,
-                        original_affine=original_affine
+                        original_affine=original_affine,
                     )
-
 
             if device.startswith("cuda"):
                 torch.cuda.empty_cache()
@@ -557,8 +559,6 @@ class BasicInferTask(InferTask):
             # consider them as callable transforms
             data = run_transforms(data, inferer, log_prefix="INF", log_name="Inferer")
         return data
-
-
 
     def run_detector(self, data: Dict[str, Any], convert_to_batch=True, device="cuda"):
         """
@@ -652,7 +652,7 @@ class BasicInferTask(InferTask):
         if self.type == InferType.DETECTION:
             dw = DetectionWriter()
             return dw(data)
-        
+
         writer = Writer(label=self.output_label_key, json=self.output_json_key)
         return writer(data)
 

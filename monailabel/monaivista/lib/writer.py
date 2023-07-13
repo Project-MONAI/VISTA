@@ -213,12 +213,10 @@ class Writer:
         output_file = None
         output_json = data.get(self.json, {})
 
-
         if self.embedding:
-            write_to_file=False
+            write_to_file = False
             output_file = tempfile.NamedTemporaryFile(suffix=ext).name
             write_h5(image_np, output_file)
-
 
         if write_to_file:
             output_file = tempfile.NamedTemporaryFile(suffix=ext).name
@@ -256,11 +254,13 @@ class Writer:
         """
         return len(image_np.shape) == 4 and image_np.shape[0] > 1
 
+
 def write_h5(data, filename):
     writer = NibabelWriter(output_dtype=output_dtype)
     writer.set_data_array(data, channel_dim=None, spatial_ndim=None)
     writer.set_metadata({"affine": affine, "original_affine": original_affine})
     writer.write(filename)
+
 
 class ClassificationWriter:
     def __init__(self, label="pred", label_names=None):

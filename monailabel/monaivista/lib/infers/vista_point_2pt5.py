@@ -11,28 +11,22 @@
 
 from typing import Callable, Sequence
 
-from monai.inferers import Inferer, SlidingWindowInferer
+from monai.inferers import Inferer
 from monai.transforms import (
-    Activationsd,
-    AsDiscreted,
-    AddChanneld,
     EnsureChannelFirstd,
     EnsureTyped,
-    KeepLargestConnectedComponentd,
     LoadImaged,
     Orientationd,
-    ScaleIntensityd,
     ScaleIntensityRanged,
-    Spacingd,
 )
 
 from monailabel.interfaces.tasks.infer_v2 import InferType
 from monailabel.tasks.infer.basic_infer import BasicInferTask
 from monailabel.transform.post import Restored
-from lib.transforms.transforms import ThreshMergeLabeld
 
 from lib.basic_infer import BasicInferTask
 from lib.model.vista_point_2pt5.inferer import VISTASliceInferer
+
 
 class VISTAPOINT2PT5(BasicInferTask):
     """
@@ -67,12 +61,10 @@ class VISTAPOINT2PT5(BasicInferTask):
             EnsureChannelFirstd(keys="image"),
             Orientationd(keys="image", axcodes="RAS"),
             ScaleIntensityRanged(keys="image", a_min=-1024, a_max=1024, b_min=0.0, b_max=1.0, clip=True),
-        ] 
-
+        ]
 
     def inferer(self, data=None) -> Inferer:
-        return VISTASliceInferer(
-        )
+        return VISTASliceInferer()
 
     def inverse_transforms(self, data=None):
         return []

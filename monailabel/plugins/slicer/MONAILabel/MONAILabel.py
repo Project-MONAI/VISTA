@@ -183,7 +183,6 @@ class _ui_MONAILabelSettingsPanel:
             str(qt.SIGNAL("valueAsIntChanged(int)")),
         )
 
-
         showSegmentsIn3DCheckBox = qt.QCheckBox()
         showSegmentsIn3DCheckBox.checked = False
         showSegmentsIn3DCheckBox.toolTip = "Enable this option to show segments in 3D (slow) after mask update..."
@@ -261,7 +260,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.optionsSectionIndex = 0
         self.optionsNameIndex = 0
 
-
         self.sammPositivePointListNode = None
         self.sammPositivePointListNodeObservers = []
         self.sammNegativePointListNode = None
@@ -296,8 +294,8 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.logic = MONAILabelLogic(self.tmpdir, resourcePath=self.resourcePath)
 
         # Set icons and tune widget properties
-        self.ui.serverComboBox.lineEdit().setPlaceholderText("enter server address or leave empty to use default") 
-        self.ui.anatomyComboBox.setPlaceholderText("enter and search anatomy or leave empty") 
+        self.ui.serverComboBox.lineEdit().setPlaceholderText("enter server address or leave empty to use default")
+        self.ui.anatomyComboBox.setPlaceholderText("enter and search anatomy or leave empty")
 
         self.ui.fetchServerInfoButton.setIcon(self.icon("refresh-icon.png"))
         self.ui.sammButton.setIcon(self.icon("samm_everything.png"))
@@ -306,10 +304,10 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.ui.trainingButton.setIcon(self.icon("training.png"))
         self.ui.stopTrainingButton.setIcon(self.icon("stop.png"))
         self.ui.uploadImageButton.setIcon(self.icon("upload.svg"))
-        self.ui.importLabelButton.setIcon(self.icon("download.png")) 
+        self.ui.importLabelButton.setIcon(self.icon("download.png"))
         self.ui.pointSegButton.setIcon(self.icon("samm_points.png"))
-        self.ui.promptSegButton.setIcon(self.icon("samm_class.png")) 
-        self.ui.uncheckPromptButton.setIcon(self.icon("samm_reset.png")) 
+        self.ui.promptSegButton.setIcon(self.icon("samm_class.png"))
+        self.ui.uncheckPromptButton.setIcon(self.icon("samm_reset.png"))
 
         self.ui.sammPosPlacementWidget.setMRMLScene(slicer.mrmlScene)
         self.ui.sammPosPlacementWidget.placeButton().toolTip = "Select +ve points"
@@ -326,7 +324,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.ui.sammNegPlacementWidget.deleteButton().show()
         # self.ui.sammNegPlacementWidget.setEnabled(True)
         # self.ui.sammNegPlacementWidget.setPlaceModeEnabled(True)
-
 
         self.ui.dgPositiveControlPointPlacementWidget.setMRMLScene(slicer.mrmlScene)
         self.ui.dgPositiveControlPointPlacementWidget.placeButton().toolTip = "Select +ve points"
@@ -367,7 +364,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.ui.pointSegButton.connect("clicked(bool)", self.onPointPromptSegmentation)
 
         self.ui.anatomyComboBox.textChanged.connect(self.filterClassPromptTable)
-
 
         # self.ui.sammModelSelector.connect("currentIndexChanged(int)", self.updateParameterNodeFromGUI)
 
@@ -687,9 +683,9 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         self.ui.optionsCollapsibleButton.setVisible(developer_mode)
         self.ui.promptCollapsibleButton.setVisible(developer_mode)
 
-
-        self.computeEmbedding = slicer.util.settingsValue("MONAILabel/preComputeEmbeddingMode", True, converter=slicer.util.toBool)
-
+        self.computeEmbedding = slicer.util.settingsValue(
+            "MONAILabel/preComputeEmbeddingMode", True, converter=slicer.util.toBool
+        )
 
         # Enable/Disable
         self.ui.nextSampleButton.setEnabled(self.ui.strategyBox.count)
@@ -703,24 +699,16 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             self.timer.connect("timeout()", self.monitorTraining)
             self.timer.start()
 
-        self.ui.sammButton.setEnabled(
-            self.ui.sammModelSelector.currentText and self._volumeNode is not None
-        )
+        self.ui.sammButton.setEnabled(self.ui.sammModelSelector.currentText and self._volumeNode is not None)
 
-        self.ui.pointSegButton.setEnabled(
-            self.ui.sammModelSelector.currentText and self._volumeNode is not None
-        )
+        self.ui.pointSegButton.setEnabled(self.ui.sammModelSelector.currentText and self._volumeNode is not None)
 
         # self.ui.sammButton.setEnabled(
         #     self.ui.sammModelSelector.currentText and self._volumeNode is not None
         # )
 
-        self.ui.promptSegButton.setEnabled(
-            self.ui.sammModelSelector.currentText and self._volumeNode is not None
-        )
-        self.ui.uncheckPromptButton.setEnabled(
-            self.ui.sammModelSelector.currentText and self._volumeNode is not None
-        )
+        self.ui.promptSegButton.setEnabled(self.ui.sammModelSelector.currentText and self._volumeNode is not None)
+        self.ui.uncheckPromptButton.setEnabled(self.ui.sammModelSelector.currentText and self._volumeNode is not None)
         # self.ui.uncheckPromptButton.setEnabled()
 
         self.ui.saveLabelButton.setEnabled(self._segmentNode is not None)
@@ -750,7 +738,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
                     "SAMM Pos", self.onSAMMPointListNodeModified, [0.5, 1, 0.5]
                 )
                 sammPosCPDisplayNode = self.sammPositivePointListNode.GetDisplayNode()
-                sammPosCPDisplayNode.SetGlyphScale(0.8) 
+                sammPosCPDisplayNode.SetGlyphScale(0.8)
 
                 self.ui.sammPosPlacementWidget.setCurrentNode(self.sammPositivePointListNode)
                 self.ui.sammPosPlacementWidget.setPlaceModeEnabled(False)
@@ -760,7 +748,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
                     "SAMM Neg", self.onSAMMPointListNodeModified, [0.4, 0.4, 0.9]
                 )
                 sammNegCPDisplayNode = self.sammNegativePointListNode.GetDisplayNode()
-                sammNegCPDisplayNode.SetGlyphScale(0.8) 
+                sammNegCPDisplayNode.SetGlyphScale(0.8)
                 self.ui.sammNegPlacementWidget.setCurrentNode(self.sammNegativePointListNode)
                 self.ui.sammNegPlacementWidget.setPlaceModeEnabled(False)
 
@@ -1024,13 +1012,13 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         movingMarkupIndex = markupsNode.GetDisplayNode().GetActiveControlPoint()
         logging.debug(f"Markup point added; point ID = {movingMarkupIndex}")
 
-        current_point = self.getControlPointXYZ(markupsNode, movingMarkupIndex)
+        self.getControlPointXYZ(markupsNode, movingMarkupIndex)
 
         # if not self.ui.dgUpdateCheckBox.checked:
         #     self.onClickDeepgrow(current_point, skip_infer=True)
         #     return
 
-        # self.onClickSAMMPoint(current_point) 
+        # self.onClickSAMMPoint(current_point)
 
         self.ignoreSAMMPointListNodeAddEvent = True
         # self.onEditControlPoints(self.sammPositivePointListNode, "MONAILabel.ForegroundPoints")
@@ -1268,7 +1256,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             self.progressBar = slicer.util.createProgressDialog(windowTitle="Wait...", maximum=100)
         self.progressBar.show()
         self.progressBar.activateWindow()
-        self.progressBar.setValue(progressPercentage) 
+        self.progressBar.setValue(progressPercentage)
         slicer.app.processEvents()
 
     def onTraining(self):
@@ -1421,14 +1409,16 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
                 params.update({"computeEmbedding": True})
 
                 if not self.progressBar:
-                    self.progressBar = slicer.util.createProgressDialog(windowTitle="Extracting 3D embedding...", maximum=100)
+                    self.progressBar = slicer.util.createProgressDialog(
+                        windowTitle="Extracting 3D embedding...", maximum=100
+                    )
                     self.progressBar.setLabelText("Initializing...")
-                    self.progressBar.setFixedSize(400,100)
+                    self.progressBar.setFixedSize(400, 100)
                 self.progressBar.show()
                 # self.progressBar.activateWindow()
                 self.progressBar.setValue(0)
-                self.progressBar.setCancelButton(None) 
-    
+                self.progressBar.setCancelButton(None)
+
                 slicer.app.processEvents()
 
                 _, params = self.logic.infer(model, image_file, params, session_id=self.getSessionId())
@@ -1483,8 +1473,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
         self.createScribblesROINode()
         self.ui.scribblesPlaceWidget.setCurrentNode(self._scribblesROINode)
-
-
 
         # check if user allows overlapping segments
         if slicer.util.settingsValue("MONAILabel/allowOverlappingSegments", False, converter=slicer.util.toBool):
@@ -1827,10 +1815,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         model = self.ui.sammModelSelector.currentText
         params = self.getParamsFromConfig("infer", model)
         print(params)
-        labels = (
-            params.get("label_names") if params and params.get("label_names") else self.models[model].get("labels")
-        )
-
+        labels = params.get("label_names") if params and params.get("label_names") else self.models[model].get("labels")
 
         class_table = self.ui.classPromptsTable
         class_table.clear()
@@ -1850,17 +1835,14 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             # checkbox.setChecked(val)
             class_table.setCellWidget(n, 1, checkbox)
 
-
             logging.info(f"{n} => Add class checkbox => {key}")
             n = n + 1
 
-    def getClassPromptTable(self): 
-
+    def getClassPromptTable(self):
         class_prompts = []
         for row in range(self.ui.classPromptsTable.rowCount):
             key = str(self.ui.classPromptsTable.item(row, 0).text())
             value = self.ui.classPromptsTable.item(row, 1)
-
 
             if value is None:
                 value = self.ui.classPromptsTable.cellWidget(row, 1)
@@ -1873,7 +1855,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
             value = True if value else False
 
-            if value == True:
+            if value is True:
                 class_prompts.append(key)
 
         logging.info(f"Class prompts::  => {class_prompts}")
@@ -1889,11 +1871,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
         self.ui.classPromptsTable.setUpdatesEnabled(True)
 
-        
-
-
     def onSetPromptSegmentation(self):
-
         if not self.current_sample:
             return
 
@@ -1905,7 +1883,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             model = self.ui.sammModelSelector.currentText
             image_file = self.current_sample["id"]
 
-            
             # get class prompt from checkbox
             params = self.getParamsFromConfig("infer", model)
             labels = (
@@ -1916,7 +1893,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             class_prompts = []
 
             for k in class_names:
-                class_prompts.append(labels[k]-1)
+                class_prompts.append(labels[k] - 1)
 
             # params = {
             #     "class_prompts": class_prompts,
@@ -1926,7 +1903,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
             result_file, params = self.logic.infer(model, image_file, params, session_id=self.getSessionId())
             print(f"Result Params for Segmentation: {params}")
-
 
             if labels and isinstance(labels, dict):
                 labels = [k for k, _ in sorted(labels.items(), key=lambda item: item[1])]
@@ -1956,7 +1932,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             model = self.ui.sammModelSelector.currentText
             image_file = self.current_sample["id"]
 
-            
             # get class prompt from checkbox
             params = self.getParamsFromConfig("infer", model)
             labels = (
@@ -1967,26 +1942,24 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             class_prompts = []
 
             for k in class_names:
-                class_prompts.append(labels[k]-1)
+                class_prompts.append(labels[k] - 1)
 
             foreground_all = self.getControlPointsXYZ(self.sammPositivePointListNode, "foreground")
             background_all = self.getControlPointsXYZ(self.sammNegativePointListNode, "background")
             foreground = foreground_all
             background = background_all
 
-
             logging.debug(f"Foreground: {foreground}")
             logging.debug(f"Background: {background}")
             point_prompts = {
                 "foreground": foreground,
-                "background": background,  
+                "background": background,
             }
 
             params.update({"class_prompts": class_prompts, "point_prompts": point_prompts})
 
             result_file, params = self.logic.infer(model, image_file, params, session_id=self.getSessionId())
             print(f"Result Params for Segmentation: {params}")
-
 
             if labels and isinstance(labels, dict):
                 labels = [k for k, _ in sorted(labels.items(), key=lambda item: item[1])]
@@ -2004,7 +1977,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
         self.updateGUIFromParameterNode()
         logging.info(f"Time consumed by segmentation: {time.time() - start:3.1f}")
-
 
     def createCursor(self, widget):
         return slicer.util.mainWindow().cursor
