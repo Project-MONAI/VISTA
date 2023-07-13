@@ -23,7 +23,7 @@ limitations under the License.
   - [Step 3. MONAI VISTA - Label Plugins](#MONAI-VISTA-Viewer-Plugins)
   - [Step 4. Data Preparation](#Sample-Data)
   - [Step 5. Start MONAI Label Server and Start Annotating!](#Start-MONAI-Label-Server-with-VISTA-Model)
-<!-- - [Video Demo](#Video-Demo) -->
+- [Video Demo](https://drive.google.com/file/d/1rEF1y9ZKo3Kj0Zms_gxkKwHlz75CYjwA/view?usp=sharing)
 - [Community](#Community)
 - [License](#License)
 - [Reference](#Reference)
