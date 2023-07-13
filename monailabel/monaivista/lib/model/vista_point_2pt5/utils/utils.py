@@ -80,7 +80,7 @@ def distributed_all_gather(
     return tensor_list_out
 
 
-def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, previous_pred=None, cachedEmbedding=None):
+def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, original_affine=None):
     # Don't exclude background in val but will ignore it in metric calculation
     H,W = inputs.shape[1:]
     foreground_all = point_prompts["foreground"]
@@ -96,11 +96,18 @@ def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, previ
         volume_point_coords.append(cp)
         volume_point_labels.append(0)
 
-    # volume_point_coords = foreground_all + background_all
-    # volume_point_labels = [1] * len(foreground_all) + [0] * len(background_all)
-
     point_coords = [[]]
-    point_labels = [[]]
+    point_labels = [[]]      
+
+    # Reoriente point coord if not in RAS
+    if original_affine is not None:
+        IJK2orientation = np.diag(original_affine[:3, :3])
+        negative_indices = np.where(IJK2orientation < 0)[0]
+        if len(negative_indices) > 0:
+            for idx, c in enumerate(volume_point_coords):
+                volume_point_coords[idx][negative_indices[0]] = H - volume_point_coords[idx][negative_indices[0]]
+                volume_point_coords[idx][negative_indices[1]] = W - volume_point_coords[idx][negative_indices[1]]
+
     for idx, cp in enumerate(volume_point_coords):
         if cp[2]+4 == start_idx:
             new_H = cp[0] * (SAM_IMAGE_SIZE / H)

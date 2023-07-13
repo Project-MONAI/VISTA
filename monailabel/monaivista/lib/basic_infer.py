@@ -317,7 +317,7 @@ class BasicInferTask(InferTask):
 
 
         if not self.computeEmbedding:
-            self._cachedData = data 
+            self._cachedData = data.copy()
 
             if callback_run_inferer:
                 data = callback_run_inferer(data)
@@ -508,12 +508,20 @@ class BasicInferTask(InferTask):
         inferer = self.inferer(data)
         logger.info(f"Inferer:: {device} => {inferer.__class__.__name__} => {inferer.__dict__}")
 
+        image_meta_dict = data.get("image_meta_dict", None)
+        if image_meta_dict:
+            original_affine = image_meta_dict.get("original_affine", None)
+        else: 
+            original_affine = None
+
+
         network = self._get_network(device, data)
         if network:
             inputs = data[self.input_key]
             inputs = inputs if torch.is_tensor(inputs) else torch.from_numpy(inputs)
             inputs = inputs[None] if convert_to_batch else inputs
             inputs = inputs.to(torch.device(device))
+
 
             with torch.no_grad():
                 if self.computeEmbedding:
@@ -529,7 +537,8 @@ class BasicInferTask(InferTask):
                         cached_data=cachedData, 
                         computeEmbedding=self.computeEmbedding, 
                         labels=self.labels,
-                        device=device
+                        device=device,
+                        original_affine=original_affine
                     )
 
 

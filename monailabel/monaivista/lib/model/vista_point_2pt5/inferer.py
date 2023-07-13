@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 from typing import Any
-
+import numpy as np
 import torch
 
 from monai.apps.utils import get_logger
@@ -122,7 +122,7 @@ def vista_slice_inference(
 
     cachedEmbedding = kwargs.pop("cachedEmbedding")
     cachedEmbedding = cachedEmbedding if cachedEmbedding else None
-
+    original_affine = kwargs.pop("original_affine")
 
     if (class_prompts == None) and (point_prompts == None): 
         # Everything button: no class, no point prompts: iterate all slices
@@ -138,9 +138,9 @@ def vista_slice_inference(
             pred_volume = pred_volume.argmax(1).unsqueeze(1)
     elif (class_prompts == None) and (point_prompts != None):
         class_prompts = []
-        pred_volume = update_slice(pred_volume, n_z_slices, n_z_before_pad, inputs_l, class_prompts, point_prompts, predictor, post_pred_slice, cached_pred, num_classes, device)
+        pred_volume = update_slice(pred_volume, n_z_slices, n_z_before_pad, inputs_l, class_prompts, point_prompts, predictor, post_pred_slice, cached_pred, num_classes, original_affine, device)
     else:
-        pred_volume = update_slice(pred_volume, n_z_slices, n_z_before_pad, inputs_l, class_prompts, point_prompts, predictor, post_pred_slice, cached_pred, num_classes, device)
+        pred_volume = update_slice(pred_volume, n_z_slices, n_z_before_pad, inputs_l, class_prompts, point_prompts, predictor, post_pred_slice, cached_pred, num_classes, original_affine, device)
 
     if temp_meta is not None:
         final_output = convert_to_dst_type(pred_volume, temp_meta, device=device)[0]
@@ -168,7 +168,7 @@ def compute_embedding(n_z_slices, n_z_before_pad, inputs_l, predictor):
 
     return image_embedding_dict
 
-def update_slice(pred_volume, n_z_slices,n_z_before_pad, inputs_l, class_prompts, point_prompts, predictor, post_pred_slice, cached_pred, num_classes, device):
+def update_slice(pred_volume, n_z_slices,n_z_before_pad, inputs_l, class_prompts, point_prompts, predictor, post_pred_slice, cached_pred, num_classes, original_affine, device):
     z_indices = [p[2]+(9//2) for p in point_prompts["foreground"]]
     z_indices.extend([p[2]+(9//2) for p in point_prompts["background"]])
     z_indices = list(set(z_indices))
@@ -180,7 +180,7 @@ def update_slice(pred_volume, n_z_slices,n_z_before_pad, inputs_l, class_prompts
             continue
 
         inputs = inputs_l[..., start_idx - (n_z_slices // 2): start_idx + (n_z_slices // 2) + 1].permute(2, 0, 1)
-        data, unique_labels = prepare_sam_val_input(inputs.cuda(), class_prompts, point_prompts, start_idx)
+        data, unique_labels = prepare_sam_val_input(inputs.cuda(), class_prompts, point_prompts, start_idx, original_affine)
 
         predictor.eval()
         with torch.cuda.amp.autocast():
@@ -193,6 +193,7 @@ def update_slice(pred_volume, n_z_slices,n_z_before_pad, inputs_l, class_prompts
         pred_volume = pred_volume.float()
         idx = torch.where(y_pred[0] == 1)
         z_idx = start_idx - (n_z_slices // 2)
+
         if cached_pred is not None:
             if class_prompts:
                 cached_pred_idx = torch.where(cached_pred[:, :, :, z_idx] == class_prompts[0] + 1)
@@ -212,7 +213,7 @@ def iterate_all(pred_volume, n_z_slices, n_z_before_pad, inputs_l, class_prompts
     start_range = range(n_z_slices // 2, min((n_z_slices // 2 + n_z_before_pad), len(cachedEmbedding))) if cachedEmbedding else range(n_z_slices // 2, n_z_slices // 2 + n_z_before_pad)
     for start_idx in start_range:
         inputs = inputs_l[..., start_idx - n_z_slices // 2:start_idx + n_z_slices // 2 + 1].permute(2, 0, 1)
-        data, unique_labels = prepare_sam_val_input(inputs.cuda(), class_prompts, point_prompts, start_idx, cachedEmbedding)
+        data, unique_labels = prepare_sam_val_input(inputs.cuda(), class_prompts, point_prompts, start_idx)
         predictor = predictor.eval()
         with autocast():
             if cachedEmbedding:
