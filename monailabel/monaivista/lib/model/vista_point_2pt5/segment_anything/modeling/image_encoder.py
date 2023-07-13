@@ -79,9 +79,7 @@ class ImageEncoderViT(nn.Module):
         self.pos_embed: Optional[nn.Parameter] = None
         if use_abs_pos:
             # Initialize absolute positional embedding with pretrain image size.
-            self.pos_embed = nn.Parameter(
-                torch.zeros(1, img_size // patch_size, img_size // patch_size, embed_dim)
-            )
+            self.pos_embed = nn.Parameter(torch.zeros(1, img_size // patch_size, img_size // patch_size, embed_dim))
 
         self.blocks = nn.ModuleList()
         for i in range(depth):
@@ -228,9 +226,7 @@ class Attention(nn.Module):
 
         self.use_rel_pos = use_rel_pos
         if self.use_rel_pos:
-            assert (
-                input_size is not None
-            ), "Input size must be provided if using relative positional encoding."
+            assert input_size is not None, "Input size must be provided if using relative positional encoding."
             # initialize relative positional embeddings
             self.rel_pos_h = nn.Parameter(torch.zeros(2 * input_size[0] - 1, head_dim))
             self.rel_pos_w = nn.Parameter(torch.zeros(2 * input_size[1] - 1, head_dim))
@@ -368,9 +364,9 @@ def add_decomposed_rel_pos(
     rel_h = torch.einsum("bhwc,hkc->bhwk", r_q, Rh)
     rel_w = torch.einsum("bhwc,wkc->bhwk", r_q, Rw)
 
-    attn = (
-        attn.view(B, q_h, q_w, k_h, k_w) + rel_h[:, :, :, :, None] + rel_w[:, :, :, None, :]
-    ).view(B, q_h * q_w, k_h * k_w)
+    attn = (attn.view(B, q_h, q_w, k_h, k_w) + rel_h[:, :, :, :, None] + rel_w[:, :, :, None, :]).view(
+        B, q_h * q_w, k_h * k_w
+    )
 
     return attn
 
@@ -398,15 +394,14 @@ class PatchEmbed(nn.Module):
         """
         super().__init__()
 
-        self.proj = nn.Conv2d(
-            in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding
-        )
+        self.proj = nn.Conv2d(in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.proj(x)
         # B C H W -> B H W C
         x = x.permute(0, 2, 3, 1)
         return x
+
 
 class PatchEmbed2pt5D(nn.Module):
     """
@@ -431,14 +426,12 @@ class PatchEmbed2pt5D(nn.Module):
         """
         super().__init__()
 
-        self.proj = nn.Conv3d(
-            in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding
-        )
+        self.proj = nn.Conv3d(in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # got restore RGB channel dim and the depth dim
         c = x.shape[1]
-        x = torch.stack(x.chunk(c//3, dim=1), dim=-1)
+        x = torch.stack(x.chunk(c // 3, dim=1), dim=-1)
         x = self.proj(x)
         # remove dummy depth dim to make it 2d
         x = x.squeeze(-1)

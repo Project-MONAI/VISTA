@@ -21,162 +21,162 @@ from monai.transforms.transform import MapTransform, Transform
 logger = logging.getLogger(__name__)
 
 THRESHOLD_DIC = {
-    'Spleen': 0.5,
-    'Right Kidney': 0.5,
-    'Left Kidney': 0.5,
-    'Gall Bladder': 0.5,
-    'Esophagus': 0.5, 
-    'Liver': 0.5,
-    'Stomach': 0.5,
-    'Arota': 0.5, 
-    'Postcava': 0.5, 
-    'Portal Vein and Splenic Vein': 0.5,
-    'Pancreas': 0.5, 
-    'Right Adrenal Gland': 0.5, 
-    'Left Adrenal Gland': 0.5, 
-    'Duodenum': 0.5, 
-    'Hepatic Vessel': 0.5,
-    'Right Lung': 0.5, 
-    'Left Lung': 0.5, 
-    'Colon': 0.5, 
-    'Intestine': 0.5, 
-    'Rectum': 0.5, 
-    'Bladder': 0.5, 
-    'Prostate': 0.5, 
-    'Left Head of Femur': 0.5, 
-    'Right Head of Femur': 0.5, 
-    'Celiac Truck': 0.5,
-    'Kidney Tumor': 0.5, 
-    'Liver Tumor': 0.5, 
-    'Pancreas Tumor': 0.5, 
-    'Hepatic Vessel Tumor': 0.5, 
-    'Lung Tumor': 0.5, 
-    'Colon Tumor': 0.5, 
-    'Kidney Cyst': 0.5
+    "Spleen": 0.5,
+    "Right Kidney": 0.5,
+    "Left Kidney": 0.5,
+    "Gall Bladder": 0.5,
+    "Esophagus": 0.5,
+    "Liver": 0.5,
+    "Stomach": 0.5,
+    "Arota": 0.5,
+    "Postcava": 0.5,
+    "Portal Vein and Splenic Vein": 0.5,
+    "Pancreas": 0.5,
+    "Right Adrenal Gland": 0.5,
+    "Left Adrenal Gland": 0.5,
+    "Duodenum": 0.5,
+    "Hepatic Vessel": 0.5,
+    "Right Lung": 0.5,
+    "Left Lung": 0.5,
+    "Colon": 0.5,
+    "Intestine": 0.5,
+    "Rectum": 0.5,
+    "Bladder": 0.5,
+    "Prostate": 0.5,
+    "Left Head of Femur": 0.5,
+    "Right Head of Femur": 0.5,
+    "Celiac Truck": 0.5,
+    "Kidney Tumor": 0.5,
+    "Liver Tumor": 0.5,
+    "Pancreas Tumor": 0.5,
+    "Hepatic Vessel Tumor": 0.5,
+    "Lung Tumor": 0.5,
+    "Colon Tumor": 0.5,
+    "Kidney Cyst": 0.5,
 }
-
 
 
 THRESHOLD_DIC_PRO = {
     "spleen": 0.5,
-    'Right Kidney': 0.5,
-    'Left Kidney': 0.5,
-    'Gall Bladder': 0.5,
-    'Esophagus': 0.5, 
-    'Liver': 0.5,
-    'Stomach': 0.5,
-    'Arota': 0.5, 
-    'Postcava': 0.5, 
-    'Portal Vein and Splenic Vein': 0.5,
-    'Pancreas': 0.5, 
-    'Right Adrenal Gland': 0.5, 
-    'Left Adrenal Gland': 0.5, 
-    'Duodenum': 0.5, 
-    'Hepatic Vessel': 0.5,
-    'Right Lung': 0.5, 
-    'Left Lung': 0.5, 
-    'Colon': 0.5, 
-    'Intestine': 0.5, 
-    'Rectum': 0.5, 
-    'Bladder': 0.5, 
-    'Prostate': 0.5, 
-    'Left Head of Femur': 0.5, 
-    'Right Head of Femur': 0.5, 
-    'Celiac Truck': 0.5,
-    'Kidney Tumor': 0.5, 
-    'Liver Tumor': 0.5, 
-    'Pancreas Tumor': 0.5, 
-    'Hepatic Vessel Tumor': 0.5, 
-    'Lung Tumor': 0.5, 
-    'Colon Tumor': 0.5, 
-    'Kidney Cyst': 0.5,
-    'Left Lung Upper Lobe': 0.5, 
-    'Left Lung Lower Lobe': 0.5, 
-    'Right Lung Upper Lobe': 0.5, 
-    'Right Lung Middle Lobe': 0.5, 
-    'Right Lung Lower Lobe': 0.5,
-    'Vertebrae L5': 0.5,  
-    'Vertebrae L4': 0.5,  
-    'Vertebrae L3': 0.5,  
-    'Vertebrae L2': 0.5,  
-    'Vertebrae L1': 0.5,
-    'Vertebrae T12': 0.5, 
-    'Vertebrae T11': 0.5,
-    'Vertebrae T10': 0.5,
-    'Vertebrae T9': 0.5,
-    'Vertebrae T8': 0.5,
-    'Vertebrae T7': 0.5,
-    'Vertebrae T6': 0.5,
-    'Vertebrae T5': 0.5,
-    'Vertebrae T4': 0.5,
-    'Vertebrae T3': 0.5,
-    'Vertebrae T2': 0.5,
-    'Vertebrae T1': 0.5,
-    'Vertebrae C7': 0.5,
-    'Vertebrae C6': 0.5,
-    'Vertebrae C5': 0.5,
-    'Vertebrae C4': 0.5,
-    'Vertebrae C3': 0.5,
-    'Vertebrae C2': 0.5, 
-    'Vertebrae C1': 0.5,
-    'Trachea': 0.5, 
-    'Heart Myocardium': 0.5, 
-    'Left Heart Atrium': 0.5, 
-    'Left Heart Ventricle': 0.5, 
-    'Right Heart Atrium': 0.5, 
-    'Right Heart Ventricle': 0.5,
-    'Pulmonary Artery': 0.5, 
-    'Brain': 0.5, 
-    'Left Iliac Artery': 0.5, 
-    'Right Iliac Artery': 0.5, 
-    'Left Iliac Vena': 0.5, 
-    'Right Iliac Vena': 0.5,
-    'Small Bowel': 0.5, 
-    'Left Rib 1': 0.5, 
-    'Left Rib 2': 0.5, 
-    'Left Rib 3': 0.5,
-    'Left Rib 4': 0.5,
-    'Left Rib 5': 0.5,
-    'Left Rib 6': 0.5,
-    'Left Rib 7': 0.5, 
-    'Left Rib 8': 0.5,
-    'Left Rib 9': 0.5,
-    'Left Rib 10': 0.5,
-    'Left Rib 11': 0.5,
-    'Left Rib 12': 0.5,
-    'Right Rib 1': 0.5,
-    'Right Rib 2': 0.5,
-    'Right Rib 3': 0.5,
-    'Right Rib 4': 0.5,
-    'Right Rib 5': 0.5,
-    'Right Rib 6': 0.5,
-    'Right Rib 7': 0.5,
-    'Right Rib 8': 0.5,
-    'Right Rib 9': 0.5,
-    'Right Rib 10': 0.5,
-    'Right Rib 11': 0.5,
-    'Right Rib 12': 0.5, 
-    'Left Humerus': 0.5, 
-    'Right Humerus': 0.5, 
-    'Left Scapula': 0.5, 
-    'Right Scapula': 0.5, 
-    'Left Clavicula': 0.5, 
-    'Right Clavicula': 0.5,
-    'Left Hip': 0.5, 
-    'Right Hip': 0.5, 
-    'Sacrum': 0.5, 
-    'Face': 0.5, 
-    'Left Gluteus Maximus': 0.5, 
-    'Right Gluteus Maximus':0.5, 
-    'Left Gluteus Medius': 0.5,
-    'Right Gluteus Medius': 0.5, 
-    'Left Gluteus Minimus': 0.5, 
-    'Right Gluteus Minimus': 0.5, 
-    'Left Autochthon': 0.5, 
-    'Right Autochthon': 0.5,
-    'Left iliopsoas': 0.5, 
-    'Right iliopsoas': 0.5
+    "Right Kidney": 0.5,
+    "Left Kidney": 0.5,
+    "Gall Bladder": 0.5,
+    "Esophagus": 0.5,
+    "Liver": 0.5,
+    "Stomach": 0.5,
+    "Arota": 0.5,
+    "Postcava": 0.5,
+    "Portal Vein and Splenic Vein": 0.5,
+    "Pancreas": 0.5,
+    "Right Adrenal Gland": 0.5,
+    "Left Adrenal Gland": 0.5,
+    "Duodenum": 0.5,
+    "Hepatic Vessel": 0.5,
+    "Right Lung": 0.5,
+    "Left Lung": 0.5,
+    "Colon": 0.5,
+    "Intestine": 0.5,
+    "Rectum": 0.5,
+    "Bladder": 0.5,
+    "Prostate": 0.5,
+    "Left Head of Femur": 0.5,
+    "Right Head of Femur": 0.5,
+    "Celiac Truck": 0.5,
+    "Kidney Tumor": 0.5,
+    "Liver Tumor": 0.5,
+    "Pancreas Tumor": 0.5,
+    "Hepatic Vessel Tumor": 0.5,
+    "Lung Tumor": 0.5,
+    "Colon Tumor": 0.5,
+    "Kidney Cyst": 0.5,
+    "Left Lung Upper Lobe": 0.5,
+    "Left Lung Lower Lobe": 0.5,
+    "Right Lung Upper Lobe": 0.5,
+    "Right Lung Middle Lobe": 0.5,
+    "Right Lung Lower Lobe": 0.5,
+    "Vertebrae L5": 0.5,
+    "Vertebrae L4": 0.5,
+    "Vertebrae L3": 0.5,
+    "Vertebrae L2": 0.5,
+    "Vertebrae L1": 0.5,
+    "Vertebrae T12": 0.5,
+    "Vertebrae T11": 0.5,
+    "Vertebrae T10": 0.5,
+    "Vertebrae T9": 0.5,
+    "Vertebrae T8": 0.5,
+    "Vertebrae T7": 0.5,
+    "Vertebrae T6": 0.5,
+    "Vertebrae T5": 0.5,
+    "Vertebrae T4": 0.5,
+    "Vertebrae T3": 0.5,
+    "Vertebrae T2": 0.5,
+    "Vertebrae T1": 0.5,
+    "Vertebrae C7": 0.5,
+    "Vertebrae C6": 0.5,
+    "Vertebrae C5": 0.5,
+    "Vertebrae C4": 0.5,
+    "Vertebrae C3": 0.5,
+    "Vertebrae C2": 0.5,
+    "Vertebrae C1": 0.5,
+    "Trachea": 0.5,
+    "Heart Myocardium": 0.5,
+    "Left Heart Atrium": 0.5,
+    "Left Heart Ventricle": 0.5,
+    "Right Heart Atrium": 0.5,
+    "Right Heart Ventricle": 0.5,
+    "Pulmonary Artery": 0.5,
+    "Brain": 0.5,
+    "Left Iliac Artery": 0.5,
+    "Right Iliac Artery": 0.5,
+    "Left Iliac Vena": 0.5,
+    "Right Iliac Vena": 0.5,
+    "Small Bowel": 0.5,
+    "Left Rib 1": 0.5,
+    "Left Rib 2": 0.5,
+    "Left Rib 3": 0.5,
+    "Left Rib 4": 0.5,
+    "Left Rib 5": 0.5,
+    "Left Rib 6": 0.5,
+    "Left Rib 7": 0.5,
+    "Left Rib 8": 0.5,
+    "Left Rib 9": 0.5,
+    "Left Rib 10": 0.5,
+    "Left Rib 11": 0.5,
+    "Left Rib 12": 0.5,
+    "Right Rib 1": 0.5,
+    "Right Rib 2": 0.5,
+    "Right Rib 3": 0.5,
+    "Right Rib 4": 0.5,
+    "Right Rib 5": 0.5,
+    "Right Rib 6": 0.5,
+    "Right Rib 7": 0.5,
+    "Right Rib 8": 0.5,
+    "Right Rib 9": 0.5,
+    "Right Rib 10": 0.5,
+    "Right Rib 11": 0.5,
+    "Right Rib 12": 0.5,
+    "Left Humerus": 0.5,
+    "Right Humerus": 0.5,
+    "Left Scapula": 0.5,
+    "Right Scapula": 0.5,
+    "Left Clavicula": 0.5,
+    "Right Clavicula": 0.5,
+    "Left Hip": 0.5,
+    "Right Hip": 0.5,
+    "Sacrum": 0.5,
+    "Face": 0.5,
+    "Left Gluteus Maximus": 0.5,
+    "Right Gluteus Maximus": 0.5,
+    "Left Gluteus Medius": 0.5,
+    "Right Gluteus Medius": 0.5,
+    "Left Gluteus Minimus": 0.5,
+    "Right Gluteus Minimus": 0.5,
+    "Left Autochthon": 0.5,
+    "Right Autochthon": 0.5,
+    "Left iliopsoas": 0.5,
+    "Right iliopsoas": 0.5,
 }
+
 
 class BinaryMaskd(MapTransform):
     def __init__(self, keys: KeysCollection, allow_missing_keys: bool = False):
@@ -276,7 +276,6 @@ class GetCentroidsd(MapTransform):
     def _get_centroids(self, label):
         centroids = []
         # loop over all segments
-        areas = []
         for seg_class in np.unique(label):
             c = {}
             # skip background
@@ -675,7 +674,6 @@ class ThreshMergeLabeld(MapTransform):
         """
         super().__init__(keys, allow_missing_keys)
 
-
     def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> Dict[Hashable, NdarrayOrTensor]:
         d: Dict = dict(data)
         class_prompts = d.get("class_prompts", None)
@@ -691,19 +689,19 @@ class ThreshMergeLabeld(MapTransform):
             else:
                 for k, value in THRESHOLD_DIC.items():
                     threshold_list.append(value)
-            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list),1,1,1).cuda()
+            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list), 1, 1, 1).cuda()
 
             pred_hard = d[key] > threshold_list
 
             print("in post transform before merge pred shape: {}".format(pred_hard.shape))
-            new_pred = torch.zeros(1,W,H,D)
+            new_pred = torch.zeros(1, W, H, D)
 
             if class_prompts:
                 for idx, item in enumerate(class_prompts):
-                    new_pred[0][pred_hard[idx]==1] = item+1
+                    new_pred[0][pred_hard[idx] == 1] = item + 1
             else:
                 for i in range(d[key].shape[0]):
-                    new_pred[0][pred_hard[i]==1] = i+1
+                    new_pred[0][pred_hard[i] == 1] = i + 1
 
             print("in post transform after merge pred shape: {}".format(new_pred.shape))
             print("Hey values: {}".format(np.unique(new_pred)))
@@ -723,7 +721,6 @@ class ThreshMergeLabelProd(MapTransform):
         """
         super().__init__(keys, allow_missing_keys)
 
-
     def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> Dict[Hashable, NdarrayOrTensor]:
         d: Dict = dict(data)
         class_prompts = d.get("class_prompts", None)
@@ -739,25 +736,26 @@ class ThreshMergeLabelProd(MapTransform):
             else:
                 for k, value in THRESHOLD_DIC_PRO.items():
                     threshold_list.append(value)
-            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list),1,1,1).cuda()
+            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list), 1, 1, 1).cuda()
 
             pred_hard = d[key] > threshold_list
 
             print("in post transform before merge pred shape: {}".format(pred_hard.shape))
-            new_pred = torch.zeros(1,W,H,D)
+            new_pred = torch.zeros(1, W, H, D)
 
             if class_prompts:
                 for idx, item in enumerate(class_prompts):
-                    new_pred[0][pred_hard[idx]==1] = item+1
+                    new_pred[0][pred_hard[idx] == 1] = item + 1
             else:
                 for i in range(d[key].shape[0]):
-                    new_pred[0][pred_hard[i]==1] = i+1
+                    new_pred[0][pred_hard[i] == 1] = i + 1
 
             print("in post transform after merge pred shape: {}".format(new_pred.shape))
             print("Hey values: {}".format(np.unique(new_pred)))
 
             d[key] = new_pred
         return d
+
 
 class ThreshMergeLabeld_bk(MapTransform):
     def __init__(self, keys: KeysCollection, allow_missing_keys: bool = False):
@@ -770,7 +768,6 @@ class ThreshMergeLabeld_bk(MapTransform):
         """
         super().__init__(keys, allow_missing_keys)
 
-
     def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> Dict[Hashable, NdarrayOrTensor]:
         d: Dict = dict(data)
         class_prompts = None
@@ -778,7 +775,6 @@ class ThreshMergeLabeld_bk(MapTransform):
             C, W, H, D = d[key].shape
 
             threshold_list = []
-
 
             if class_prompts:
                 for organ in class_prompts:
@@ -788,26 +784,26 @@ class ThreshMergeLabeld_bk(MapTransform):
             else:
                 for k, value in THRESHOLD_DIC.items():
                     threshold_list.append(value)
-            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list),1,1,1).cuda()
+            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list), 1, 1, 1).cuda()
 
             pred_hard = d[key] > threshold_list
 
             print("in post transform before merge pred shape: {}".format(pred_hard.shape))
-            new_pred = torch.zeros(1,W,H,D)
+            new_pred = torch.zeros(1, W, H, D)
 
             if class_prompts:
                 for idx, item in enumerate(class_prompts):
-                    new_pred[0][pred_hard[idx]==1] = item+1
+                    new_pred[0][pred_hard[idx] == 1] = item + 1
             else:
                 for i in range(d[key].shape[0]):
-                    new_pred[0][pred_hard[i]==1] = i+1
+                    new_pred[0][pred_hard[i] == 1] = i + 1
 
             print("in post transform after merge pred shape: {}".format(new_pred.shape))
 
-
             d[key].array = new_pred
         return d
-    
+
+
 class ThreshMergeLabelPFd(MapTransform):
     def __init__(self, keys: KeysCollection, allow_missing_keys: bool = False):
         """
@@ -818,7 +814,6 @@ class ThreshMergeLabelPFd(MapTransform):
             label_names: all label names
         """
         super().__init__(keys, allow_missing_keys)
-
 
     def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> Dict[Hashable, NdarrayOrTensor]:
         d: Dict = dict(data)
@@ -835,19 +830,19 @@ class ThreshMergeLabelPFd(MapTransform):
             else:
                 for k, value in THRESHOLD_DIC_PRO.items():
                     threshold_list.append(value)
-            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list),1,1,1).cuda()
+            threshold_list = torch.tensor(threshold_list).repeat(1).reshape(len(threshold_list), 1, 1, 1).cuda()
 
             pred_hard = d[key] > threshold_list
 
             print("in post transform before merge pred shape: {}".format(pred_hard.shape))
-            new_pred = torch.zeros(1,W,H,D)
+            new_pred = torch.zeros(1, W, H, D)
 
             if class_prompts:
                 for idx, item in enumerate(class_prompts):
-                    new_pred[0][pred_hard[idx]==1] = item+1
+                    new_pred[0][pred_hard[idx] == 1] = item + 1
             else:
                 for i in range(d[key].shape[0]):
-                    new_pred[0][pred_hard[i]==1] = i+1
+                    new_pred[0][pred_hard[i] == 1] = i + 1
 
             print("in post transform after merge pred shape: {}".format(new_pred.shape))
             print("Hey values: {}".format(np.unique(new_pred)))

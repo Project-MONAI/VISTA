@@ -160,17 +160,14 @@ class VISTAPOINT2PT5(TaskConfig):
         # Download PreTrained Model
         if strtobool(self.conf.get("use_pretrained_model", "true")):
             url = f"{self.conf.get('pretrained_path', self.PRE_TRAINED_PATH)}"
-            url = f"{url}/monaivista_point_104_sam_2pt5.pt" 
+            url = f"{url}/monaivista_point_104_sam_2pt5.pt"
             download_file(url, self.path[0])
 
         self.target_spacing = (1.5, 1.5, 1.5)  # target space for image
         # Setting ROI size - This is for the image padding
         self.roi_size = (96, 96, 96)
 
-        num_class = 104
-
-        self.network = sam_model_registry["vit_b"](checkpoint=None, image_size=1024,
-                                                    encoder_in_chans=9 * 3)
+        self.network = sam_model_registry["vit_b"](checkpoint=None, image_size=1024, encoder_in_chans=9 * 3)
         # Others
         self.epistemic_enabled = strtobool(conf.get("epistemic_enabled", "false"))
         self.epistemic_samples = int(conf.get("epistemic_samples", "5"))

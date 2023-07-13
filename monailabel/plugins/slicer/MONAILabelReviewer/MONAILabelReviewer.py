@@ -1707,7 +1707,7 @@ class MONAILabelReviewerLogic(ScriptedLoadableModuleLogic):
         """
         Displays the segmentation in slicer window
         """
-        segmentation = slicer.util.loadSegmentation(destination)
+        slicer.util.loadSegmentation(destination)
 
     def requestDicomImage(self, image_id: str, image_name: str, node_name: str):
         download_uri = self.imageDataController.getDicomDownloadUri(image_id)

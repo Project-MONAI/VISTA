@@ -177,7 +177,6 @@ class PromptEncoder(nn.Module):
         # Add support for onehot vector embedding for pre-defined classes
         sparse_embeddings = torch.cat([sparse_embeddings, label_embeddings], dim=1)
 
-
         if points is not None:
             coords, labels = points
             point_embeddings = self._embed_points(coords, labels, pad=(boxes is None))
@@ -185,7 +184,6 @@ class PromptEncoder(nn.Module):
         if boxes is not None:
             box_embeddings = self._embed_boxes(boxes)
             sparse_embeddings = torch.cat([sparse_embeddings, box_embeddings], dim=1)
-
 
         if masks is not None:
             dense_embeddings = self._embed_masks(masks)
@@ -233,9 +231,7 @@ class PositionEmbeddingRandom(nn.Module):
         pe = self._pe_encoding(torch.stack([x_embed, y_embed], dim=-1))
         return pe.permute(2, 0, 1)  # C x H x W
 
-    def forward_with_coords(
-        self, coords_input: torch.Tensor, image_size: Tuple[int, int]
-    ) -> torch.Tensor:
+    def forward_with_coords(self, coords_input: torch.Tensor, image_size: Tuple[int, int]) -> torch.Tensor:
         """Positionally encode points that are not normalized to [0,1]."""
         coords = coords_input.clone()
         coords[:, :, 0] = coords[:, :, 0] / image_size[1]

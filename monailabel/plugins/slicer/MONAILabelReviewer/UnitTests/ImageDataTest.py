@@ -249,7 +249,7 @@ class ImageDataTest(unittest.TestCase):
         self.assertTrue(isApproved)
 
     def test_getApprovedVersionTagElseReturnLatestVersion_imagedata_with_multiple_versions(self):
-        metas = self.parsedImageDataWithMultiVersions.getsegmentationMetaDict()
+        self.parsedImageDataWithMultiVersions.getsegmentationMetaDict()
         latestVersion = self.parsedImageDataWithMultiVersions.getApprovedVersionTagElseReturnLatestVersion()
         self.assertEqual("version_4", latestVersion)
 

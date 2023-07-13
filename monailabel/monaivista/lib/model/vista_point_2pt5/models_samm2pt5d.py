@@ -15,7 +15,6 @@ from .segment_anything.modeling.image_encoder import ImageEncoderViT
 from .segment_anything.modeling.mask_decoder import MaskDecoder
 from .segment_anything.modeling.prompt_encoder import PromptEncoder
 from .segment_anything.modeling import TwoWayTransformer
-import monai
 
 
 class Samm2pt5D(nn.Module):
@@ -23,12 +22,12 @@ class Samm2pt5D(nn.Module):
     image_format: str = "RGB"
 
     def __init__(
-            self,
-            image_encoder: ImageEncoderViT,
-            prompt_encoder: PromptEncoder,
-            mask_decoder: MaskDecoder,
-            pixel_mean: List[float] = [123.675, 116.28, 103.53],
-            pixel_std: List[float] = [58.395, 57.12, 57.375],
+        self,
+        image_encoder: ImageEncoderViT,
+        prompt_encoder: PromptEncoder,
+        mask_decoder: MaskDecoder,
+        pixel_mean: List[float] = [123.675, 116.28, 103.53],
+        pixel_std: List[float] = [58.395, 57.12, 57.375],
     ) -> None:
         """
         SAM predicts object masks from an image and input prompts.
@@ -53,14 +52,17 @@ class Samm2pt5D(nn.Module):
     def device(self) -> Any:
         return self.pixel_mean.device
 
-    def get_image_embeddings(self, batched_input: List[Dict[str, Any]], ):
+    def get_image_embeddings(
+        self,
+        batched_input: List[Dict[str, Any]],
+    ):
         input_images = torch.stack([self.preprocess(x["image"]) for x in batched_input], dim=0)
         image_embeddings = self.image_encoder(input_images)
         return image_embeddings
 
-    def get_mask_prediction(self, batched_input: List[Dict[str, Any]], image_embeddings,
-                            multimask_output: bool = False):
-
+    def get_mask_prediction(
+        self, batched_input: List[Dict[str, Any]], image_embeddings, multimask_output: bool = False
+    ):
         outputs = []
         for image_record, curr_embedding in zip(batched_input, image_embeddings):
             if "point_coords" in image_record:
@@ -72,7 +74,7 @@ class Samm2pt5D(nn.Module):
                 points=points,
                 boxes=image_record.get("boxes", None),
                 masks=image_record.get("mask_inputs", None),
-                class_labels=image_record.get("labels", None)
+                class_labels=image_record.get("labels", None),
             )
             low_res_masks, iou_predictions = self.mask_decoder(
                 image_embeddings=curr_embedding.unsqueeze(0),
@@ -94,16 +96,15 @@ class Samm2pt5D(nn.Module):
                     "iou_predictions": iou_predictions,
                     "low_res_logits": low_res_masks,
                     "high_res_logits": high_res_masks,
-
                 }
             )
         return outputs
 
     def forward(
-            self,
-            batched_input: List[Dict[str, Any]],
-            multimask_output: bool = False,
-            is_train: bool = False,
+        self,
+        batched_input: List[Dict[str, Any]],
+        multimask_output: bool = False,
+        is_train: bool = False,
     ) -> List[Dict[str, torch.Tensor]]:
         """
         Predicts masks end-to-end from provided images and prompts.
@@ -157,7 +158,7 @@ class Samm2pt5D(nn.Module):
                 points=points,
                 boxes=image_record.get("boxes", None),
                 masks=image_record.get("mask_inputs", None),
-                class_labels=image_record.get("labels", None)
+                class_labels=image_record.get("labels", None),
             )
             low_res_masks, iou_predictions = self.mask_decoder(
                 image_embeddings=curr_embedding.unsqueeze(0),
@@ -186,16 +187,15 @@ class Samm2pt5D(nn.Module):
                         "iou_predictions": iou_predictions,
                         "low_res_logits": low_res_masks,
                         "high_res_logits": high_res_masks,
-
                     }
                 )
         return outputs
 
     def postprocess_masks(
-            self,
-            masks: torch.Tensor,
-            # input_size: Tuple[int, ...],
-            original_size: Tuple[int, ...],
+        self,
+        masks: torch.Tensor,
+        # input_size: Tuple[int, ...],
+        original_size: Tuple[int, ...],
     ) -> torch.Tensor:
         """
         Remove padding and upscale masks to the original image size.
@@ -220,10 +220,7 @@ class Samm2pt5D(nn.Module):
             align_corners=False,
         )
         # resize it back to the longest dim (square image)
-        masks = F.interpolate(masks, max(original_size),
-                              mode="bilinear",
-                              align_corners=False
-                              )
+        masks = F.interpolate(masks, max(original_size), mode="bilinear", align_corners=False)
         # remove padding
         masks = masks[..., : original_size[0], : original_size[1]]
         return masks
@@ -238,7 +235,8 @@ class Samm2pt5D(nn.Module):
             else:
                 # for other 2.5d data, we normalize each input slice
                 x = torch.cat(
-                    [(x[i].unsqueeze(0) * 255.0 - self.pixel_mean) / self.pixel_std for i in range(x.shape[0])], dim=0)
+                    [(x[i].unsqueeze(0) * 255.0 - self.pixel_mean) / self.pixel_std for i in range(x.shape[0])], dim=0
+                )
 
         # Pad image and make it a square image
         h, w = x.shape[-2:]
@@ -258,21 +256,19 @@ class Samm2pt5D(nn.Module):
         else:
             # Resize it to self.image_encoder.img_size // 4 (for labels). the size is same as low-res logit
             x = F.interpolate(
-                x.unsqueeze(0),
-                (self.image_encoder.img_size // 4, self.image_encoder.img_size // 4),
-                mode="nearest"
+                x.unsqueeze(0), (self.image_encoder.img_size // 4, self.image_encoder.img_size // 4), mode="nearest"
             ).squeeze(0)
         return x
 
 
 def _build_sam2pt5d(
-        encoder_in_chans,
-        encoder_embed_dim,
-        encoder_depth,
-        encoder_num_heads,
-        encoder_global_attn_indexes,
-        checkpoint=None,
-        image_size=1024
+    encoder_in_chans,
+    encoder_embed_dim,
+    encoder_depth,
+    encoder_num_heads,
+    encoder_global_attn_indexes,
+    checkpoint=None,
+    image_size=1024,
 ):
     prompt_embed_dim = 256
     image_size = image_size  # TODO: Shall we try to adapt model to 512x512 ?
@@ -352,10 +348,12 @@ def _build_sam2pt5d(
             elif name.startswith("mask_decoder"):
                 mask_decoder_params.append(n_param)
 
-        print(f"{sam.__class__.__name__} has {sum(total_params) * 1.e-6:.2f} M params, "
-              f"{sum(image_encoder_params) * 1.e-6:.2f} M params in image encoder,"
-              f"{sum(prompt_encoder_params) * 1.e-6:.2f} M params in prompt encoder,"
-              f"{sum(mask_decoder_params) * 1.e-6:.2f} M params in mask decoder.")
+        print(
+            f"{sam.__class__.__name__} has {sum(total_params) * 1.e-6:.2f} M params, "
+            f"{sum(image_encoder_params) * 1.e-6:.2f} M params in image encoder,"
+            f"{sum(prompt_encoder_params) * 1.e-6:.2f} M params in prompt encoder,"
+            f"{sum(mask_decoder_params) * 1.e-6:.2f} M params in mask decoder."
+        )
 
         # comment to unfreeze all encoder layers
         # for name, param in sam.named_parameters():

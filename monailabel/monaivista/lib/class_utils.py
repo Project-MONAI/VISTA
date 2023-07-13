@@ -153,12 +153,10 @@ def get_class_names(p, subclass=None) -> List[str]:
     logger.debug(f"Module File Path: {p.__file__}")
 
     if os.path.basename(p.__file__).startswith("__"):
-
         current_dir = os.path.dirname(p.__file__)
         current_module_name = p.__package__
 
         for file in glob.glob(current_dir + "/*.py*"):
-
             name = os.path.splitext(os.path.basename(file))[0]
             if name.startswith("__"):
                 continue
@@ -179,7 +177,6 @@ def get_class_names(p, subclass=None) -> List[str]:
                     and c.__module__ == module.__name__
                     and (not subclass or is_subclass(c.__name__, c, subclass))
                 ):
-
                     result.append(c.__module__ + "." + c.__name__)
 
     else:
