@@ -1056,8 +1056,6 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
 
             logging.debug(f"RAS: {coord}; WORLD: {world}; IJK: {p_Ijk}")
             point_set.append(p_Ijk[0:3])
-            # point_set.append(coord[0:3])
-
 
         logging.info(f"{name} => Current control points: {point_set}")
         return point_set

@@ -24,19 +24,19 @@ limitations under the License.
   - [Step 4. Data Preparation](#Sample-Data)
   - [Step 5. Start MONAI Label Server and Start Annotating!](#Start-MONAI-Label-Server-with-VISTA-Model)
 - [Video Demo](#Video-Demo)
-- [Contributing](#Contributing)
 - [Community](#Community)
+- [License](#License)
+- [Reference](#Reference)
 
 ## Overview
 
-MONAI VISTA is a plaform solution of deploying medical segmentation foundation models. This section
- provides a MONAI Label integration of APIs and samples apps. The integration is a server-client 
+MONAI VISTA is a platform solution for deploying medical segmentation foundation models. This section
+ provides a MONAI Label integration of APIs and sample apps. The integration is a server-client 
  system that facilitates interactive medical image segmentation using AI models such as segment 
  anything medical model (SAMM) or other prompt-based annotation algorithms. 
 
-MONAI VISTA - MONAI Label integration is an intelligent opem source ecosystem that embables users
-to create and deploy vision foundation models especially for medical segmenation. It provides 
-interfaces of class- and point-prompts that AI models can take as input. The integration also provides
+MONAI VISTA - MONAI Label integration is an intelligent open-source ecosystem that enables users to create and deploy vision foundation models, especially for medical segmentation. It provides 
+interfaces of class- and point prompts that AI models can take as input. The integration also provides
 sample 3D Slicer plugin UIs.
 
 <div align="center"> <img src="./assets/imgs/montage.png" width="800"/> </div>
@@ -47,15 +47,12 @@ sample 3D Slicer plugin UIs.
 ### Installation
 
 MONAI VISTA models are integrated based on [MONAI Label](https://docs.monai.io/projects/label/en/latest/index.html#).
-Start using MONAI Label locally and run installlation with your familiar visualization tools. 
+Start using MONAI Label locally and run the installation with your familiar visualization tools. 
 Stable version software represents the currently tested and supported visualization tools with 
-latest release of MONAI Label. Weekly preview version is available if users want the latest feature, 
-not fully tested.
+the latest release of MONAI Label. 
 
 Refer to [MONAI Label installation](https://docs.monai.io/projects/label/en/latest/installation.html) page
-for details. 
-
-For milestone release, users can install from PyPl with command:
+for details. For milestone releases, users can install from PyPl with the command:
 
 ```bash
 pip install monailabel
@@ -68,9 +65,8 @@ For Docker and Github installation, refer to MONAI Label [Github](https://github
 
 Based on MONAI Label, MONAI VISTA is developed as an app. This app has example models 
 to do both interactive and "Everything" segmentation over medical images. 
-Prompt-based segment experience is highlighted. Including class prompts and point click prompts, 
-Segmentation with latest deep learning architectures (e.g., Segmentation Anything Model (SAM)) for multiple lung, abdominal, and pelvis
-organs. Interactive tools includes comptrol points, class prompt check boxes are developed with viewer plugins. 
+Prompt-based segment experience is highlighted. Including class prompts and point click prompts, Segmentation with the latest deep learning architectures (e.g., Segmentation Anything Model (SAM)) for multiple lung, abdominal, and pelvis
+organs. Interactive tools include control points, and class prompt check boxes are developed with viewer plugins. 
 
 Get the monaivista app with:
 
@@ -81,20 +77,20 @@ git clone git@github.com:Project-MONAI/VISTA.git
 cd VISTA/monailabel 
 ```
 
-For more details of `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/add_monailabel_integration/monailabel/monaivista).
+For more details on `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/add_monailabel_integration/monailabel/monaivista).
 
 ### MONAI VISTA Viewer Plugins
 
-The interactive annotation exerprience with prompt-based segmentation models needs integration of medical image viewers. 
+The interactive annotation experience with prompt-based segmentation models needs the integration of medical image viewers. 
 MONAI VISTA and MONAI Label support multiple open-sourced viewers, such as [3D Slicer](https://www.slicer.org/) and [OHIF](https://ohif.org/). 
 
 Example of 3D Slicer integration:
 
 3D Slicer is a free, open-source software for visualization, processing, segmentation, registration, 
-and other 3D images and meshes. MONAI Label supports 3D Slicer with radiology and monaibundle applications. 
-With its advanced features, 3D Slicer is a mature and well-tested viewer for radiology studies and algorithms.
+and other 3D images and meshes. 3D Slicer is a mature and well-tested viewer for radiology studies and algorithms.
 
 #### Installing 3D Slicer
+
 To use MONAI Label with 3D Slicer, you'll need to download and install 3D Slicer. 
 MONAI Label supports stable and preview versions of 3D Slicer, version 5.0 or higher. 
 For more information on installing 3D Slicer, 
@@ -102,7 +98,7 @@ check out the [3D Slicer Documentation](https://slicer.readthedocs.io/en/latest/
 
 #### Install MONAI VISTA-Label plugin of 3D Slicer
 
-The plugin needs to be added in developer mode. Please follow following steps.
+The plugin needs to be added in developer mode. Please follow the below steps.
 
 ##### Plugin in Developer Mode
 
@@ -130,7 +126,7 @@ monailabel datasets --download --name Task07_Pancreas --output .
 
 ### Start MONAI Label Server with VISTA Model
 
-Splecify the sample app and sample datasets' path in the following command: 
+Specify the sample app and sample datasets' path in the following command: 
 
 ```bash
 monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --conf models vista_point_2pt5
@@ -142,11 +138,28 @@ monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --
 - Connect to the monailabel server, start annotating!
 <div align="center"> <img src="./assets/imgs/3dslicer_annotating.png" width="800"/> </div>
 
-
-## Video Demo
-
-## Contributing
-
 ## Community
 
+Join the conversation on Twitter [@ProjectMONAI](https://twitter.com/ProjectMONAI) or join
+our [Slack channel](https://projectmonai.slack.com/archives/C031QRE0M1C).
+
+Ask and answer questions on MONAI VISTA's GitHub Issues.
+
+## License
+
+The model is licensed under the Apache 2.0 license.
+
 ## Reference
+
+The first deployed model is trained and developed with Segment Anything Model (SAM). Check the 3rd party license for reference.
+
+This integration is based on MONAI Label:
+
+```bash
+@article{diaz2022monai,
+  title={Monai label: A framework for ai-assisted interactive labeling of 3d medical images},
+  author={Diaz-Pinto, Andres and Alle, Sachidanand and Nath, Vishwesh and Tang, Yucheng and Ihsani, Alvin and Asad, Muhammad and P{\'e}rez-Garc{\'\i}a, Fernando and Mehta, Pritesh and Li, Wenqi and Flores, Mona and others},
+  journal={arXiv preprint arXiv:2203.12362},
+  year={2022}
+}
+```
