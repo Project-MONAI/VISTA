@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -112,7 +112,7 @@ examples/scd_lvsegs.npz
 temp/
 .idea/
 
-*~
+# *~
 
 # Remove .pyre temporary config files
 .pyre
