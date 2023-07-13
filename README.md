@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# MONAI VISTA Models 
+# MONAI VISTA 
 
 <div align="center"> <img src="./assets/imgs/demo_gif.gif" width="800"/> </div>
 
@@ -23,17 +23,16 @@ limitations under the License.
   - [Step 3. MONAI VISTA - Label Plugins](#MONAI-VISTA-Viewer-Plugins)
   - [Step 4. Data Preparation](#Sample-Data)
   - [Step 5. Start MONAI Label Server and Start Annotating!](#Start-MONAI-Label-Server-with-VISTA-Model)
-- [Video Demo](#Video-Demo)
+<!-- - [Video Demo](#Video-Demo) -->
 - [Community](#Community)
 - [License](#License)
 - [Reference](#Reference)
 
 ## Overview
 
-MONAI VISTA is a platform solution for deploying medical segmentation foundation models. This section
- provides a MONAI Label integration of APIs and sample apps. The integration is a server-client 
- system that facilitates interactive medical image segmentation using AI models such as segment 
- anything medical model (SAMM) or other prompt-based annotation algorithms. 
+MONAI Versatile Imaging Segmen-Tation and Annotation (VISTA) is a platform solution for deploying medical segmentation foundation models. This section provides a MONAI Label integration of APIs and sample apps. The integration is a server-client 
+system that facilitates interactive medical image segmentation using AI models such as segment 
+anything medical model (SAMM) or other prompt-based annotation algorithms. 
 
 MONAI VISTA - MONAI Label integration is an intelligent open-source ecosystem that enables users to create and deploy vision foundation models, especially for medical segmentation. It provides 
 interfaces of class- and point prompts that AI models can take as input. The integration also provides
@@ -66,7 +65,7 @@ For Docker and Github installation, refer to MONAI Label [Github](https://github
 Based on MONAI Label, MONAI VISTA is developed as an app. This app has example models 
 to do both interactive and "Everything" segmentation over medical images. 
 Prompt-based segment experience is highlighted. Including class prompts and point click prompts, Segmentation with the latest deep learning architectures (e.g., Segmentation Anything Model (SAM)) for multiple lung, abdominal, and pelvis
-organs. Interactive tools include control points, and class prompt check boxes are developed with viewer plugins. 
+organs. Interactive tools include control points and class prompt check boxes developed with viewer plugins. 
 
 Get the monaivista app with:
 
