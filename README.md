@@ -149,7 +149,7 @@ monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --
 Join the conversation on Twitter [@ProjectMONAI](https://twitter.com/ProjectMONAI) or join
 our [Slack channel](https://projectmonai.slack.com/archives/C031QRE0M1C).
 
-Ask and answer questions on MONAI VISTA's GitHub Issues.
+Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://github.com/Project-MONAI/VISTA/discussions).
 
 ## License
 
