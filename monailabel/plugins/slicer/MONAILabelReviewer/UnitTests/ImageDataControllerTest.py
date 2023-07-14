@@ -16,7 +16,7 @@ import unittest
 from typing import Dict
 from unittest.mock import Mock, patch
 
-sys.path.append("..")
+# sys.path.append("..")
 from MONAILabelReviewerLib.ImageData import ImageData
 from MONAILabelReviewerLib.ImageDataController import ImageDataController
 from MONAILabelReviewerLib.MONAILabelReviewerEnum import Level, SegStatus

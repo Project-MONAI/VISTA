@@ -14,7 +14,7 @@ import os
 import sys
 import unittest
 
-sys.path.append("..")
+# sys.path.append("..")
 from MONAILabelReviewerLib.ImageData import ImageData
 from MONAILabelReviewerLib.JsonParser import JsonParser
 from MONAILabelReviewerLib.SegmentationMeta import SegmentationMeta
@@ -68,7 +68,8 @@ class ImageDataTest(unittest.TestCase):
             comment=comment,
         )
 
-        # imageData.addNewSegmentationMeta(status="flagged", level="hard", approvedBy="Dr.Faust", comment="Damit ich erkenne, was die Menchenwelt im Innerstern zusammenhaelt")
+        # imageData.addNewSegmentationMeta(status="flagged", level="hard", approvedBy="Dr.Faust",
+        #     comment="Damit ich erkenne, was die Menchenwelt im Innerstern zusammenhaelt")
         imageData.setSegmentationFileName("6662775.seg.nrrd")
         imageData.setClientId("segmentator")
         imageData.setVersionNames(["final", "version_1", "version_2"])

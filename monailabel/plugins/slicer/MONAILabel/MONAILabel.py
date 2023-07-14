@@ -2576,7 +2576,7 @@ class MONAILabelLogic(ScriptedLoadableModuleLogic):
                     print(f"Fetching new Token for: {self.username}")
                     self.auth_token = mc.auth_token(self.username, self.password)
                     mc.update_auth(self.auth_token)
-                except:
+                except BaseException:
                     self.username = None
                     self.password = None
                     self.auth_token = None

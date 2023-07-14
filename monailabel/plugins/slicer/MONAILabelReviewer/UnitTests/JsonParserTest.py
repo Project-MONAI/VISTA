@@ -14,7 +14,7 @@ import os
 import sys
 import unittest
 
-sys.path.append("..")
+# sys.path.append("..")
 from MONAILabelReviewerLib.ImageData import ImageData
 from MONAILabelReviewerLib.JsonParser import JsonParser
 

@@ -178,17 +178,17 @@ class MyApp(MONAILabelApp):
         # 2/ localization vertebra
         # 3/ segmentation vertebra
         #################################################
-        if (
-            infers.get("localization_spine")
-            and infers.get("localization_vertebra")
-            and infers.get("segmentation_vertebra")
-        ):
-            infers["vertebra_pipeline"] = InferVertebraPipeline(
-                task_loc_spine=infers["localization_spine"],  # first stage
-                task_loc_vertebra=infers["localization_vertebra"],  # second stage
-                task_seg_vertebra=infers["segmentation_vertebra"],  # third stage
-                description="Combines three stage for vertebra segmentation",
-            )
+        # if (
+        #     infers.get("localization_spine")
+        #     and infers.get("localization_vertebra")
+        #     and infers.get("segmentation_vertebra")
+        # ):
+        #     infers["vertebra_pipeline"] = InferVertebraPipeline(
+        #         task_loc_spine=infers["localization_spine"],  # first stage
+        #         task_loc_vertebra=infers["localization_vertebra"],  # second stage
+        #         task_seg_vertebra=infers["segmentation_vertebra"],  # third stage
+        #         description="Combines three stage for vertebra segmentation",
+        #     )
         logger.info(infers)
         return infers
 
