@@ -11,12 +11,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# TODO add readme
-
 The MONAI VISTA app contains several tasks:
 
 - Inferencing tasks: These tasks allow end-users to invoke pre-trained models for image analysis.
-- Training and fine-tuning tasks: TBD
+- Training and fine-tuning tasks: (coming soon)
 
 #### Implementing an Inference Task
 To implement an inference task, developers must inherit the  [InferTask](https://github.com/Project-MONAI/MONAILabel/blob/main/monailabel/tasks/infer/basic_infer.py) interface, which specifies a list of pre- and post-transforms and an inferer.
