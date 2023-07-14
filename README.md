@@ -34,6 +34,8 @@ MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 
 ## Overview
 
+[MONAI Meetup presentation at MIDL 2023](https://docs.google.com/presentation/d/1v5zzvWnL8dwf05auwMwIZ2Iq1S-8VCUlbg5Ouu2gqOg/)
+
 MONAI VISTA provides domain-specific workflows for building and utilizing foundation models
 for medical image segmentation.
 It leverages state-of-the-art deep learning technology to establish a
