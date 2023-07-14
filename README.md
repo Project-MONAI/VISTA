@@ -85,7 +85,7 @@ git clone git@github.com:Project-MONAI/VISTA.git
 cd VISTA/monailabel
 ```
 
-For more details on `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/add_monailabel_integration/monailabel/monaivista).
+For more details on `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/main/monailabel/monaivista).
 
 ### MONAI VISTA Viewer Plugins
 
