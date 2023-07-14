@@ -21,7 +21,6 @@ from monai.transforms import (
 )
 
 from monailabel.interfaces.tasks.infer_v2 import InferType
-from monailabel.tasks.infer.basic_infer import BasicInferTask
 from monailabel.transform.post import Restored
 
 from lib.basic_infer import BasicInferTask

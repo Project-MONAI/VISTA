@@ -16,17 +16,17 @@ from typing import Dict, List
 from MONAILabelReviewerLib.MONAILabelReviewerEnum import SegStatus
 from MONAILabelReviewerLib.SegmentationMeta import SegmentationMeta
 
-"""
-ImageData is a container for each segmentation/image.
-Such ImageData contains the meta data of corresponding segmentation/image (e.g. fileName, checkSum, comment, etc.)
-Each change (regarding the review process) will be monitored within ImageData.
-Once a user select the next segmentation during review the information in ImageData will be send to MONAI-Server in order
-to persist the data in datastore_v2.json file.
-
-"""
-
 
 class ImageData:
+    """
+    ImageData is a container for each segmentation/image.
+    Such ImageData contains the meta data of corresponding segmentation/image (e.g. fileName, checkSum, comment, etc.)
+    Each change (regarding the review process) will be monitored within ImageData.
+    Once a user select the next segmentation during review the information in ImageData will be send to MONAI-Server in order
+    to persist the data in datastore_v2.json file.
+
+    """
+
     def __init__(self, name, fileName, nodeName, segmented, timeStamp, comment=""):
         self.name: str = name  # equals imageId
         self.fileName: str = fileName

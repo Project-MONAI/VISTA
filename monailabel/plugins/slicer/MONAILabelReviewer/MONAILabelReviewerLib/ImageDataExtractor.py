@@ -16,22 +16,22 @@ from typing import Dict, List
 from MONAILabelReviewerLib.ImageData import ImageData
 from MONAILabelReviewerLib.MONAILabelReviewerEnum import Level
 
-"""
-ImageDataExtractor gets dictionary (mapping from id to ImageData from JsonParser) and caches
-    Mapping:
-        - imageIds TO ImageData,
-        - client TO list of imageIds
-    List:
-        - imageIds of all images which are not segemented yet
-        - imageIds of all images which are approved
-        - all reviewers
-
-Each modification during review process will be stored in corresponding ImageData
-ImageDataExtractor provides the meta data across all ImageData-Containers when the user selects the filter option
-"""
-
 
 class ImageDataExtractor:
+    """
+    ImageDataExtractor gets dictionary (mapping from id to ImageData from JsonParser) and caches
+        Mapping:
+            - imageIds TO ImageData,
+            - client TO list of imageIds
+        List:
+            - imageIds of all images which are not segemented yet
+            - imageIds of all images which are approved
+            - all reviewers
+
+    Each modification during review process will be stored in corresponding ImageData
+    ImageDataExtractor provides the meta data across all ImageData-Containers when the user selects the filter option
+    """
+
     def __init__(self, nameToImageData: dict):
         self.LEVEL = Level()
         self.nameToImageData: Dict[str, ImageData] = nameToImageData

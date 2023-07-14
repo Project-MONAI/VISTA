@@ -18,12 +18,12 @@ from urllib.parse import quote_plus
 import requests
 from requests.structures import CaseInsensitiveDict
 
-"""
-MonaiServerREST provides the REST endpoints to the MONAIServer
-"""
 
 
 class MonaiServerREST:
+    """
+    MonaiServerREST provides the REST endpoints to the MONAIServer
+    """
     def __init__(self, serverUrl: str):
         self.PARAMS_PREFIX_REST_REQUEST = "params"
         self.serverUrl = serverUrl

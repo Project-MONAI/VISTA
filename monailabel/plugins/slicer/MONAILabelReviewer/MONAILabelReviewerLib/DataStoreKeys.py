@@ -11,15 +11,15 @@
 
 from typing import List
 
-"""
-DataStoreKeys contains arrays which represent the structure of datastore.json
-That provides an overview of keys which are relevant for the access the key-value-pair
-within json file.
-Below please have a look on an example of such entry in datastore.json.
-"""
 
 
 class DataStoreKeys:
+    """
+    DataStoreKeys contains arrays which represent the structure of datastore.json
+    That provides an overview of keys which are relevant for the access the key-value-pair
+    within json file.
+    Below please have a look on an example of such entry in datastore.json.
+    """
     def __init__(self):
         self.OBJECT = "objects"
         self.FINAL = "final"

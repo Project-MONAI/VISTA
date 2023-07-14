@@ -16,13 +16,12 @@ from MONAILabelReviewerLib.ImageData import ImageData
 from MONAILabelReviewerLib.MONAILabelReviewerEnum import Label
 from MONAILabelReviewerLib.SegmentationMeta import SegmentationMeta
 
-"""
-JsonParser parses the datastore.json file
-and caches the information in dictionary: Mapping from id to ImageData
-"""
-
 
 class JsonParser:
+    """
+    JsonParser parses the datastore.json file
+    and caches the information in dictionary: Mapping from id to ImageData
+    """
     def __init__(self, jsonObject: dict):
         self.LABEL = Label()
         self.dataStoreKeys = DataStoreKeys()

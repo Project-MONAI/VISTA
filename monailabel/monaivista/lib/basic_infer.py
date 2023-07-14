@@ -585,7 +585,8 @@ class BasicInferTask(InferTask):
 
         if hasattr(detector, "inferer"):
             logger.info(
-                f"Detector Inferer:: {device} => {detector.inferer.__class__.__name__} => {detector.inferer.__dict__}"  # type: ignore
+                f"Detector Inferer:: {device} => {detector.inferer.__class__.__name__} => "
+                f"{detector.inferer.__dict__}"
             )
 
         network = self._get_network(device, data)

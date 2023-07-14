@@ -261,12 +261,12 @@ class MyApp(MONAILabelApp):
         return methods
 
 
-"""
-Example to run train/infer/scoring task(s) locally without actually running MONAI Label Server
-"""
 
 
 def main():
+    """
+    Example to run train/infer/scoring task(s) locally without actually running MONAI Label Server
+    """
     import argparse
     import shutil
     from pathlib import Path

@@ -844,7 +844,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         try:
             modelInfo = self.models[model]
             selector.setToolTip(modelInfo["description"])
-        except:
+        except BaseException:
             selector.setToolTip("")
         selector.blockSignals(wasSelectorBlocked)
 
@@ -1442,8 +1442,8 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
                     self.updateSegmentationMask(maskFile, list(labels))
                     print("Original label uploaded! ")
 
-                except:
-                    print("Original label not found ... ")
+                except BaseException as e:
+                    print(f"Original label not found ... {e}")
 
             self.initSample(sample)
 
@@ -1560,7 +1560,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
             qt.QApplication.setOverrideCursor(qt.Qt.WaitCursor)
             self.updateSegmentationMask(self.ui.labelPathLineEdit.currentPath, self.info["labels"])
             qt.QApplication.restoreOverrideCursor()
-        except:
+        except BaseException:
             qt.QApplication.restoreOverrideCursor()
             slicer.util.errorDisplay("Failed to import label", detailedText=traceback.format_exc())
 
@@ -1626,7 +1626,7 @@ class MONAILabelWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
                 try:
                     if self.isTrainingRunning(check_only=True):
                         self.logic.train_stop()
-                except:
+                except BaseException:
                     logging.info("Failed to stop training; or already stopped")
                 self.onTraining()
         except BaseException as e:
