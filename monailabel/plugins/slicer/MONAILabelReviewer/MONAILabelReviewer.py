@@ -1465,8 +1465,10 @@ class MONAILabelReviewerWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
         elif setToOverwrite:
             if (imageVersionTag == self.LABEL.FINAL) or (imageVersionTag == self.LABEL.ORIGINAL):
-                warningMessage: str = ("Initial Segmentation with label 'final' or 'original' \n"
-                    "cannot be overwritten.\n Please save current edit as new version.")
+                warningMessage: str = (
+                    "Initial Segmentation with label 'final' or 'original' \n"
+                    "cannot be overwritten.\n Please save current edit as new version."
+                )
                 slicer.util.warningDisplay(warningMessage)
                 logging.warn(warningMessage)
                 return

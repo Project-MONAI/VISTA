@@ -60,4 +60,3 @@ repos:
     hooks:
       - id: pycln
         args: [--config=pyproject.toml]
-
