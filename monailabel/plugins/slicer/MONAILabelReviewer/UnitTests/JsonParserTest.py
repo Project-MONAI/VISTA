@@ -61,7 +61,12 @@ class JsonParserTest(unittest.TestCase):
 
     def test_getInfo(self):
         name = self.jsonParser.getInfo(self.json_without_segmentation)
-        info = '{"ts": 1642170799, "checksum": "SHA256:f1f8ef13433b1f0966e589818f3180750606eff69b3bc4a55e0181d7a9da8da1", "name": "6245968.dcm", "strategy": {"Random": {"ts": 1642371057, "client_id": "Dr Radiologist"}}}'
+        info = (
+            '{"ts": 1642170799,'
+            '"checksum": "SHA256:f1f8ef13433b1f0966e589818f3180750606eff69b3bc4a55e0181d7a9da8da1",'
+            '"name": "6245968.dcm", "strategy": {"Random": {"ts": 1642371057,'
+            '"client_id": "Dr Radiologist"}}}'
+        )
         infoDict = json.loads(info)
         self.assertEqual(name, infoDict)
 
