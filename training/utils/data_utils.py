@@ -248,33 +248,4 @@ def split_data(args):
 
         files.append({"image": str_img, "label": str_seg})
     test_files = copy.deepcopy(files)
-    # return train_files[:2], val_files[:2], test_files
     return train_files, val_files, test_files
-
-
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(description="dummy parser")
-    args = parser.parse_args()
-    args.data_dir = "/mnt/3td1/dummy_totalsegmentator_104"
-    args.json_list = "/home/pengfeig/code/samm_2pt5/dummy_totalsegmentator_104organs_folds_v2.json"
-    args.fold = 0
-    args.splitval = 0
-    train_files, val_files, test_files = split_data(args=args)
-    args.use_normal_dataset = True
-    args.test_mode = False
-    args.distributed = False
-    args.batch_size = 1
-    args.workers = 0
-    loaders = get_loader(args)
-    data = next(iter(loaders[0]))
-    volume = torch.squeeze(data["image"])
-    import matplotlib
-
-    matplotlib.use("TkAgg")
-    import matplotlib.pyplot as plt
-
-    plt.imshow(volume[..., 50], cmap="gray")
-    plt.show()
-    print()

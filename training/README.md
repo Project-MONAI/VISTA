@@ -40,8 +40,8 @@ The training data is from the [TotalSegmentator](https://github.com/wasserth/Tot
 More details about preprocessing this dataset can be found at
 <a href="https://drive.google.com/file/d/1ozJMe8hkLJfhNEJz-IHvV_tpyW3T2r_E/view?usp=sharing"> link</a>.
 
-We provide the json file that is used to train our models in
-[totalsegmentator_104organs_folds_v2.json](./totalsegmentator_104organs_folds_v2.json)
+The json file containing the data list that is used to train our models can be downloaded from
+<a href="https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/totalsegmentator_104organs_folds_v2.json"> link</a>.
 
 
 Note that you need to provide the location of your dataset directory and json file by using ```--data_dir``` and ```--json_list```.
