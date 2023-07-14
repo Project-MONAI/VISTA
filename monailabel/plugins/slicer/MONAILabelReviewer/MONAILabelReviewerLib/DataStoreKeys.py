@@ -12,7 +12,6 @@
 from typing import List
 
 
-
 class DataStoreKeys:
     """
     DataStoreKeys contains arrays which represent the structure of datastore.json
@@ -20,6 +19,7 @@ class DataStoreKeys:
     within json file.
     Below please have a look on an example of such entry in datastore.json.
     """
+
     def __init__(self):
         self.OBJECT = "objects"
         self.FINAL = "final"

@@ -261,8 +261,6 @@ class MyApp(MONAILabelApp):
         return methods
 
 
-
-
 def main():
     """
     Example to run train/infer/scoring task(s) locally without actually running MONAI Label Server

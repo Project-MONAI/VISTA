@@ -21,6 +21,7 @@ class SegmentationMeta:
     The class returns a json string which will be send to MONAI-Server to persist the
     information in datastore.json
     """
+
     def __init__(self):
         self.preFix = "params="
         self.LABEL = Label()

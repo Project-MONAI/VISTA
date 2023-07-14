@@ -20,6 +20,7 @@ from MONAILabelReviewerLib.ImageDataStatistics import ImageDataStatistics
 from MONAILabelReviewerLib.JsonParser import JsonParser
 from MONAILabelReviewerLib.MonaiServerREST import MonaiServerREST
 
+
 class ImageDataController:
     """
     ImageDataController manages all data processing and data transactions via
@@ -39,6 +40,7 @@ class ImageDataController:
         list of meta information can be extanded
 
     """
+
     def __init__(self):
         self.monaiServerREST: MonaiServerREST = None
         self.imageDataExtractor: ImageDataExtractor = None
