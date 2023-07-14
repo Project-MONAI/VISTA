@@ -27,14 +27,14 @@ from segment_anything.modeling.prompt_encoder import PromptEncoder
 
 class VistaPromptEncoder(PromptEncoder):
     def __init__(
-            self,
-            embed_dim: int,
-            image_embedding_size: Tuple[int, int],
-            input_image_size: Tuple[int, int],
-            mask_in_chans: int,
-            activation: Type[nn.Module] = nn.GELU,
-            n_classes: int = 512,
-            clip_class_label_prompt: bool = False,
+        self,
+        embed_dim: int,
+        image_embedding_size: Tuple[int, int],
+        input_image_size: Tuple[int, int],
+        mask_in_chans: int,
+        activation: Type[nn.Module] = nn.GELU,
+        n_classes: int = 512,
+        clip_class_label_prompt: bool = False,
     ) -> None:
         """
         Encodes prompts for input to SAM's mask decoder.
@@ -53,12 +53,7 @@ class VistaPromptEncoder(PromptEncoder):
           clip_class_label_prompt (bool): Using clip txt features
             as class label prompt.
         """
-        super().__init__(
-            embed_dim,
-            image_embedding_size,
-            input_image_size,
-            mask_in_chans,
-            activation)
+        super().__init__(embed_dim, image_embedding_size, input_image_size, mask_in_chans, activation)
 
         self.clip_class_label_prompt = clip_class_label_prompt
         # Add support for onehot vector embedding for pre-defined classes
@@ -78,11 +73,11 @@ class VistaPromptEncoder(PromptEncoder):
         return label_embedding
 
     def _get_batch_size(
-            self,
-            points: Optional[Tuple[torch.Tensor, torch.Tensor]],
-            boxes: Optional[torch.Tensor],
-            masks: Optional[torch.Tensor],
-            labels: Optional[torch.Tensor],
+        self,
+        points: Optional[Tuple[torch.Tensor, torch.Tensor]],
+        boxes: Optional[torch.Tensor],
+        masks: Optional[torch.Tensor],
+        labels: Optional[torch.Tensor],
     ) -> int:
         """
         Gets the batch size of the output given the batch size of the input prompts.
@@ -99,11 +94,11 @@ class VistaPromptEncoder(PromptEncoder):
             return 1
 
     def forward(
-            self,
-            points: Optional[Tuple[torch.Tensor, torch.Tensor]],
-            boxes: Optional[torch.Tensor],
-            masks: Optional[torch.Tensor],
-            class_labels: Optional[torch.Tensor],
+        self,
+        points: Optional[Tuple[torch.Tensor, torch.Tensor]],
+        boxes: Optional[torch.Tensor],
+        masks: Optional[torch.Tensor],
+        class_labels: Optional[torch.Tensor],
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """
         Embeds different types of prompts, returning both sparse and dense

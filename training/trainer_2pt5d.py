@@ -49,8 +49,11 @@ def sample_points(labelpoints, n_points):
 
 def generate_point_prompt(batch_labels_, args, points_pos=None, points_neg=None, previous_pred=None):
     max_point = args.max_points
-    Np = points_pos if points_pos is not None else min(max_point,
-                                                       int(np.abs(random.gauss(mu=0, sigma=max_point // 2))) + 1)
+    Np = (
+        points_pos
+        if points_pos is not None
+        else min(max_point, int(np.abs(random.gauss(mu=0, sigma=max_point // 2))) + 1)
+    )
     Nn = points_neg if points_neg is not None else min(max_point, int(np.abs(random.gauss(mu=0, sigma=max_point // 2))))
     # To follow original SAM, with equal probability either a foreground point
     # is selected randomly for the target mask
@@ -79,17 +82,22 @@ def generate_point_prompt(batch_labels_, args, points_pos=None, points_neg=None,
             nlabelpoints = torch.nonzero(nlabels)
         # 1 indicates a foreground point and 0 indicates a background point.
         # -1 indicates a dummy non-point as the placeholder.
-        n_placeholder = (Np + Nn - min(len(plabelpoints), Np) - min(len(nlabelpoints), Nn))
+        n_placeholder = Np + Nn - min(len(plabelpoints), Np) - min(len(nlabelpoints), Nn)
 
         # Use torch.randperm to generate indices on a GPU tensor
-        _point.append(torch.cat(
-            sample_points(plabelpoints, min(len(plabelpoints), Np))
-            +
-            sample_points(nlabelpoints, min(len(nlabelpoints), Nn))
-            +
-            [torch.zeros((1, 2), device=device)] * n_placeholder, dim=0))
-        _point_label.append(torch.tensor(
-            [1] * min(len(plabelpoints), Np) + [0] * min(len(nlabelpoints), Nn) + [-1] * n_placeholder).to(device))
+        _point.append(
+            torch.cat(
+                sample_points(plabelpoints, min(len(plabelpoints), Np))
+                + sample_points(nlabelpoints, min(len(nlabelpoints), Nn))
+                + [torch.zeros((1, 2), device=device)] * n_placeholder,
+                dim=0,
+            )
+        )
+        _point_label.append(
+            torch.tensor([1] * min(len(plabelpoints), Np) + [0] * min(len(nlabelpoints), Nn) + [-1] * n_placeholder).to(
+                device
+            )
+        )
 
     point = torch.stack(_point)
     point_label = torch.stack(_point_label)
@@ -118,7 +126,7 @@ def prepare_sam_training_input(inputs, labels, args, model):
     if len(unique_labels) < args.num_prompt:
         while len(unique_labels) < args.num_prompt:
             unique_labels = torch.cat([unique_labels, unique_labels], 0)
-        unique_labels = unique_labels[:args.num_prompt]
+        unique_labels = unique_labels[: args.num_prompt]
 
     # add 4 background labels to every batch
     background_labels = list(set([i for i in range(1, 105)]) - set(unique_labels.cpu().numpy()))
@@ -138,13 +146,11 @@ def prepare_sam_training_input(inputs, labels, args, model):
     prepared_input = [{"image": inputs, "original_size": tuple(labels.shape)}]
     if args.label_prompt:
         labels_prompt = unique_labels.unsqueeze(-1)
-        prepared_input[0].update(
-            {"labels": labels_prompt})
+        prepared_input[0].update({"labels": labels_prompt})
 
     if args.point_prompt:
         point_coords, point_labels = generate_point_prompt(batch_labels_, args)
-        prepared_input[0].update(
-            {"point_coords": point_coords, "point_labels": point_labels})
+        prepared_input[0].update({"point_coords": point_coords, "point_labels": point_labels})
 
     if args.label_prompt and args.point_prompt:
         # if we use both two kinds of prompts, then we randomly drop one kind.
@@ -178,20 +184,20 @@ def train_epoch(model, loader, optimizer, scaler, epoch, loss_func, args):
         pd = (n_slice // 2, n_slice // 2)
         inputs_l = F.pad(inputs_l, pd, "constant", 0)
         labels_l = F.pad(labels_l, pd, "constant", 0)
-        _loss = torch.tensor(0.).cuda(args.rank)
+        _loss = torch.tensor(0.0).cuda(args.rank)
 
         for _k in range(args.num_patch):
             # Return random integers from `low` (inclusive) to `high` (exclusive).
             start_idx = int(np.random.randint(low=n_slice // 2, high=(n_slice // 2 + n_z_before_pad)))
 
-            inputs = inputs_l[..., start_idx - n_slice // 2:start_idx + n_slice // 2 + 1].permute(2, 0, 1)
+            inputs = inputs_l[..., start_idx - n_slice // 2 : start_idx + n_slice // 2 + 1].permute(2, 0, 1)
 
             # we only need the label for the center slice
-            labels = labels_l[..., start_idx - n_slice // 2:start_idx + n_slice // 2 + 1][
-                ..., n_slice // 2]
+            labels = labels_l[..., start_idx - n_slice // 2 : start_idx + n_slice // 2 + 1][..., n_slice // 2]
 
-            data, target, target_original, skip = prepare_sam_training_input(inputs.cuda(args.rank),
-                                                                             labels.cuda(args.rank), args, model)
+            data, target, target_original, skip = prepare_sam_training_input(
+                inputs.cuda(args.rank), labels.cuda(args.rank), args, model
+            )
 
             for param in model.parameters():
                 param.grad = None
@@ -219,11 +225,12 @@ def train_epoch(model, loader, optimizer, scaler, epoch, loss_func, args):
             _loss += loss.detach()
         _loss /= min(args.num_patch, n_z_before_pad)
         if args.distributed:
-            loss_list = distributed_all_gather([_loss], out_numpy=True,
-                                               )
+            loss_list = distributed_all_gather(
+                [_loss],
+                out_numpy=True,
+            )
             run_loss.update(
-                np.mean(np.mean(np.stack(loss_list, axis=0), axis=0), axis=0),
-                n=args.batch_size * args.world_size
+                np.mean(np.mean(np.stack(loss_list, axis=0), axis=0), axis=0), n=args.batch_size * args.world_size
             )
         else:
             run_loss.update(_loss.item(), n=args.num_patch)
@@ -259,19 +266,19 @@ def train_epoch_iterative(model, loader, optimizer, scaler, epoch, loss_func, ar
         pd = (n_slice // 2, n_slice // 2)
         inputs_l = F.pad(inputs_l, pd, "constant", 0)
         labels_l = F.pad(labels_l, pd, "constant", 0)
-        _loss = torch.tensor(0.).cuda(args.rank)
+        _loss = torch.tensor(0.0).cuda(args.rank)
         for _k in range(min(args.num_patch, n_z_before_pad)):
             # Return random integers from `low` (inclusive) to `high` (exclusive).
             start_idx = int(np.random.randint(low=n_slice // 2, high=(n_slice // 2 + n_z_before_pad)))
 
-            inputs = inputs_l[..., start_idx - n_slice // 2:start_idx + n_slice // 2 + 1].permute(2, 0, 1)
+            inputs = inputs_l[..., start_idx - n_slice // 2 : start_idx + n_slice // 2 + 1].permute(2, 0, 1)
 
             # we only need the label for the center slice
-            labels = labels_l[..., start_idx - n_slice // 2:start_idx + n_slice // 2 + 1][..., n_slice // 2]
+            labels = labels_l[..., start_idx - n_slice // 2 : start_idx + n_slice // 2 + 1][..., n_slice // 2]
 
-            data, target, target_original, skip = prepare_sam_training_input(inputs.cuda(args.rank),
-                                                                             labels.cuda(args.rank),
-                                                                             args, model)
+            data, target, target_original, skip = prepare_sam_training_input(
+                inputs.cuda(args.rank), labels.cuda(args.rank), args, model
+            )
             for param in model.parameters():
                 param.grad = None
 
@@ -319,11 +326,9 @@ def train_epoch_iterative(model, loader, optimizer, scaler, epoch, loss_func, ar
 
                     # sample one pos and on neg point based on previous prediction
                     previous_pred = (F.sigmoid(outputs[0]["high_res_logits"].detach()) > 0.5).float()
-                    point_coords, point_labels = generate_point_prompt(target_original,
-                                                                       args=args,
-                                                                       points_pos=1,
-                                                                       points_neg=1,
-                                                                       previous_pred=previous_pred)
+                    point_coords, point_labels = generate_point_prompt(
+                        target_original, args=args, points_pos=1, points_neg=1, previous_pred=previous_pred
+                    )
 
                     if previous_point_coords is not None:
                         data[0]["point_coords"] = torch.cat([previous_point_coords, point_coords], dim=1)
@@ -345,14 +350,15 @@ def train_epoch_iterative(model, loader, optimizer, scaler, epoch, loss_func, ar
                     torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)
                 optimizer.step()
 
-            _loss += (loss.detach() / args.num_iterative_step)
+            _loss += loss.detach() / args.num_iterative_step
         _loss /= min(args.num_patch, n_z_before_pad)
         if args.distributed:
-            loss_list = distributed_all_gather([_loss], out_numpy=True,
-                                               )
+            loss_list = distributed_all_gather(
+                [_loss],
+                out_numpy=True,
+            )
             run_loss.update(
-                np.mean(np.mean(np.stack(loss_list, axis=0), axis=0), axis=0),
-                n=args.batch_size * args.world_size
+                np.mean(np.mean(np.stack(loss_list, axis=0), axis=0), axis=0), n=args.batch_size * args.world_size
             )
         else:
             run_loss.update(_loss.item(), n=args.num_patch)
@@ -377,14 +383,17 @@ def prepare_sam_test_input(inputs, labels, args, previous_pred=None):
     prepared_input = [{"image": inputs, "original_size": tuple(labels.shape)}]
     if args.label_prompt:
         labels_prompt = unique_labels.unsqueeze(-1)
-        prepared_input[0].update(
-            {"labels": labels_prompt})
+        prepared_input[0].update({"labels": labels_prompt})
 
     if args.point_prompt:
-        point_coords, point_labels = generate_point_prompt(batch_labels, args, points_pos=args.points_val_pos,
-                                                           points_neg=args.points_val_neg, previous_pred=previous_pred)
-        prepared_input[0].update(
-            {"point_coords": point_coords, "point_labels": point_labels})
+        point_coords, point_labels = generate_point_prompt(
+            batch_labels,
+            args,
+            points_pos=args.points_val_pos,
+            points_neg=args.points_val_neg,
+            previous_pred=previous_pred,
+        )
+        prepared_input[0].update({"point_coords": point_coords, "point_labels": point_labels})
 
     return prepared_input, batch_labels.unsqueeze(1).cuda(args.rank), unique_labels
 
@@ -413,7 +422,7 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
             # only take 1 batch
             inputs_l = batch_data["image"]
             labels_l = batch_data["label"]
-            n_z_before_pad = labels_l.shape[-1]
+            labels_l.shape[-1]
             # assert n_z_before_pad >= args.num_patch_val + args.roi_z_iter
 
             # TODO: we only support batch_size = 1 for data loader.
@@ -431,13 +440,13 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
             acc_sum_total = 0.0
             not_nans_total = 0.0
             # We only loop the center args.num_patch_val slices to save val time
-            for start_idx in range(n_z_after_pad // 2 - args.num_patch_val // 2,
-                                   n_z_after_pad // 2 + args.num_patch_val // 2):
-                inputs = inputs_l[..., start_idx - n_slice // 2:start_idx + n_slice // 2 + 1].permute(2, 0, 1)
+            for start_idx in range(
+                n_z_after_pad // 2 - args.num_patch_val // 2, n_z_after_pad // 2 + args.num_patch_val // 2
+            ):
+                inputs = inputs_l[..., start_idx - n_slice // 2 : start_idx + n_slice // 2 + 1].permute(2, 0, 1)
 
                 # we only need the label for the center slice
-                labels = labels_l[..., start_idx - n_slice // 2:start_idx + n_slice // 2 + 1][
-                    ..., n_slice // 2]
+                labels = labels_l[..., start_idx - n_slice // 2 : start_idx + n_slice // 2 + 1][..., n_slice // 2]
 
                 data, target, _ = prepare_sam_val_input_cp_only(inputs.cuda(args.rank), labels.cuda(args.rank), args)
 
@@ -449,8 +458,10 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
 
                 # TODO: we compute metric for each prompt for simplicity in validation.
                 acc_batch = compute_dice(y_pred=y_pred, y=target)
-                acc_sum, not_nans = torch.nansum(acc_batch).item(), 104 - torch.sum(
-                    torch.isnan(acc_batch).float()).item()
+                acc_sum, not_nans = (
+                    torch.nansum(acc_batch).item(),
+                    104 - torch.sum(torch.isnan(acc_batch).float()).item(),
+                )
                 acc_sum_total += acc_sum
                 not_nans_total += not_nans
 
@@ -462,9 +473,7 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
             not_nans = torch.tensor(not_nans).cuda(args.rank)
 
             if args.distributed:
-                acc_list, not_nans_list = distributed_all_gather(
-                    [acc, not_nans], out_numpy=True
-                )
+                acc_list, not_nans_list = distributed_all_gather([acc, not_nans], out_numpy=True)
                 for al, nl in zip(acc_list, not_nans_list):
                     run_acc.update(al, n=nl)
 
@@ -496,17 +505,17 @@ def save_checkpoint(model, epoch, args, filename="model.pt", best_acc=0, optimiz
 
 
 def run_training(
-        model,
-        train_loader,
-        val_loader,
-        optimizer,
-        loss_func,
-        acc_func,
-        args,
-        scheduler=None,
-        start_epoch=0,
-        post_label=None,
-        post_pred=None,
+    model,
+    train_loader,
+    val_loader,
+    optimizer,
+    loss_func,
+    acc_func,
+    args,
+    scheduler=None,
+    start_epoch=0,
+    post_label=None,
+    post_pred=None,
 ):
     writer = None
     if args.logdir is not None and args.rank == 0:
@@ -529,7 +538,7 @@ def run_training(
             if scheduler is not None:
                 print("Current lr:", scheduler.get_last_lr())
             else:
-                print("Current lr:", optimizer.param_groups[0]['lr'])
+                print("Current lr:", optimizer.param_groups[0]["lr"])
 
         if args.label_prompt and args.point_prompt:
             if epoch < args.label_prompt_warm_up_epoch:
@@ -541,9 +550,18 @@ def run_training(
                 # after warmp up, we evenly drop two kinds of prompts
                 args.drop_label_prob = 0.5
                 args.drop_point_prob = 0.5
-            print("rank:", args.rank, "label_prompt (train):", args.label_prompt, ", label_drop_prob:",
-                  args.drop_label_prob,
-                  "| point_prompt (train):", args.point_prompt, ", point_drop_prob:", args.drop_point_prob)
+            print(
+                "rank:",
+                args.rank,
+                "label_prompt (train):",
+                args.label_prompt,
+                ", label_drop_prob:",
+                args.drop_label_prob,
+                "| point_prompt (train):",
+                args.point_prompt,
+                ", point_drop_prob:",
+                args.drop_point_prob,
+            )
 
         # we don't perform iterative training for the first args.iterative_training_warm_up_epoch epochs
         if epoch > args.iterative_training_warm_up_epoch:
@@ -587,7 +605,7 @@ def run_training(
                 acc_func=acc_func,
                 args=args,
                 post_label=post_label,
-                post_pred=post_pred
+                post_pred=post_pred,
             )
 
             val_avg_acc = np.mean(val_avg_acc)
@@ -602,7 +620,6 @@ def run_training(
                     f"mv Acc {val_MA:.4f},",
                     "Previous Best validation at epoch {} is {:.4f},".format(best_epoch, val_acc_max),
                     "time {:.2f}s".format(time.time() - epoch_time),
-
                 )
                 if writer is not None:
                     writer.add_scalar("val_acc", val_avg_acc, epoch)
@@ -613,10 +630,15 @@ def run_training(
                     best_epoch = epoch
                     if args.rank == 0 and args.logdir is not None and args.save_checkpoint:
                         save_checkpoint(
-                            model, epoch, args, best_acc=val_acc_max, filename=f'model_best.pt', optimizer=optimizer,
-                            scheduler=scheduler
+                            model,
+                            epoch,
+                            args,
+                            best_acc=val_acc_max,
+                            filename="model_best.pt",
+                            optimizer=optimizer,
+                            scheduler=scheduler,
                         )
-                with open(os.path.join(args.logdir, 'train.log'), 'w') as f:
+                with open(os.path.join(args.logdir, "train.log"), "w") as f:
                     json.dump(best_log, f)
             if args.rank == 0 and args.logdir is not None and args.save_checkpoint:
                 save_checkpoint(model, epoch, args, best_acc=val_acc_max, filename="model_final.pt")

@@ -1,16 +1,16 @@
 # Model Overview
 ![image](./assets/img.png)
-This repository contains the training code for MONAI VISTA 2.5D model. MONAI VISTA 2.5D is based on SAM [1] but we finetune 
-the model (image encoder, prompt encoder, and mask decoder) on 3D medical data. MONAI VISTA  introduces 
-the class-label prompt and enables the fully automatic inference on known classes. It also shows the potential of 
-generalizing to unknown class. In addition, MONAI VISTA takes 2.5D input, so our model can leverage the information 
+This repository contains the training code for MONAI VISTA 2.5D model. MONAI VISTA 2.5D is based on SAM [1] but we finetune
+the model (image encoder, prompt encoder, and mask decoder) on 3D medical data. MONAI VISTA  introduces
+the class-label prompt and enables the fully automatic inference on known classes. It also shows the potential of
+generalizing to unknown class. In addition, MONAI VISTA takes 2.5D input, so our model can leverage the information
 from multiple slices.
 
 
 # Works in progress
-We are still actively developing this model. Features coming soon: 
+We are still actively developing this model. Features coming soon:
 1. **MONAI VISTA 3D Model**. It will support 3D volumetric inputs to enable a larger field of view and reduce user’s annotation efforts.
-2. **Text-based class-label prompt**. It will support encoding input text (e.g., “A computerized tomography of {Liver}”) as the class-label prompt. 
+2. **Text-based class-label prompt**. It will support encoding input text (e.g., “A computerized tomography of {Liver}”) as the class-label prompt.
 3. **Multiple Datasets Training**. We are working on supporting more pre-defined class labels for the fully automatic inference pipeline. Due to the nature of prompt-based segmentation, our model is compatible with the partial label training.
 
 
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 # Models
 
-Please download the pre-trained weights from this 
+Please download the pre-trained weights from this
 <a href="https://drive.google.com/file/d/1ozJMe8hkLJfhNEJz-IHvV_tpyW3T2r_E/view?usp=sharing"> link</a>.
 
 # Data Preparation
@@ -37,10 +37,10 @@ The training data is from the [TotalSegmentator](https://github.com/wasserth/Tot
 - Size: 1204 3D volumes
 - Spacing: [1.5, 1.5, 1.5]
 
-More details about preprocessing this dataset can be found at 
+More details about preprocessing this dataset can be found at
 <a href="https://drive.google.com/file/d/1ozJMe8hkLJfhNEJz-IHvV_tpyW3T2r_E/view?usp=sharing"> link</a>.
 
-We provide the json file that is used to train our models in 
+We provide the json file that is used to train our models in
 [totalsegmentator_104organs_folds_v2.json](./totalsegmentator_104organs_folds_v2.json)
 
 
@@ -62,7 +62,7 @@ _build_vista2pt5d(
         clip_class_label_prompt=False,
         patch_embed_3d=False,
     )
-    
+
 Or, you may directly call:
 
 build_vista2pt5d_vit_b()
@@ -70,7 +70,7 @@ build_vista2pt5d_vit_b()
 
 The above VISTA 2.5D model is used for CT images (9 slices 2.5D) with input spacing size ```(1.5, 1.5, 1.5)``` and for ```104``` class promptable segmentation.
 
-Using the default values for hyperparameters, 
+Using the default values for hyperparameters,
 the following command can be used to initiate training using PyTorch native AMP package:
 ``` bash
 python main_2pt5d.py --max_epochs 100 --val_every 1 --optim_lr 0.000005 \
@@ -84,12 +84,12 @@ python main_2pt5d.py --max_epochs 100 --val_every 1 --optim_lr 0.000005 \
 --label_prompt_warm_up_epoch 25 \
 --checkpoint ./runs/9s_2dembed_model.pt
 ```
-Above command will start the finetune training for the provided pre-trained weights 
+Above command will start the finetune training for the provided pre-trained weights
 (50 epochs single-step training and 50 epochs iterative training).
 
 # Evaluation
 
-To evaluate the `VISTA 2.5D model` using MONAI Label, please find the detailed instructions from 
+To evaluate the `VISTA 2.5D model` using MONAI Label, please find the detailed instructions from
 <a href="https://github.com/Project-MONAI/VISTA"> here</a>.
 
 

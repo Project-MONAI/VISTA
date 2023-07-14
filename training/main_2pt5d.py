@@ -32,9 +32,9 @@ import sys
 from monai.utils import set_determinism
 from vista_2pt5d.model import sam_model_registry
 
-warnings.filterwarnings("ignore", category=UserWarning, module='monai')
-warnings.filterwarnings("ignore", category=UserWarning, module='torch')
-warnings.filterwarnings("ignore", category=UserWarning, module='nibabel')
+warnings.filterwarnings("ignore", category=UserWarning, module="monai")
+warnings.filterwarnings("ignore", category=UserWarning, module="torch")
+warnings.filterwarnings("ignore", category=UserWarning, module="nibabel")
 parser = argparse.ArgumentParser(description="Swin UNETR segmentation pipeline")
 parser.add_argument("--checkpoint", default=None, help="start training from saved checkpoint")
 parser.add_argument("--logdir", default="vista2pt5d", type=str, help="directory to save the tensorboard logs")
@@ -61,8 +61,9 @@ parser.add_argument("--a_max", default=1024, type=float, help="a_max in ScaleInt
 parser.add_argument("--b_min", default=0.0, type=float, help="b_min in ScaleIntensityRanged")
 parser.add_argument("--b_max", default=1.0, type=float, help="b_max in ScaleIntensityRanged")
 parser.add_argument("--fold", default=0, type=int, help="fold")
-parser.add_argument("--splitval", default=0, type=float,
-                    help="if not zero, split the last portion to validation and validation to test")
+parser.add_argument(
+    "--splitval", default=0, type=float, help="if not zero, split the last portion to validation and validation to test"
+)
 parser.add_argument("--roi_z_iter", default=9, type=int, help="roi size in z direction")
 parser.add_argument("--roi_z_iter_dilation", default=0, type=int, help="dilation size in z direction")
 parser.add_argument("--lrschedule", default="No", type=str, help="type of learning rate scheduler")
@@ -73,29 +74,41 @@ parser.add_argument("--num_patch_val", default=30, type=int, help="number of pat
 parser.add_argument("--num_prompt", default=8, type=int, help="number of prompts for each training instance")
 parser.add_argument("--clip", default=None, type=float, help="gradient clip")
 parser.add_argument("--seed", default=-1, type=int, help="seed")
-parser.add_argument("--sam_pretrain_ckpt", type=str, default=None,
-                    help="sam_pretrain_ckpt")
-parser.add_argument("--sam_base_model", type=str, default="vit_b",
-                    help="sam_pretrain_ckpt")
-parser.add_argument("--sam_image_size", type=int, default=1024,
-                    help="sam input res")
+parser.add_argument("--sam_pretrain_ckpt", type=str, default=None, help="sam_pretrain_ckpt")
+parser.add_argument("--sam_base_model", type=str, default="vit_b", help="sam_pretrain_ckpt")
+parser.add_argument("--sam_image_size", type=int, default=1024, help="sam input res")
 parser.add_argument("--label_prompt", action="store_true", help="using class label prompt in training")
 parser.add_argument("--drop_label_prob", default=0.5, type=float, help="prob for dropping label prompt in training")
-parser.add_argument("--label_prompt_warm_up_epoch", default=20, type=int,
-                    help="before this number of epoch, we will drop label prompt with low prob.")
+parser.add_argument(
+    "--label_prompt_warm_up_epoch",
+    default=20,
+    type=int,
+    help="before this number of epoch, we will drop label prompt with low prob.",
+)
 parser.add_argument("--point_prompt", action="store_true", help="using point prompt in training")
 parser.add_argument("--drop_point_prob", default=0.5, type=float, help="prob for dropping point prompt in training")
-parser.add_argument("--max_points", default=8, type=int,
-                    help="max number of point prompts in training for the first ponit prompt generation")
+parser.add_argument(
+    "--max_points",
+    default=8,
+    type=int,
+    help="max number of point prompts in training for the first ponit prompt generation",
+)
 parser.add_argument("--points_val_pos", default=1, type=int, help="number of positive point prompts in evaluation")
 parser.add_argument("--points_val_neg", default=0, type=int, help="number of negative point prompts in evaluation")
 parser.add_argument("--num_iterative_step", default=5, type=int, help="number of iterative step in training")
 parser.add_argument("--reuse_img_embedding", action="store_true", help="reuse image embedding in iterative training")
-parser.add_argument("--no_more_points_for_cp_only", action="store_true",
-                    help="if no point prompt at the first prompt generation we will not add "
-                         "more additional pointa during iterative training.")
-parser.add_argument("--iterative_training_warm_up_epoch", default=100, type=int,
-                    help="before this number of epoch, we will not start iterative_training_.")
+parser.add_argument(
+    "--no_more_points_for_cp_only",
+    action="store_true",
+    help="if no point prompt at the first prompt generation we will not add "
+    "more additional pointa during iterative training.",
+)
+parser.add_argument(
+    "--iterative_training_warm_up_epoch",
+    default=100,
+    type=int,
+    help="before this number of epoch, we will not start iterative_training_.",
+)
 parser.add_argument("--data_aug", action="store_true", help="using data augmentation in training")
 parser.add_argument("--pop_pos_embed", action="store_true", help="remove pos embedding when load checkpoint")
 parser.add_argument("--pop_point_embed", action="store_true", help="remove point embedding when load checkpoint")
@@ -104,8 +117,8 @@ parser.add_argument("--patch_embed_3d", action="store_true", help="using 3d patc
 
 
 def start_tb(log_dir):
-    cmd = ['tensorboard', '--logdir', log_dir]
-    proc = Popen(cmd, stderr=sys.stderr, stdout=sys.stdout, shell=False)
+    cmd = ["tensorboard", "--logdir", log_dir]
+    Popen(cmd, stderr=sys.stderr, stdout=sys.stdout, shell=False)
 
 
 def main():
@@ -142,9 +155,12 @@ def main_worker(gpu, args):
     if args.rank == 0:
         print("Batch size is:", args.batch_size, "epochs", args.max_epochs)
 
-    model = sam_model_registry[args.sam_base_model](args.sam_pretrain_ckpt, image_size=args.sam_image_size,
-                                                    encoder_in_chans=args.roi_z_iter * 3,
-                                                    patch_embed_3d=args.patch_embed_3d)
+    model = sam_model_registry[args.sam_base_model](
+        args.sam_pretrain_ckpt,
+        image_size=args.sam_image_size,
+        encoder_in_chans=args.roi_z_iter * 3,
+        patch_embed_3d=args.patch_embed_3d,
+    )
 
     dice_loss = DiceCELoss(sigmoid=True)
 
@@ -168,15 +184,15 @@ def main_worker(gpu, args):
             new_state_dict[k] = v
         if args.pop_pos_embed:
             print("pop_pos_embed")
-            new_state_dict.pop('image_encoder.patch_embed.proj.weight')
-            new_state_dict.pop('image_encoder.patch_embed.proj.bias')
+            new_state_dict.pop("image_encoder.patch_embed.proj.weight")
+            new_state_dict.pop("image_encoder.patch_embed.proj.bias")
             model.load_state_dict(new_state_dict, strict=False)
         elif args.pop_point_embed:
             print("pop_point_embed")
-            new_state_dict.pop('prompt_encoder.point_embeddings.0.weight')
-            new_state_dict.pop('prompt_encoder.point_embeddings.1.weight')
-            new_state_dict.pop('prompt_encoder.point_embeddings.2.weight')
-            new_state_dict.pop('prompt_encoder.point_embeddings.3.weight')
+            new_state_dict.pop("prompt_encoder.point_embeddings.0.weight")
+            new_state_dict.pop("prompt_encoder.point_embeddings.1.weight")
+            new_state_dict.pop("prompt_encoder.point_embeddings.2.weight")
+            new_state_dict.pop("prompt_encoder.point_embeddings.3.weight")
             model.load_state_dict(new_state_dict, strict=False)
         else:
             model.load_state_dict(new_state_dict, strict=True)
@@ -194,8 +210,9 @@ def main_worker(gpu, args):
     if args.distributed:
         torch.cuda.set_device(args.gpu)
         model.cuda(args.gpu)
-        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], output_device=args.gpu,
-                                                          find_unused_parameters=True)
+        model = torch.nn.parallel.DistributedDataParallel(
+            model, device_ids=[args.gpu], output_device=args.gpu, find_unused_parameters=True
+        )
     if args.optim_name == "adam":
         optimizer = torch.optim.Adam(model.parameters(), lr=args.optim_lr, weight_decay=args.reg_weight)
     elif args.optim_name == "adamw":
@@ -211,7 +228,7 @@ def main_worker(gpu, args):
         optimizer.load_state_dict(optimizer_state)
         # override lr by the given value
         for param_group in optimizer.param_groups:
-            param_group['lr'] = args.optim_lr
+            param_group["lr"] = args.optim_lr
 
     if args.lrschedule == "warmup_cosine":
         scheduler = LinearWarmupCosineAnnealingLR(

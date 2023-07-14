@@ -196,9 +196,7 @@ class SamAutomaticMaskGenerator:
 
     def _generate_masks(self, image: np.ndarray) -> MaskData:
         orig_size = image.shape[:2]
-        crop_boxes, layer_idxs = generate_crop_boxes(
-            orig_size, self.crop_n_layers, self.crop_overlap_ratio
-        )
+        crop_boxes, layer_idxs = generate_crop_boxes(orig_size, self.crop_n_layers, self.crop_overlap_ratio)
 
         # Iterate over image crops
         data = MaskData()
@@ -321,9 +319,7 @@ class SamAutomaticMaskGenerator:
         return data
 
     @staticmethod
-    def postprocess_small_regions(
-        mask_data: MaskData, min_area: int, nms_thresh: float
-    ) -> MaskData:
+    def postprocess_small_regions(mask_data: MaskData, min_area: int, nms_thresh: float) -> MaskData:
         """
         Removes small disconnected regions and holes in masks, then reruns
         box NMS to remove any new duplicates.

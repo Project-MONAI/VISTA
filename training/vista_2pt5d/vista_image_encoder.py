@@ -26,24 +26,24 @@ from segment_anything.modeling.image_encoder import ImageEncoderViT, PatchEmbed
 # This class and its supporting functions below lightly adapted from the ViTDet backbone available at: https://github.com/facebookresearch/detectron2/blob/main/detectron2/modeling/backbone/vit.py # noqa
 class VistaImageEncoderViT(ImageEncoderViT):
     def __init__(
-            self,
-            img_size: int = 1024,
-            patch_size: int = 16,
-            in_chans: int = 3,
-            embed_dim: int = 768,
-            depth: int = 12,
-            num_heads: int = 12,
-            mlp_ratio: float = 4.0,
-            out_chans: int = 256,
-            qkv_bias: bool = True,
-            norm_layer: Type[nn.Module] = nn.LayerNorm,
-            act_layer: Type[nn.Module] = nn.GELU,
-            use_abs_pos: bool = True,
-            use_rel_pos: bool = False,
-            rel_pos_zero_init: bool = True,
-            window_size: int = 0,
-            global_attn_indexes: Tuple[int, ...] = (),
-            patch_embed_3d: bool = False,
+        self,
+        img_size: int = 1024,
+        patch_size: int = 16,
+        in_chans: int = 3,
+        embed_dim: int = 768,
+        depth: int = 12,
+        num_heads: int = 12,
+        mlp_ratio: float = 4.0,
+        out_chans: int = 256,
+        qkv_bias: bool = True,
+        norm_layer: Type[nn.Module] = nn.LayerNorm,
+        act_layer: Type[nn.Module] = nn.GELU,
+        use_abs_pos: bool = True,
+        use_rel_pos: bool = False,
+        rel_pos_zero_init: bool = True,
+        window_size: int = 0,
+        global_attn_indexes: Tuple[int, ...] = (),
+        patch_embed_3d: bool = False,
     ) -> None:
         """
         Args:
@@ -64,22 +64,24 @@ class VistaImageEncoderViT(ImageEncoderViT):
             global_attn_indexes (list): Indexes for blocks using global attention.
             patch_embed_3d (bool): If True, use 3D Patch Embedding.
         """
-        super().__init__(img_size,
-                         patch_size,
-                         in_chans,
-                         embed_dim,
-                         depth,
-                         num_heads,
-                         mlp_ratio,
-                         out_chans,
-                         qkv_bias,
-                         norm_layer,
-                         act_layer,
-                         use_abs_pos,
-                         use_rel_pos,
-                         rel_pos_zero_init,
-                         window_size,
-                         global_attn_indexes)
+        super().__init__(
+            img_size,
+            patch_size,
+            in_chans,
+            embed_dim,
+            depth,
+            num_heads,
+            mlp_ratio,
+            out_chans,
+            qkv_bias,
+            norm_layer,
+            act_layer,
+            use_abs_pos,
+            use_rel_pos,
+            rel_pos_zero_init,
+            window_size,
+            global_attn_indexes,
+        )
 
         self.img_size = img_size
 
@@ -106,12 +108,12 @@ class PatchEmbed2pt5D(nn.Module):
     """
 
     def __init__(
-            self,
-            kernel_size: Tuple[int, int, int] = (16, 16, 1),
-            stride: Tuple[int, int, int] = (16, 16, 1),
-            padding: Tuple[int, int, int] = (0, 0, 0),
-            in_chans: int = 3,
-            embed_dim: int = 768,
+        self,
+        kernel_size: Tuple[int, int, int] = (16, 16, 1),
+        stride: Tuple[int, int, int] = (16, 16, 1),
+        padding: Tuple[int, int, int] = (0, 0, 0),
+        in_chans: int = 3,
+        embed_dim: int = 768,
     ) -> None:
         """
         Args:
@@ -123,9 +125,7 @@ class PatchEmbed2pt5D(nn.Module):
         """
         super().__init__()
 
-        self.proj = nn.Conv3d(
-            in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding
-        )
+        self.proj = nn.Conv3d(in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # got restore RGB channel dim and the depth dim
