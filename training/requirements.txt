@@ -1,0 +1,21 @@
+monai==1.1.0
+nibabel
+fvcore
+tqdm
+einops
+tensorboardX
+scipy
+positional-encodings[pytorch]
+SimpleITK
+tensorboard
+scipy
+scikit-learn
+scikit-image
+ptflops
+pillow
+timm
+nnunet
+h5py
+torch==2.0.0
+--extra-index-url https://download.pytorch.org/whl/cu118
+torchvision==0.15.1
