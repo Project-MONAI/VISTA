@@ -230,7 +230,8 @@ class MONAILabelReviewerWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
     def indexLabelVersionChanged(self, index):
         logging.warn(
-            f"{self.getCurrentTime()}: Selected labal version: '{self.getCurrentLabelVersionFromComboBox()}', is enabled '{self.isSelectableByLabelVersion}'"
+            f"{self.getCurrentTime()}: Selected labal version: '{self.getCurrentLabelVersionFromComboBox()}', "
+            f"is enabled '{self.isSelectableByLabelVersion}'"
         )
         self.displayAdditionalMetaIfEdited(self.getCurrentLabelVersionFromComboBox())
         if self.isSelectableByLabelVersion:
@@ -765,7 +766,8 @@ class MONAILabelReviewerWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
         isApproved: bool = bool(self.ui.checkBox_search_approved.isChecked())
         isFlagged: bool = bool(self.ui.checkBox_search_flagged.isChecked())
         logging.warn(
-            f"{self.getCurrentTime()}: Search by annontator: '{selectedAnnotator}' | reviewer: '{selectedReviewer}' | isApproved: '{isApproved}' | isFlagged: '{isFlagged}'"
+            f"{self.getCurrentTime()}: Search by annontator: '{selectedAnnotator}' | reviewer: '{selectedReviewer}' "
+            f"| isApproved: '{isApproved}' | isFlagged: '{isFlagged}'"
         )
 
         self.idToimageData = self.logic.searchByAnnotatorReviewer(
@@ -1463,7 +1465,10 @@ class MONAILabelReviewerWidget(ScriptedLoadableModuleWidget, VTKObservationMixin
 
         elif setToOverwrite:
             if (imageVersionTag == self.LABEL.FINAL) or (imageVersionTag == self.LABEL.ORIGINAL):
-                warningMessage: str = "Initial Segmentation with label 'final' or 'original' \ncannot be overwritten.\n Please save current edit as new version."
+                warningMessage: str = (
+                    "Initial Segmentation with label 'final' or 'original' \n"
+                    "cannot be overwritten.\n Please save current edit as new version."
+                )
                 slicer.util.warningDisplay(warningMessage)
                 logging.warn(warningMessage)
                 return

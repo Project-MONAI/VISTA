@@ -245,8 +245,8 @@ if __name__ == "__main__":
     args.batch_size = 1
     args.workers = 0
     loaders = get_loader(args)
-    data = next(iter(loaders[0]))
-    volume = torch.squeeze(data["image"])
+    d = next(iter(loaders[0]))
+    volume = torch.squeeze(d["image"])
     import matplotlib
 
     matplotlib.use("TkAgg")

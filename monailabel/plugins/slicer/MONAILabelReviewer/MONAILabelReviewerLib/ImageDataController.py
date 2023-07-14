@@ -20,27 +20,27 @@ from MONAILabelReviewerLib.ImageDataStatistics import ImageDataStatistics
 from MONAILabelReviewerLib.JsonParser import JsonParser
 from MONAILabelReviewerLib.MonaiServerREST import MonaiServerREST
 
-"""
-ImageDataController manages all data processing and data transactions via
-
-    1. MonaiServerREST (requests and peristency of meta data, image data, segmentation data from monai server)
-    2. ImageDataExtractor (handling of logical operations coming from set of imageData)
-    3. JsonParser (parsing information from datastore_v2.json)
-    4. ImageData (container which caches information of single image and corresponding segmenation information and meta data)
-
-content of meta data:
-    1. "status" (flagged or approved)
-    2. "approvedBy" (name of reviewer)
-    3. "level" (level of difficulty of segmentation: easy, medium, hard)
-    4. "comment" (any comment on image and segmenation)
-    5. "editTime"
-
-    list of meta information can be extanded
-
-"""
-
 
 class ImageDataController:
+    """
+    ImageDataController manages all data processing and data transactions via
+
+        1. MonaiServerREST (requests and peristency of meta data, image data, segmentation data from monai server)
+        2. ImageDataExtractor (handling of logical operations coming from set of imageData)
+        3. JsonParser (parsing information from datastore_v2.json)
+        4. ImageData (container which caches information of single image and corresponding segmenation information and meta data)
+
+    content of meta data:
+        1. "status" (flagged or approved)
+        2. "approvedBy" (name of reviewer)
+        3. "level" (level of difficulty of segmentation: easy, medium, hard)
+        4. "comment" (any comment on image and segmenation)
+        5. "editTime"
+
+        list of meta information can be extanded
+
+    """
+
     def __init__(self):
         self.monaiServerREST: MonaiServerREST = None
         self.imageDataExtractor: ImageDataExtractor = None

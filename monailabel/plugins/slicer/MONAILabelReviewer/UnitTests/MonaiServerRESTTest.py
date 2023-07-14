@@ -21,7 +21,7 @@ import requests
 from mockserver_friendly import MockServerFriendlyClient, json_equals, request, response, times
 from python_on_whales import docker
 
-sys.path.append("..")
+# sys.path.append("..")
 from MONAILabelReviewerLib.MonaiServerREST import MonaiServerREST
 
 

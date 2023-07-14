@@ -13,7 +13,7 @@ import sys
 import unittest
 from typing import Dict, List
 
-sys.path.append("..")
+# sys.path.append("..")
 from MONAILabelReviewerLib.ImageData import ImageData
 from MONAILabelReviewerLib.ImageDataExtractor import ImageDataExtractor
 from MONAILabelReviewerLib.MONAILabelReviewerEnum import Level, SegStatus

@@ -163,13 +163,13 @@ class MyApp(MONAILabelApp):
         #################################################
         # Pipeline based on existing infers
         #################################################
-        if infers.get("deepgrow_2d") and infers.get("deepgrow_3d"):
-            infers["deepgrow_pipeline"] = InferDeepgrowPipeline(
-                path=self.models["deepgrow_2d"].path,
-                network=self.models["deepgrow_2d"].network,
-                model_3d=infers["deepgrow_3d"],
-                description="Combines Clara Deepgrow 2D and 3D models",
-            )
+        # if infers.get("deepgrow_2d") and infers.get("deepgrow_3d"):
+        #     infers["deepgrow_pipeline"] = InferDeepgrowPipeline(
+        #         path=self.models["deepgrow_2d"].path,
+        #         network=self.models["deepgrow_2d"].network,
+        #         model_3d=infers["deepgrow_3d"],
+        #         description="Combines Clara Deepgrow 2D and 3D models",
+        #     )
 
         #################################################
         # Pipeline based on existing infers for vertebra segmentation
@@ -178,17 +178,17 @@ class MyApp(MONAILabelApp):
         # 2/ localization vertebra
         # 3/ segmentation vertebra
         #################################################
-        if (
-            infers.get("localization_spine")
-            and infers.get("localization_vertebra")
-            and infers.get("segmentation_vertebra")
-        ):
-            infers["vertebra_pipeline"] = InferVertebraPipeline(
-                task_loc_spine=infers["localization_spine"],  # first stage
-                task_loc_vertebra=infers["localization_vertebra"],  # second stage
-                task_seg_vertebra=infers["segmentation_vertebra"],  # third stage
-                description="Combines three stage for vertebra segmentation",
-            )
+        # if (
+        #     infers.get("localization_spine")
+        #     and infers.get("localization_vertebra")
+        #     and infers.get("segmentation_vertebra")
+        # ):
+        #     infers["vertebra_pipeline"] = InferVertebraPipeline(
+        #         task_loc_spine=infers["localization_spine"],  # first stage
+        #         task_loc_vertebra=infers["localization_vertebra"],  # second stage
+        #         task_seg_vertebra=infers["segmentation_vertebra"],  # third stage
+        #         description="Combines three stage for vertebra segmentation",
+        #     )
         logger.info(infers)
         return infers
 
@@ -261,12 +261,10 @@ class MyApp(MONAILabelApp):
         return methods
 
 
-"""
-Example to run train/infer/scoring task(s) locally without actually running MONAI Label Server
-"""
-
-
 def main():
+    """
+    Example to run train/infer/scoring task(s) locally without actually running MONAI Label Server
+    """
     import argparse
     import shutil
     from pathlib import Path
