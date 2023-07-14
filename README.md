@@ -21,16 +21,16 @@ MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 - [Overview](#Overview)
 - MONAI VISTA Training and FineTuning
   - (Coming soon)
-- [MONAI VISTA with MONAI Label](#MONAI-Label-Integration)
-  - [Step 1. Installation](#Installation)
-  - [Step 2. MONAI Label monaivista app](#MONAI-VISTA-APP)
-  - [Step 3. MONAI VISTA - Label Plugins](#MONAI-VISTA-Viewer-Plugins)
-  - [Step 4. Data Preparation](#Sample-Data)
-  - [Step 5. Start MONAI Label Server and Start Annotating!](#Start-MONAI-Label-Server-with-VISTA-Model)
+- [MONAI VISTA with MONAI Label](#monai-label-integration)
+  - [Step 1. Installation](#installation)
+  - [Step 2. MONAI Label monaivista app](#monai-vista-app)
+  - [Step 3. MONAI VISTA - Label Plugins](#monai-vista-viewer-plugins)
+  - [Step 4. Data Preparation](#sample-data)
+  - [Step 5. Start MONAI Label Server and Start Annotating!](#start-monai-label-server-with-vista-model)
 - [Video Demo](https://drive.google.com/file/d/1rEF1y9ZKo3Kj0Zms_gxkKwHlz75CYjwA/view?usp=sharing)
-- [Community](#Community)
-- [License](#License)
-- [Reference](#Reference)
+- [Community](#community)
+- [License](#license)
+- [Reference](#reference)
 
 ## Overview
 
