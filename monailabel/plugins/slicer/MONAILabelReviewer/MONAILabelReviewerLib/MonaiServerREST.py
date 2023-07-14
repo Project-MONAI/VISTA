@@ -187,7 +187,8 @@ class MonaiServerREST:
 
         if response.status_code == 200:
             logging.info(
-                f"{self.getCurrentTime()}: Label and Meta data was deleted successfully (image id: '{imageId}') | tae: '{versionTag}'."
+                f"{self.getCurrentTime()}: Label and Meta data was deleted successfully (image id: '{imageId}') "
+                f"| tae: '{versionTag}'."
             )
         else:
             logging.warn(

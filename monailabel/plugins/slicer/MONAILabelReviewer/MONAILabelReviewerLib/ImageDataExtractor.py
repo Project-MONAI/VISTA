@@ -144,9 +144,8 @@ class ImageDataExtractor:
         """
         if self.invalidFilterCombination(segmented, notSegmented, approved, flagged):
             logging.warning(
-                "{}: Selected filter options are not valid: segmented='{}' | notSegmented='{}' | approved='{}' | flagged='{}')".format(
-                    self.getCurrentTime(), segmented, notSegmented, approved, flagged
-                )
+                f"{self.getCurrentTime()}: Selected filter options are not valid: segmented='{segmented}' | "
+                f"notSegmented='{notSegmented}' | approved='{approved}' | flagged='{flagged}')"
             )
             return None
 
@@ -229,7 +228,8 @@ class ImageDataExtractor:
         self, clientId: str, reviewerId: str, approved=False, flagged=False
     ) -> List[ImageData]:
         """
-        returns fitered list of imageData which are filtered according to client (=annotator) and reviewer and parameters (approved, flagged)
+        returns fitered list of imageData which are filtered according to client (=annotator) and
+        reviewer and parameters (approved, flagged)
         """
 
         imageDatas = self.getImageDataByClientId(clientId, approved, flagged)
@@ -263,7 +263,8 @@ class ImageDataExtractor:
 
     def getImageDataByLevel(self, isEasy: bool, isMedium: bool, isHard: bool) -> Dict[str, ImageData]:
         """
-        returns fitered list of imageData which are filtered according to level of difficulty (regarding segmentation): easy, medium, hard
+        returns filtered list of imageData which are filtered according to level of difficulty
+        (regarding segmentation): easy, medium, hard
         """
         filteredImageData = {}
         for id, imagedata in self.nameToImageData.items():

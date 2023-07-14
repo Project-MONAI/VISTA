@@ -390,12 +390,11 @@ class ImageData:
             return 1
         try:
             indexOfDelimeter = lastVersionTag.index("_")
-        except:
+        except BaseException:
             exceptionIndex = len(versionNames) + 100
             logging.info(
-                "Version name is incorrect. Format should be like 'version_1' but was {}. Hence, following id will be used {}.".format(
-                    lastVersionTag, exceptionIndex
-                )
+                f"Version name is incorrect. Format should be like 'version_1' but was {lastVersionTag}. "
+                f"Hence, following id will be used {exceptionIndex}."
             )
             return exceptionIndex
 

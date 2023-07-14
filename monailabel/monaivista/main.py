@@ -163,13 +163,13 @@ class MyApp(MONAILabelApp):
         #################################################
         # Pipeline based on existing infers
         #################################################
-        if infers.get("deepgrow_2d") and infers.get("deepgrow_3d"):
-            infers["deepgrow_pipeline"] = InferDeepgrowPipeline(
-                path=self.models["deepgrow_2d"].path,
-                network=self.models["deepgrow_2d"].network,
-                model_3d=infers["deepgrow_3d"],
-                description="Combines Clara Deepgrow 2D and 3D models",
-            )
+        # if infers.get("deepgrow_2d") and infers.get("deepgrow_3d"):
+        #     infers["deepgrow_pipeline"] = InferDeepgrowPipeline(
+        #         path=self.models["deepgrow_2d"].path,
+        #         network=self.models["deepgrow_2d"].network,
+        #         model_3d=infers["deepgrow_3d"],
+        #         description="Combines Clara Deepgrow 2D and 3D models",
+        #     )
 
         #################################################
         # Pipeline based on existing infers for vertebra segmentation

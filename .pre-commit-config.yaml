@@ -26,6 +26,11 @@ repos:
         args: ['--autofix', '--no-sort-keys', '--indent=4']
       - id: end-of-file-fixer
       - id: mixed-line-ending
+  - repo: https://github.com/psf/black
+    rev: "23.3.0"
+    hooks:
+      - id: black
+      - id: black-jupyter
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.0.261
     hooks:
@@ -56,8 +61,3 @@ repos:
       - id: pycln
         args: [--config=pyproject.toml]
 
-  - repo: https://github.com/psf/black
-    rev: "23.3.0"
-    hooks:
-      - id: black
-      - id: black-jupyter

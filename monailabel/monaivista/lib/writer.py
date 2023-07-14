@@ -255,7 +255,7 @@ class Writer:
         return len(image_np.shape) == 4 and image_np.shape[0] > 1
 
 
-def write_h5(data, filename):
+def write_h5(data, filename, affine=None, original_affine=None, output_dtype=np.float32):
     writer = NibabelWriter(output_dtype=output_dtype)
     writer.set_data_array(data, channel_dim=None, spatial_ndim=None)
     writer.set_metadata({"affine": affine, "original_affine": original_affine})
