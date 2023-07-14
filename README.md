@@ -18,7 +18,7 @@ MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 <div align="center"> <img src="./assets/imgs/demo_gif.gif" width="800"/> </div>
 
 ### Table of Contents
-- [Overview](#Overview)
+- [Overview](#overview)
 - MONAI VISTA Training and FineTuning
   - (Coming soon)
 - [MONAI VISTA with MONAI Label](#monai-label-integration)
