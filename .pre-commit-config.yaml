@@ -31,12 +31,16 @@ repos:
     hooks:
       - id: black
       - id: black-jupyter
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: isort (python)
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.0.261
     hooks:
-    -   id: ruff
-        args:
-        - --fix
+      - id: ruff
+        args: ['--fix']
 
   - repo: https://github.com/asottile/yesqa
     rev: v1.4.0
