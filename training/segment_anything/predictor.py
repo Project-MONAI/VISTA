@@ -8,8 +8,8 @@ from typing import Optional, Tuple
 
 import numpy as np
 import torch
+from segment_anything.modeling import Sam
 
-from .modeling import Sam
 from .utils.transforms import ResizeLongestSide
 
 

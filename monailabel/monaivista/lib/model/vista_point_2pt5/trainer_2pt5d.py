@@ -9,21 +9,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import os
+import random
 import time
+from copy import deepcopy
 
 import numpy as np
-import json
 import torch
+import torch.nn.functional as F
 import torch.nn.parallel
 import torch.utils.data.distributed
+from monai.data import decollate_batch
 from tensorboardX import SummaryWriter
 from torch.cuda.amp import GradScaler, autocast
 from utils.utils import AverageMeter, distributed_all_gather
-from monai.data import decollate_batch
-import torch.nn.functional as F
-from copy import deepcopy
-import random
 
 
 def apply_coords(coords, original_size, sam_image_size) -> np.ndarray:

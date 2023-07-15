@@ -21,7 +21,10 @@ import requests
 import SampleData
 import slicer
 from MONAILabelReviewerLib.ImageData import ImageData
-from MONAILabelReviewerLib.ImageDataController import ImageDataController, ImageDataStatistics
+from MONAILabelReviewerLib.ImageDataController import (
+    ImageDataController,
+    ImageDataStatistics,
+)
 from MONAILabelReviewerLib.MONAILabelReviewerEnum import Label, Level, SegStatus
 from slicer.ScriptedLoadableModule import *
 from slicer.util import VTKObservationMixin

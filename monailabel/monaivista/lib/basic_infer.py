@@ -20,7 +20,6 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 import torch
 from monai.data import decollate_batch
 from monai.inferers import Inferer, SimpleInferer, SlidingWindowInferer
-
 from monailabel.interfaces.exception import MONAILabelError, MONAILabelException
 from monailabel.interfaces.tasks.infer_v2 import InferTask, InferType
 from monailabel.interfaces.utils.transform import dump_data, run_transforms
@@ -28,6 +27,7 @@ from monailabel.transform.cache import CacheTransformDatad
 
 # from monailabel.transform.writer import ClassificationWriter, DetectionWriter, Writer
 from monailabel.utils.others.generic import device_list, device_map, name_to_device
+
 from .writer import ClassificationWriter, DetectionWriter, Writer
 
 logger = logging.getLogger(__name__)

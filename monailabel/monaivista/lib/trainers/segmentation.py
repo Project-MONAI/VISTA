@@ -31,7 +31,6 @@ from monai.transforms import (
     SelectItemsd,
     Spacingd,
 )
-
 from monailabel.tasks.train.basic_train import BasicTrainTask, Context
 from monailabel.tasks.train.utils import region_wise_metrics
 

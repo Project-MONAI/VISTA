@@ -29,7 +29,6 @@ from monai.transforms import (
     Spacingd,
     ToTensord,
 )
-
 from monailabel.tasks.train.basic_train import BasicTrainTask, Context
 
 logger = logging.getLogger(__name__)

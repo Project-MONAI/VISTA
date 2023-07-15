@@ -15,7 +15,14 @@ from typing import Dict, Hashable, Mapping
 import numpy as np
 import torch
 from monai.config import KeysCollection, NdarrayOrTensor
-from monai.transforms import CropForeground, GaussianSmooth, Randomizable, Resize, ScaleIntensity, SpatialCrop
+from monai.transforms import (
+    CropForeground,
+    GaussianSmooth,
+    Randomizable,
+    Resize,
+    ScaleIntensity,
+    SpatialCrop,
+)
 from monai.transforms.transform import MapTransform, Transform
 
 logger = logging.getLogger(__name__)

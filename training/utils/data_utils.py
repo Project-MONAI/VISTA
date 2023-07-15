@@ -1,4 +1,4 @@
-# Copyright 2020 - 2022 MONAI Consortium
+# Copyright 2020 - 2023 MONAI Consortium
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -16,7 +16,15 @@ import os
 import numpy as np
 import torch
 from monai import data, transforms
-from monai.transforms import ScaleIntensityRanged
+from monai.transforms import (
+    EnsureChannelFirstd,
+    LoadImaged,
+    Orientationd,
+    RandRotate90d,
+    RandShiftIntensityd,
+    ScaleIntensityRanged,
+    Spacingd,
+)
 
 
 class Sampler(torch.utils.data.Sampler):
@@ -67,36 +75,52 @@ class Sampler(torch.utils.data.Sampler):
 
 
 def get_loader(args):
-    # min_val = -1024
-    # max_val = 1024
     train_files, val_files, test_files = split_data(args)
+
+    random_transforms = (
+        [
+            RandRotate90d(
+                keys=["image", "label"],
+                prob=0.10,
+                max_k=3,
+            ),
+            RandShiftIntensityd(
+                keys=["image"],
+                offsets=0.10,
+                prob=0.10,
+            ),
+        ]
+        if args.data_aug
+        else []
+    )
+
+    if args.data_aug:
+        print("using data augmentation")
+    else:
+        print("No data augmentation")
 
     train_transform = transforms.Compose(
         [
-            transforms.LoadImaged(keys=["image", "label"]),
-            transforms.EnsureChannelFirstd(keys=["image", "label"]),
-            transforms.Orientationd(keys=["image", "label"], axcodes="RAS"),
+            LoadImaged(keys=["image", "label"]),
+            EnsureChannelFirstd(keys=["image", "label"]),
+            Orientationd(keys=["image", "label"], axcodes="RAS"),
+            Spacingd(keys=["image", "label"], pixdim=(1.5, 1.5, 1.5), mode=("bilinear", "nearest")),
             ScaleIntensityRanged(
                 keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
             ),
-            # transforms.Resized(keys=["image", "label"], spatial_size=[512, 512, -1], mode=["trilinear", "nearest"]),
-            # SpatialPadd(keys=["image", "label"], spatial_size=[256, 256, -1]),
-            # transforms.CropForegroundd(keys=["image", "label"], source_key="image")
-            # transforms.Spacingd(keys=["image", "label"], pixdim=[3.0, 3.0, 3.0], mode=["bilinear", "nearest"])
-            # transforms.SpatialPadd
         ]
+        + random_transforms
     )
 
     val_transform = transforms.Compose(
         [
-            transforms.LoadImaged(keys=["image", "label"]),
-            transforms.EnsureChannelFirstd(keys=["image", "label"]),
-            transforms.Orientationd(keys=["image", "label"], axcodes="RAS"),
+            LoadImaged(keys=["image", "label"]),
+            EnsureChannelFirstd(keys=["image", "label"]),
+            Orientationd(keys=["image", "label"], axcodes="RAS"),
+            Spacingd(keys=["image", "label"], pixdim=(1.5, 1.5, 1.5), mode=("bilinear", "nearest")),
             ScaleIntensityRanged(
                 keys=["image"], a_min=args.a_min, a_max=args.a_max, b_min=args.b_min, b_max=args.b_max, clip=True
             ),
-            # transforms.CropForegroundd(keys=["image", "label"], source_key="image"),
-            # transforms.Spacingd(keys=["image", "label"], pixdim=[1.0, 1.0, 1.0], mode=["bilinear", "nearest"])
         ]
     )
 
@@ -121,7 +145,6 @@ def get_loader(args):
                 cache_rate=1.0,
                 num_workers=args.workers,
             )
-        # train_sampler = Sampler(train_ds) if args.distributed else None
         train_sampler = None
 
         train_loader = data.DataLoader(
@@ -146,7 +169,7 @@ def get_loader(args):
             cache_rate=1.0,
             num_workers=args.workers,
         )
-        val_sampler = None  # Sampler(val_ds, shuffle=False) if args.distributed else None
+        val_sampler = None
         val_loader = data.DataLoader(
             val_ds, batch_size=1, shuffle=False, num_workers=args.workers, sampler=val_sampler, pin_memory=True
         )
@@ -225,33 +248,4 @@ def split_data(args):
 
         files.append({"image": str_img, "label": str_seg})
     test_files = copy.deepcopy(files)
-    # return train_files[:2], val_files[:2], test_files
     return train_files, val_files, test_files
-
-
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(description="dummy parser")
-    args = parser.parse_args()
-    args.data_dir = "/mnt/3td1/dummy_totalsegmentator_104"
-    args.json_list = "/home/pengfeig/code/samm_2pt5/dummy_totalsegmentator_104organs_folds_v2.json"
-    args.fold = 0
-    args.splitval = 0
-    train_files, val_files, test_files = split_data(args=args)
-    args.use_normal_dataset = True
-    args.test_mode = False
-    args.distributed = False
-    args.batch_size = 1
-    args.workers = 0
-    loaders = get_loader(args)
-    d = next(iter(loaders[0]))
-    volume = torch.squeeze(d["image"])
-    import matplotlib
-
-    matplotlib.use("TkAgg")
-    import matplotlib.pyplot as plt
-
-    plt.imshow(volume[..., 50], cmap="gray")
-    plt.show()
-    print()

@@ -11,6 +11,8 @@
 
 from typing import Callable, Sequence
 
+from lib.basic_infer import BasicInferTask
+from lib.model.vista_point_2pt5.inferer import VISTASliceInferer
 from monai.inferers import Inferer
 from monai.transforms import (
     EnsureChannelFirstd,
@@ -19,12 +21,8 @@ from monai.transforms import (
     Orientationd,
     ScaleIntensityRanged,
 )
-
 from monailabel.interfaces.tasks.infer_v2 import InferType
 from monailabel.transform.post import Restored
-
-from lib.basic_infer import BasicInferTask
-from lib.model.vista_point_2pt5.inferer import VISTASliceInferer
 
 
 class VISTAPOINT2PT5(BasicInferTask):

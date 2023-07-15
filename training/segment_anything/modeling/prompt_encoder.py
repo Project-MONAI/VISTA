@@ -21,7 +21,6 @@ class PromptEncoder(nn.Module):
         input_image_size: Tuple[int, int],
         mask_in_chans: int,
         activation: Type[nn.Module] = nn.GELU,
-        n_classes: int = 512,
     ) -> None:
         """
         Encodes prompts for input to SAM's mask decoder.
@@ -36,7 +35,6 @@ class PromptEncoder(nn.Module):
             encoding input masks.
           activation (nn.Module): The activation to use when encoding
             input masks.
-          n_classes (int): The number of pre-defined classes.
         """
         super().__init__()
         self.embed_dim = embed_dim
@@ -60,10 +58,6 @@ class PromptEncoder(nn.Module):
             nn.Conv2d(mask_in_chans, embed_dim, kernel_size=1),
         )
         self.no_mask_embed = nn.Embedding(1, embed_dim)
-
-        # Add support for onehot vector embedding for pre-defined classes
-        self.label_embeddings = nn.Embedding(n_classes, embed_dim)
-        self.no_label_embed = nn.Embedding(1, embed_dim)
 
     def get_dense_pe(self) -> torch.Tensor:
         """
@@ -110,18 +104,11 @@ class PromptEncoder(nn.Module):
         mask_embedding = self.mask_downscaling(masks)
         return mask_embedding
 
-    def _embed_labels(self, labels: torch.Tensor) -> torch.Tensor:
-        """Embeds onehot vector inputs."""
-        # Add support for onehot vector embedding for pre-defined classes
-        label_embedding = self.label_embeddings(labels)
-        return label_embedding
-
     def _get_batch_size(
         self,
         points: Optional[Tuple[torch.Tensor, torch.Tensor]],
         boxes: Optional[torch.Tensor],
         masks: Optional[torch.Tensor],
-        labels: Optional[torch.Tensor],
     ) -> int:
         """
         Gets the batch size of the output given the batch size of the input prompts.
@@ -132,8 +119,6 @@ class PromptEncoder(nn.Module):
             return boxes.shape[0]
         elif masks is not None:
             return masks.shape[0]
-        elif labels is not None:
-            return labels.shape[0]
         else:
             return 1
 
@@ -145,7 +130,6 @@ class PromptEncoder(nn.Module):
         points: Optional[Tuple[torch.Tensor, torch.Tensor]],
         boxes: Optional[torch.Tensor],
         masks: Optional[torch.Tensor],
-        class_labels: Optional[torch.Tensor],
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """
         Embeds different types of prompts, returning both sparse and dense
@@ -164,19 +148,8 @@ class PromptEncoder(nn.Module):
           torch.Tensor: dense embeddings for the masks, in the shape
             Bx(embed_dim)x(embed_H)x(embed_W)
         """
-        bs = self._get_batch_size(points, boxes, masks, class_labels)
-
-        # Add support for onehot vector embedding for pre-defined classes
-        if class_labels is not None:
-            label_embeddings = self._embed_labels(class_labels)
-        else:
-            label_embeddings = self.no_label_embed.weight.reshape(1, 1, -1).expand(bs, -1, -1)
-
+        bs = self._get_batch_size(points, boxes, masks)
         sparse_embeddings = torch.empty((bs, 0, self.embed_dim), device=self._get_device())
-
-        # Add support for onehot vector embedding for pre-defined classes
-        sparse_embeddings = torch.cat([sparse_embeddings, label_embeddings], dim=1)
-
         if points is not None:
             coords, labels = points
             point_embeddings = self._embed_points(coords, labels, pad=(boxes is None))

@@ -19,8 +19,7 @@ MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 
 ### Table of Contents
 - [Overview](#overview)
-- MONAI VISTA Training and FineTuning
-  - (Coming soon)
+- [MONAI VISTA Training and FineTuning](training/)
 - [MONAI VISTA with MONAI Label](#monai-label-integration)
   - [Step 1. Installation](#installation)
   - [Step 2. MONAI Label monaivista app](#monai-vista-app)
@@ -161,7 +160,7 @@ The model is licensed under the Apache 2.0 license.
 
 The current model is trained and developed based on [Segment Anything Model (SAM)](https://github.com/facebookresearch/segment-anything). Check the 3rd party license for reference.
 
-We greatly appreciate the authors of [`Segment Anything`](https://github.com/facebookresearch/segment-anything) and [`TotalSegmentator`](https://github.com/wasserth/TotalSegmentator) for releasing their work under a permissive license to the community. 
+We greatly appreciate the authors of [`Segment Anything`](https://github.com/facebookresearch/segment-anything) and [`TotalSegmentator`](https://github.com/wasserth/TotalSegmentator) for releasing their work under a permissive license to the community.
 
 ```
 @article{kirillov2023segany,

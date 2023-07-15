@@ -18,11 +18,17 @@ import time
 import unittest
 
 import requests
-from mockserver_friendly import MockServerFriendlyClient, json_equals, request, response, times
-from python_on_whales import docker
+from mockserver_friendly import (
+    MockServerFriendlyClient,
+    json_equals,
+    request,
+    response,
+    times,
+)
 
 # sys.path.append("..")
 from MONAILabelReviewerLib.MonaiServerREST import MonaiServerREST
+from python_on_whales import docker
 
 
 class MonaiServerRESTTest(unittest.TestCase):

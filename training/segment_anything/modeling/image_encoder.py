@@ -55,20 +55,6 @@ class ImageEncoderViT(nn.Module):
         super().__init__()
         self.img_size = img_size
 
-        # if in_chans == 3:
-        #     self.patch_embed = PatchEmbed(
-        #         kernel_size=(patch_size, patch_size),
-        #         stride=(patch_size, patch_size),
-        #         in_chans=in_chans,
-        #         embed_dim=embed_dim,
-        #     )
-        # else:
-        #     self.patch_embed = PatchEmbed2pt5D(
-        #         kernel_size=(patch_size, patch_size, in_chans//3),
-        #         stride=(patch_size, patch_size, in_chans//3),
-        #         in_chans=3,
-        #         embed_dim=embed_dim,
-        #     )
         self.patch_embed = PatchEmbed(
             kernel_size=(patch_size, patch_size),
             stride=(patch_size, patch_size),
@@ -156,8 +142,8 @@ class Block(nn.Module):
             rel_pos_zero_init (bool): If True, zero initialize relative positional parameters.
             window_size (int): Window size for window attention blocks. If it equals 0, then
                 use global attention.
-            input_size (int or None): Input resolution for calculating the relative positional
-                parameter size.
+            input_size (tuple(int, int) or None): Input resolution for calculating the relative
+                positional parameter size.
         """
         super().__init__()
         self.norm1 = norm_layer(dim)
@@ -210,11 +196,11 @@ class Attention(nn.Module):
         Args:
             dim (int): Number of input channels.
             num_heads (int): Number of attention heads.
-            qkv_bias (bool:  If True, add a learnable bias to query, key, value.
+            qkv_bias (bool):  If True, add a learnable bias to query, key, value.
             rel_pos (bool): If True, add relative positional embeddings to the attention map.
             rel_pos_zero_init (bool): If True, zero initialize relative positional parameters.
-            input_size (int or None): Input resolution for calculating the relative positional
-                parameter size.
+            input_size (tuple(int, int) or None): Input resolution for calculating the relative
+                positional parameter size.
         """
         super().__init__()
         self.num_heads = num_heads
@@ -280,7 +266,7 @@ def window_unpartition(
     """
     Window unpartition into original sequences and removing padding.
     Args:
-        x (tensor): input tokens with [B * num_windows, window_size, window_size, C].
+        windows (tensor): input tokens with [B * num_windows, window_size, window_size, C].
         window_size (int): window size.
         pad_hw (Tuple): padded height and width (Hp, Wp).
         hw (Tuple): original height and width (H, W) before padding.
@@ -390,7 +376,7 @@ class PatchEmbed(nn.Module):
             stride (Tuple): stride of the projection layer.
             padding (Tuple): padding size of the projection layer.
             in_chans (int): Number of input image channels.
-            embed_dim (int):  embed_dim (int): Patch embedding dimension.
+            embed_dim (int): Patch embedding dimension.
         """
         super().__init__()
 
@@ -398,43 +384,6 @@ class PatchEmbed(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.proj(x)
-        # B C H W -> B H W C
-        x = x.permute(0, 2, 3, 1)
-        return x
-
-
-class PatchEmbed2pt5D(nn.Module):
-    """
-    Image to Patch Embedding.
-    """
-
-    def __init__(
-        self,
-        kernel_size: Tuple[int, int, int] = (16, 16, 1),
-        stride: Tuple[int, int, int] = (16, 16, 1),
-        padding: Tuple[int, int, int] = (0, 0, 0),
-        in_chans: int = 3,
-        embed_dim: int = 768,
-    ) -> None:
-        """
-        Args:
-            kernel_size (Tuple): kernel size of the projection layer.
-            stride (Tuple): stride of the projection layer.
-            padding (Tuple): padding size of the projection layer.
-            in_chans (int): Number of input image channels.
-            embed_dim (int):  embed_dim (int): Patch embedding dimension.
-        """
-        super().__init__()
-
-        self.proj = nn.Conv3d(in_chans, embed_dim, kernel_size=kernel_size, stride=stride, padding=padding)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # got restore RGB channel dim and the depth dim
-        c = x.shape[1]
-        x = torch.stack(x.chunk(c // 3, dim=1), dim=-1)
-        x = self.proj(x)
-        # remove dummy depth dim to make it 2d
-        x = x.squeeze(-1)
         # B C H W -> B H W C
         x = x.permute(0, 2, 3, 1)
         return x
