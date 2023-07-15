@@ -1,5 +1,5 @@
 # Model Overview
-![image](./assets/img.png)
+![image](../assets/img.png)
 This repository contains the training code for MONAI VISTA 2.5D model. MONAI VISTA 2.5D is based on SAM [1] but we finetune
 the model (image encoder, prompt encoder, and mask decoder) on 3D medical data. MONAI VISTA  introduces
 the class-label prompt and enables the fully automatic inference on known classes. It also shows the potential of
@@ -26,7 +26,7 @@ Please download the pre-trained weights from this
 <a href="https://drive.google.com/file/d/1ozJMe8hkLJfhNEJz-IHvV_tpyW3T2r_E/view?usp=sharing"> link</a>.
 
 # Data Preparation
-![image](./assets/img_1.png)
+![image](../assets/img_1.png)
 Figure source from the TotalSegmentator [2].
 
 The training data is from the [TotalSegmentator](https://github.com/wasserth/TotalSegmentator) [2].
@@ -38,7 +38,7 @@ The training data is from the [TotalSegmentator](https://github.com/wasserth/Tot
 - Spacing: [1.5, 1.5, 1.5]
 
 More details about preprocessing this dataset can be found at
-<a href="https://drive.google.com/file/d/1ozJMe8hkLJfhNEJz-IHvV_tpyW3T2r_E/view?usp=sharing"> link</a>.
+<a href="https://github.com/Project-MONAI/model-zoo/tree/dev/models/wholeBody_ct_segmentation#preprocessing"> link</a>.
 
 The json file containing the data list that is used to train our models can be downloaded from
 <a href="https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/totalsegmentator_104organs_folds_v2.json"> link</a>.
@@ -50,7 +50,7 @@ Note that you need to provide the location of your dataset directory and json fi
 
 A MONAI VISTA 2.5D model (ViT-B base) with standard hyperparameters is defined as:
 
-``` bash
+```py
 _build_vista2pt5d(
         encoder_in_chans=27,
         encoder_embed_dim=768,
@@ -62,9 +62,11 @@ _build_vista2pt5d(
         clip_class_label_prompt=False,
         patch_embed_3d=False,
     )
+```
 
 Or, you may directly call:
 
+```py
 build_vista2pt5d_vit_b()
 ```
 
@@ -72,6 +74,7 @@ The above VISTA 2.5D model is used for CT images (9 slices 2.5D) with input spac
 
 Using the default values for hyperparameters,
 the following command can be used to initiate training using PyTorch native AMP package:
+
 ``` bash
 python main_2pt5d.py --max_epochs 100 --val_every 1 --optim_lr 0.000005 \
 --num_patch 24 --num_prompt 32 \
@@ -84,6 +87,7 @@ python main_2pt5d.py --max_epochs 100 --val_every 1 --optim_lr 0.000005 \
 --label_prompt_warm_up_epoch 25 \
 --checkpoint ./runs/9s_2dembed_model.pt
 ```
+
 Above command will start the finetune training for the provided pre-trained weights
 (50 epochs single-step training and 50 epochs iterative training).
 
