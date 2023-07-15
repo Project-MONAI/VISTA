@@ -15,14 +15,13 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
-import numpy as np
-import torch
-from torch import nn
-
 from typing import Any, Optional, Tuple, Type
 
+import numpy as np
+import torch
 from segment_anything.modeling.common import LayerNorm2d
 from segment_anything.modeling.prompt_encoder import PromptEncoder
+from torch import nn
 
 
 class VistaPromptEncoder(PromptEncoder):

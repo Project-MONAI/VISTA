@@ -19,10 +19,10 @@ import numpy as np
 import torch
 from monai.data import MetaTensor
 from monai.data.image_writer import NibabelWriter
-
 from monailabel.utils.others.detection import create_slicer_detection_json
 from monailabel.utils.others.generic import file_ext
-from monailabel.utils.others.pathology import create_asap_annotations_xml, create_dsa_annotations_json
+from monailabel.utils.others.pathology import (create_asap_annotations_xml,
+                                               create_dsa_annotations_json)
 
 logger = logging.getLogger(__name__)
 

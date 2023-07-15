@@ -13,22 +13,16 @@ from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 from typing import Any
-import torch
 
+import torch
+import torch.nn.functional as F
 from monai.apps.utils import get_logger
 from monai.data.meta_tensor import MetaTensor
 from monai.inferers import Inferer
-
-import torch.nn.functional as F
+from monai.transforms import Activations, AsDiscrete, Compose
+from monai.utils import convert_to_dst_type
 from torch.cuda.amp import autocast
-from monai.transforms import (
-    AsDiscrete,
-    Activations,
-    Compose,
-)
-from monai.utils import (
-    convert_to_dst_type,
-)
+
 from .utils.utils import prepare_sam_val_input
 
 logger = get_logger(__name__)

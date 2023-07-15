@@ -16,22 +16,11 @@ from lib.transforms.transforms import NormalizeLabelsInDatasetd
 from monai.handlers import TensorBoardImageHandler, from_engine
 from monai.inferers import SlidingWindowInferer
 from monai.losses import DiceCELoss
-from monai.transforms import (
-    Activationsd,
-    AsDiscreted,
-    CropForegroundd,
-    EnsureChannelFirstd,
-    EnsureTyped,
-    GaussianSmoothd,
-    LoadImaged,
-    NormalizeIntensityd,
-    Orientationd,
-    RandSpatialCropd,
-    ScaleIntensityd,
-    SelectItemsd,
-    Spacingd,
-)
-
+from monai.transforms import (Activationsd, AsDiscreted, CropForegroundd,
+                              EnsureChannelFirstd, EnsureTyped,
+                              GaussianSmoothd, LoadImaged, NormalizeIntensityd,
+                              Orientationd, RandSpatialCropd, ScaleIntensityd,
+                              SelectItemsd, Spacingd)
 from monailabel.tasks.train.basic_train import BasicTrainTask, Context
 from monailabel.tasks.train.utils import region_wise_metrics
 

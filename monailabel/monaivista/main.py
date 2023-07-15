@@ -16,8 +16,7 @@ from typing import Dict
 
 import lib.configs
 from lib.activelearning import Last
-
-import monailabel
+from lib.class_utils import get_class_names
 from monailabel.interfaces.app import MONAILabelApp
 from monailabel.interfaces.config import TaskConfig
 from monailabel.interfaces.datastore import Datastore
@@ -27,16 +26,14 @@ from monailabel.interfaces.tasks.strategy import Strategy
 from monailabel.interfaces.tasks.train import TrainTask
 from monailabel.tasks.activelearning.first import First
 from monailabel.tasks.activelearning.random import Random
-
 # bundle
 from monailabel.tasks.infer.bundle import BundleInferTask
 from monailabel.tasks.train.bundle import BundleTrainTask
-
 # from monailabel.utils.others.class_utils import get_class_names
 from monailabel.utils.others.generic import get_bundle_models, strtobool
 from monailabel.utils.others.planner import HeuristicPlanner
 
-from lib.class_utils import get_class_names
+import monailabel
 
 logger = logging.getLogger(__name__)
 

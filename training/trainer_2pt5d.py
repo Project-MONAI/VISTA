@@ -24,7 +24,6 @@ from monai.data import decollate_batch
 from monai.metrics import compute_dice
 from tensorboardX import SummaryWriter
 from torch.cuda.amp import GradScaler, autocast
-
 from utils.utils import AverageMeter, distributed_all_gather
 
 

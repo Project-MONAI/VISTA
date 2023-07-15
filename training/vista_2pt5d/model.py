@@ -15,18 +15,17 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
+from functools import partial
+from typing import Any, Dict, List, Tuple
+
+import monai
 import torch
+from segment_anything.modeling import TwoWayTransformer
+from segment_anything.modeling.mask_decoder import MaskDecoder
 from torch import nn
 from torch.nn import functional as F
-
-from typing import Any, Dict, List, Tuple
-from functools import partial
-
 from vista_2pt5d.vista_image_encoder import VistaImageEncoderViT
-from segment_anything.modeling.mask_decoder import MaskDecoder
 from vista_2pt5d.vista_prompt_encoder import VistaPromptEncoder
-from segment_anything.modeling import TwoWayTransformer
-import monai
 
 
 class Vista2pt5D(nn.Module):

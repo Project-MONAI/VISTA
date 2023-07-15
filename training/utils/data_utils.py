@@ -9,22 +9,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import copy
 import math
 import os
 
 import numpy as np
 import torch
-import copy
 from monai import data, transforms
-from monai.transforms import (
-    LoadImaged,
-    ScaleIntensityRanged,
-    EnsureChannelFirstd,
-    Orientationd,
-    RandShiftIntensityd,
-    RandRotate90d,
-    Spacingd,
-)
+from monai.transforms import (EnsureChannelFirstd, LoadImaged, Orientationd,
+                              RandRotate90d, RandShiftIntensityd,
+                              ScaleIntensityRanged, Spacingd)
 
 
 class Sampler(torch.utils.data.Sampler):

@@ -15,8 +15,8 @@ from typing import Any, Dict, Optional, Union
 
 import lib.infers
 import lib.trainers
+from lib.model.vista_point_2pt5.models_samm2pt5d import sam_model_registry
 from monai.networks.nets import UNet
-
 from monailabel.interfaces.config import TaskConfig
 from monailabel.interfaces.tasks.infer_v2 import InferTask
 from monailabel.interfaces.tasks.scoring import ScoringMethod
@@ -27,8 +27,6 @@ from monailabel.tasks.scoring.dice import Dice
 from monailabel.tasks.scoring.epistemic import EpistemicScoring
 from monailabel.tasks.scoring.sum import Sum
 from monailabel.utils.others.generic import download_file, strtobool
-
-from lib.model.vista_point_2pt5.models_samm2pt5d import sam_model_registry
 
 logger = logging.getLogger(__name__)
 

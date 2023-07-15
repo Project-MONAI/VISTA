@@ -10,6 +10,9 @@
 # limitations under the License.
 
 import argparse
+import sys
+import warnings
+from subprocess import Popen
 
 import numpy as np
 import torch
@@ -17,19 +20,14 @@ import torch.distributed as dist
 import torch.multiprocessing as mp
 import torch.nn.parallel
 import torch.utils.data.distributed
+from monai.losses import DiceCELoss
+from monai.metrics import DiceMetric
+from monai.transforms import Activations, AsDiscrete, Compose
+from monai.utils import set_determinism
+from monai.utils.enums import MetricReduction
 from optimizers.lr_scheduler import LinearWarmupCosineAnnealingLR
 from trainer_2pt5d import run_training
 from utils.data_utils import get_loader
-
-from monai.losses import DiceCELoss
-from monai.metrics import DiceMetric
-
-from monai.transforms import Activations, AsDiscrete, Compose
-from monai.utils.enums import MetricReduction
-import warnings
-from subprocess import Popen
-import sys
-from monai.utils import set_determinism
 from vista_2pt5d.model import sam_model_registry
 
 warnings.filterwarnings("ignore", category=UserWarning, module="monai")

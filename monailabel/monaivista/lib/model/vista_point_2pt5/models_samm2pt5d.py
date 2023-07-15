@@ -4,17 +4,17 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 
+from functools import partial
+from typing import Any, Dict, List, Tuple
+
 import torch
 from torch import nn
 from torch.nn import functional as F
 
-from typing import Any, Dict, List, Tuple
-from functools import partial
-
+from .segment_anything.modeling import TwoWayTransformer
 from .segment_anything.modeling.image_encoder import ImageEncoderViT
 from .segment_anything.modeling.mask_decoder import MaskDecoder
 from .segment_anything.modeling.prompt_encoder import PromptEncoder
-from .segment_anything.modeling import TwoWayTransformer
 
 
 class Samm2pt5D(nn.Module):
