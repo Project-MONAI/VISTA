@@ -19,8 +19,7 @@ MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 
 ### Table of Contents
 - [Overview](#overview)
-- MONAI VISTA Training and FineTuning
-  - (Coming soon)
+- [MONAI VISTA Training and FineTuning](training/)
 - [MONAI VISTA with MONAI Label](#monai-label-integration)
   - [Step 1. Installation](#installation)
   - [Step 2. MONAI Label monaivista app](#monai-vista-app)
