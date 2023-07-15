@@ -10,8 +10,7 @@ from typing import Tuple
 import numpy as np
 import torch
 from torch.nn import functional as F
-from torchvision.transforms.functional import (resize,  # type: ignore
-                                               to_pil_image)
+from torchvision.transforms.functional import resize, to_pil_image  # type: ignore
 
 
 class ResizeLongestSide:

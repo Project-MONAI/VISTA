@@ -15,11 +15,20 @@ import torch
 from monai.apps.deepedit.transforms import NormalizeLabelsInDatasetd
 from monai.inferers import SlidingWindowInferer
 from monai.losses import DiceCELoss
-from monai.transforms import (Activationsd, AsDiscreted, EnsureChannelFirstd,
-                              EnsureTyped, LoadImaged, Orientationd,
-                              RandSpatialCropd, ScaleIntensityd,
-                              ScaleIntensityRanged, SelectItemsd, Spacingd,
-                              ToTensord)
+from monai.transforms import (
+    Activationsd,
+    AsDiscreted,
+    EnsureChannelFirstd,
+    EnsureTyped,
+    LoadImaged,
+    Orientationd,
+    RandSpatialCropd,
+    ScaleIntensityd,
+    ScaleIntensityRanged,
+    SelectItemsd,
+    Spacingd,
+    ToTensord,
+)
 from monailabel.tasks.train.basic_train import BasicTrainTask, Context
 
 logger = logging.getLogger(__name__)
