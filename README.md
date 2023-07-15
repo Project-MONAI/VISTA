@@ -160,6 +160,23 @@ The model is licensed under the Apache 2.0 license.
 
 The current model is trained and developed based on [Segment Anything Model (SAM)](https://github.com/facebookresearch/segment-anything). Check the 3rd party license for reference.
 
+We greatly appreciate the authors of [`Segment Anything`](https://github.com/facebookresearch/segment-anything) and [`TotalSegmentator`](https://github.com/wasserth/TotalSegmentator) for releasing their work under a permissive license to the community. 
+
+```
+@article{kirillov2023segany,
+      title={Segment Anything},
+      author={Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll{\'a}r, Piotr and Girshick, Ross},
+      journal={arXiv:2304.02643},
+      year={2023}
+    }
+@article{wasserthal2022totalsegmentator,
+      title={TotalSegmentator: robust segmentation of 104 anatomical structures in CT images},
+      author={Wasserthal, Jakob and Meyer, Manfred and Breit, Hanns-Christian and Cyriac, Joshy and Yang, Shan and Segeroth, Martin},
+      journal={arXiv preprint arXiv:2208.05868},
+      year={2022}
+    }
+```
+
 This integration is based on MONAI Label:
 
 ```bash
