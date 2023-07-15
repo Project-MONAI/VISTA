@@ -768,7 +768,7 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
                 not_nans_total += not_nans
 
             acc, not_nans = acc_sum_total / not_nans_total, not_nans_total
-            f_name = batch_data["image_meta_dict"]["filename_or_obj"]
+            f_name = batch_data["image"].meta["filename_or_obj"]
             print(f"Rank: {args.rank}, Case: {f_name}, Acc: {acc:.4f}, N_prompts: {int(not_nans)} ")
 
             acc = torch.tensor(acc).cuda(args.rank)

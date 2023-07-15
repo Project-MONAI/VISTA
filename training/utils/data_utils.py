@@ -101,7 +101,7 @@ def get_loader(args):
 
     train_transform = transforms.Compose(
         [
-            LoadImaged(keys=["image", "label"]),
+            LoadImaged(keys=["image", "label"], image_only=True),
             EnsureChannelFirstd(keys=["image", "label"]),
             Orientationd(keys=["image", "label"], axcodes="RAS"),
             Spacingd(keys=["image", "label"], pixdim=(1.5, 1.5, 1.5), mode=("bilinear", "nearest")),
@@ -114,7 +114,7 @@ def get_loader(args):
 
     val_transform = transforms.Compose(
         [
-            LoadImaged(keys=["image", "label"]),
+            LoadImaged(keys=["image", "label"], image_only=True),
             EnsureChannelFirstd(keys=["image", "label"]),
             Orientationd(keys=["image", "label"], axcodes="RAS"),
             Spacingd(keys=["image", "label"], pixdim=(1.5, 1.5, 1.5), mode=("bilinear", "nearest")),
