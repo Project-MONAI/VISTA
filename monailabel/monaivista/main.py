@@ -15,13 +15,11 @@ import os
 from typing import Dict
 
 import lib.configs
-from lib.activelearning import Last
 from lib.class_utils import get_class_names
 from monailabel.interfaces.app import MONAILabelApp
 from monailabel.interfaces.config import TaskConfig
 from monailabel.interfaces.datastore import Datastore
 from monailabel.interfaces.tasks.infer_v2 import InferTask
-from monailabel.interfaces.tasks.scoring import ScoringMethod
 from monailabel.interfaces.tasks.strategy import Strategy
 from monailabel.interfaces.tasks.train import TrainTask
 from monailabel.tasks.activelearning.first import First
@@ -103,7 +101,7 @@ class MyApp(MONAILabelApp):
             studies=studies,
             conf=conf,
             name=f"MONAILabel - monaivista ({monailabel.__version__})",
-            description="DeepLearning models for monaivista",
+            description="MONAI VISTA: A foundational model for medical image segmentation",
             version=monailabel.__version__,
         )
 
@@ -135,59 +133,6 @@ class MyApp(MONAILabelApp):
                 logger.info(f"+++ Adding Bundle Inferer:: {n} => {i}")
                 infers[n] = i
 
-        #################################################
-        # Scribbles
-        #################################################
-        # infers.update(
-        #     {
-        #         "Histogram+GraphCut": HistogramBasedGraphCut(
-        #             intensity_range=(-300, 200, 0.0, 1.0, True),
-        #             pix_dim=(2.5, 2.5, 5.0),
-        #             lamda=1.0,
-        #             sigma=0.1,
-        #             num_bins=64,
-        #             labels=task_config.labels,
-        #         ),
-        #         "GMM+GraphCut": GMMBasedGraphCut(
-        #             intensity_range=(-300, 200, 0.0, 1.0, True),
-        #             pix_dim=(2.5, 2.5, 5.0),
-        #             lamda=5.0,
-        #             sigma=0.5,
-        #             num_mixtures=20,
-        #             labels=task_config.labels,
-        #         ),
-        #     }
-        # )
-
-        #################################################
-        # Pipeline based on existing infers
-        #################################################
-        # if infers.get("deepgrow_2d") and infers.get("deepgrow_3d"):
-        #     infers["deepgrow_pipeline"] = InferDeepgrowPipeline(
-        #         path=self.models["deepgrow_2d"].path,
-        #         network=self.models["deepgrow_2d"].network,
-        #         model_3d=infers["deepgrow_3d"],
-        #         description="Combines Clara Deepgrow 2D and 3D models",
-        #     )
-
-        #################################################
-        # Pipeline based on existing infers for vertebra segmentation
-        # Stages:
-        # 1/ localization spine
-        # 2/ localization vertebra
-        # 3/ segmentation vertebra
-        #################################################
-        # if (
-        #     infers.get("localization_spine")
-        #     and infers.get("localization_vertebra")
-        #     and infers.get("segmentation_vertebra")
-        # ):
-        #     infers["vertebra_pipeline"] = InferVertebraPipeline(
-        #         task_loc_spine=infers["localization_spine"],  # first stage
-        #         task_loc_vertebra=infers["localization_vertebra"],  # second stage
-        #         task_seg_vertebra=infers["segmentation_vertebra"],  # third stage
-        #         description="Combines three stage for vertebra segmentation",
-        #     )
         logger.info(infers)
         return infers
 
@@ -224,7 +169,6 @@ class MyApp(MONAILabelApp):
         strategies: Dict[str, Strategy] = {
             "random": Random(),
             "first": First(),
-            "last": Last(),
         }
 
         if strtobool(self.conf.get("skip_strategies", "true")):
@@ -241,23 +185,6 @@ class MyApp(MONAILabelApp):
 
         logger.info(f"Active Learning Strategies:: {list(strategies.keys())}")
         return strategies
-
-    def init_scoring_methods(self) -> Dict[str, ScoringMethod]:
-        methods: Dict[str, ScoringMethod] = {}
-        if strtobool(self.conf.get("skip_scoring", "true")):
-            return methods
-
-        for n, task_config in self.models.items():
-            s = task_config.scoring_method()
-            if not s:
-                continue
-            s = s if isinstance(s, dict) else {n: s}
-            for k, v in s.items():
-                logger.info(f"+++ Adding Scoring Method:: {k} => {v}")
-                methods[k] = v
-
-        logger.info(f"Active Learning Scoring Methods:: {list(methods.keys())}")
-        return methods
 
 
 def main():
@@ -280,12 +207,13 @@ def main():
         force=True,
     )
 
-    home = str(Path.home())
-    studies = f"{home}/Dataset/Radiology"
+    str(Path.home())
+    # studies = f"{home}/Dataset/Radiology"
+    studies = "/home/andres/Documents/workspace/disk-workspace/DatasetsMore/temp-TotalSegmentatorDataset/quickTest/"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-s", "--studies", default=studies)
-    parser.add_argument("-m", "--model", default="segmentation_spleen")
+    parser.add_argument("-m", "--model", default="vista_point_2pt5")
     parser.add_argument("-t", "--test", default="infer", choices=("train", "infer"))
     args = parser.parse_args()
 
@@ -307,9 +235,6 @@ def main():
         # Run on all devices
         for device in device_list():
             res = app.infer(request={"model": args.model, "image": image_id, "device": device})
-            # res = app.infer(
-            #     request={"model": "vertebra_pipeline", "image": image_id, "device": device, "slicer": False}
-            # )
             label = res["file"]
             label_json = res["params"]
             test_dir = os.path.join(args.studies, "test_labels")
