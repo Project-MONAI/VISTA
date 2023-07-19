@@ -168,4 +168,3 @@ class VISTAPOINT2PT5(TaskConfig):
 
     def trainer(self) -> Optional[TrainTask]:
         None
-
