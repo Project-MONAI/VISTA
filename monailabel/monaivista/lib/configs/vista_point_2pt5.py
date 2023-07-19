@@ -165,3 +165,6 @@ class VISTAPOINT2PT5(TaskConfig):
             preload=strtobool(self.conf.get("preload", "false")),
         )
         return task
+
+    def trainer(self) -> Optional[TrainTask]:
+        None
