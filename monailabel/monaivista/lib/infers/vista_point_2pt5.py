@@ -52,7 +52,6 @@ class VISTAPOINT2PT5(BasicInferTask):
         )
         self.target_spacing = target_spacing
 
-
     def is_valid(self) -> bool:
         return True
 

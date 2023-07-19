@@ -165,7 +165,6 @@ class MyApp(MONAILabelApp):
 
         return trainers
 
-
     def init_strategies(self) -> Dict[str, Strategy]:
         strategies: Dict[str, Strategy] = {
             "random": Random(),
@@ -187,6 +186,7 @@ class MyApp(MONAILabelApp):
         logger.info(f"Active Learning Strategies:: {list(strategies.keys())}")
         return strategies
 
+
 def main():
     """
     Example to run train/infer/scoring task(s) locally without actually running MONAI Label Server
@@ -207,7 +207,7 @@ def main():
         force=True,
     )
 
-    home = str(Path.home())
+    str(Path.home())
     # studies = f"{home}/Dataset/Radiology"
     studies = "/home/andres/Documents/workspace/disk-workspace/DatasetsMore/temp-TotalSegmentatorDataset/quickTest/"
 
