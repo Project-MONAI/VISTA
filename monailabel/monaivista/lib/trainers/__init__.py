@@ -10,5 +10,3 @@
 # limitations under the License.
 
 
-from .segmentation import Segmentation
-from .segmentation_spleen import SegmentationSpleen

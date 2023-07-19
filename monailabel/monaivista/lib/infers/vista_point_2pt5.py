@@ -27,7 +27,7 @@ from monailabel.transform.post import Restored
 
 class VISTAPOINT2PT5(BasicInferTask):
     """
-    This provides Inference Engine for pre-trained spleen segmentation (UNet) model over MSD Dataset.
+    This provides Inference Engine for pre-trained VISTA segmentation model.
     """
 
     def __init__(
@@ -51,6 +51,10 @@ class VISTAPOINT2PT5(BasicInferTask):
             **kwargs,
         )
         self.target_spacing = target_spacing
+
+
+    def is_valid(self) -> bool:
+        return True
 
     def pre_transforms(self, data=None) -> Sequence[Callable]:
         return [
