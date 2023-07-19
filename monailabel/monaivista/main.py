@@ -208,8 +208,7 @@ def main():
     )
 
     home = str(Path.home())
-    # studies = f"{home}/Dataset/Radiology"
-    studies = "/home/andres/Documents/workspace/disk-workspace/DatasetsMore/temp-TotalSegmentatorDataset/quickTest/"
+    studies = f"{home}/Dataset/Radiology/WholeBodyCTDataset/test"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-s", "--studies", default=studies)
