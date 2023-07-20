@@ -17,6 +17,9 @@ MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 
 <div align="center"> <img src="./assets/imgs/demo_gif.gif" width="800"/> </div>
 
+*(We're seeking collaborators.
+If your institution is interested, please fill out the survey: https://forms.office.com/r/RedPQc9fmw)*
+
 ### Table of Contents
 - [Overview](#overview)
 - [MONAI VISTA Training and FineTuning](training/)
@@ -43,6 +46,8 @@ new collaborative approach for developing robust and versatile
 
 This repository hosts the ongoing effort of building MONAI VISTA and
 is currently under active development.
+
+
 
 <div align="center"> <img src="./assets/imgs/montage.png" width="800"/> </div>
 
