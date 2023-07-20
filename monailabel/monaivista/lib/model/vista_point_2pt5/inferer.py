@@ -238,14 +238,21 @@ def update_slice(
             continue
 
         inputs = inputs_l[..., start_idx - (n_z_slices // 2) : start_idx + (n_z_slices // 2) + 1].permute(2, 0, 1)
+        if device and (device == "cuda" or isinstance(device, torch.device) and device.type == "cuda"):
+            inputs = inputs.cuda()
         data, unique_labels = prepare_sam_val_input(
-            inputs.cuda(), class_prompts, point_prompts, start_idx, original_affine
+            inputs, class_prompts, point_prompts, start_idx, original_affine, device=device
         )
 
         predictor.eval()
-        with torch.cuda.amp.autocast():
-            outputs = predictor(data)
-            logit = outputs[0]["high_res_logits"]
+        if device == "cuda" or (isinstance(device, torch.device) and device.type == "cuda"):
+            with torch.cuda.amp.autocast():
+                outputs = predictor(data)
+                logit = outputs[0]["high_res_logits"]
+        else:
+            with torch.cpu.amp.autocast():
+                outputs = predictor(data)
+                logit = outputs[0]["high_res_logits"]
 
         out_list = torch.unbind(logit, dim=0)
         y_pred = torch.stack(post_pred_slice(out_list)).float()
@@ -290,11 +297,15 @@ def iterate_all(
     )
     for start_idx in start_range:
         inputs = inputs_l[..., start_idx - n_z_slices // 2 : start_idx + n_z_slices // 2 + 1].permute(2, 0, 1)
-        data, unique_labels = prepare_sam_val_input(inputs.cuda(), class_prompts, point_prompts, start_idx)
+        if device == "cuda" or (isinstance(device, torch.device) and device.type == "cuda"):
+            inputs = inputs.cuda()
+        data, unique_labels = prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, device=device)
         predictor = predictor.eval()
         with autocast():
             if cachedEmbedding:
-                curr_embedding = cachedEmbedding[start_idx].cuda()
+                curr_embedding = cachedEmbedding[start_idx]
+                if device == "cuda" or (isinstance(device, torch.device) and device.type == "cuda"):
+                    curr_embedding = curr_embedding.cuda()
                 outputs = predictor.get_mask_prediction(data, curr_embedding)
             else:
                 outputs = predictor(data)
