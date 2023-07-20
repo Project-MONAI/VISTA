@@ -80,14 +80,16 @@ def distributed_all_gather(
     return tensor_list_out
 
 
-def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, original_affine=None):
+def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, original_affine=None, device=None):
     # Don't exclude background in val but will ignore it in metric calculation
     H, W = inputs.shape[1:]
     foreground_all = point_prompts["foreground"]
     background_all = point_prompts["background"]
 
     class_list = [[i + 1] for i in class_prompts]
-    unique_labels = torch.tensor(class_list).long().cuda()
+    unique_labels = torch.tensor(class_list).long()
+    if device == "cuda" or (isinstance(device, torch.device) and device.type == "cuda"):
+        unique_labels = unique_labels.cuda()
 
     volume_point_coords = [cp for cp in foreground_all]
     volume_point_labels = [1] * len(foreground_all)
@@ -129,8 +131,11 @@ def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, origi
         prepared_input[0].update({"labels": unique_labels})
 
     if point_coords:
-        point_coords = torch.tensor(point_coords).long().cuda()
-        point_labels = torch.tensor(point_labels).long().cuda()
+        point_coords = torch.tensor(point_coords).long()
+        point_labels = torch.tensor(point_labels).long()
+        if device == "cuda" or (isinstance(device, torch.device) and device.type == "cuda"):
+            point_coords = point_coords.cuda()
+            point_labels = point_labels.cuda()
 
         prepared_input[0].update({"point_coords": point_coords, "point_labels": point_labels})
 

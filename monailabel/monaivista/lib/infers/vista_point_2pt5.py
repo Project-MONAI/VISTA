@@ -64,7 +64,7 @@ class VISTAPOINT2PT5(BasicInferTask):
         ]
 
     def inferer(self, data=None) -> Inferer:
-        return VISTASliceInferer()
+        return VISTASliceInferer(device=data.get("device") if data else None)
 
     def inverse_transforms(self, data=None):
         return []
