@@ -24,7 +24,6 @@ from segment_anything.modeling.prompt_encoder import PromptEncoder
 from torch import nn
 
 
-
 class VistaPromptEncoder(PromptEncoder):
     def __init__(
         self,

@@ -24,6 +24,7 @@ from segment_anything.modeling import TwoWayTransformer
 from segment_anything.modeling.mask_decoder import MaskDecoder
 from torch import nn
 from torch.nn import functional as F
+
 from .vista_2pt5_image_encoder import VistaImageEncoderViT
 from .vista_2pt5_prompt_encoder import VistaPromptEncoder
 
@@ -282,7 +283,7 @@ def _build_vista2pt5d(
     patch_embed_3d=False,
 ):
     prompt_embed_dim = 256
-    image_size = image_size  
+    image_size = image_size
     vit_patch_size = 16
     image_embedding_size = image_size // vit_patch_size
     sam = Vista2pt5D(
