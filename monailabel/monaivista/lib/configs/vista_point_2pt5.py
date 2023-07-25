@@ -15,7 +15,7 @@ from typing import Any, Dict, Optional, Union
 
 import lib.infers
 import lib.trainers
-from lib.model.vista_point_2pt5.models_samm2pt5d import sam_model_registry
+from lib.model.vista_point_2pt5.model_2pt5 import sam_model_registry
 from monailabel.interfaces.config import TaskConfig
 from monailabel.interfaces.tasks.infer_v2 import InferTask
 from monailabel.interfaces.tasks.train import TrainTask
