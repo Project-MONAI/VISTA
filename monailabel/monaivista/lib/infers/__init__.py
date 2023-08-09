@@ -10,3 +10,4 @@
 # limitations under the License.
 
 from .vista_point_2pt5 import VISTAPOINT2PT5
+from .vista_point_3d import VISTAPOINT3D
