@@ -113,6 +113,8 @@ parser.add_argument("--pop_point_embed", action="store_true", help="remove point
 parser.add_argument("--skip_bk", action="store_true", help="skip background (0) during training")
 parser.add_argument("--patch_embed_3d", action="store_true", help="using 3d patch embedding layer")
 
+parser.add_argument("--num_classes", default=105, type=int, help="number of output classes")
+
 
 def start_tb(log_dir):
     cmd = ["tensorboard", "--logdir", log_dir]
@@ -123,6 +125,10 @@ def main():
     args = parser.parse_args()
     args.amp = not args.noamp
     args.logdir = "./runs/" + args.logdir
+    
+    if args.num_classes == 0:
+        warnings.warn("consider setting the correct number of classes")
+     
     # start_tb(args.logdir)
     if args.seed > -1:
         set_determinism(seed=args.seed)
@@ -133,6 +139,9 @@ def main():
         mp.spawn(main_worker, nprocs=args.ngpus_per_node, args=(args,))
     else:
         main_worker(gpu=0, args=args)
+
+
+
 
 
 def main_worker(gpu, args):
@@ -162,7 +171,7 @@ def main_worker(gpu, args):
 
     dice_loss = DiceCELoss(sigmoid=True)
 
-    post_label = AsDiscrete(to_onehot=105)
+    post_label = AsDiscrete(to_onehot=args.num_classes)
     post_pred = Compose([Activations(sigmoid=True), AsDiscrete(threshold=0.5)])
     dice_acc = DiceMetric(include_background=False, reduction=MetricReduction.MEAN, get_not_nans=True)
 

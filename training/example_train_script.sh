@@ -8,4 +8,5 @@ python main_2pt5d.py --max_epochs 100 --val_every 1 --optim_lr 0.000005 \
 --logdir finetune_ckpt_example --point_prompt --label_prompt --distributed --seed 12346 \
 --iterative_training_warm_up_epoch 50 --reuse_img_embedding \
 --label_prompt_warm_up_epoch 25 \
---checkpoint ./runs/9s_2dembed_model.pt
+--checkpoint ./runs/9s_2dembed_model.pt \
+--num_classes 105
