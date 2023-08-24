@@ -457,15 +457,18 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
                 y_pred = torch.stack(post_pred(decollate_batch(logit)), 0)
 
                 # TODO: we compute metric for each prompt for simplicity in validation.
-                acc_batch = compute_dice(y_pred=y_pred, y=target)
+                acc_batch = compute_dice(y_pred=y_pred[None,], y=target[None,])
                 acc_sum, not_nans = (
                     torch.nansum(acc_batch).item(),
-                    (args.num_classes-1) - torch.sum(torch.isnan(acc_batch).float()).item(),
+                    (args.num_classes - 1) - torch.sum(torch.isnan(acc_batch).float()).item(),
                 )
                 acc_sum_total += acc_sum
                 not_nans_total += not_nans
 
-            acc, not_nans = acc_sum_total / not_nans_total, not_nans_total
+            if not_nans_total > 0:
+                acc, not_nans = acc_sum_total / not_nans_total, not_nans_total
+            else:
+                acc, not_nans = 0, 0
             f_name = batch_data["image"].meta["filename_or_obj"]
             print(f"Rank: {args.rank}, Case: {f_name}, Acc: {acc:.4f}, N_prompts: {int(not_nans)} ")
 
