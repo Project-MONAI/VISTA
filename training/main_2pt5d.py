@@ -125,10 +125,10 @@ def main():
     args = parser.parse_args()
     args.amp = not args.noamp
     args.logdir = "./runs/" + args.logdir
-    
+
     if args.num_classes == 0:
         warnings.warn("consider setting the correct number of classes")
-     
+
     # start_tb(args.logdir)
     if args.seed > -1:
         set_determinism(seed=args.seed)
@@ -139,9 +139,6 @@ def main():
         mp.spawn(main_worker, nprocs=args.ngpus_per_node, args=(args,))
     else:
         main_worker(gpu=0, args=args)
-
-
-
 
 
 def main_worker(gpu, args):
