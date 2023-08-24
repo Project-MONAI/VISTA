@@ -129,7 +129,7 @@ def prepare_sam_training_input(inputs, labels, args, model):
         unique_labels = unique_labels[: args.num_prompt]
 
     # add 4 background labels to every batch
-    background_labels = list(set([i for i in range(1, 105)]) - set(unique_labels.cpu().numpy()))
+    background_labels = list(set([i for i in range(1, args.num_classes)]) - set(unique_labels.cpu().numpy()))
     random.shuffle(background_labels)
     unique_labels = torch.cat([unique_labels, torch.tensor(background_labels[:4]).cuda(args.rank)])
 
@@ -375,7 +375,7 @@ def train_epoch_iterative(model, loader, optimizer, scaler, epoch, loss_func, ar
 
 
 def prepare_sam_test_input(inputs, labels, args, previous_pred=None):
-    unique_labels = torch.tensor([i for i in range(1, 105)]).cuda(args.rank)
+    unique_labels = torch.tensor([i for i in range(1, args.num_classes)]).cuda(args.rank)
 
     # preprocess make the size of lable same as high_res_logit
     batch_labels = torch.stack([labels == unique_labels[i] for i in range(len(unique_labels))], dim=0).float()
@@ -400,7 +400,7 @@ def prepare_sam_test_input(inputs, labels, args, previous_pred=None):
 
 def prepare_sam_val_input_cp_only(inputs, labels, args):
     # Don't exclude background in val but will ignore it in metric calculation
-    unique_labels = torch.tensor([i for i in range(1, 105)]).cuda(args.rank)
+    unique_labels = torch.tensor([i for i in range(1, args.num_classes)]).cuda(args.rank)
 
     # preprocess make the size of lable same as high_res_logit
     batch_labels = torch.stack([labels == unique_labels[i] for i in range(len(unique_labels))], dim=0).float()
@@ -457,15 +457,18 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
                 y_pred = torch.stack(post_pred(decollate_batch(logit)), 0)
 
                 # TODO: we compute metric for each prompt for simplicity in validation.
-                acc_batch = compute_dice(y_pred=y_pred, y=target)
+                acc_batch = compute_dice(y_pred=y_pred[None,], y=target[None,])
                 acc_sum, not_nans = (
                     torch.nansum(acc_batch).item(),
-                    104 - torch.sum(torch.isnan(acc_batch).float()).item(),
+                    (args.num_classes - 1) - torch.sum(torch.isnan(acc_batch).float()).item(),
                 )
                 acc_sum_total += acc_sum
                 not_nans_total += not_nans
 
-            acc, not_nans = acc_sum_total / not_nans_total, not_nans_total
+            if not_nans_total > 0:
+                acc, not_nans = acc_sum_total / not_nans_total, not_nans_total
+            else:
+                acc, not_nans = 0, 0
             f_name = batch_data["image"].meta["filename_or_obj"]
             print(f"Rank: {args.rank}, Case: {f_name}, Acc: {acc:.4f}, N_prompts: {int(not_nans)} ")
 
