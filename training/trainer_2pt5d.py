@@ -460,7 +460,7 @@ def val_epoch(model, loader, epoch, acc_func, args, iterative=False, post_label=
                 acc_batch = compute_dice(y_pred=y_pred, y=target)
                 acc_sum, not_nans = (
                     torch.nansum(acc_batch).item(),
-                    (args.num_classes-1) - torch.sum(torch.isnan(acc_batch).float()).item(),
+                    (args.num_classes - 1) - torch.sum(torch.isnan(acc_batch).float()).item(),
                 )
                 acc_sum_total += acc_sum
                 not_nans_total += not_nans
