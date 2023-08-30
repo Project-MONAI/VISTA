@@ -1,7 +1,8 @@
-import os
 import argparse
-import SimpleITK as sitk
+import os
 from typing import Dict
+
+import SimpleITK as sitk
 
 MAP = {
     0: 0,  # background

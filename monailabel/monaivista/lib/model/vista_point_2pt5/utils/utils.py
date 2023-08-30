@@ -88,7 +88,9 @@ def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, origi
 
     class_list = [[i + 1] for i in class_prompts]
     unique_labels = torch.tensor(class_list).long()
-    if (isinstance(device, str) and device.startswith('cuda')) or (isinstance(device, torch.device) and device.type == "cuda"):
+    if (isinstance(device, str) and device.startswith("cuda")) or (
+        isinstance(device, torch.device) and device.type == "cuda"
+    ):
         unique_labels = unique_labels.cuda()
 
     volume_point_coords = [cp for cp in foreground_all]
@@ -133,7 +135,9 @@ def prepare_sam_val_input(inputs, class_prompts, point_prompts, start_idx, origi
     if point_coords:
         point_coords = torch.tensor(point_coords).long()
         point_labels = torch.tensor(point_labels).long()
-        if (isinstance(device, str) and device.startswith('cuda')) or (isinstance(device, torch.device) and device.type == "cuda"):
+        if (isinstance(device, str) and device.startswith("cuda")) or (
+            isinstance(device, torch.device) and device.type == "cuda"
+        ):
             point_coords = point_coords.cuda()
             point_labels = point_labels.cuda()
 
