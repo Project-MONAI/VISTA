@@ -1,0 +1,643 @@
+{
+    "training": [
+        {
+            "image": "volume-84.nii",
+            "label": "segmentation-84.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-85.nii",
+            "label": "segmentation-85.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-14.nii",
+            "label": "segmentation-14.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-7.nii",
+            "label": "segmentation-7.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-68.nii",
+            "label": "segmentation-68.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-27.nii",
+            "label": "segmentation-27.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-13.nii",
+            "label": "segmentation-13.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-124.nii",
+            "label": "segmentation-124.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-46.nii",
+            "label": "segmentation-46.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-25.nii",
+            "label": "segmentation-25.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-71.nii",
+            "label": "segmentation-71.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-26.nii",
+            "label": "segmentation-26.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-75.nii",
+            "label": "segmentation-75.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-86.nii",
+            "label": "segmentation-86.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-123.nii",
+            "label": "segmentation-123.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-44.nii",
+            "label": "segmentation-44.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-21.nii",
+            "label": "segmentation-21.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-24.nii",
+            "label": "segmentation-24.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-23.nii",
+            "label": "segmentation-23.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-49.nii",
+            "label": "segmentation-49.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-12.nii",
+            "label": "segmentation-12.nii",
+            "fold": 0
+        },
+        {
+            "image": "volume-87.nii",
+            "label": "segmentation-87.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-50.nii",
+            "label": "segmentation-50.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-20.nii",
+            "label": "segmentation-20.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-32.nii",
+            "label": "segmentation-32.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-98.nii",
+            "label": "segmentation-98.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-64.nii",
+            "label": "segmentation-64.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-83.nii",
+            "label": "segmentation-83.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-15.nii",
+            "label": "segmentation-15.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-22.nii",
+            "label": "segmentation-22.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-35.nii",
+            "label": "segmentation-35.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-16.nii",
+            "label": "segmentation-16.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-126.nii",
+            "label": "segmentation-126.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-38.nii",
+            "label": "segmentation-38.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-121.nii",
+            "label": "segmentation-121.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-76.nii",
+            "label": "segmentation-76.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-45.nii",
+            "label": "segmentation-45.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-53.nii",
+            "label": "segmentation-53.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-110.nii",
+            "label": "segmentation-110.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-37.nii",
+            "label": "segmentation-37.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-100.nii",
+            "label": "segmentation-100.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-95.nii",
+            "label": "segmentation-95.nii",
+            "fold": 1
+        },
+        {
+            "image": "volume-80.nii",
+            "label": "segmentation-80.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-11.nii",
+            "label": "segmentation-11.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-62.nii",
+            "label": "segmentation-62.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-73.nii",
+            "label": "segmentation-73.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-119.nii",
+            "label": "segmentation-119.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-55.nii",
+            "label": "segmentation-55.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-103.nii",
+            "label": "segmentation-103.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-39.nii",
+            "label": "segmentation-39.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-74.nii",
+            "label": "segmentation-74.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-57.nii",
+            "label": "segmentation-57.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-81.nii",
+            "label": "segmentation-81.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-105.nii",
+            "label": "segmentation-105.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-9.nii",
+            "label": "segmentation-9.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-8.nii",
+            "label": "segmentation-8.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-97.nii",
+            "label": "segmentation-97.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-42.nii",
+            "label": "segmentation-42.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-111.nii",
+            "label": "segmentation-111.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-116.nii",
+            "label": "segmentation-116.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-130.nii",
+            "label": "segmentation-130.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-52.nii",
+            "label": "segmentation-52.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-47.nii",
+            "label": "segmentation-47.nii",
+            "fold": 2
+        },
+        {
+            "image": "volume-61.nii",
+            "label": "segmentation-61.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-109.nii",
+            "label": "segmentation-109.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-108.nii",
+            "label": "segmentation-108.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-102.nii",
+            "label": "segmentation-102.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-101.nii",
+            "label": "segmentation-101.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-4.nii",
+            "label": "segmentation-4.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-29.nii",
+            "label": "segmentation-29.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-28.nii",
+            "label": "segmentation-28.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-41.nii",
+            "label": "segmentation-41.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-58.nii",
+            "label": "segmentation-58.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-36.nii",
+            "label": "segmentation-36.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-69.nii",
+            "label": "segmentation-69.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-0.nii",
+            "label": "segmentation-0.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-1.nii",
+            "label": "segmentation-1.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-40.nii",
+            "label": "segmentation-40.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-17.nii",
+            "label": "segmentation-17.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-128.nii",
+            "label": "segmentation-128.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-107.nii",
+            "label": "segmentation-107.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-104.nii",
+            "label": "segmentation-104.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-56.nii",
+            "label": "segmentation-56.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-115.nii",
+            "label": "segmentation-115.nii",
+            "fold": 3
+        },
+        {
+            "image": "volume-2.nii",
+            "label": "segmentation-2.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-93.nii",
+            "label": "segmentation-93.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-30.nii",
+            "label": "segmentation-30.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-10.nii",
+            "label": "segmentation-10.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-65.nii",
+            "label": "segmentation-65.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-112.nii",
+            "label": "segmentation-112.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-5.nii",
+            "label": "segmentation-5.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-78.nii",
+            "label": "segmentation-78.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-82.nii",
+            "label": "segmentation-82.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-43.nii",
+            "label": "segmentation-43.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-79.nii",
+            "label": "segmentation-79.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-60.nii",
+            "label": "segmentation-60.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-88.nii",
+            "label": "segmentation-88.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-6.nii",
+            "label": "segmentation-6.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-34.nii",
+            "label": "segmentation-34.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-106.nii",
+            "label": "segmentation-106.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-127.nii",
+            "label": "segmentation-127.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-118.nii",
+            "label": "segmentation-118.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-63.nii",
+            "label": "segmentation-63.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-96.nii",
+            "label": "segmentation-96.nii",
+            "fold": 4
+        },
+        {
+            "image": "volume-91.nii",
+            "label": "segmentation-91.nii",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "volume-114.nii",
+            "label": "segmentation-114.nii"
+        },
+        {
+            "image": "volume-51.nii",
+            "label": "segmentation-51.nii"
+        },
+        {
+            "image": "volume-129.nii",
+            "label": "segmentation-129.nii"
+        },
+        {
+            "image": "volume-54.nii",
+            "label": "segmentation-54.nii"
+        },
+        {
+            "image": "volume-125.nii",
+            "label": "segmentation-125.nii"
+        },
+        {
+            "image": "volume-99.nii",
+            "label": "segmentation-99.nii"
+        },
+        {
+            "image": "volume-33.nii",
+            "label": "segmentation-33.nii"
+        },
+        {
+            "image": "volume-90.nii",
+            "label": "segmentation-90.nii"
+        },
+        {
+            "image": "volume-66.nii",
+            "label": "segmentation-66.nii"
+        },
+        {
+            "image": "volume-77.nii",
+            "label": "segmentation-77.nii"
+        },
+        {
+            "image": "volume-72.nii",
+            "label": "segmentation-72.nii"
+        },
+        {
+            "image": "volume-18.nii",
+            "label": "segmentation-18.nii"
+        },
+        {
+            "image": "volume-31.nii",
+            "label": "segmentation-31.nii"
+        },
+        {
+            "image": "volume-120.nii",
+            "label": "segmentation-120.nii"
+        },
+        {
+            "image": "volume-70.nii",
+            "label": "segmentation-70.nii"
+        },
+        {
+            "image": "volume-48.nii",
+            "label": "segmentation-48.nii"
+        },
+        {
+            "image": "volume-94.nii",
+            "label": "segmentation-94.nii"
+        },
+        {
+            "image": "volume-92.nii",
+            "label": "segmentation-92.nii"
+        },
+        {
+            "image": "volume-113.nii",
+            "label": "segmentation-113.nii"
+        },
+        {
+            "image": "volume-59.nii",
+            "label": "segmentation-59.nii"
+        },
+        {
+            "image": "volume-3.nii",
+            "label": "segmentation-3.nii"
+        },
+        {
+            "image": "volume-19.nii",
+            "label": "segmentation-19.nii"
+        },
+        {
+            "image": "volume-122.nii",
+            "label": "segmentation-122.nii"
+        },
+        {
+            "image": "volume-89.nii",
+            "label": "segmentation-89.nii"
+        },
+        {
+            "image": "volume-67.nii",
+            "label": "segmentation-67.nii"
+        },
+        {
+            "image": "volume-117.nii",
+            "label": "segmentation-117.nii"
+        }
+    ],
+    "label_dict": {
+        "1": "liver",
+        "2": "liver tumor"
+    },
+    "original_label_dict": {
+        "1": "liver",
+        "2": "tumor"
+    }
+}

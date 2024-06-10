@@ -1,0 +1,694 @@
+{
+    "training": [
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0033/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0033.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0061/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0061.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0006/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0006.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0091/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0091.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0053/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0053.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0005/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0005.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0102/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0102.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0016/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0016.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0059/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0059.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0080/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0080.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0020/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0020.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0078/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0078.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0024/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0024.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0023/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0023.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0052/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0052.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0089/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0089.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0007/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0007.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0082/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0082.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0092/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0092.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0115/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0115.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0014/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0014.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0105/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0105.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0029/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0029.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0038/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0038.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0035/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0035.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0100/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0100.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0057/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0057.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0097/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0097.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0114/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0114.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0071/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0071.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0047/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0047.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0063/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0063.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0104/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0104.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0040/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0040.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0083/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0083.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0088/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0088.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0096/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0096.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0055/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0055.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0117/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0117.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0090/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0090.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0075/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0075.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0048/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0048.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0000/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0000.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0028/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0028.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0012/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0012.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0060/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0060.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0015/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0015.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0008/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0008.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0049/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0049.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0010/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0010.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0037/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0037.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0087/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0087.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0026/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0026.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0065/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0065.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0004/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0004.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0116/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0116.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0109/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0109.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0079/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0079.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0073/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0073.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0032/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0032.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0064/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0064.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0003/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0003.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0085/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0085.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0118/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0118.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0062/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0062.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0001/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0001.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0002/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0002.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0072/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0072.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0068/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0068.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0022/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0022.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0111/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0111.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0106/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0106.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0036/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0036.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0034/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0034.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0031/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0031.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0098/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0098.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0069/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0069.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0051/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0051.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0103/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0103.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0050/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0050.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0019/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0019.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0018/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0018.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0093/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0093.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0044/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0044.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0066/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0066.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0077/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0077.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0067/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0067.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0013/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0013.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0070/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0070.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0076/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0076.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0011/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0011.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0113/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0113.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0107/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0107.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0039/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0039.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0009/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0009.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0084/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0084.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0081/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0081.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0030/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0030.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0119/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0119.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0058/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0058.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0108/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0108.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0094/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0094.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0101/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0101.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0041/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0041.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0056/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0056.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0025/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0025.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0099/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0099.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0074/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0074.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0112/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0112.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0110/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0110.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0017/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0017.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0086/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0086.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0054/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0054.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0042/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0042.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0027/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0027.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0043/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0043.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0046/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0046.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0045/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0045.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0095/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0095.nii.gz"
+        },
+        {
+            "image": "SegRap2023_Training_Set_120cases/segrap_0021/image.nii.gz",
+            "label": "SegRap2023_Training_Set_120cases_OneHot_Labels/Task001/segrap_0021.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "brain",
+        "2": "brain stem",
+        "3": "optic chiasm",
+        "4": "left temporal lobe",
+        "5": "right temporal lobe",
+        "6": "left temporal lobe hippocampus overlap",
+        "7": "right temporal lobe hippocampus overlap",
+        "8": "left hippocampus",
+        "9": "right hippocampus",
+        "10": "left eye",
+        "11": "right eye",
+        "12": "left lens",
+        "13": "right lens",
+        "14": "left optic nerve",
+        "15": "right optic nerve",
+        "16": "left middle ear",
+        "17": "right middle ear",
+        "18": "left internal auditory canal",
+        "19": "right internal auditory canal",
+        "20": "left middle ear tympanic cavity overlap",
+        "21": "right middle ear tympanic cavity overlap",
+        "22": "left tympanic cavity",
+        "23": "right tympanic cavity",
+        "24": "left middle ear vestibular semicircular canal overlap",
+        "25": "right middle ear vestibular semicircular canal overlap",
+        "26": "left vestibular semicircular canal",
+        "27": "right vestibular semicircular canal",
+        "28": "left cochlea",
+        "29": "right cochlea",
+        "30": "left middle ear eustachian tube bone overlap",
+        "31": "right middle ear eustachian tube bone overlap",
+        "32": "left eustachian tube bone",
+        "33": "right eustachian tube bone",
+        "34": "pituitary",
+        "35": "oral cavity",
+        "36": "left mandible",
+        "37": "right mandible",
+        "38": "left submandibular",
+        "39": "right submandibular",
+        "40": "left parotid",
+        "41": "right parotid",
+        "42": "left mastoid",
+        "43": "right mastoid",
+        "44": "left temporomandibular joint",
+        "45": "right temporomandibular joint",
+        "46": "spinal cord",
+        "47": "esophagus",
+        "48": "larynx",
+        "49": "larynx glottic",
+        "50": "larynx supraglottic",
+        "51": "larynx pharynx const overlap",
+        "52": "pharynx const",
+        "53": "thyroid",
+        "54": "trachea"
+    },
+    "original_label_dict": {
+        "1": "Brain",
+        "2": "BrainStem",
+        "3": "Chiasm",
+        "4": "TemporalLobe_L",
+        "5": "TemporalLobe_R",
+        "6": "TemporalLobe_Hippocampus_OverLap_L",
+        "7": "TemporalLobe_Hippocampus_OverLap_R",
+        "8": "Hippocampus_L",
+        "9": "Hippocampus_R",
+        "10": "Eye_L",
+        "11": "Eye_R",
+        "12": "Lens_L",
+        "13": "Lens_R",
+        "14": "OpticNerve_L",
+        "15": "OpticNerve_R",
+        "16": "MiddleEar_L",
+        "17": "MiddleEar_R",
+        "18": "IAC_L",
+        "19": "IAC_R",
+        "20": "MiddleEar_TympanicCavity_OverLap_L",
+        "21": "MiddleEar_TympanicCavity_OverLap_R",
+        "22": "TympanicCavity_L",
+        "23": "TympanicCavity_R",
+        "24": "MiddleEar_VestibulSemi_OverLap_L",
+        "25": "MiddleEar_VestibulSemi_OverLap_R",
+        "26": "VestibulSemi_L",
+        "27": "VestibulSemi_R",
+        "28": "Cochlea_L",
+        "29": "Cochlea_R",
+        "30": "MiddleEar_ETbone_OverLap_L",
+        "31": "MiddleEar_ETbone_OverLap_R",
+        "32": "ETbone_L",
+        "33": "ETbone_R",
+        "34": "Pituitary",
+        "35": "OralCavity",
+        "36": "Mandible_L",
+        "37": "Mandible_R",
+        "38": "Submandibular_L",
+        "39": "Submandibular_R",
+        "40": "Parotid_L",
+        "41": "Parotid_R",
+        "42": "Mastoid_L",
+        "43": "Mastoid_R",
+        "44": "TMjoint_L",
+        "45": "TMjoint_R",
+        "46": "SpinalCord",
+        "47": "Esophagus",
+        "48": "Larynx",
+        "49": "Larynx_Glottic",
+        "50": "Larynx_Supraglot",
+        "51": "Larynx_PharynxConst_OverLap",
+        "52": "PharynxConst",
+        "53": "Thyroid",
+        "54": "Trachea"
+    }
+}

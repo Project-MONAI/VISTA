@@ -1,0 +1,162 @@
+{
+    "training": [
+        {
+            "image": "FixedData/Training/img/8745574-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/8745574-Mask.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "FixedData/Training/img/7657884-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/7657884-Mask.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "FixedData/Training/img/1565722-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/1565722-Mask.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "FixedData/Training/img/1578068-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/1578068-Mask.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "FixedData/Training/img/3744998-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/3744998-Mask.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "FixedData/Training/img/5458334-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/5458334-Mask.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "FixedData/Training/img/2780380-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/2780380-Mask.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "FixedData/Training/img/0507688-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/0507688-Mask.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "FixedData/Training/img/6682806-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/6682806-Mask.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "FixedData/Training/img/7742556-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/7742556-Mask.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "FixedData/Training/img/1411226-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/1411226-Mask.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "FixedData/Training/img/3463338-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/3463338-Mask.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "FixedData/Training/img/6171298-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/6171298-Mask.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "FixedData/Training/img/0773652-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/0773652-Mask.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "FixedData/Training/img/1577656-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/1577656-Mask.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "FixedData/Training/img/2088692-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/2088692-Mask.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "FixedData/Training/img/9570942-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/9570942-Mask.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "FixedData/Training/img/5502532-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/5502532-Mask.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "FixedData/Training/img/2469782-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/2469782-Mask.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "FixedData/Training/img/4526856-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/4526856-Mask.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "FixedData/Training/img/6798630-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/6798630-Mask.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "FixedData/Training/img/5176452-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/5176452-Mask.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "FixedData/Training/img/0763890-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/0763890-Mask.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "FixedData/Training/img/0759564-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/0759564-Mask.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "FixedData/Training/img/2477092-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/2477092-Mask.nii.gz"
+        },
+        {
+            "image": "FixedData/Training/img/6339208-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/6339208-Mask.nii.gz"
+        },
+        {
+            "image": "FixedData/Training/img/2609008-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/2609008-Mask.nii.gz"
+        },
+        {
+            "image": "FixedData/Training/img/3388252-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/3388252-Mask.nii.gz"
+        },
+        {
+            "image": "FixedData/Training/img/3089528-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/3089528-Mask.nii.gz"
+        },
+        {
+            "image": "FixedData/Training/img/5664630-Image.nii.gz",
+            "label": "FixedDataV2/Training/label/5664630-Mask.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "bladder",
+        "2": "prostate or uterus",
+        "3": "rectum",
+        "4": "small bowel"
+    },
+    "original_label_dict": {
+        "1": "bladder",
+        "2": "uterus",
+        "3": "rectum",
+        "4": "small bowel"
+    }
+}

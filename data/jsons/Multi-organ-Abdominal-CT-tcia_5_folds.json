@@ -1,0 +1,234 @@
+{
+    "training": [
+        {
+            "image": "images_tcia/PANCREAS_0045.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0045.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0003.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0003.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0028.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0028.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0043.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0043.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0027.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0027.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0040.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0040.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0008.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0008.nii",
+            "fold": 0
+        },
+        {
+            "image": "images_tcia/PANCREAS_0024.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0024.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0016.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0016.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0010.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0010.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0011.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0011.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0032.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0032.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0006.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0006.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0030.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0030.nii",
+            "fold": 1
+        },
+        {
+            "image": "images_tcia/PANCREAS_0046.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0046.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0005.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0005.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0047.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0047.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0034.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0034.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0017.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0017.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0021.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0021.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0039.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0039.nii",
+            "fold": 2
+        },
+        {
+            "image": "images_tcia/PANCREAS_0009.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0009.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0022.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0022.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0004.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0004.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0019.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0019.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0014.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0014.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0013.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0013.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0038.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0038.nii",
+            "fold": 3
+        },
+        {
+            "image": "images_tcia/PANCREAS_0048.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0048.nii",
+            "fold": 4
+        },
+        {
+            "image": "images_tcia/PANCREAS_0033.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0033.nii",
+            "fold": 4
+        },
+        {
+            "image": "images_tcia/PANCREAS_0042.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0042.nii",
+            "fold": 4
+        },
+        {
+            "image": "images_tcia/PANCREAS_0007.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0007.nii",
+            "fold": 4
+        },
+        {
+            "image": "images_tcia/PANCREAS_0002.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0002.nii",
+            "fold": 4
+        },
+        {
+            "image": "images_tcia/PANCREAS_0018.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0018.nii",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "images_tcia/PANCREAS_0029.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0029.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0041.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0041.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0012.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0012.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0044.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0044.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0020.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0020.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0026.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0026.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0031.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0031.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0035.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0035.nii"
+        },
+        {
+            "image": "images_tcia/PANCREAS_0025.nii",
+            "label": "label_tcia_multiorgan+rkidney/label0025.nii"
+        }
+    ],
+    "label_dict": {
+        "1": "spleen",
+        "2": "right kidney",
+        "3": "left kidney",
+        "4": "gallbladder",
+        "5": "esophagus",
+        "6": "liver",
+        "7": "stomach",
+        "8": "pancreas",
+        "9": "duodenum"
+    },
+    "original_label_dict": {
+        "1": "spleen",
+        "2": "right kidney",
+        "3": "left kidney",
+        "4": "gallbladder",
+        "5": "esophagus",
+        "6": "liver",
+        "7": "stomach",
+        "8": "pancreas",
+        "9": "duodenum"
+    }
+}

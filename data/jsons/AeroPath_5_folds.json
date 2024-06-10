@@ -1,0 +1,143 @@
+{
+    "training": [
+        {
+            "image": "8/8_CT_HR.nii.gz",
+            "label": "8/8_CT_HR_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "6/6_CT_HR.nii.gz",
+            "label": "6/6_CT_HR_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "14/14_CT_HR.nii.gz",
+            "label": "14/14_CT_HR_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "16/16_CT_HR.nii.gz",
+            "label": "16/16_CT_HR_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "15/15_CT_HR.nii.gz",
+            "label": "15/15_CT_HR_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "27/27_CT_HR.nii.gz",
+            "label": "27/27_CT_HR_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "20/20_CT_HR.nii.gz",
+            "label": "20/20_CT_HR_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "1/1_CT_HR.nii.gz",
+            "label": "1/1_CT_HR_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "18/18_CT_HR.nii.gz",
+            "label": "18/18_CT_HR_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "25/25_CT_HR.nii.gz",
+            "label": "25/25_CT_HR_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "13/13_CT_HR.nii.gz",
+            "label": "13/13_CT_HR_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "23/23_CT_HR.nii.gz",
+            "label": "23/23_CT_HR_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "5/5_CT_HR.nii.gz",
+            "label": "5/5_CT_HR_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "10/10_CT_HR.nii.gz",
+            "label": "10/10_CT_HR_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "17/17_CT_HR.nii.gz",
+            "label": "17/17_CT_HR_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "12/12_CT_HR.nii.gz",
+            "label": "12/12_CT_HR_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "3/3_CT_HR.nii.gz",
+            "label": "3/3_CT_HR_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "24/24_CT_HR.nii.gz",
+            "label": "24/24_CT_HR_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "9/9_CT_HR.nii.gz",
+            "label": "9/9_CT_HR_label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "26/26_CT_HR.nii.gz",
+            "label": "26/26_CT_HR_label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "11/11_CT_HR.nii.gz",
+            "label": "11/11_CT_HR_label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "7/7_CT_HR.nii.gz",
+            "label": "7/7_CT_HR_label.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "19/19_CT_HR.nii.gz",
+            "label": "19/19_CT_HR_label.nii.gz"
+        },
+        {
+            "image": "2/2_CT_HR.nii.gz",
+            "label": "2/2_CT_HR_label.nii.gz"
+        },
+        {
+            "image": "22/22_CT_HR.nii.gz",
+            "label": "22/22_CT_HR_label.nii.gz"
+        },
+        {
+            "image": "21/21_CT_HR.nii.gz",
+            "label": "21/21_CT_HR_label.nii.gz"
+        },
+        {
+            "image": "4/4_CT_HR.nii.gz",
+            "label": "4/4_CT_HR_label.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "2": "airway"
+    },
+    "original_label_dict": {
+        "1": "lung",
+        "2": "airway"
+    }
+}

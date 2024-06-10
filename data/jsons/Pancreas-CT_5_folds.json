@@ -1,0 +1,396 @@
+{
+    "training": [
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0008.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0008.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0019.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0019.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0068.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0068.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0067.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0067.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0031.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0031.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0072.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0072.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0005.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0005.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0006.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0006.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0014.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0014.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0017.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0017.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0002.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0002.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0079.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0079.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0028.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0004.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0004.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0077.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0077.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0020.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0020.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0054.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0054.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0052.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0052.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0081.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0081.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0034.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0034.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0041.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0041.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0033.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0033.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0001.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0001.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0064.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0064.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0040.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0040.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0011.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0011.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0059.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0059.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0046.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0046.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0024.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0024.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0039.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0039.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0074.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0074.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0010.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0010.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0012.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0012.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0078.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0078.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0066.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0066.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0003.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0003.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0071.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0071.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0026.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0026.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0063.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0063.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0069.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0069.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0042.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0042.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0037.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0037.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0053.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0053.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0050.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0050.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0007.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0007.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0009.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0009.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0049.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0049.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0036.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0036.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0051.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0051.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0035.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0035.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0061.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0061.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0013.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0013.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0057.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0057.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0015.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0015.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0055.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0055.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0030.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0030.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0062.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0062.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0021.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0021.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0038.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0038.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0065.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0065.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0032.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0032.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0016.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0016.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0080.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0080.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0023.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0023.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0082.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0082.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0060.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0060.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0073.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0073.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0043.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0043.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0058.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0058.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0027.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0027.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0076.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0076.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0075.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0075.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0018.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0018.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0056.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0056.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0044.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0044.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0029.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0029.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0045.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0045.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0048.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0048.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0047.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0047.nii.gz"
+        },
+        {
+            "image": "manifest-1599750808610/nifti/PANCREAS_0022.nii.gz",
+            "label": "TCIA_pancreas_labels-02-05-2017/label0022.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "pancreas"
+    },
+    "original_label_dict": {
+        "1": "pancreas"
+    }
+}

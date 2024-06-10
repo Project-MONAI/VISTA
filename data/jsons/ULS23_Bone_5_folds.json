@@ -1,0 +1,3358 @@
+{
+    "training": [
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00611_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00611_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00153_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00153_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01066_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01066_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_12.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00078_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00078_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00335_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00335_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_07.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_09.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00106_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00106_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_06.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00335_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00335_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00267_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00267_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00504_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00504_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00149_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00149_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00238_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00238_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_14.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00454_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00454_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00523_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00523_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_10.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_10.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00384_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00384_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00168_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00168_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_09.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_08.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00152_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00152_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01197_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01197_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00309_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00309_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00501_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00501_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_07.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_06.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_15.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00229_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00229_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_07.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00292_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00292_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00289_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00289_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_09.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00294_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00294_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_08.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_19.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_19.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00797_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00797_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00194_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00194_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_10.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00130_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00130_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00504_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00504_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00504_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00504_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00469_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00469_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00335_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00335_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01080_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01080_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00233_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00233_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00293_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00293_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00020_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00020_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01080_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01080_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_07.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00451_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00451_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00816_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00816_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00504_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00504_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00153_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00153_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_07.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00303_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00303_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_06.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_08.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00254_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00254_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01001_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01001_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_03.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00501_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00501_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_20.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_20.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_04.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00078_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00078_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00852_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00852_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_06.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01096_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01096_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_08.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_13.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01056_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01056_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_06.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_10.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_17.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_17.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_02.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_16.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01197_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01197_lesion_05.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00542_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00542_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_07.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00216_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00216_lesion_01.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00147_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00147_lesion_06.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_10.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_13.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00293_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00293_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00234_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00234_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00149_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00149_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_14.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01142_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01142_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00519_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00519_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01187_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01187_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_11.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00523_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00523_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00519_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00519_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00519_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00519_lesion_06.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01197_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01197_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00294_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00294_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00696_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00696_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_13.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_08.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00194_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00194_lesion_06.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01188_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01188_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00217_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00217_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01197_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01197_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00234_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00234_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01004_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01004_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_16.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01188_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01188_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00289_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00289_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00519_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00519_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_11.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_12.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00002_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00002_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_09.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00519_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00519_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00047_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00047_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_12.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00207_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00207_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00085_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00085_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_12.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_12.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00332_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00332_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_06.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_16.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00507_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00507_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00147_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00147_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01024_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01024_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01246_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01246_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_06.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00293_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00293_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00044_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00044_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_14.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_09.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_15.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00384_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00384_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01101_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01101_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_08.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00292_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00292_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00283_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00283_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_21.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_21.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00855_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00855_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00201_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00201_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_14.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00451_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00451_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00930_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00930_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_06.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_12.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_06.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_14.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_09.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_11.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_05.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00128_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00128_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00501_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00501_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_08.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_08.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_11.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00184_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00184_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00184_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00184_lesion_03.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_04.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_07.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_14.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00289_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00289_lesion_01.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_02.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00069_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00069_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01188_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01188_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01319_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01319_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_14.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_09.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00229_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00229_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00194_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00194_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00454_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00454_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00501_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00501_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_08.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01016_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01016_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01187_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01187_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00293_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00293_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00115_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00115_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_13.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01064_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01064_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_14.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_08.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_14.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00816_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00816_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00110_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00110_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00292_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00292_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00106_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00106_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00147_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00147_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_11.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00289_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00289_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_09.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_17.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_17.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_18.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_18.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_11.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_15.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00130_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00130_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00245_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00245_lesion_05.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00047_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00047_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00523_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00523_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_05.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_08.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00519_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00519_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_09.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_09.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00469_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00469_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01022_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01022_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01064_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01064_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00411_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00411_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_09.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00507_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00507_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00696_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00696_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00444_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00444_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01054_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01054_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00131_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00131_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00934_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00934_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00480_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00480_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00217_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00217_lesion_04.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01187_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01187_lesion_05.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00044_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00044_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_13.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00928_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00928_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_17.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_17.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00575_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00575_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00147_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00147_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00085_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00085_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00240_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00240_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_10.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00377_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00377_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_12.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01080_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01080_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_08.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_10.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_08.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01085_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01085_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00534_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00534_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00283_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00283_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_08.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_09.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_03.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_01.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_07.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_06.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_02.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00332_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00332_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01016_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01016_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_13.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_11.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00852_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00852_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01187_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01187_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_09.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_10.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00548_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00548_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00696_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00696_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00147_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00147_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00110_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00110_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_13.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_10.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01078_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01078_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00280_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00280_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00765_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00765_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_10.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00501_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00501_lesion_06.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01096_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01096_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00309_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00309_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_11.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01187_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01187_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_06.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00377_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00377_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_09.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00302_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00302_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00734_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00734_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_06.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00578_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00578_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00293_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00293_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_14.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00138_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00138_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00194_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00194_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00147_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00147_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_07.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_12.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01197_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01197_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01319_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01319_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_19.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_19.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00389_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00389_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_15.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00855_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00855_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00217_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00217_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00507_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00507_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_13.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_11.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_06.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_10.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00548_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00548_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01319_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01319_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01319_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01319_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_13.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00309_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00309_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00930_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00930_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_14.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00289_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00289_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_07.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_06.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01016_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01016_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01107_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01107_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00149_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00149_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_04.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01066_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01066_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_05.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_16.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00764_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00764_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00507_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00507_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_12.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_11.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_06.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_09.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00507_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00507_lesion_03.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_14.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_14.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_08.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_12.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_12.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00734_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00734_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00245_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00245_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00892_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00892_lesion_01.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00217_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00217_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_18.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_18.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00069_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00069_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00233_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00233_lesion_02.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_07.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_10.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01074_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01074_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00533_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00533_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00044_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00044_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00293_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00293_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00934_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00934_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_12.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00332_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00332_lesion_05.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_05.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00033_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00033_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_12.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00292_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00292_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00020_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00020_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00187_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00187_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00846_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00846_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00384_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00384_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00085_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00085_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00002_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00002_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_12.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00030_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00030_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00002_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00002_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00523_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00523_lesion_05.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_12.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01154_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01154_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_20.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_20.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00934_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00934_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00131_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00131_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00409_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00409_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00522_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00522_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01004_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01004_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01080_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01080_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_17.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_17.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00332_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00332_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00292_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00292_lesion_05.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00374_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00374_lesion_05.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00117_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00117_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00240_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00240_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01187_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01187_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00448_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00448_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_13.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00764_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00764_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00309_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00309_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00131_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00131_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_15.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_10.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_13.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00229_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00229_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_13.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_07.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00389_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00389_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01172_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01172_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00302_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00302_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_08.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01064_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01064_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_11.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_05.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00309_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00309_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00184_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00184_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00018_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00018_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00832_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00832_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_07.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_08.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00411_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00411_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_01.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00240_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00240_lesion_03.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01222_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01222_lesion_07.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_08.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_16.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_04.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00575_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00575_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_06.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_10.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_09.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00283_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00283_lesion_02.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00002_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00002_lesion_05.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00082_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00082_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01024_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01024_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00523_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00523_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_09.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00149_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00149_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_07.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_16.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_15.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00501_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00501_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_18.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_18.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00303_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00303_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00268_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00268_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_11.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_13.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00852_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00852_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00816_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00816_lesion_04.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00110_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00110_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00797_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00797_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_15.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00110_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00110_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00229_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00229_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_08.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00052_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00052_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00346_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00346_lesion_15.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00117_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00117_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00816_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00816_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00309_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00309_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00302_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00302_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01107_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01107_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01101_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01101_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01064_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01064_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_09.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01012_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01012_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00523_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00523_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00934_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00934_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00444_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00444_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00020_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00020_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01004_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01004_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00138_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00138_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00299_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00299_lesion_04.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_08.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01056_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01056_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01064_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01064_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01107_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01107_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00171_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00171_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_19.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_19.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00798_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00798_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_07.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01048_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01048_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_08.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_18.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_18.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00389_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00389_lesion_04.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00018_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00018_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00245_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00245_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00122_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00122_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_15.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_15.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00203_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00203_lesion_11.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01140_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01140_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00217_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00217_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00874_lesion_08.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00874_lesion_08.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01096_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01096_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00095_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00095_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_11.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00305_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00305_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_13.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00143_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00143_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00448_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00448_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01162_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01162_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01066_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01066_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00217_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00217_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00411_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00411_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01319_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01319_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00777_lesion_01.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00777_lesion_01.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01072_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01072_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00389_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00389_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00002_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00002_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00002_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00002_lesion_04.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00497_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00497_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_17.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_17.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00209_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00209_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00194_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00194_lesion_07.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00283_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00283_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00281_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00281_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00245_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00245_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01173_lesion_16.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01173_lesion_16.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_09.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01052_lesion_19.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01052_lesion_19.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_13.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_07.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01159_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01159_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00298_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00298_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_11.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_11.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00261_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00261_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00110_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00110_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_09.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_09.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00223_lesion_04.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00223_lesion_04.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00069_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00069_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00316_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00316_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01083_lesion_07.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01083_lesion_07.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00855_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00855_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01171_lesion_06.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01171_lesion_06.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00575_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00575_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00082_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00082_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00273_lesion_22.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00273_lesion_22.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00818_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00818_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_12.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_12.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00222_lesion_10.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00222_lesion_10.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00228_lesion_13.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00228_lesion_13.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00469_lesion_02.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00469_lesion_02.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_01298_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_01298_lesion_05.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00639_lesion_03.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00639_lesion_03.nii.gz"
+        },
+        {
+            "image": "ULS23/novel_data/ULS23_Radboudumc_Bone/images/bone_00198_lesion_05.nii.gz",
+            "label": "ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels/bone_00198_lesion_05.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "lesion"
+    },
+    "original_label_dict": {
+        "1": "lesion"
+    }
+}
