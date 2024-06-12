@@ -149,7 +149,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     exclude_background = parser.get_parsed_content("exclude_background", default=True)
     save_last = parser.get_parsed_content("save_last", default=False) 
     save_all = parser.get_parsed_content("save_all", default=False) 
-    point_start_num = 1
     skip_iter_prob = parser.get_parsed_content("skip_iter_prob")
     reuse_embedding = parser.get_parsed_content("reuse_embedding")
     iter_num = parser.get_parsed_content("iter_num")
@@ -494,7 +493,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     labels_p = labels_p.to(device) if labels_p is not None else None
                     # train_label_set = list(set(train_label_set) - set(torch.unique(labels_p).tolist()))
                 # # decide if use iterative training and sync across all ranks
-                # debug_pairs(inputs, labels, labels_sv, labels_p, idx=step)
                 if torch.cuda.device_count() > 1:
                     if dist.get_rank() == 0:
                         skip_iter = (torch.rand(1) < skip_iter_prob).to(dtype=torch.float, device=device)
@@ -731,7 +729,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     try:
                         label_prompt, point, point_label, prompt_class = \
                             generate_prompt_pairs_val(val_data["label"].to(_device_in), val_label_set,
-                                                        max_ppoint=max(point_start_num, 1),
+                                                        max_ppoint=1,
                                                         device=_device_in)
                         if drop_point_prob_train > 0.99 or (freeze_head=='point' and freeze_epoch > 0) :
                             point = None

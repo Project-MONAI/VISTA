@@ -14,7 +14,6 @@ from __future__ import annotations
 import itertools
 from collections.abc import Sequence
 import monai
-import copy
 import numpy as np
 import torch
 import torch.nn as nn
@@ -25,10 +24,9 @@ from matplotlib import pyplot as plt
 from monai.networks.blocks import MLPBlock as Mlp
 from monai.networks.blocks import PatchEmbed, UnetOutBlock, UnetrBasicBlock, UnetrUpBlock
 from monai.networks.layers import DropPath, trunc_normal_
-from monai.metrics import compute_dice
 from monai.utils import ensure_tuple_rep, look_up_option, optional_import
 from scripts.monai_trans_utils import get_largest_connected_component_mask as lcc
-from scripts.utils import convert_points_to_disc, get_next_points_auto_point, get_next_points, sample_points_patch_val, debug_ccp
+from scripts.utils import convert_points_to_disc, sample_points_patch_val
 import pdb
 import time
 
@@ -101,9 +99,9 @@ class VISTA3D2(nn.Module):
 
     def connected_components_combine(self, logits, point_logits, point_coords, point_labels, mapping_index, thred=0.5):
         """ Combine auto results with point click response, or combine previous mask with point click response. 
-        For mapping_index with point clicks, NaN values in logits will be replaced with point_logits. Meanwhile, the added/removed
-        region in point clicks must be updated by the lcc function. Notice, if a positive point is within logits/prev_mask, the components containing the positive point
-        will be added.
+            For mapping_index with point clicks, NaN values in logits will be replaced with point_logits. Meanwhile, the added/removed
+            region in point clicks must be updated by the lcc function. Notice, if a positive point is within logits/prev_mask, the components containing the positive point
+            will be added.
         """
         logits = logits.as_tensor() if isinstance(logits, monai.data.MetaTensor) else logits 
         _logits = logits[mapping_index]
@@ -133,6 +131,8 @@ class VISTA3D2(nn.Module):
         return logits
     
     def gaussian_combine(self, logits, point_logits, point_coords, point_labels, mapping_index, radius):
+        """ Combine point results with auto results using gaussian.
+        """
         if radius is None:
             radius = min(point_logits.shape[-3:]) // 5 # empirical value 5
         weight = 1 - convert_points_to_disc(point_logits.shape[-3:], point_coords, point_labels, radius=radius).sum(1, keepdims=True)
@@ -143,6 +143,8 @@ class VISTA3D2(nn.Module):
         return logits
     
     def set_auto_grad(self, auto_freeze = False, point_freeze=False):
+        """ Freeze auto-branch or point-branch
+        """
         if auto_freeze != self.auto_freeze:
             if hasattr(self.image_encoder, 'set_auto_grad'):
                 self.image_encoder.set_auto_grad(auto_freeze = auto_freeze, point_freeze=point_freeze)
@@ -173,24 +175,55 @@ class VISTA3D2(nn.Module):
         label_set=None,
         prev_mask=None,
         radius=None,
-        val_point_sampler=sample_points_patch_val,
+        val_point_sampler=None,
         **kwargs):
+        """
+        The forward function for VISTA3D. We only support single patch in training and inference. 
+        One exception is allowing sliding window batch size > 1 for automatic segmentation only case.
+        B represents number of objects, N represents number of points for each objects.
+        Args: 
+            input_images: [1, 1, H, W, D]
+            point_coords: [B, N, 3]
+            point_labels: [B, N], -1 represents padding. 0/1 means negative/positive points for regular class. 
+                          2/3 means negative/postive ponits for special supported class like tumor.
+            class_vector: [B, 1], the global class index
+            prompt_class: [B, 1], the global class index. This value is associated with point_coords to identify if
+                          the points are for zero-shot or supported class. When class_vector and point_coords are both
+                          provided, prompt_class is the same as class_vector. For prompt_class[b] > 512, point_coords[b]
+                          will be considered novel class. 
+            patch_coords: the python slice object representing the patch coordinates during sliding window inference. This value is 
+                          passed from monai_utils.sliding_window_inferer. This is an indicator for training phase or validation phase.
+            labels: [1, 1, H, W, D], the groundtruth label tensor, only used for point-only evaluation
+            label_set: the label index matching the indexes in labels. If labels are mapped to global index using RelabelID, 
+                       this label_set should be global mapped index. If labels are not mapped to global index, e.g. in zero-shot
+                       evaluation, this label_set should be the original index.
+            prev_mask: [B, N, H_fullsize, W_fullsize, D_fullsize]. This is the transposed raw output from sliding_window_inferer before
+                       any postprocessing. When user click points to perform auto-results correction, this can be the auto-results.
+            radius: single float value controling the gaussian blur when combining point and auto results. The gaussian combine is not used 
+                    in VISTA3D training but might be useful for finetuning purposes.  
+            val_point_sampler: function used to sample points from labels. This is only used for point-only evaluation.
+
+        """
         image_size = input_images.shape[-3:]
         device = input_images.device
 
+        if point_coords is None and class_vector is None:
+            return (NINF_VALUE + torch.zeros([1, 1, *image_size], device=device))
+        
         bs = self.get_bs(class_vector, point_coords)
-        if patch_coords is not None and point_coords is not None:
-            """ patch_coords is passed from monai_utils.sliding_window_inferer. 
-            """
-            ## Automatic point sample in validation
+        if patch_coords is not None and class_vector is None:
+            # if during validation and perform point only validation.
             if labels is not None and label_set is not None:
                 # if labels is not None, sample from labels for each patch.
+                if val_point_sampler is None:
+                    val_point_sampler = sample_points_patch_val
                 point_coords, point_labels, prompt_class = val_point_sampler(labels, patch_coords, label_set, prev_mask, class_vector)
                 if prompt_class[0].item() == 0:
                     point_labels[0] = -1
                 labels, prev_mask = None, None
-            ## User provided click points in inference
             else:
+                # If not performing patch-based point only validation, use user provided click points for inference.
+                # the point clicks is in original image space, convert it to current patch-coordinate space.
                 point_coords, point_labels = self.update_point_to_patch(patch_coords, point_coords, point_labels)
         
         if point_coords is not None and point_labels is not None:
@@ -216,21 +249,17 @@ class VISTA3D2(nn.Module):
         if self.image_embeddings is not None and kwargs.get('keep_cache', False) and class_vector is None:
             out, out_auto = self.image_embeddings, None
         else:
-            out, out_auto = self.image_encoder(input_images, with_point=point_coords is not None or kwargs.get('merge_with_trial', False), with_label=class_vector is not None)
+            out, out_auto = self.image_encoder(input_images, with_point=point_coords is not None, with_label=class_vector is not None)
         input_images = None
-
         
         # force releasing memories that set to None
         torch.cuda.empty_cache()
 
         if class_vector is not None:
-            logits, _ = self.class_head(out_auto, class_vector)
-            if kwargs.get('merge_with_trial', False):
-                logits = self.point_head_iterative_trial(logits, labels[patch_coords], out, point_coords, point_labels, class_vector[0], prompt_class[0], n_trials=3)              
+            logits, _ = self.class_head(out_auto, class_vector)           
             if point_coords is not None:
                 point_logits = self.point_head(out, point_coords, point_labels, class_vector=prompt_class)
                 if patch_coords is None:
-                    # during training, using gaussian ball combine
                     logits = self.gaussian_combine(logits, point_logits, point_coords, point_labels, mapping_index, radius)
                 else:
                     # during validation use largest component
@@ -242,56 +271,5 @@ class VISTA3D2(nn.Module):
                 logits = self.connected_components_combine(prev_mask[patch_coords].transpose(1,0).to(logits.device), logits[mapping_index], point_coords, point_labels, mapping_index)
 
         if kwargs.get('keep_cache', False) and class_vector is None:
-            self.image_embeddings = out.detach()            
+            self.image_embeddings = out.detach()
         return logits
-
-    @torch.no_grad()
-    def point_head_iterative_trial(self, logits, labels, out, point_coords, point_labels, class_vector, prompt_class, n_trials=3):
-        """ The prompt class is the local label set while class vector is the mapped global label set
-        """
-        logits_update = logits.detach().clone()
-        for trial_idx in range(n_trials):
-            if trial_idx == 0: 
-                point_coords, point_labels = get_next_points_auto_point(logits> 0, labels, prompt_class, class_vector, use_fg=True)
-            else:
-                point_coords, point_labels = get_next_points_auto_point(logits> 0, labels, prompt_class, class_vector, use_fg=False)
-            mapping_index = ((point_labels != -1).sum(1) > 0).to(torch.bool)
-            point_coords = point_coords[mapping_index]
-            point_labels = point_labels[mapping_index]
-            if (torch.sum(mapping_index) == 1 and mapping_index[0]) or torch.sum(mapping_index) == 0 :
-                return logits
-            if trial_idx == 0:
-                best_dice = []
-                for i in range(len(prompt_class)):
-                    dice = compute_dice(y_pred= (logits[[i]] > 0).to(labels.device), y=labels==prompt_class[i]).item()
-                    if np.isnan(dice):
-                        best_dice.append(- (logits[[i]] > 0).sum())
-                    else:
-                        best_dice.append(dice)
-
-            point_logits = self.point_head(out, point_coords, point_labels, class_vector=class_vector[mapping_index])
-
-            target_logits = self.connected_components_combine(logits, point_logits, point_coords, point_labels, mapping_index)
-            combine_dice = []
-            for i in range(len(prompt_class)):
-                if mapping_index[i]:
-                    dice = compute_dice(y_pred=(target_logits[[i]] > 0).to(labels.device), y = (labels==prompt_class[i])).item()
-                    if np.isnan(dice):
-                        combine_dice.append(- (target_logits[[i]] > 0).sum())
-                    else:
-                        combine_dice.append(dice)
-                else:
-                    combine_dice.append(-1)
-            # check the dice for each label
-            for i in range(len(prompt_class)):
-                if prompt_class[i] == 0:
-                    continue
-                if combine_dice[i] > best_dice[i]:
-                    # print(trial_idx, prompt_class[i], combine_dice[i], best_dice[i])
-                    logits_update[i] = copy.deepcopy(target_logits[i])
-                    best_dice[i] = copy.deepcopy(combine_dice[i])
-
-        labels, target_logits, logits, best_dice, combine_dice = None, None, None, None, None
-        # force releasing memories that set to None
-        torch.cuda.empty_cache()
-        return logits_update

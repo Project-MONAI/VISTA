@@ -62,103 +62,6 @@ def none_cat(point, point_pseudo):
         _point = point_pseudo
     return _point
 
-def debug_next_point(output, point, point_label, point_mask, labels, prompt_class, idx):
-    bs = output.shape[0]
-    fig, axs = plt.subplots(bs, 6, squeeze=False)
-    marker_size=1
-    plt.subplots_adjust(wspace=0, hspace=0)
-    plt.axis('off')
-    for b in range(bs):
-        fn, fp = point[b,-2,:].cpu().numpy(), point[b,-1,:].cpu().numpy()
-        axs[b, 0].imshow(output.data.cpu().numpy()[b,0,:,:,fn[2]]>0.5, vmin=0, vmax=1)
-        axs[b, 0].plot(fn[1], fn[0], marker='*', color='r', markersize=marker_size)
-        axs[b, 0].get_xaxis().set_ticks([])
-        axs[b, 0].get_yaxis().set_ticks([])
-        # axs[b, 0].text(fn[1], fn[0], f"{point_label[b,-2].data.cpu().numpy()}")
-        # axs[b, 0].set_title(label=f"{output.data.cpu().numpy()[b,0,fn[0],fn[1],fn[2]]:.2f}")
-        axs[b, 1].imshow(labels.data.cpu().numpy()[0,0,:,:,fn[2]] == prompt_class[b][0].data.cpu().numpy(), vmin=0, vmax=1)
-        axs[b, 1].plot(fn[1], fn[0], marker='*', color='r', markersize=marker_size)
-        axs[b, 1].get_xaxis().set_ticks([])
-        axs[b, 1].get_yaxis().set_ticks([])
-        # axs[b, 1].set_title(label=f"{labels.data.cpu().numpy()[0,0,fn[0],fn[1],fn[2]]:.2f}")
-        axs[b, 2].imshow(output.data.cpu().numpy()[b,0,:,:,fp[2]]>0.5, vmin=0, vmax=1)
-        axs[b, 2].plot(fp[1], fp[0], marker='*', color='b', markersize=marker_size)
-        axs[b, 2].get_xaxis().set_ticks([])
-        axs[b, 2].get_yaxis().set_ticks([])
-        # axs[b, 2].set_title(label=f"{output.data.cpu().numpy()[b,0,fp[0],fp[1],fp[2]]:.2f}")
-        # axs[b, 2].text(fp[1], fp[0], f"{point_label[b,-1].data.cpu().numpy()}")
-        axs[b, 3].imshow(labels.data.cpu().numpy()[0,0,:,:,fp[2]] == prompt_class[b][0].data.cpu().numpy(), vmin=0, vmax=1)
-        axs[b, 3].plot(fp[1], fp[0], marker='*', color='b', markersize=marker_size)
-        axs[b, 3].get_xaxis().set_ticks([])
-        axs[b, 3].get_yaxis().set_ticks([])
-        # axs[b, 3].set_title(label=f"{labels.data.cpu().numpy()[0,0,fp[0],fp[1],fp[2]]}")
-        axs[b, 4].imshow(labels.data.cpu().numpy()[0,0,:,:,fn[2]] == prompt_class[b][0].data.cpu().numpy(), vmin=0, vmax=1)
-        axs[b, 4].get_xaxis().set_ticks([])
-        axs[b, 4].get_yaxis().set_ticks([])
-        axs[b, 5].imshow(labels.data.cpu().numpy()[0,0,:,:,fp[2]] == prompt_class[b][0].data.cpu().numpy(), vmin=0, vmax=1)
-        axs[b, 5].get_xaxis().set_ticks([])
-        axs[b, 5].get_yaxis().set_ticks([])
-    fig.savefig(f"{idx}_nextpoint.png", dpi = 600)
-    plt.close()
-
-def debug_pairs(image, label=None, label_sv=None, label_p=None, idx=0):
-    fig, axs = plt.subplots(1, 4)
-    if label is not None:
-        z = label.data.cpu().numpy()[0,0,:,:,:].sum(0).sum(0).argmax()
-    elif label_p is not None:
-        z = label_p.data.cpu().numpy()[0,0,:,:,:].sum(0).sum(0).argmax()
-    else:
-        z = 64
-    plt.subplots_adjust(wspace=0, hspace=0)
-    plt.axis('off')
-    axs[0].imshow(image.data.cpu().numpy()[0,0,:,:,z], vmin=0, vmax=1, cmap='gray')
-    if label is not None:
-        axs[1].imshow(label.data.cpu().numpy()[0,0,:,:,z], cmap='jet')
-    if label_sv is not None:
-        axs[2].imshow(label_sv.data.cpu().numpy()[0,0,:,:,z], cmap='jet')
-    if label_p is not None:
-        axs[3].imshow(label_p.data.cpu().numpy()[0,0,:,:,z], cmap='jet')
-    fig.savefig(f"{idx}_pairs.png", dpi = 600)
-    plt.close()    
-
-def debug_ccp(logits, point_logits, point_coords, point_labels, diff, cc, logits_f, idx):
-    bs = logits.shape[0]
-    if bs == 1:
-        return
-    fig, axs = plt.subplots(bs, 5)
-    marker_size=1
-    plt.subplots_adjust(wspace=0, hspace=0)
-    plt.axis('off')
-    for b in range(bs):
-        p = point_coords[b,0]
-        color = 'r' if point_labels[b,0] == 1 else 'b'
-        axs[b, 0].imshow(logits.data.cpu().numpy()[b,0,:,:,p[2]]>0.5, vmin=0, vmax=1)
-        axs[b, 0].plot(p[1], p[0], marker='*', color=color, markersize=marker_size)
-        axs[b, 0].get_xaxis().set_ticks([])
-        axs[b, 0].get_yaxis().set_ticks([])
-
-        axs[b, 1].imshow(point_logits.data.cpu().numpy()[b,0,:,:,p[2]]>0.5, vmin=0, vmax=1)
-        axs[b, 1].plot(p[1], p[0], marker='*', color=color, markersize=marker_size)
-        axs[b, 1].get_xaxis().set_ticks([])
-        axs[b, 1].get_yaxis().set_ticks([])
-
-        axs[b, 2].imshow(diff.data.cpu().numpy()[b,0,:,:,p[2]], vmin=0, vmax=1)
-        axs[b, 2].plot(p[1], p[0], marker='*', color=color, markersize=marker_size)
-        axs[b, 2].get_xaxis().set_ticks([])
-        axs[b, 2].get_yaxis().set_ticks([])
-
-        axs[b, 3].imshow(cc.data.cpu().numpy()[b,0,:,:,p[2]], vmin=0, vmax=1)
-        axs[b, 3].plot(p[1], p[0], marker='*', color=color, markersize=marker_size)
-        axs[b, 3].get_xaxis().set_ticks([])
-        axs[b, 3].get_yaxis().set_ticks([])
-
-        axs[b, 4].imshow(logits_f.data.cpu().numpy()[b,0,:,:,p[2]], vmin=0, vmax=1)
-        axs[b, 4].plot(p[1], p[0], marker='*', color=color, markersize=marker_size)
-        axs[b, 4].get_xaxis().set_ticks([])
-        axs[b, 4].get_yaxis().set_ticks([])
-    fig.savefig(f"{idx}.png", dpi = 600)
-    plt.close()
-
 def sample_points_patch_val(labels, patch_coords, label_set, prev_mask, class_vector, use_center=True, mapped_label_set=None, max_ppoint=1, max_npoint=0, **kwargs):
     """ Sample points for patch during sliding window validation. The prev_mask is only used for auto + interactive. This function is called within 
     vista3d.py and will use largested cc combine, do not use for iterative point evaluation.
@@ -177,17 +80,6 @@ def sample_points_patch_val(labels, patch_coords, label_set, prev_mask, class_ve
         point_coords, point_labels = get_next_points(prev_mask[patch_coords].transpose(1,0).to(labels.device), 
                                                      labels[patch_coords], class_vector, None, None) 
     return point_coords, point_labels, torch.tensor(mapped_label_set).to(point_coords.device).unsqueeze(-1)
-
-def debug_erosion(inputs, eroded, name):
-    """ Usage: inputs is the original diff, eroded is the output from erode3d       
-            debug_erosion(_fn_mask, fn_mask, f"{id}_fn.png")
-            debug_erosion(_fp_mask, fp_mask, f"{id}_fp.png")
-    """
-    slice_to_show = eroded.sum(0).sum(0).argmax()
-    fig, axis = plt.subplots(2)
-    axis[0].imshow(inputs[:,:,slice_to_show].data.cpu().numpy())
-    axis[1].imshow(eroded[:,:,slice_to_show].data.cpu().numpy())
-    fig.savefig(name)
 
 def erode3d(input_tensor, erosion=3):
     # Define the structuring element
@@ -1235,27 +1127,3 @@ def calculate_dataset_weights(datalist):
         json.dump(dataset_weights, f, indent=4)        
     with open('./dataset_prob.yaml','w') as f:
         json.dump(dataset_prob, f, indent=4)   
-
-if __name__ == '__main__':
-    label = torch.zeros(1,1,96,96,96)
-    label[...,:10,:10,:10] = 1
-    label[...,10:20,10:20,10:20] = 2
-    label_set = [1,2,3,4]
-    max_point = 20
-    label_prompt, point, point_label, prompt_class = generate_prompt_pairs(label, label_set, max_point)
-    # print(label_prompt)
-    # print(point)
-    # print(point_label)
-    # print(prompt_class)
-    # test window inferer
-    label = torch.zeros(1,1,196,196,196)
-    label[...,:10,:10,:10] = 1
-    label[...,10:20,10:20,10:20] = 2
-    label_set = [1,2,3,4]
-    max_point = 20
-    label_prompt, point, point_label, prompt_class = generate_prompt_pairs(label, label_set, max_point)
-    image = torch.zeros(1,1,196,196,196)
-    model = lambda x,point_coords,point_labels,class_vector,patch_coords,masks: x
-    roi_size=(96,96,96)
-    masks = point_based_window_inferer(label, model, roi_size, point, point_label, None, None)
-    print(masks)

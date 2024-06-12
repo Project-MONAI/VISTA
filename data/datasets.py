@@ -43,108 +43,17 @@ all_base_dirs = {
     "Task10": "/data/Task10",  # Y
     "TotalSegmentator": "/data/TotalSegmentator",  # Y
     "WORD": "/data/WORD",  # X incompatible license
-    "Task03": "/data/Task03",
-    "Bone-NIH": "/data/Bone-NIH",
-    "TotalSegmentatorV2": "/data/TotalSegmentatorV2",
+    "Task03": "/data/Task03",  # Y
+    "Bone-NIH": "/data/Bone-NIH",  # Y (internal license agreement)
+    "TotalSegmentatorV2": "/data/TotalSegmentatorV2",  # Y
     "C4KC-KiTS": "/data/C4KC-KiTS/nifti",  # continual learning story
-    "CRLM-CT": "/data/CRLM-CT/nifti",
-    "VerSe": "/data/VerSe/",
-    "AeroPath": "/data/AeroPath/",
+    "CRLM-CT": "/data/CRLM-CT/nifti",  # Y
+    "VerSe": "/data/VerSe/",  # Y
+    "AeroPath": "/data/AeroPath/",  # Y
     "Autopet23": "/data/Autopet23/",  # Y
     "LIDC-IDRI": "/data/LIDC-IDRI/",  # Y
     "CTPelvic1K-CLINIC": "/data/CTPelvic1K-CLINIC",  # Y
-    "COLON_ACRIN6664": "/data/COLON_ACRIN6664",  # Y
-    "NLST": "/data/NLST",
-    "LIDC": "/data/LIDC",
-    "Covid19": "/data/Covid19",
-    "TCIA_Colon": "/data/TCIA_Colon",
-    "StonyBrook-CT": "/data/StonyBrook-CT"
 }
-
-valid_base_dirs_v1 = {  # the keys are used to form the json file name. totalseg v1
-    "AbdomenCT-1K": "/data/AbdomenCT-1K",
-    "FLARE22": "/data/AbdomenCT-1K/FLARE22Train",
-    "AMOS22": "/data/AMOS22",
-    "BTCV-Abdomen": "/data/BTCV/Abdomen",
-    "BTCV-Cervix": "/data/BTCV/Cervix",
-    "CT-ORG": "/data/CT-ORG",
-    "Multi-organ-Abdominal-CT-btcv": "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2",
-    "Multi-organ-Abdominal-CT-tcia": "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2",
-    "Pancreas-CT": "/data/Pancreas-CT",
-    "Task06": "/data/Task06",
-    "Task07": "/data/Task07",
-    "Task08": "/data/Task08",
-    "Task09": "/data/Task09",
-    "Task10": "/data/Task10",
-    "TotalSegmentator": "/data/TotalSegmentator",
-    "Task03": "/data/Task03",
-    "Bone-NIH": "/data/Bone-NIH",
-    "C4KC-KiTS": "/data/C4KC-KiTS/nifti",  # continual learning story
-}
-
-valid_base_dirs = {  # the keys are used to form the json file name.
-    "AbdomenCT-1K": "/data/AbdomenCT-1K",
-    "FLARE22": "/data/AbdomenCT-1K/FLARE22Train",
-    "AMOS22": "/data/AMOS22",
-    "BTCV-Abdomen": "/data/BTCV/Abdomen",
-    "BTCV-Cervix": "/data/BTCV/Cervix",
-    "CT-ORG": "/data/CT-ORG",
-    "Multi-organ-Abdominal-CT-btcv": "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2",
-    "Multi-organ-Abdominal-CT-tcia": "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2",
-    "Pancreas-CT": "/data/Pancreas-CT",
-    "Task06": "/data/Task06",
-    "Task07": "/data/Task07",
-    "Task08": "/data/Task08",
-    "Task09": "/data/Task09",
-    "Task10": "/data/Task10",
-    "TotalSegmentator": "/data/TotalSegmentator",
-    "TotalSegmentatorV2": "/data/TotalSegmentatorV2",
-    "Task03": "/data/Task03",
-    "Bone-NIH": "/data/Bone-NIH",
-    "C4KC-KiTS": "/data/C4KC-KiTS/nifti",  # continual learning story
-    "CRLM-CT": "/data/CRLM-CT/nifti",
-    "VerSe": "/data/VerSe/",
-    "AeroPath": "/data/AeroPath/",
-    "Autopet23": "/data/Autopet23/",
-    "LIDC-IDRI": "/data/LIDC-IDRI/",
-    "CTPelvic1K-CLINIC": "/data/CTPelvic1K-CLINIC",
-    "COLON_ACRIN6664": "/data/COLON_ACRIN6664",
-    "NLST": "/data/NLST",
-    "LIDC": "/data/LIDC",
-    "Covid19": "/data/Covid19",
-    "TCIA_Colon": "/data/TCIA_Colon",
-    "StonyBrook-CT": "/data/StonyBrook-CT"
-}
-
-pseudo_base_dirs = {  # the keys are used to form the json file name.
-    "AbdomenCT-1K": "/data/AbdomenCT-1K",
-    "FLARE22": "/data/AbdomenCT-1K/FLARE22Train",
-    "AMOS22": "/data/AMOS22",
-    "BTCV-Abdomen": "/data/BTCV/Abdomen",
-    "BTCV-Cervix": "/data/BTCV/Cervix",
-    "CT-ORG": "/data/CT-ORG",
-    "Multi-organ-Abdominal-CT-btcv": "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2",
-    "Multi-organ-Abdominal-CT-tcia": "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2",
-    "Pancreas-CT": "/data/Pancreas-CT",
-    "Task06": "/data/Task06",
-    "Task07": "/data/Task07",
-    "Task08": "/data/Task08",
-    "Task09": "/data/Task09",
-    "Task10": "/data/Task10",
-    "TotalSegmentator": "/data/TotalSegmentator",
-    "TotalSegmentatorV2": "/data/TotalSegmentatorV2",
-    "Task03": "/data/Task03",
-    "Bone-NIH": "/data/Bone-NIH",
-    "CRLM-CT": "/data/CRLM-CT/nifti",
-    "VerSe": "/data/VerSe/",
-    "AeroPath": "/data/AeroPath/",
-    "NLST": "/data/NLST",
-    "LIDC": "/data/LIDC",
-    "Covid19": "/data/Covid19",
-    "TCIA_Colon": "/data/TCIA_Colon",
-    "StonyBrook-CT": "/data/StonyBrook-CT"
-}
-
 
 
 def get_json_files_k_folds(json_dir=None, base_dirs=None, k=5):
@@ -152,7 +61,7 @@ def get_json_files_k_folds(json_dir=None, base_dirs=None, k=5):
     if json_dir is None:
         json_dir = cur_json_dir
     if base_dirs is None:
-        base_dirs = valid_base_dirs
+        base_dirs = all_base_dirs
     output_dict = {item: os.path.join(json_dir, f"{item}_{k}_folds.json") for item in base_dirs}
     logger.debug(pformat(output_dict))
     return output_dict
@@ -218,7 +127,7 @@ if __name__ == "__main__":
     cli_args = argparse.ArgumentParser(description="check dataset json files")
     cli_args.add_argument("--base_dirs", "-b", default=None, help="base directories of datasets")
     cli_args = cli_args.parse_args()
-    base_dirs = valid_base_dirs if cli_args.base_dirs is None else all_base_dirs
+    base_dirs = all_base_dirs
     # go through all json files to check if all images and labels exist and no duplicated item
     all_images, all_labels = [], []
     for k, j in get_json_files_k_folds(json_dir=None, base_dirs=base_dirs).items():
@@ -233,7 +142,7 @@ if __name__ == "__main__":
                 raise RuntimeError(f"cannot find {image}")
             if not os.path.exists(label):
                 raise RuntimeError(f"cannot find {label}")
-            print(image, label)
+            print(image, ",", label)
 
     # check no duplicated in all_images
     if len(all_images) != len(set(all_images)):
