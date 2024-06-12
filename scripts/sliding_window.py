@@ -16,9 +16,11 @@ from collections.abc import Callable, Mapping, Sequence
 from typing import Any, Iterable
 
 import numpy as np
+import copy
 import torch
 import torch.nn.functional as F
 
+import monai
 from monai.data.meta_tensor import MetaTensor
 from monai.data.utils import compute_importance_map, dense_patch_slices, get_valid_patch_size
 from monai.utils import (
@@ -34,68 +36,97 @@ from monai.utils import (
     pytorch_after,
     convert_to_numpy
 )
-# from monai.metrics.utils import get_edge_surface_distance
-
 tqdm, _ = optional_import("tqdm", name="tqdm")
 _nearest_mode = "nearest-exact" if pytorch_after(1, 11) else "nearest"
 
-__all__ = ["sliding_window_inference", "compute_robust_hausdorff"]
+__all__ = ["sliding_window_inference", "point_based_window_inferer"]
 
-def compute_robust_hausdorff(mask_pred, mask_gt, spacing=(1, 1, 1), percentile=0.95, dist_type="euclidean"):
-    """
-    # test cases
-    #
-    # mask_gt = torch.zeros(128, 128, 128, dtype=torch.uint8)
-    # mask_pred = torch.zeros(128, 128, 128, dtype=torch.uint8)
-    # mask_gt[50, 60, 70] = 1
-    # mask_pred[50, 60, 72] = 1
-    # print("95 hausdorff:", compute_robust_hausdorff(mask_pred, mask_gt))
-    #
-    # mask_gt = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_pred = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_gt[0:50, :, :] = 1
-    # mask_pred[0:51, :, :] = 1
-    # print("95 hausdorff:", compute_robust_hausdorff(mask_pred, mask_gt, (2, 1, 1)))
-    #
-    # mask_gt = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_pred = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_gt[50, 60, 70] = 1
-    # print("95 hausdorff:", compute_robust_hausdorff(mask_pred, mask_gt, (2, 1, 1)))
-    #
-    # mask_gt = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_pred = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_pred[50, 60, 72] = 1
-    # print("95 hausdorff:", compute_robust_hausdorff(mask_pred, mask_gt, (2, 1, 1)))
-    #
-    # mask_gt = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # mask_pred = torch.zeros(100, 100, 100, dtype=torch.uint8)
-    # print("95 hausdorff:", compute_robust_hausdorff(mask_pred, mask_gt, (2, 1, 1)))
-    """
-    output = get_edge_surface_distance(mask_pred, mask_gt, dist_type, spacing, True, True)
-    (edges_pred, edges_gt), (dist_pred_to_gt, dist_gt_to_pred), (areas_pred, areas_gt) = output
-    dist_pred_to_gt = convert_to_numpy(dist_pred_to_gt)
-    dist_gt_to_pred = convert_to_numpy(dist_gt_to_pred)
-    areas_pred = convert_to_numpy(areas_pred[edges_pred])
-    areas_gt = convert_to_numpy(areas_gt[edges_gt])
 
-    if len(dist_gt_to_pred) > 0 and len(areas_gt) > 0:
-        sorted_gt = np.array(sorted(zip(dist_gt_to_pred, areas_gt)))
-        dist_gt_to_pred, areas_gt = sorted_gt[:, 0], sorted_gt[:, 1]
-        cum_areas_gt = np.cumsum(areas_gt) / areas_gt.sum()
-        idx = np.searchsorted(cum_areas_gt, percentile)  # 95 percentile
-        perc_dist_gt_to_pred = dist_gt_to_pred[min(idx, len(dist_gt_to_pred) - 1)]
+def get_window_idx_c(p, roi, s):
+    if p - roi//2 < 0:
+        l, r = 0, roi
+    elif p + roi//2 > s:
+        l, r = s - roi, s
     else:
-        perc_dist_gt_to_pred = np.Inf
+        l, r = int(p)-roi//2, int(p)+roi//2
+    return l, r
 
-    if len(dist_pred_to_gt) > 0 and len(areas_pred) > 0:
-        sorted_pred = np.array(sorted(zip(dist_pred_to_gt, areas_pred)))
-        dist_pred_to_gt, areas_pred = sorted_pred[:, 0], sorted_pred[:, 1]
-        cum_areas_pred = np.cumsum(areas_pred) / areas_pred.sum()
-        idx = np.searchsorted(cum_areas_pred, percentile)  # 95 percentile
-        perc_dist_pred_to_gt = dist_pred_to_gt[min(idx, len(dist_pred_to_gt) - 1)]
-    else:
-        perc_dist_pred_to_gt = np.Inf
-    return max(perc_dist_gt_to_pred, perc_dist_pred_to_gt)
+def get_window_idx(p, roi, s, center_only=True, margin=5):
+    l, r = get_window_idx_c(p, roi, s)
+    if center_only:
+        return [l], [r]
+    left_most = max(0, p - roi + margin)
+    right_most = min(s, p + roi - margin)
+    left = [left_most, right_most-roi, l]
+    right = [left_most + roi, right_most, r]
+    return left, right
+
+def pad_previous_mask(inputs, roi_size, padvalue=0):
+    pad_size = []
+    for k in range(len(inputs.shape) - 1, 1, -1):
+        diff = max(roi_size[k - 2] - inputs.shape[k], 0)
+        half = diff // 2
+        pad_size.extend([half, diff - half])
+    if any(pad_size):
+        inputs = torch.nn.functional.pad(inputs, pad=pad_size, mode="constant", value=padvalue)    
+    return inputs, pad_size
+    
+def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode, overlap, sw_device, device, point_coords, point_labels, class_vector, prompt_class, prev_mask, point_mask=None, 
+                               point_start=0,**kwargs):
+    """ Point based window inferer, crop a patch centered at the point, and perform inference. Different patches are combined with gaussian weighted weights. 
+    Args:
+        predictor: partial(infer_wrapper, model). infer_wrapper transpose the model output. The model output is [B, 1, H, W, D] which needs to be transposed to [1, B, H, W, D]
+        point_coords: [B, N, 3]
+        point_labels: [B, N]
+        class_vector: [B]
+        prev_mask: [1, B, H, W, D], THE VALUE IS BEFORE SIGMOID!
+    Returns:
+        stitched_output: [1, B, H, W, D]. The value is before sigmoid.
+    Notice: The function currently only supports SINGLE OBJECT INFERENCE with B=1. 
+    """
+    assert point_coords.shape[0] == 1, 'Only supports single object point click'
+    image, pad = pad_previous_mask(copy.deepcopy(inputs), roi_size)
+    point_coords = point_coords + torch.tensor([pad[-2], pad[-4], pad[-6]]).to(point_coords.device)
+    prev_mask = pad_previous_mask(copy.deepcopy(prev_mask), roi_size)[0] if prev_mask is not None else None
+    stitched_output = None
+    center_only = True
+    for p in point_coords[0][point_start:]:
+        lx_, rx_ = get_window_idx(p[0], roi_size[0], image.shape[-3], center_only=center_only, margin=5)
+        ly_, ry_ = get_window_idx(p[1], roi_size[1], image.shape[-2], center_only=center_only, margin=5)
+        lz_, rz_ = get_window_idx(p[2], roi_size[2], image.shape[-1], center_only=center_only, margin=5)
+        for i in range(len(lx_)):
+            for j in range(len(ly_)):
+                for k in range(len(lz_)):
+                    lx, rx, ly, ry, lz, rz = lx_[i], rx_[i], ly_[j], ry_[j], lz_[k], rz_[k]
+                    unravel_slice = [slice(None), slice(None), slice(int(lx), int(rx)), slice(int(ly), int(ry)), slice(int(lz), int(rz))]
+                    batch_image = image[unravel_slice]
+                    # ball = get_gaussian_ball(batch_image.shape[-3:])
+                    output = predictor(batch_image, 
+                                point_coords=point_coords,
+                                point_labels=point_labels,
+                                class_vector=class_vector,
+                                prompt_class=prompt_class,
+                                patch_coords=unravel_slice,
+                                prev_mask=prev_mask,
+                                **kwargs)
+                    if stitched_output is None:
+                        stitched_output = torch.zeros([1, output.shape[1], image.shape[-3],image.shape[-2],image.shape[-1]],device='cpu')
+                        stitched_mask = torch.zeros([1, output.shape[1], image.shape[-3],image.shape[-2],image.shape[-1]],device='cpu')
+                    stitched_output[unravel_slice] += output.to('cpu')
+                    stitched_mask[unravel_slice] = 1
+    # if stitched_mask is 0, then NaN value
+    stitched_output = stitched_output/stitched_mask
+    # revert padding
+    stitched_output = stitched_output[:,:,pad[4]:image.shape[-3]-pad[5], pad[2]:image.shape[-2]-pad[3], pad[0]:image.shape[-1]-pad[1]]
+    stitched_mask = stitched_mask[:,:,pad[4]:image.shape[-3]-pad[5], pad[2]:image.shape[-2]-pad[3], pad[0]:image.shape[-1]-pad[1]]
+    if prev_mask is not None:
+        prev_mask = prev_mask[:,:,pad[4]:image.shape[-3]-pad[5], pad[2]:image.shape[-2]-pad[3], pad[0]:image.shape[-1]-pad[1]]
+        prev_mask = prev_mask.to('cpu')
+        # for un-calculated place, use previous mask
+        stitched_output[stitched_mask < 1] = prev_mask[stitched_mask < 1]
+    if not hasattr(stitched_output, 'meta'):
+        stitched_output = monai.data.MetaTensor(stitched_output, affine=inputs.meta["affine"], meta=inputs.meta)
+    return stitched_output
 
 def sliding_window_inference(
     inputs: torch.Tensor | MetaTensor,

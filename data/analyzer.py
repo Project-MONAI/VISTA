@@ -240,6 +240,48 @@ def quick_test(idx=5):
     print(wp.get_times_summary_pd())
 
 
+def calculate_dataset_weights(datalist):
+    dataset_name = []
+    dataset_counts = {}
+    for item in datalist:
+        dn = item['dataset_name']
+        if dn in dataset_name:
+            dataset_counts[dn] += 1
+        else:
+            dataset_name.append(dn)
+            dataset_counts[dn] = 1
+    dataset_weights = {}
+    non_tumor_count = 0
+    tumor_count = 0
+    for item in dataset_name:
+        if item not in ['Task03','Task06','Task07','Task08','Task10','Bone-NIH']:
+            non_tumor_count += dataset_counts[item]
+        else:
+            tumor_count += dataset_counts[item]
+            
+    for item in dataset_name:
+        if item not in ['Task03','Task06','Task07','Task08','Task10','Bone-NIH']:
+            dataset_weights[item] = 100 / dataset_counts[item]# non_tumor_count
+        else:
+            dataset_weights[item] = 100 / dataset_counts[item] # tumor_count
+            
+    dataset_prob = {}
+    total_prob = 0
+    for item in dataset_name:
+        dataset_prob[item] = dataset_weights[item] * dataset_counts[item]
+        total_prob += dataset_prob[item]
+    for item in dataset_name:
+        dataset_prob[item] /= total_prob
+
+    import json
+    with open('./dataset_counts.yaml','w') as f:
+        json.dump(dataset_counts, f, indent=4)        
+    with open('./dataset_weights.yaml','w') as f:
+        json.dump(dataset_weights, f, indent=4)        
+    with open('./dataset_prob.yaml','w') as f:
+        json.dump(dataset_prob, f, indent=4)   
+
+
 if __name__ == "__main__":
     """
     run label histogram analyzer
