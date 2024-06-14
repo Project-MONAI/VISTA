@@ -35,11 +35,8 @@ freeze_all_except_point_head: false
 save_last: true
 save_all: true
 num_epochs_per_validation: 1
-sample_method: 'random'
 num_images_per_batch: 1
 num_patches_per_image: 2
-num_patches_per_iter: 1
-num_sw_batch_size: $@num_patches_per_iter
 num_workers: 4
 num_workers_validation: 4
 optimizer: {_target_: torch.optim.AdamW, lr: '@learning_rate', weight_decay: 1.0e-05}
@@ -49,8 +46,6 @@ patch_size: [128, 128, 128]
 prefetch_factor: null
 random_seed: 0
 resample_to_spacing: [1.5, 1.5, 1.5]
-reuse_embedding: false
-use_class_for_point: true
 skip_iter_prob: 0
 softmax: false
 train_datasets: [CTPelvic1K-CLINIC, AbdomenCT-1K, AeroPath, AMOS22, BTCV-Abdomen,

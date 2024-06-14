@@ -25,8 +25,8 @@ from monai.networks.blocks import MLPBlock as Mlp
 from monai.networks.blocks import PatchEmbed, UnetOutBlock, UnetrBasicBlock, UnetrUpBlock
 from monai.networks.layers import DropPath, trunc_normal_
 from monai.utils import ensure_tuple_rep, look_up_option, optional_import
-from scripts.monai_trans_utils import get_largest_connected_component_mask as lcc
-from scripts.utils import convert_points_to_disc, sample_points_patch_val
+from scripts.utils.trans_utils import get_largest_connected_component_mask as lcc
+from scripts.utils.workflow_utils import convert_points_to_disc, sample_points_patch_val
 import pdb
 import time
 
@@ -217,7 +217,7 @@ class VISTA3D2(nn.Module):
                 # if labels is not None, sample from labels for each patch.
                 if val_point_sampler is None:
                     val_point_sampler = sample_points_patch_val
-                point_coords, point_labels, prompt_class = val_point_sampler(labels, patch_coords, label_set, prev_mask, class_vector)
+                point_coords, point_labels, prompt_class = val_point_sampler(labels, patch_coords, label_set)
                 if prompt_class[0].item() == 0:
                     point_labels[0] = -1
                 labels, prev_mask = None, None

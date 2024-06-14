@@ -12,23 +12,13 @@
 import logging
 import os
 import sys
-from typing import Optional, Sequence, Union
 import numpy as np
 import torch
 import monai
 from monai import transforms
-from monai.apps.auto3dseg.auto_runner import logger
 import torch.distributed as dist
-from monai.bundle import ConfigParser
-from monai.bundle.scripts import _pop_args, _update_args
-from monai.data import ThreadDataLoader, decollate_batch, list_data_collate
-from .monai_utils import sliding_window_inference
-from functools import partial
-import glob
-import pdb
 from monai.data import partition_dataset
-from vista3d import vista_model_registry
-from monai.utils import ensure_tuple_rep, look_up_option, optional_import
+from monai.utils import ensure_tuple_rep, optional_import
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from monai.apps.utils import DEFAULT_FMT
