@@ -165,6 +165,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # training hyperparameters - model and optimizer
     input_channels = parser.get_parsed_content("input_channels")
     model_registry = parser.get_parsed_content("model")
+    patch_size = parser.get_parsed_content("patch_size")
     model = vista_model_registry[model_registry](in_channels=input_channels, image_size=patch_size)
     model = model.to(device)
     optimizer_part = parser.get_parsed_content("optimizer", instantiate=False)
@@ -186,7 +187,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     num_images_per_batch = parser.get_parsed_content("num_images_per_batch")
     num_patches_per_iter = parser.get_parsed_content("num_patches_per_iter")
     overlap_ratio = parser.get_parsed_content("overlap_ratio") # sliding window overlap
-    patch_size = parser.get_parsed_content("patch_size")
     max_prompt = parser.get_parsed_content("max_prompt", default=96)
     max_backprompt = parser.get_parsed_content("max_backprompt", default=96)
     max_foreprompt = parser.get_parsed_content("max_foreprompt", default=96)
@@ -207,11 +207,21 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         )
     class_names = get_class_names(json_dir=json_dir)
     label_mappings = dict(ConfigParser.load_config_file(os.path.join(json_dir, "label_mappings.json")))
-    image_key, label_key  = parser.get_parsed_content("image_key"), parser.get_parsed_content("label_key")
+    image_key, label_key, label_sv_key, pseudo_label_key = parser.get_parsed_content("image_key", default='image'), parser.get_parsed_content("label_key", default='label'), \
+        parser.get_parsed_content("label_sv_key", default="label_sv"),parser.get_parsed_content("pseudo_label_key", default='pseudo_label')
     train_files, _, dataset_specific_transforms, dataset_specific_transforms_val = \
         get_datalist_with_dataset_name_and_transform(datasets=train_datasets,
                                                      fold_idx=fold,
-                                                     json_dir=json_dir)
+                                                     image_key=image_key,
+                                                     label_key=label_key,
+                                                     label_sv_key=label_sv_key,
+                                                     pseudo_label_key=pseudo_label_key,
+                                                     num_patches_per_image=parser.get_parsed_content(
+                                                         "num_patches_per_image"),
+                                                     patch_size=parser.get_parsed_content("patch_size"),
+                                                     json_dir=json_dir
+                                                     )
+    
                                                      
     _, val_files = get_datalist_with_dataset_name(datasets=val_datasets, fold_idx=fold, json_dir=json_dir)
     if world_size > 1:
@@ -275,7 +285,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             val_sampler = DistributedSampler(val_ds, shuffle=False, even_divisible=False)
         else:
             train_sampler = RandomSampler(train_ds)
-    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=True, persistent_workers=True, 
+    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=(train_sampler is None), persistent_workers=True, 
                               pin_memory=True, sampler=train_sampler, prefetch_factor=1)
     val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1, 
                             persistent_workers=False)
@@ -517,7 +527,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             loss += loss_function(outputs[[idx+ps_start]].float(), gt)
 
                     loss /= max(loss_n, 1.0)
-                    print(loss, ds_name, prompt_class, prompt_class_pseudo)
+                    print(loss, ds_name)
                     if num_iters > 1:
                         if click_indx != num_iters - 1:  # do not sample at last iter
                             outputs.sigmoid_()

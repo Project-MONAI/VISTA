@@ -3,7 +3,7 @@ input_channels: 1
 patch_size: [128, 128, 128]
 bundle_root: './work_dir_ft_final'
 fold: 0
-infer: {ckpt_name: $@bundle_root + '/model_fold' + str(@fold) + '/best_metric_model_6_new.pt',  
+infer: {ckpt_name: $@bundle_root + '/model_fold' + str(@fold) + '/best_metric_model.pt',  
         output_path: $@bundle_root + '/prediction',
         log_output_file: $@bundle_root + '/model_fold' + str(@fold) + '/inference.log'}
 resample_to_spacing: [1.5, 1.5, 1.5]

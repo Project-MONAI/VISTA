@@ -24,36 +24,14 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from monai.apps.utils import DEFAULT_FMT
 from monai.data import partition_dataset
 from tqdm import tqdm
-CONFIG = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {"monai_default": {"format": DEFAULT_FMT}},
-    "loggers": {
-        "monai.apps.auto3dseg.auto_runner": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False}
-    },
-    "filters": {"rank_filter": {"{}": "__main__.RankFilter"}},
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "runner.log",
-            "mode": "a",  # append or overwrite
-            "level": "DEBUG",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-    },
-}
+from .train import CONFIG
 import time
 import torch.nn.functional as F
 from skimage.segmentation import slic
 from segment_anything import SamPredictor, sam_model_registry
 from monai.auto3dseg.utils import datafold_read
+from .utils.trans_utils import erode3d, dilate3d
+
 def pad_to_divisible_by_16(image):
     # Get the dimensions of the input image
     depth, height, width = image.shape[-3:]
@@ -70,38 +48,6 @@ def pad_to_divisible_by_16(image):
     padded_image = torch.nn.functional.pad(image, padding)
 
     return padded_image, padding
-
-def erode3d(input_tensor, erosion=3):
-    # Define the structuring element
-    erosion = ensure_tuple_rep(erosion, 3)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(input_tensor.device)
-
-    # Pad the input tensor to handle border pixels
-    input_padded = F.pad(input_tensor.float().unsqueeze(0).unsqueeze(0), (erosion[0]//2, erosion[0]//2, erosion[1]//2, erosion[1]//2, erosion[2]//2, erosion[2]//2), mode='constant', value=1.0)
-
-    # Apply erosion operation
-    output = F.conv3d(input_padded, structuring_element, padding=0)
-
-    # Set output values based on the minimum value within the structuring element
-    output = torch.where(output == torch.sum(structuring_element), 1.0, 0.0)
-
-    return output.squeeze(0).squeeze(0)
-
-def dilate3d(input_tensor, erosion=3):
-    # Define the structuring element
-    erosion = ensure_tuple_rep(erosion, 3)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(input_tensor.device)
-
-    # Pad the input tensor to handle border pixels
-    input_padded = F.pad(input_tensor.float().unsqueeze(0).unsqueeze(0), (erosion[0]//2, erosion[0]//2, erosion[1]//2, erosion[1]//2, erosion[2]//2, erosion[2]//2), mode='constant', value=1.0)
-
-    # Apply erosion operation
-    output = F.conv3d(input_padded, structuring_element, padding=0)
-
-    # Set output values based on the minimum value within the structuring element
-    output = torch.where(output > 0, 1.0, 0.0)
-
-    return output.squeeze(0).squeeze(0)
 
 class InferClass:
     def __init__(self):

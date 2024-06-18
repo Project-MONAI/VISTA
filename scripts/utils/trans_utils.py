@@ -140,6 +140,44 @@ def dilate3d(input_tensor, erosion=3):
 
     return output.squeeze(0).squeeze(0)
 
+def get_largest_connected_component_point(
+    img: NdarrayTensor, point_coords=None, point_labels=None, post_idx=3
+) -> NdarrayTensor:
+    """
+    Gets the largest connected component mask of an image. img is before post process! And will include NaN values.
+    Args:
+        img: [1, B, H, W, D]
+        point_coords [B, N, 3]
+        point_labels [B, N]
+    """
+    outs = torch.zeros_like(img)
+    for c in range(len(point_coords)):
+        if not ((point_labels[c] == 3).any() or (point_labels[c] == 1).any()):
+            continue
+        coords = point_coords[c, point_labels[c]==3].tolist() + point_coords[c, point_labels[c]==1].tolist()
+        not_nan_mask = ~torch.isnan(img[0,c])
+        img_ = torch.nan_to_num(img[0,c] > 0, 0)
+        img_, *_ = convert_data_type(img_, np.ndarray)
+        label = measure.label
+        features = label(img_, connectivity=3)
+        pos_mask = torch.from_numpy(img_).to(img.device) > 0
+        # if num features less than max desired, nothing to do.
+        features = torch.from_numpy(features).to(img.device)
+        # generate a map with all pos points
+        idx = []
+        for p in coords:
+            idx.append(features[round(p[0]), round(p[1]), round(p[2])].item())
+        idx = list(set(idx))
+        for i in idx:
+            if i == 0:
+                continue
+            outs[0,c] += features == i
+        outs = outs > 0
+        # find negative mean value
+        fill_in = img[0,c][torch.logical_and(~outs[0,c], not_nan_mask)].mean()
+        img[0,c][torch.logical_and(pos_mask, ~outs[0,c])] = fill_in
+    return img
+
 def get_largest_connected_component_mask(
     img_pos: NdarrayTensor, img_neg: NdarrayTensor, connectivity: int | None = None, num_components: int = 1, point_coords=None, point_labels=None, margins=3
 ) -> NdarrayTensor:

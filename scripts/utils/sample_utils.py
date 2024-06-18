@@ -48,7 +48,6 @@ class Point_sampler():
         self.shifted = {}
         self.device = self.label.device
         self.label_ = label.clone()
-        self.use_debug_plot = False
         self.window = torch.ones_like(label, dtype=torch.bool)
         self.window[offset:-offset, offset:-offset, offset:-offset] = False
         self.vrange = vrange
@@ -116,7 +115,6 @@ class Point_sampler():
             if kn > 0:
                 _point += random.choices(nlabelpoints, k=kn)
                 _point_label += [neg_id] * kn
-        # self.debug_plot(plabels, self.label_, _point, _point_label, name='regular')
         return _point, _point_label  
     def zeroshot_random(self, id, Np=1, Nn=0):
         min_size = 20*20*20 
@@ -262,8 +260,6 @@ class Point_sampler():
             _point += random.choices(plabelpoints, k=kp2)
             self.label[plabels] = id
             _point_label = [1] * (kp + kp2)
-            print('organ_add')
-            self.debug_plot(self.label==id, self.label_==id, _point, _point_label, name='add')
             if np.random.rand() < self.zshot_rate:
                 self.label[self.label==id] = id + self.map_shift
                 self.shifted[id] = id + self.map_shift  
@@ -313,7 +309,6 @@ class Point_sampler():
                 continue
             _point = random.choices(plabelpoints, k=kp) + random.choices(nlabelpoints, k=kn) 
             _point_label= [1] * kp + [0] * kn
-            self.debug_plot(plabels, self.label_ == id, _point, _point_label, name='sub')
             if use_zs or np.random.rand() < self.zshot_rate:
                 self.label[plabels.to(torch.bool)] = id + self.map_shift
                 self.shifted[id] = id + self.map_shift

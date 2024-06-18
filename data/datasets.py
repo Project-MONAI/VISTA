@@ -49,6 +49,7 @@ all_base_dirs = {
     "CRLM-CT": "/data/CRLM-CT/nifti",
     "VerSe": "/data/VerSe/",
     "AeroPath": "/data/AeroPath/",
+    "CTPelvic1K-CLINIC": "/data/CTPelvic1K-CLINIC",
     "NLST": "/data/NLST",
     "LIDC": "/data/LIDC",
     "Covid19": "/data/Covid19",
@@ -131,11 +132,11 @@ def get_datalist_with_dataset_name(
     return ensure_tuple(train_list), ensure_tuple(val_list)
 
 
-def get_datalist_with_dataset_name_and_transform(datasets=None, fold_idx=-1, key="training", json_dir=None, base_dirs=None):
+def get_datalist_with_dataset_name_and_transform(image_key, label_key, label_sv_key, pseudo_label_key, num_patches_per_image, patch_size,
+                                                 datasets=None, fold_idx=-1, key="training", json_dir=None, base_dirs=None):
     """
     when `datasets` is None, it returns a list of all data from all datasets.
     when `datasets` is a list of dataset names, it returns a list of all data from the specified datasets.
-
     Return file lists and specific transforms for each dataset.
 
     """
@@ -155,6 +156,14 @@ def get_datalist_with_dataset_name_and_transform(datasets=None, fold_idx=-1, key
     for k, j in loading_dict.items():
         parser = ConfigParser()
         parser.read_config(j)
+        # those parameters are required to initiate the transforms
+        parser.update(
+            pairs={"image_key": image_key,
+                   "label_key": label_key,
+                   "label_sv_key": label_sv_key,
+                   "pseudo_label_key": pseudo_label_key,
+                   "num_patches_per_image": num_patches_per_image,
+                   "patch_size": patch_size})
         transform = parser.get_parsed_content("training_transform")
         dataset_transforms[k] = transforms.Compose(transform)
         transform_val = parser.get_parsed_content("validation_transform", default=None)

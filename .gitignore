@@ -108,6 +108,7 @@ temp/
 runs
 *.gz
 *.pth
+*.pt
 lib/
 pip-wheel-metadata/
 share/python-wheels/

@@ -11,7 +11,7 @@ from matplotlib import pyplot as plt
 import monai
 from monai.utils import ensure_tuple_rep
 from monai.metrics import compute_dice
-from .sliding_window import sliding_window_inference
+from ..sliding_window import sliding_window_inference
 from .trans_utils import erode2d, erode3d, dilate3d
 
 ENABLE_SPECIAL=True

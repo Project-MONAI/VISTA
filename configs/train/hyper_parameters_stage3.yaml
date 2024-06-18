@@ -1,13 +1,13 @@
 amp: true
-bundle_root: ./work_dir_ft_point_100only_ft_auto_whole
-comment: 'finetune on tumor datasets.'
-json_dir: ./data/jsons_final_update
+bundle_root: ./work_dir_stage3
+comments: "After training for several epoch, remove the unlabeled dataset from train_datasets."
+json_dir: ./data/jsons
 ckpt_path: $@bundle_root + '/model_fold' + str(@fold)
-class_weight_factor: 0.0005
+model: "vista3d_segresnet_d"
+weighted_sampling: false
 drop_label_prob: 0
 drop_point_prob: 1
-exclude_background: true
-finetune: {activate: true, exclude_vars: null, pretrained_ckpt_name: $'/workspace/samm/work_dir_ft_point_100only_ft_auto/model_fold' + str(@fold) + '/best_metric_model.pt'}
+finetune: {activate: true, exclude_vars: null, pretrained_ckpt_name: $'/workspace/vista3d/models/model.pt'}
 fold: 0
 image_key: image
 input_channels: 1
@@ -17,42 +17,35 @@ label_sv_key: label_sv
 pseudo_label_key: pseudo_label
 learning_rate: 0.00002
 log_output_file: $@bundle_root + '/model_fold' + str(@fold) + '/training.log'
-loss: {_target_: DiceCELoss, include_background: $not @exclude_background, sigmoid: $not
-    @softmax, smooth_dr: 1.0e-05, smooth_nr: 0, softmax: $@softmax, squared_pred: true,
-  to_onehot_y: $@softmax}
+loss: {_target_: DiceCELoss, include_background: false, sigmoid: true, smooth_dr: 1.0e-05, smooth_nr: 0, softmax: false, squared_pred: true,
+  to_onehot_y: false}
 lr_scheduler: {_target_: monai.optimizers.WarmupCosineSchedule, optimizer: $@optimizer,
   t_total: $@num_epochs+1, warmup_multiplier: 0.1, warmup_steps: 0}
 max_backprompt: 4
 max_foreprompt: 32
-ignore_labelset: false
 max_point: 3
 max_prompt: null
-num_cache_workers: 4
 num_epochs: 200
-no_supervoxel: true
 freeze_epoch: 1000
 freeze_head: 'point'
-freeze_all_except_point_head: false
 save_last: false
 save_all: false
 num_epochs_per_validation: 5
 num_images_per_batch: 1
 num_patches_per_image: 2
-num_workers: 4
-num_workers_validation: 4
+num_patches_per_iter: 1
 optimizer: {_target_: torch.optim.AdamW, lr: '@learning_rate', weight_decay: 1.0e-05}
 output_classes: 133
-overlap_ratio: 0.625
+overlap_ratio: 0.5
 patch_size: [128, 128, 128]
-prefetch_factor: null
 random_seed: 0
 resample_to_spacing: [1.5, 1.5, 1.5]
 skip_iter_prob: 1
-softmax: false
 train_datasets: [CTPelvic1K-CLINIC, AbdomenCT-1K, AeroPath, AMOS22, BTCV-Abdomen,
   BTCV-Cervix, CT-ORG, FLARE22, Multi-organ-Abdominal-CT-btcv, Multi-organ-Abdominal-CT-tcia,
   Pancreas-CT, Task03, Task06, Task07, Task08, Task09, Task10, VerSe, Bone-NIH, CRLM-CT,
-  TotalSegmentatorV2, NLST, LIDC_100, StonyBrook-CT_100, TCIA_Colon_100]
+  TotalSegmentatorV2, NLST, LIDC, StonyBrook-CT, TCIA_Colon]
+val_datasets: ['TotalSegmentatorV2']
 transforms_train:
   _target_: Compose
   transforms:
@@ -126,8 +119,5 @@ transforms_validate:
     keys: ['@image_key', '@label_key']
     track_meta: true
   - "Placeholder for dataset-specific transform"
-use_pretrain: false
-val_datasets: ['TotalSegmentatorV2']
-model: "vista3d_segresnet_d"
-weighted_loss: false
-weighted_sampling: false
+
+

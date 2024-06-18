@@ -21,15 +21,18 @@ import random
 import sys
 import time
 import warnings
-import json
-from datetime import datetime
-from typing import Optional, Sequence, Union
-
-import numpy as np
-import torch
-import torch.distributed as dist
+import copy
+import pdb
 import yaml
 import glob
+import json
+import numpy as np
+from datetime import datetime
+from matplotlib import pyplot as plt
+from typing import Optional, Sequence, Union
+
+import torch
+import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel
 from torch.nn.utils import clip_grad_norm_
 from torch.utils.tensorboard import SummaryWriter
@@ -49,44 +52,12 @@ from .sliding_window import sliding_window_inference
 # from .monai_trans_utils import get_largest_connected_component_point
 from monai.metrics import compute_dice
 from monai.utils import set_determinism
-import copy
-import pdb
+
 from functools import partial
-from .workflow_utils import generate_prompt_pairs_val, get_next_points_val, sample_points_patch_val
-# from .monai_utils import compute_robust_hausdorff
-from .trans_utils import VistaPostTransform
-from matplotlib import pyplot as plt
+from ..utils.workflow_utils import sample_points_patch_val
+from ..utils.trans_utils import VistaPostTransform
 from vista3d import vista_model_registry
-
-CONFIG = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {"monai_default": {"format": DEFAULT_FMT}},
-    "loggers": {
-        "monai.apps.auto3dseg.auto_runner": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False}
-    },
-    "filters": {"rank_filter": {"{}": "__main__.RankFilter"}},
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "runner.log",
-            "mode": "a",  # append or overwrite
-            "level": "DEBUG",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-    },
-}
-
-def infer_wrapper(inputs, model, **kwargs):
-    outputs = model(input_images=inputs, **kwargs)
-    return outputs.transpose(1,0)
+from ..train import CONFIG, infer_wrapper
 
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
@@ -123,13 +94,12 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     argmax_first = parser.get_parsed_content("argmax_first", default=True)
     five_fold = parser.get_parsed_content("five_fold", default=True)
     mapped_label_set = parser.get_parsed_content("mapped_label_set", default=copy.deepcopy(label_set))
-    post_idx = parser.get_parsed_content("post_idx", default=[])
     transforms_infer = parser.get_parsed_content("transforms_infer")
     list_key = parser.get_parsed_content("list_key", default='testing')
     
     dataset_name = parser.get_parsed_content("dataset_name", default=None)
     if label_set is None:
-        label_mapping = parser.get_parsed_content("label_mapping", default='./data/jsons_final_update/label_mappings.json')
+        label_mapping = parser.get_parsed_content("label_mapping", default='./data/jsons/label_mappings.json')
         
         with open(label_mapping, 'r') as f:
             label_mapping = json.load(f)
@@ -182,16 +152,13 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         print(f'{len(_process_files)} is remained out from {len(process_files)}')
         process_files = _process_files
 
-
-
-
     for i in range(len(process_files)):
         if type(process_files[i]['image']) == list and len(process_files[i]['image']) > 1:
             process_files[i]['image'] = process_files[i]['image'][0]
     if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
         print(f'Total files {len(process_files)}')
         print(process_files)
-    overlap = parser.get_parsed_content("overlap", default=0.)
+    overlap = parser.get_parsed_content("overlap", default=0.5)
     if torch.cuda.device_count() > 1:
         process_files = partition_dataset(data=process_files, shuffle=False, num_partitions=world_size, even_divisible=False)[
             dist.get_rank()

@@ -52,42 +52,10 @@ from monai.utils import set_determinism
 import copy
 import pdb
 from functools import partial
-from .workflow_utils import generate_prompt_pairs_val, get_next_points_val, sample_points_patch_val
-# from .monai_utils import compute_robust_hausdorff
-from .trans_utils import VistaPostTransform
+from ..utils.trans_utils import VistaPostTransform
+from ..train import CONFIG, infer_wrapper
 from matplotlib import pyplot as plt
 from vista3d import vista_model_registry
-
-CONFIG = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {"monai_default": {"format": DEFAULT_FMT}},
-    "loggers": {
-        "monai.apps.auto3dseg.auto_runner": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False}
-    },
-    "filters": {"rank_filter": {"{}": "__main__.RankFilter"}},
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "runner.log",
-            "mode": "a",  # append or overwrite
-            "level": "DEBUG",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-    },
-}
-
-def infer_wrapper(inputs, model, **kwargs):
-    outputs = model(input_images=inputs, **kwargs)
-    return outputs.transpose(1,0)
-
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
@@ -123,9 +91,11 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     argmax_first = parser.get_parsed_content("argmax_first", default=True)
     five_fold = parser.get_parsed_content("five_fold", default=True)
     mapped_label_set = parser.get_parsed_content("mapped_label_set", default=copy.deepcopy(label_set))
-    post_idx = parser.get_parsed_content("post_idx", default=[])
     transforms_infer = parser.get_parsed_content("transforms_infer")
     list_key = parser.get_parsed_content("list_key", default='testing')
+    """ start_prompt and end_prompt are used to save memory. For 117 class prompts, it will go oom. Use these two to limit
+    the prompt number and run the scripts multiple times to cover 117 classes.  
+    """
     start_prompt = parser.get_parsed_content("start_prompt", default=None)
     end_prompt = parser.get_parsed_content("end_prompt", default=None)
     dataset_name = parser.get_parsed_content("dataset_name", default=None)

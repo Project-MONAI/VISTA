@@ -51,41 +51,10 @@ from monai.utils import set_determinism
 import copy
 import pdb
 from functools import partial
-from .workflow_utils import generate_prompt_pairs_val, get_next_points_val
-from .sliding_window import compute_robust_hausdorff
+from ..utils.workflow_utils import generate_prompt_pairs_val, get_next_points_val
+from ..train import CONFIG, infer_wrapper
 from matplotlib import pyplot as plt
 from vista3d import vista_model_registry
-
-CONFIG = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {"monai_default": {"format": DEFAULT_FMT}},
-    "loggers": {
-        "monai.apps.auto3dseg.auto_runner": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False}
-    },
-    "filters": {"rank_filter": {"{}": "__main__.RankFilter"}},
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "runner.log",
-            "mode": "a",  # append or overwrite
-            "level": "DEBUG",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-    },
-}
-
-def infer_wrapper(inputs, model, **kwargs):
-    outputs = model(input_images=inputs, **kwargs)
-    return outputs.transpose(1,0)
-
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
@@ -117,7 +86,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     model_registry = parser.get_parsed_content("model")
     input_channels = parser.get_parsed_content("input_channels")
     label_set = parser.get_parsed_content("label_set", default=None)
-    post_idx = parser.get_parsed_content("post_idx", default=[])
     transforms_infer = parser.get_parsed_content("transforms_infer")
     list_key = parser.get_parsed_content("list_key", default='testing')
     five_fold = parser.get_parsed_content("five_fold", default=True)
@@ -212,7 +180,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             total_size_tensor = sum(output_tensor)
             obj_num = max(output_tensor)
         metric = torch.zeros(obj_num, metric_dim, max_iters, dtype=torch.float, device=device) + torch.nan
-        metric_hd = torch.zeros(obj_num, metric_dim, max_iters, dtype=torch.float, device=device) + torch.nan
         point_num = torch.zeros(obj_num, metric_dim, dtype=torch.float, device=device) + torch.nan
         _index = 0
         for val_data in val_loader:
@@ -228,7 +195,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     # val_outputs is from model_inferer which moved the batch_dim to 0.
                     _point, _point_label  = get_next_points_val(val_outputs.transpose(1,0), val_data["label"].to(device), 
                                                               torch.tensor(label_set).to(device), point, point_label, use_center=False)
-                    # debug_next_point(val_outputs.transpose(1,0), point, point_label, None, val_data["label"].to(device), prompt_class, f'{os.path.basename(val_filename)}-iter{idx}')
                     # if labels other than 0 didn't get new points, skip
                     skip_this_iter = torch.all(_point_label[1:, -1] == -1) 
                     if skip_this_iter:
@@ -284,16 +250,10 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         y=gt,
                         include_background=False
                     )
-                    # metric_hd[_index-1,i-1,idx] = compute_robust_hausdorff(y_pred[0], gt[0] , spacing=gt.pixdim)
                     point_num[_index-1, i-1] = idx + 1
-                    
-
-
                 string = f"Validation Dice score : {idx} / {_index} / {len(val_loader)}/ {val_filename}: {metric[_index-1,:,idx]}"
                 print(string)
                 log_string.append(string)
-                
-                
                 # move all to cpu to avoid potential out memory in invert transform
                 torch.cuda.empty_cache()
         log_string = sorted(log_string)
@@ -326,6 +286,16 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             torch.save({'metric': metric.cpu(), 'point':point_num.cpu()}, parser.get_parsed_content("log_output_file").replace('log','pt'))
             logger.debug(f'Best metric {metric_best.nanmean(0).tolist()}, best avg {metric_best.nanmean(0).nanmean().tolist()}')
             logger.debug(f'point needed, {point_num.tolist()}, mean is {point_num.nanmean(0).tolist()}')
+            """ Note: the zero-shot plots in the paper is using the saved pt file. For the j-th point, the results might be worse due to random point selection. We chose
+            the best dice from point 1 to j, e.g. point i and treat i as the point click number. 
+            data = torch.load(path_to_pt_file)['metric']
+            for j in range(1, max_iters):
+                data_notnan = torch.nan_to_num(data_[:,:j],0)
+                data_notnan = data_notnan.max(1)[0]
+                y.append(data_notnan.mean())
+                x.append((~torch.isnan(data_[:,:j])).sum()/data_.shape[0])
+            plot(x, y)
+            """
     torch.cuda.empty_cache()
     if torch.cuda.device_count() > 1:
         dist.barrier()

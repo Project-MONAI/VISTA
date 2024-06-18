@@ -22,8 +22,8 @@ from monai.apps.auto3dseg.auto_runner import logger
 from monai.bundle import ConfigParser
 from monai.bundle.scripts import _pop_args, _update_args
 from monai.data import ThreadDataLoader, decollate_batch, list_data_collate
-from .utils.trans_utils import sliding_window_inference
-from .utils.trans_utils import point_based_window_inferer
+from .sliding_window import sliding_window_inference
+from .sliding_window import point_based_window_inferer
 from functools import partial
 import pdb
 from vista3d import vista_model_registry
@@ -175,7 +175,7 @@ class InferClass:
             batch_data = self.infer_transforms(image_file)
             batch_data = list_data_collate([batch_data])
             self.batch_data = batch_data
-        if point is not None:
+        if point is not None and label_prompt is None:
             point = self.transform_points(point, np.linalg.inv(batch_data['image'].affine[0]) @ batch_data['image'].meta['original_affine'][0].numpy())
             self.sliding_window_inferer = partial(point_based_window_inferer, point_start=0)
         else:
@@ -199,16 +199,15 @@ class InferClass:
                         point_labels=torch.tensor(point_label).to(_device_in) if point_label is not None else None,
                         class_vector=torch.tensor(label_prompt).to(_device_in) if label_prompt is not None else None,
                         prompt_class=torch.tensor(prompt_class).to(_device_in) if prompt_class is not None else None,
-                        prev_mask=torch.tensor(self.prev_mask).to(_device_in) if self.prev_mask is not None else None,
-                        brush_radius=None,
-                        use_cfp=True)
+                        prev_mask=torch.tensor(self.prev_mask).to(_device_in) if self.prev_mask is not None else None)
                     
                     if not hasattr(batch_data["pred"],'meta'):
                         batch_data["pred"] = monai.data.MetaTensor(batch_data["pred"], affine=batch_data["image"].meta["affine"], meta=batch_data["image"].meta)
-                # self.prev_mask = batch_data["pred"]
+                self.prev_mask = batch_data["pred"]
+                print(self.prev_mask.shape)
                 if label_prompt is None and point is not None:
                     batch_data['pred'] = get_largest_connected_component_point(batch_data['pred'],point_coords=point, point_labels=point_label)
-                self.prev_mask = None
+                # self.prev_mask = None
                 batch_data['image'] = batch_data['image'].to('cpu')
                 batch_data['pred'] = batch_data['pred'].to('cpu')
                 torch.cuda.empty_cache()

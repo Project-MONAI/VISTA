@@ -25,8 +25,8 @@ from monai.networks.blocks import MLPBlock as Mlp
 from monai.networks.blocks import PatchEmbed, UnetOutBlock, UnetrBasicBlock, UnetrUpBlock
 from monai.networks.layers import DropPath, trunc_normal_
 from monai.utils import ensure_tuple_rep, look_up_option, optional_import
-from scripts.utils.trans_utils import get_largest_connected_component_mask as lcc
-from scripts.utils.workflow_utils import convert_points_to_disc, sample_points_patch_val
+from scripts.utils.trans_utils import get_largest_connected_component_mask as lcc, convert_points_to_disc
+from scripts.utils.workflow_utils import sample_points_patch_val
 import pdb
 import time
 
@@ -206,13 +206,12 @@ class VISTA3D2(nn.Module):
         """
         image_size = input_images.shape[-3:]
         device = input_images.device
-
         if point_coords is None and class_vector is None:
             return (NINF_VALUE + torch.zeros([1, 1, *image_size], device=device))
         
         bs = self.get_bs(class_vector, point_coords)
-        if patch_coords is not None and class_vector is None:
-            # if during validation and perform point only validation.
+        if patch_coords is not None:
+            # if during validation and perform enable based point-validation.
             if labels is not None and label_set is not None:
                 # if labels is not None, sample from labels for each patch.
                 if val_point_sampler is None:
@@ -221,7 +220,7 @@ class VISTA3D2(nn.Module):
                 if prompt_class[0].item() == 0:
                     point_labels[0] = -1
                 labels, prev_mask = None, None
-            else:
+            elif point_coords is not None:
                 # If not performing patch-based point only validation, use user provided click points for inference.
                 # the point clicks is in original image space, convert it to current patch-coordinate space.
                 point_coords, point_labels = self.update_point_to_patch(patch_coords, point_coords, point_labels)
@@ -254,7 +253,6 @@ class VISTA3D2(nn.Module):
         
         # force releasing memories that set to None
         torch.cuda.empty_cache()
-
         if class_vector is not None:
             logits, _ = self.class_head(out_auto, class_vector)           
             if point_coords is not None:
