@@ -1,33 +1,34 @@
 #### Aggregating multiple datasets
 
-This module by default assumes the datasets are mounted using these NGC batch commands:
+The training workflow requires one or multiple dataset JSON files to specifiy the image and segmentation pairs as well as dataset preprocessing transformations.
+Example files are located in the `data/jsons` folder.
 
-```
---datasetid 1610565:/data/AbdomenCT-1K
---datasetid 1610636:/data/AMOS22
---datasetid 1610638:/data/BTCV
---datasetid 1610530:/data/CHAOS
---datasetid 1608298:/data/KiTS23
---datasetid 97292:/data/LiTS
---datasetid 83993:/data/Multi-organ-Abdominal-CT
---datasetid 1610587:/data/Pancreas-CT
---datasetid 1610781:/data/CT-ORG
---datasetid 68588:/data/Task06
---datasetid 68770:/data/Task07
---datasetid 68740:/data/Task08
---datasetid 69970:/data/Task09
---datasetid 68363:/data/Task10
---datasetid 1602467:/data/TotalSegmentator
---datasetid 110269:/data/WORD
-```
+The JSON file has the following structure:
+```python
+{
+    "training": [
+        {
+            "image": "img0001.nii.gz",  # relative path to the primary image file
+            "label": "label0001.nii.gz",  # optional relative path to the primary label file
+            "pseudo_label": "pseudo_label0001.nii.gz",  # optional relative path to the pseudo label file
+            "fold": 0,  # optional fold index for cross validation, fold 0 is used for training
+            "pseudo_label_reliability": 1  # optional reliability score for pseudo label
+            "label_sv": "label_sv0001.nii.gz",  # optional relative path to the supervoxel label file
+        },
 
-Each dataset contains the original files that are publicly available and have been downloaded from external
-and uploaded to NGC. Some datasets may have been minimally preprocessed by converting DICOM to NIfTI
-(please see the details in each dataset folder).
+        ...
+    ],
+    "training_transform": [
+        # a set of monai transform configuration for dataset-specific loading
+    ]
+    "original_label_dict": {"1": "liver", ...},
+    "label_dict": {"1": "liver", ...}
+}
+```
 
 The following steps are necessary for creating a multi-dataset data loader for model training.
-Step 1 and 2 generate persistent JSON files, and only need to be run once when the JSON files don't exist.
-Step 3 contains the Python modules that should be instantiated during each model training workflow.
+Step 1 and 2 generate persistent JSON files based on the original dataset (the `image` and `label` pairs; without the additional pseudo label or supervoxel-based label), and only need to be run once when the JSON files don't exist.
+Step 3 is optional for generating overall data analysis stats.
 
 ##### 1. Generate data list JSON file
 ```
