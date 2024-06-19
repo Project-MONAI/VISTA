@@ -8,12 +8,12 @@ The JSON file has the following structure:
 {
     "training": [
         {
-            "image": "img0001.nii.gz",  # relative path to the primary image file
-            "label": "label0001.nii.gz",  # optional relative path to the primary label file
-            "pseudo_label": "pseudo_label0001.nii.gz",  # optional relative path to the pseudo label file
-            "fold": 0,  # optional fold index for cross validation, fold 0 is used for training
+            "image": "img1.nii.gz",  # relative path to the primary image file
+            "label": "label1.nii.gz",  # optional relative path to the primary label file
+            "pseudo_label": "p_label1.nii.gz",  # optional relative path to the pseudo label file
             "pseudo_label_reliability": 1  # optional reliability score for pseudo label
-            "label_sv": "label_sv0001.nii.gz",  # optional relative path to the supervoxel label file
+            "label_sv": "label_sv1.nii.gz",  # optional relative path to the supervoxel label file
+            "fold": 0  # optional fold index for cross validation, fold 0 is used for training
         },
 
         ...
@@ -24,6 +24,23 @@ The JSON file has the following structure:
     "original_label_dict": {"1": "liver", ...},
     "label_dict": {"1": "liver", ...}
 }
+```
+
+During training, the JSON files will be consumed along with additional configurations, for example:
+```py
+from data.datasets import get_datalist_with_dataset_name_and_transform
+
+train_files, _, dataset_specific_transforms, dataset_specific_transforms_val = \
+    get_datalist_with_dataset_name_and_transform(
+        datasets=train_datasets,
+        fold_idx=fold,
+        image_key=image_key,
+        label_key=label_key,
+        label_sv_key=label_sv_key,
+        pseudo_label_key=pseudo_label_key,
+        num_patches_per_image=parser.get_parsed_content("num_patches_per_image"),
+        patch_size=parser.get_parsed_content("patch_size"),
+        json_dir=json_dir)
 ```
 
 The following steps are necessary for creating a multi-dataset data loader for model training.
