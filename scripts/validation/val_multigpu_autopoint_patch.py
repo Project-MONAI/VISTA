@@ -45,10 +45,9 @@ from monai.auto3dseg.utils import datafold_read
 from monai.bundle import ConfigParser
 from monai.bundle.scripts import _pop_args, _update_args
 from monai.data import DataLoader, partition_dataset
-from .sliding_window import sliding_window_inference
-# from .monai_trans_utils import get_largest_connected_component_point
+from ..sliding_window import sliding_window_inference
 from monai.metrics import compute_dice
-from monai.utils import set_determinism
+from monai.utils import set_determinism, RankFilter
 import copy
 import pdb
 from functools import partial
@@ -56,6 +55,7 @@ from ..utils.trans_utils import VistaPostTransform
 from ..train import CONFIG, infer_wrapper
 from matplotlib import pyplot as plt
 from vista3d import vista_model_registry
+from .build_vista3d_eval_only import vista_model_registry
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
@@ -100,7 +100,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     end_prompt = parser.get_parsed_content("end_prompt", default=None)
     dataset_name = parser.get_parsed_content("dataset_name", default=None)
     if label_set is None:
-        label_mapping = parser.get_parsed_content("label_mapping", default='./data/jsons_final_update/label_mappings.json')
+        label_mapping = parser.get_parsed_content("label_mapping", default='./data/jsons/label_mappings.json')
         
         with open(label_mapping, 'r') as f:
             label_mapping = json.load(f)

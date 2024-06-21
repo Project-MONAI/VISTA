@@ -114,6 +114,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # training hyperparameters - model and optimizer
     input_channels = parser.get_parsed_content("input_channels")
     model_registry = parser.get_parsed_content("model")
+    patch_size = parser.get_parsed_content("patch_size")
     model = vista_model_registry[model_registry](in_channels=input_channels, image_size=patch_size)
     model = model.to(device)
     optimizer_part = parser.get_parsed_content("optimizer", instantiate=False)
@@ -135,7 +136,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     num_images_per_batch = parser.get_parsed_content("num_images_per_batch")
     num_patches_per_iter = parser.get_parsed_content("num_patches_per_iter")
     overlap_ratio = parser.get_parsed_content("overlap_ratio") # sliding window overlap
-    patch_size = parser.get_parsed_content("patch_size")
     max_prompt = parser.get_parsed_content("max_prompt", default=96)
     max_backprompt = parser.get_parsed_content("max_backprompt", default=96)
     max_foreprompt = parser.get_parsed_content("max_foreprompt", default=96)
@@ -151,10 +151,16 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     label_mapping = {label_set[i]:mapped_label_set[i] for i in range(len(label_set))}
     metric_dim = len(label_set) - 1 # only affect dice calculation
     fold = parser.get_parsed_content("fold")
-    use_folds = parser.get_parsed_content("use_folds")
+    use_folds = parser.get_parsed_content("use_folds", default=False)
     post_pred = transforms.Compose(
             [transforms.EnsureType(), transforms.AsDiscrete(threshold=0.0, dtype=torch.uint8)]
         )
+    data_file_base_dir = parser.get_parsed_content("data_file_base_dir")
+    data_list_file_path = parser.get_parsed_content("data_list_file_path")
+    train_number = parser.get_parsed_content("train_number", default=-1)
+    train_transforms, val_transforms = None, None
+    train_transforms = parser.get_parsed_content("transforms_train", default=None)
+    val_transforms = parser.get_parsed_content("transforms_validate", default=None)
     post_transform = transforms.Invertd(
             keys="pred",
             transform=val_transforms,
@@ -165,12 +171,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             nearest_interp=False,
             to_tensor=True,
         )
-    data_file_base_dir = parser.get_parsed_content("data_file_base_dir")
-    data_list_file_path = parser.get_parsed_content("data_list_file_path")
-    train_number = parser.get_parsed_content("train_number", default=-1)
-    train_transforms, val_transforms = None, None
-    train_transforms = parser.get_parsed_content("transforms_train", default=None)
-    val_transforms = parser.get_parsed_content("transforms_validate", default=None)
     if use_folds:
         train_files, val_files = datafold_read(datalist=data_list_file_path, basedir=data_file_base_dir, fold=fold, key='training')
         test_files, _ = datafold_read(datalist=data_list_file_path, basedir=data_file_base_dir, fold=-1, key='testing')
@@ -209,7 +209,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             val_sampler = DistributedSampler(val_ds, shuffle=False, even_divisible=False)
         if test_ds is not None:
             test_sampler = DistributedSampler(test_ds, shuffle=False, even_divisible=False)
-    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=True, persistent_workers=True, 
+    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=(train_sampler is None), persistent_workers=True, 
                               pin_memory=True, sampler=train_sampler, prefetch_factor=1)
     val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1, 
                             persistent_workers=False)
@@ -322,7 +322,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
                 # for dataset other than totalseg, use pseudolabel for zero-shot. for totalseg, if labels_p exist, use labels_p for zero-shot, 
                 # gt for regular sample. If labels_p does not exist, use gt for zero-shot.
-                label_prompt, point, point_label, prompt_class, _ = generate_prompt_pairs(labels,
+                label_prompt, point, point_label, prompt_class = generate_prompt_pairs(labels,
                                                                         train_label_set,
                                                                         max_point=max_point,
                                                                         max_prompt=max_prompt,

@@ -190,22 +190,25 @@ def get_largest_connected_component_mask(
     """
     # use skimage/cucim.skimage and np/cp depending on whether packages are
     # available and input is non-cpu torch.tensor
-    cucim, has_cucim = optional_import("cucim")
+    #     cucim, has_cucim = optional_import("cucim")
 
-    use_cp = has_cp and has_cucim and isinstance(img_pos, torch.Tensor) and img_pos.device != torch.device("cpu")
-    if use_cp:
-        img_pos_ = convert_to_cupy(img_pos.short())  # type: ignore
-        img_neg_ = convert_to_cupy(img_neg.short())  # type: ignore
-        label = cucim.skimage.measure.label
-        lib = cp
-    else:
-        if not has_measure:
-            raise RuntimeError("Skimage.measure required.")
-        img_pos_, *_ = convert_data_type(img_pos, np.ndarray)
-        img_neg_, *_ = convert_data_type(img_neg, np.ndarray)
-        label = measure.label
-        lib = np
-
+    #     use_cp = has_cp and has_cucim and isinstance(img_pos, torch.Tensor) and img_pos.device != torch.device("cpu")
+    #     if use_cp:
+    #         img_pos_ = convert_to_cupy(img_pos.short())  # type: ignore
+    #         img_neg_ = convert_to_cupy(img_neg.short())  # type: ignore
+    #         label = cucim.skimage.measure.label
+    #         lib = cp
+    #     else:
+    #         if not has_measure:
+    #             raise RuntimeError("Skimage.measure required.")
+    #         img_pos_, *_ = convert_data_type(img_pos, np.ndarray)
+    #         img_neg_, *_ = convert_data_type(img_neg, np.ndarray)
+    #         label = measure.label
+    #         lib = np
+    img_pos_, *_ = convert_data_type(img_pos, np.ndarray)
+    img_neg_, *_ = convert_data_type(img_neg, np.ndarray)
+    label = measure.label
+    lib = np
     # features will be an image -- 0 for background and then each different
     # feature will have its own index.
     # features, num_features = label(img_, connectivity=connectivity, return_num=True)
