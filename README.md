@@ -97,7 +97,7 @@ The codebase is under Apache 2.0 Licence.
 ## Reference
 
 ```
-@article{kirillov2023segany,
+@article{he2024vista3d,
       title={VISTA3D: Versatile Imaging SegmenTation and Annotation model for 3D Computed Tomography},
       author={Yufan He, Pengfei Guo, Yucheng Tang, Andriy Myronenko, Vishwesh Nath, Ziyue Xu, Dong Yang, Can Zhao, Benjamin Simon, Mason Belue, Stephanie Harmon, Baris Turkbey, Daguang Xu, Wenqi Li},
       journal={arXiv:2406.05285},
