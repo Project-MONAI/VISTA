@@ -73,7 +73,7 @@ class InferClass:
         """
         pixel_mean = torch.Tensor([123.675, 116.28, 103.53]).view(1, 3, 1, 1)
         pixel_std = torch.Tensor([58.395, 57.12, 57.375]).view(1, 3, 1, 1)
-        if not isinstance(image_file list):
+        if not isinstance(image_file, list):
             image_file = [image_file]
 
         permute_pairs = [[(2,0,1), None], [(1,0,2), (0,1,3,2)], [(0,1,2), (0,3,1,2)]]
