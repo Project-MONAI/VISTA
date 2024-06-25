@@ -13,13 +13,15 @@ import glob
 import os
 import unittest
 
-from monai.bundle import ConfigParser
 from monai.apps.utils import get_logger
+from monai.bundle import ConfigParser
 
 
 class TestConfig(unittest.TestCase):
     def test_vista3d_configs_parsing(self):
-        config_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "configs")
+        config_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "configs"
+        )
         get_logger("TestConfig").info(config_dir)
 
         configs = glob.glob(os.path.join(config_dir, "**", "*.yaml"), recursive=True)
@@ -28,7 +30,9 @@ class TestConfig(unittest.TestCase):
             parser.read_config(x)
             keys = sorted(parser.config.keys())
             # verify parser key fetching
-            get_logger("TestConfig").info(f"{parser[keys[0]]}, {keys[0]}, {parser[keys[-1]]}, {keys[-1]}")
+            get_logger("TestConfig").info(
+                f"{parser[keys[0]]}, {keys[0]}, {parser[keys[-1]]}, {keys[-1]}"
+            )
 
 
 if __name__ == "__main__":
