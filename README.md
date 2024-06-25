@@ -98,9 +98,9 @@ The codebase is under Apache 2.0 Licence.
 
 ```
 @article{he2024vista3d,
-      title={VISTA3D: Versatile Imaging SegmenTation and Annotation model for 3D Computed Tomography},
-      author={Yufan He, Pengfei Guo, Yucheng Tang, Andriy Myronenko, Vishwesh Nath, Ziyue Xu, Dong Yang, Can Zhao, Benjamin Simon, Mason Belue, Stephanie Harmon, Baris Turkbey, Daguang Xu, Wenqi Li},
-      journal={arXiv:2406.05285},
-      year={2024}
-    }
+  title={VISTA3D: Versatile Imaging SegmenTation and Annotation model for 3D Computed Tomography},
+  author={He, Yufan and Guo, Pengfei and Tang, Yucheng and Myronenko, Andriy and Nath, Vishwesh and Xu, Ziyue and Yang, Dong and Zhao, Can and Simon, Benjamin and Belue, Mason and others},
+  journal={arXiv preprint arXiv:2406.05285},
+  year={2024}
+}
 ```
