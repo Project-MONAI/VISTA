@@ -54,7 +54,6 @@ from functools import partial
 from ..utils.trans_utils import VistaPostTransform
 from ..train import CONFIG, infer_wrapper
 from matplotlib import pyplot as plt
-from vista3d import vista_model_registry
 from .build_vista3d_eval_only import vista_model_registry
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
@@ -94,14 +93,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     transforms_infer = parser.get_parsed_content("transforms_infer")
     list_key = parser.get_parsed_content("list_key", default='testing')
     """ start_prompt and end_prompt are used to save memory. For 117 class prompts, it will go oom. Use these two to limit
-    the prompt number and run the scripts multiple times to cover 117 classes.  
+    the prompt number and run the scripts multiple times to cover 117 classes.
     """
     start_prompt = parser.get_parsed_content("start_prompt", default=None)
     end_prompt = parser.get_parsed_content("end_prompt", default=None)
     dataset_name = parser.get_parsed_content("dataset_name", default=None)
     if label_set is None:
         label_mapping = parser.get_parsed_content("label_mapping", default='./data/jsons/label_mappings.json')
-        
+
         with open(label_mapping, 'r') as f:
             label_mapping = json.load(f)
         label_set = [_xx[0] for _xx in label_mapping[dataset_name]]
@@ -123,7 +122,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     random_seed = parser.get_parsed_content("random_seed", default=0)
     if random_seed is not None and (isinstance(random_seed, int) or isinstance(random_seed, float)):
         set_determinism(seed=random_seed)
-    
+
     CONFIG["handlers"]["file"]["filename"] = parser.get_parsed_content("log_output_file")
     logging.config.dictConfig(CONFIG)
     logging.getLogger("torch.distributed.distributed_c10d").setLevel(logging.WARNING)
@@ -162,7 +161,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
 
     for i in range(len(process_files)):
-        if type(process_files[i]['image']) == list and len(process_files[i]['image']) > 1:
+        if isinstance(process_files[i]['image'], list) and len(process_files[i]['image']) > 1:
             process_files[i]['image'] = process_files[i]['image'][0]
     if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
         print(f'Total files {len(process_files)}')
@@ -195,7 +194,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             nearest_interp=True,
             to_tensor=True,
         )
-    
+
     post_pred = transforms.AsDiscrete(threshold=0., dtype=torch.uint8)
 
     if torch.cuda.device_count() > 1:
@@ -206,11 +205,11 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     else:
         model.load_state_dict(torch.load(ckpt, map_location=device), strict=False)
 
-        
-    
+
+
     model.eval()
     metric_dim = len(label_set) - 1
-    model_inferer = partial(infer_wrapper, model=model)  
+    model_inferer = partial(infer_wrapper, model=model)
     with torch.no_grad():
         metric = torch.zeros(metric_dim * 2, dtype=torch.float, device=device)
         _index = 0
@@ -244,7 +243,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 prompt_class=torch.tensor(label_set).to(device).unsqueeze(0),
                                 labels=val_data["label"].to(_device_in),
                                 label_set=label_set,
-                                merge_with_trial=True) 
+                                merge_with_trial=True)
                             finished = True
                             skipped = False
                     except RuntimeError as e:
@@ -266,15 +265,15 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         try:
                             val_outputs = VistaPostTransform(keys='pred')({'image': val_data['image'][0], 'pred':val_outputs[0], 'label_prompt': label_set})
                             val_outputs = post_transform(val_outputs)['pred'][None, ...]
-                        except:
+                        except BaseException:
                             val_outputs = VistaPostTransform(keys='pred')({'image': val_data['image'][0].cpu(), 'pred':val_outputs[0].cpu(), 'label_prompt': label_set})
-                            val_outputs = post_transform(val_outputs)['pred'][None, ...]                            
+                            val_outputs = post_transform(val_outputs)['pred'][None, ...]
                         for i in range(1, len(label_set)):
                             gt = val_data["label_gt"].to(val_outputs.device) == label_set[i]
                             ypred = val_outputs == label_set[i]
-                            value[0, i-1] = compute_dice(y_pred=ypred, y=gt, include_background=False)  
-                        _final_count += 1 
-                    except:
+                            value[0, i-1] = compute_dice(y_pred=ypred, y=gt, include_background=False)
+                        _final_count += 1
+                    except BaseException:
                         logger.debug(f"{_index} / {len(val_loader)} / {val_filename}: Shape mismatch or OOM in postransform")
                         value = torch.full((1, metric_dim), float('nan')).to(device)
                 else:
@@ -282,7 +281,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         val_outputs = post_pred(val_outputs[0])[None, ...]
                         try:
                             val_outputs = post_transform({'image': val_data['image'][0], 'pred':val_outputs[0]})['pred'][None, ...]
-                        except:
+                        except BaseException:
                             val_outputs = post_transform({'image': val_data['image'][0].cpu(), 'pred':val_outputs[0].cpu()})['pred'][None, ...]
                         for i in range(1, len(label_set)):
                             gt = val_data["label_gt"].to(val_outputs.device) == label_set[i]
@@ -295,7 +294,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             output_json_path = os.path.join(output_dirs, os.path.dirname(val_filename).split('/')[-1] + '.json')
                             with open(output_json_path, 'w') as f:
                                 json.dump(value[0].cpu().numpy().tolist(), f)
-                    except:
+                    except BaseException:
                         logger.debug(f"{_index} / {len(val_loader)} / {val_filename}: Shape mismatch or OOM in postransform")
                         value = torch.full((1, metric_dim), float('nan')).to(device)
             val_outputs, val_data = None, None

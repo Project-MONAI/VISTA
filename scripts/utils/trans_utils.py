@@ -32,20 +32,13 @@ from monai.config.type_definitions import NdarrayOrTensor, NdarrayTensor
 from monai.networks.layers import GaussianFilter
 from monai.networks.utils import meshgrid_ij
 from monai.transforms.compose import Compose
-from monai.transforms.transform import MapTransform
 from monai.utils import (
     min_version,
     optional_import,
 )
-from monai.utils.type_conversion import convert_data_type, convert_to_cupy, convert_to_dst_type, convert_to_tensor
+from monai.utils.type_conversion import convert_to_cupy, convert_to_dst_type, convert_to_tensor
 from matplotlib import pyplot as plt
 from monai.transforms import RandCropByLabelClassesd, SpatialCrop, RandCropByLabelClasses, MapLabelValue, MapTransform
-measure, has_measure = optional_import("skimage.measure", "0.14.2", min_version)
-morphology, has_morphology = optional_import("skimage.morphology")
-ndimage, _ = optional_import("scipy.ndimage")
-cp, has_cp = optional_import("cupy")
-cp_ndarray, _ = optional_import("cupy", name="ndarray")
-exposure, has_skimage = optional_import("skimage.exposure")
 
 
 from monai.config.type_definitions import NdarrayOrTensor
@@ -58,6 +51,13 @@ from monai.utils import (
     fall_back_tuple,
     look_up_option
 )
+
+measure, has_measure = optional_import("skimage.measure", "0.14.2", min_version)
+morphology, has_morphology = optional_import("skimage.morphology")
+ndimage, _ = optional_import("scipy.ndimage")
+cp, has_cp = optional_import("cupy")
+cp_ndarray, _ = optional_import("cupy", name="ndarray")
+exposure, has_skimage = optional_import("skimage.exposure")
 
 __all__ = [
     "get_largest_connected_component_mask",
@@ -88,7 +88,7 @@ def convert_points_to_disc(image_size, point, point_label, radius=2, disc=False)
                 if disc:
                     masks[b,channel] += torch.pow(coords[b,channel] - point[b,n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),2).sum(0) < radius ** 2
                 else:
-                    masks[b,channel] += torch.exp(-torch.pow(coords[b,channel] - point[b,n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),2).sum(0)/ (2 *radius ** 2)) 
+                    masks[b,channel] += torch.exp(-torch.pow(coords[b,channel] - point[b,n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),2).sum(0)/ (2 *radius ** 2))
     # masks[masks>1] = 1
     return masks
 
@@ -182,7 +182,7 @@ def get_largest_connected_component_mask(
     img_pos: NdarrayTensor, img_neg: NdarrayTensor, connectivity: int | None = None, num_components: int = 1, point_coords=None, point_labels=None, margins=3
 ) -> NdarrayTensor:
     """
-    Gets the largest connected component mask of an image that include the point_coords. 
+    Gets the largest connected component mask of an image that include the point_coords.
     Args:
         img_pos: [1, B, H, W, D]
         point_coords [B, N, 3]
@@ -227,11 +227,11 @@ def get_largest_connected_component_mask(
                 # if -1 padding point, skip
                 continue
             for margin in range(margins):
-                l,r = max(p[0].round().int().item() - margin, 0), min(p[0].round().int().item() + margin + 1, features.shape[-3])
+                left,right = max(p[0].round().int().item() - margin, 0), min(p[0].round().int().item() + margin + 1, features.shape[-3])
                 t,d = max(p[1].round().int().item() - margin, 0), min(p[1].round().int().item() + margin + 1, features.shape[-2])
                 f,b = max(p[2].round().int().item() - margin, 0), min(p[2].round().int().item() + margin + 1, features.shape[-1])
-                if (features[bs,0,l:r,t:d,f:b] > 0).any():
-                    index = features[bs,0,l:r,t:d,f:b].max()
+                if (features[bs,0,left:right,t:d,f:b] > 0).any():
+                    index = features[bs,0,left:right,t:d,f:b].max()
                     outs[[bs]] += lib.isin(features[[bs]], index)
                     break
     outs[outs>1] = 1
@@ -261,7 +261,6 @@ class VistaPostTransform(MapTransform):
             if keys in data:
                 pred = data[keys]
                 object_num = pred.shape[0]
-                device = pred.device
                 # if it's multichannel, perform argmax
                 if object_num > 1:
                     # concate background channel. Make sure user did not provide 0 as prompt.
@@ -279,7 +278,7 @@ class VistaPostTransform(MapTransform):
                         pred_mapping[pred == i] = data['label_prompt'][i]
                 data[keys] = pred_mapping
         return data
-    
+
 class RandCropByLabelClassesShift(RandCropByLabelClasses):
     def __call__(
         self,
@@ -325,7 +324,7 @@ class RandCropByLabelClassesShift(RandCropByLabelClasses):
                 results.append(cropped)
 
         return results
-    
+
 class RandCropByLabelClassesShiftd(RandCropByLabelClassesd):
     backend = RandCropByLabelClassesShift.backend
 
@@ -368,7 +367,7 @@ class RelabelD(MapTransform):
         for key in self.key_iterator(d):
             d[key] = _m(d[key])
         return d
-    
+
 class DatasetSelectTansformd(MapTransform):
     def __init__(
             self,

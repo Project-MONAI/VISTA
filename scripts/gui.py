@@ -43,13 +43,13 @@ class samm_visualizer():
             exit()
         self.data = data
         self.data_path = file_path
-        
+
     def generate_mask(self):
         point = []
         point_label = []
         self.point_only = self.checkbox.get_status()[0]
         self.class_label = self.text_box.text
-        
+
         if len(self.class_label) == 0:
             messagebox.showwarning("Warning", 'Label prompt is not specified. Assuming the point is for supported class. \
                                    For zero-shot, input random number > 132')
@@ -136,8 +136,8 @@ class samm_visualizer():
                 self.previous_slice(ax)
             elif event.button == 'down':
                 self.next_slice(ax)
-        except:
-            pass 
+        except BaseException:
+            pass
 
     def previous_slice(self, ax):
         if ax is None:
@@ -145,14 +145,14 @@ class samm_visualizer():
         ax.index = (ax.index - 1) % ax.volume.shape[2]
         self.update_slice(ax)
 
-    def next_slice(self,ax):       
+    def next_slice(self,ax):
         if ax is None:
             return
         ax.index = (ax.index + 1) % ax.volume.shape[2]
         self.update_slice(ax)
 
     def update_slice(self,ax):
-        # remove circles 
+        # remove circles
         while(len(self.circle_artists)>0):
             ca = self.circle_artists.pop()
             ca.remove()
@@ -186,9 +186,9 @@ class samm_visualizer():
                     point_label = 1
                 self.clicked_points.append((x, y, z, point_label))
                 self.update_slice(ax)
-        except:
+        except BaseException:
             pass
-    
+
     def run(self):
         # File selection
         self.select_data_file()

@@ -25,7 +25,6 @@ from matplotlib import pyplot as plt
 from datetime import datetime
 from typing import Optional, Sequence, Union
 import nibabel as nib
-nib.imageglobals.logger.setLevel(40)
 
 import torch
 import torch.distributed as dist
@@ -53,6 +52,7 @@ from .sliding_window import sliding_window_inference
 from .utils.workflow_utils import generate_prompt_pairs, get_next_points,sample_points_patch_val, MERGE_LIST
 from .train import loss_wrapper, infer_wrapper, CONFIG
 
+nib.imageglobals.logger.setLevel(40)
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
@@ -110,7 +110,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     logger.debug(f"World_size: {world_size}")
     logger.debug(f"num_epochs: {num_epochs}")
     logger.debug(f"num_epochs_per_validation: {num_epochs_per_validation}")
-        
+
     # training hyperparameters - model and optimizer
     input_channels = parser.get_parsed_content("input_channels")
     model_registry = parser.get_parsed_content("model")
@@ -209,13 +209,13 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             val_sampler = DistributedSampler(val_ds, shuffle=False, even_divisible=False)
         if test_ds is not None:
             test_sampler = DistributedSampler(test_ds, shuffle=False, even_divisible=False)
-    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=(train_sampler is None), persistent_workers=True, 
+    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=(train_sampler is None), persistent_workers=True,
                               pin_memory=True, sampler=train_sampler, prefetch_factor=1)
-    val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1, 
+    val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1,
                             persistent_workers=False)
-    test_loader = DataLoader(test_ds, num_workers=4, batch_size=1, shuffle=False, sampler=test_sampler, prefetch_factor=1, 
+    test_loader = DataLoader(test_ds, num_workers=4, batch_size=1, shuffle=False, sampler=test_sampler, prefetch_factor=1,
                             persistent_workers=False)
-    
+
 
     # ---------  Start training  ---------
     """ Notes: The training script is directly modified from auto3dseg.
@@ -268,7 +268,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         point_freeze = True
                     try:
                         model.module.set_auto_grad(auto_freeze = auto_freeze, point_freeze=point_freeze)
-                    except:
+                    except BaseException:
                         model.set_auto_grad(auto_freeze = auto_freeze, point_freeze=point_freeze)
                     if world_size == 1 or dist.get_rank() == 0:
                         logger.debug(f'Auto freeze {auto_freeze}, point freeze {point_freeze} at epoch {epoch}!')
@@ -277,9 +277,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     drop_point_prob_train = drop_point_prob
                     try:
                         model.module.set_auto_grad(auto_freeze=False, point_freeze=False)
-                    except:
-                        model.set_auto_grad(auto_freeze=False, point_freeze=False)    
-                    if world_size == 1 or dist.get_rank() == 0: 
+                    except BaseException:
+                        model.set_auto_grad(auto_freeze=False, point_freeze=False)
+                    if world_size == 1 or dist.get_rank() == 0:
                         logger.debug(f'Auto freeze {False}, point freeze {False} at epoch {epoch}!')
 
                 if world_size == 1 or dist.get_rank() == 0:
@@ -292,7 +292,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 # this will only happen for unlabeled dataset
                 batch_data["label"] = batch_data.pop("pseudo_label")
             labels_l = batch_data["label"].as_subclass(torch.Tensor)
-            
+
 
             if len(inputs_l) > 1:
                 _idx = torch.randperm(inputs_l.shape[0])
@@ -320,7 +320,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     # if use iterative training
                     num_iters = max(iter_num, 1)
 
-                # for dataset other than totalseg, use pseudolabel for zero-shot. for totalseg, if labels_p exist, use labels_p for zero-shot, 
+                # for dataset other than totalseg, use pseudolabel for zero-shot. for totalseg, if labels_p exist, use labels_p for zero-shot,
                 # gt for regular sample. If labels_p does not exist, use gt for zero-shot.
                 label_prompt, point, point_label, prompt_class = generate_prompt_pairs(labels,
                                                                         train_label_set,
@@ -342,7 +342,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 # clear image_embedding
                 try:
                     model.module.clear_cache()
-                except:
+                except BaseException:
                     model.clear_cache()
                 for click_indx in range(num_iters):
                     outputs = None
@@ -358,8 +358,8 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     with autocast():
                         outputs = model(input_images=inputs,
                                         point_coords=point,
-                                        point_labels=point_label, 
-                                        class_vector=torch.tensor(label_prompt_global).to(device).unsqueeze(1), 
+                                        point_labels=point_label,
+                                        class_vector=torch.tensor(label_prompt_global).to(device).unsqueeze(1),
                                         prompt_class=prompt_class)
                     # cumulate loss
                     loss, loss_n = torch.tensor(0.0, device=device), torch.tensor(0.0, device=device)
@@ -372,7 +372,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             for m in MERGE_LIST[prompt_class[idx].item()]:
                                 gt = torch.logical_or(gt, labels==m)
                         loss += loss_function(outputs[[idx]].float(), gt)
-        
+
                     loss /= max(loss_n, 1.0)
 
                     if num_iters > 1:
@@ -395,7 +395,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 break
                     del outputs
                     torch.cuda.empty_cache()
-                        
+
                     for param in model.parameters():
                         param.grad = None
                     inputs = inputs.to('cpu')
@@ -434,12 +434,12 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
 
         # ---------  Start Validation  ---------
-        """ Note: 
+        """ Note:
             In training transform, labels are mapped to global index with Relabel transform. However, there could be local index that are not used since it can excluded
-            from label_mapping definition. In training sample generation, training pairs will only be sampled from label_set. In validation, the label_prompt 
-            will use global mapping, but the val label is not mapped to global index, so we need the val_orig_set. Notice the compute_dice assume gt label starts 
+            from label_mapping definition. In training sample generation, training pairs will only be sampled from label_set. In validation, the label_prompt
+            will use global mapping, but the val label is not mapped to global index, so we need the val_orig_set. Notice the compute_dice assume gt label starts
             from 0,1,2,3,4,.... If some are index are not used (not defined in label_mapping.json thus label_set does not include them), compute_dice directly will give wrong
-            number. We calculate dice for each class with a for loop. 
+            number. We calculate dice for each class with a for loop.
         """
         model.eval()
         model_inferer = partial(infer_wrapper, model=model)
@@ -454,7 +454,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 for _index, val_data in enumerate(data_loader[val_times]):
                     val_filename = val_data["image"].meta["filename_or_obj"][0]
                     # one difference is that label_set in train.py does not include 0 but here we require user add 0 in
-                    # the json config. 
+                    # the json config.
                     val_label_set = mapped_label_set
                     val_orig_set = label_set
 
@@ -478,7 +478,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                     device=_device_out,
                                     point_coords=None,
                                     point_labels=None,
-                                    class_vector=label_prompt, 
+                                    class_vector=label_prompt,
                                     prompt_class=promot_class,
                                     labels=val_data["label"].to(_device_in),
                                     label_set=val_orig_set,
@@ -504,7 +504,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         if val_times > 0:
                             try:
                                 val_outputs = post_transform({'image': val_data['image'][0], 'pred':val_outputs[0]})['pred'][None, ...]
-                            except:
+                            except BaseException:
                                 print(val_filename, 'OOM', val_data['label_gt'].shape)
                                 val_data['image'] = val_data['image'].cpu()
                                 val_outputs = val_outputs.cpu()

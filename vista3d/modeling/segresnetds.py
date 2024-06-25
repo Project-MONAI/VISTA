@@ -23,7 +23,7 @@ from monai.networks.layers.factories import Act, Conv, Norm, split_args
 from monai.networks.layers.utils import get_act_layer, get_norm_layer
 from monai.utils import UpsampleMode, has_option
 
-__all__ = ["SegResNetDS"]
+__all__ = ["SegResNetDS2"]
 
 
 def scales_for_resolution(resolution: tuple | list, n_stages: int | None = None):
@@ -326,7 +326,7 @@ class SegResNetDS2(nn.Module):
 
         filters = init_filters * 2**n_up
         self.up_layers = nn.ModuleList()
-        self.up_layers_auto = nn.ModuleList() 
+        self.up_layers_auto = nn.ModuleList()
 
         for i in range(n_up):
             filters = filters // 2
@@ -466,10 +466,10 @@ class SegResNetDS2(nn.Module):
         # in eval() mode, always return a single final output
         if not self.training or len(outputs) == 1:
             outputs = outputs[0] if len(outputs) == 1 else outputs
-        
+
         if not self.training or len(outputs_auto) == 1:
             outputs_auto = outputs_auto[0] if len(outputs_auto) == 1 else outputs_auto
-            
+
         # return a list of DS outputs
         return outputs, outputs_auto
 

@@ -19,8 +19,6 @@ from monai import transforms
 import torch.distributed as dist
 from monai.data import partition_dataset
 from monai.utils import ensure_tuple_rep, optional_import
-rearrange, _ = optional_import("einops", name="rearrange")
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from monai.apps.utils import DEFAULT_FMT
 from monai.utils import set_determinism, RankFilter
 from monai.data import partition_dataset
@@ -32,6 +30,8 @@ from skimage.segmentation import slic
 from segment_anything import SamPredictor, sam_model_registry
 from monai.auto3dseg.utils import datafold_read
 from .utils.trans_utils import erode3d, dilate3d
+rearrange, _ = optional_import("einops", name="rearrange")
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 def pad_to_divisible_by_16(image):
     # Get the dimensions of the input image
@@ -57,10 +57,10 @@ class InferClass:
         if not os.path.exists(output_path):
             os.makedirs(output_path, exist_ok=True)
         self.amp = True
-        CONFIG["handlers"]["file"]["filename"] = f'{output_path}/log.log'	
+        CONFIG["handlers"]["file"]["filename"] = f'{output_path}/log.log'
         logging.config.dictConfig(CONFIG)
         self.device = torch.device("cuda:0")
-        self.sam = sam_model_registry["vit_h"](checkpoint='sam_vit_h_4b8939.pth').to(self.device)  
+        self.sam = sam_model_registry["vit_h"](checkpoint='sam_vit_h_4b8939.pth').to(self.device)
         self.model = SamPredictor(self.sam)
         return
 
@@ -72,9 +72,9 @@ class InferClass:
         """
         pixel_mean = torch.Tensor([123.675, 116.28, 103.53]).view(1, 3, 1, 1)
         pixel_std = torch.Tensor([58.395, 57.12, 57.375]).view(1, 3, 1, 1)
-        if type(image_file) is not list:
+        if not isinstance(image_file list):
             image_file = [image_file]
-        
+
         permute_pairs = [[(2,0,1), None], [(1,0,2), (0,1,3,2)], [(0,1,2), (0,3,1,2)]]
         for file in image_file:
             if data_root_dir is not None:
@@ -126,9 +126,9 @@ class InferClass:
                 outputs[mask.to(torch.bool)] = 0
                 outputs =  monai.data.MetaTensor(outputs,affine=batch_data.affine, meta=batch_data.meta)
                 monai.transforms.SaveImage(output_dir=output_dir, output_postfix="seg",data_root_dir=data_root_dir)(outputs.unsqueeze(0).cpu().to(torch.int16))
-            except:
+            except BaseException:
                 print(f'{file} failed. Skipped.')
-                
+
     @torch.no_grad()
     @torch.cuda.amp.autocast()
     def batch_infer(self, datalist=str, basedir=str, output_dir='./supervoxel_sam/', data_root_dir=None, n_segments=400):
@@ -136,7 +136,7 @@ class InferClass:
         train_files = [_['image'] for _ in train_files]
         dist.init_process_group(backend="nccl", init_method="env://")
         world_size = dist.get_world_size()
-        rank = dist.get_rank()        
+        rank = dist.get_rank()
         # no need to wrap model with DistributedDataParallel
         self.model = SamPredictor(self.sam.to(f'cuda:{rank}'))
         infer_files = partition_dataset(

@@ -44,21 +44,21 @@ __all__ = ["sliding_window_inference", "point_based_window_inferer"]
 
 def get_window_idx_c(p, roi, s):
     if p - roi//2 < 0:
-        l, r = 0, roi
+        left, right = 0, roi
     elif p + roi//2 > s:
-        l, r = s - roi, s
+        left, right = s - roi, s
     else:
-        l, r = int(p)-roi//2, int(p)+roi//2
-    return l, r
+        left, right = int(p)-roi//2, int(p)+roi//2
+    return left, right
 
 def get_window_idx(p, roi, s, center_only=True, margin=5):
-    l, r = get_window_idx_c(p, roi, s)
+    left, right = get_window_idx_c(p, roi, s)
     if center_only:
-        return [l], [r]
+        return [left], [right]
     left_most = max(0, p - roi + margin)
     right_most = min(s, p + roi - margin)
-    left = [left_most, right_most-roi, l]
-    right = [left_most + roi, right_most, r]
+    left = [left_most, right_most-roi, left]
+    right = [left_most + roi, right_most, right]
     return left, right
 
 def pad_previous_mask(inputs, roi_size, padvalue=0):
@@ -68,12 +68,12 @@ def pad_previous_mask(inputs, roi_size, padvalue=0):
         half = diff // 2
         pad_size.extend([half, diff - half])
     if any(pad_size):
-        inputs = torch.nn.functional.pad(inputs, pad=pad_size, mode="constant", value=padvalue)    
+        inputs = torch.nn.functional.pad(inputs, pad=pad_size, mode="constant", value=padvalue)
     return inputs, pad_size
-    
-def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode, overlap, sw_device, device, point_coords, point_labels, class_vector, prompt_class, prev_mask, point_mask=None, 
+
+def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode, overlap, sw_device, device, point_coords, point_labels, class_vector, prompt_class, prev_mask, point_mask=None,
                                point_start=0,**kwargs):
-    """ Point based window inferer, crop a patch centered at the point, and perform inference. Different patches are combined with gaussian weighted weights. 
+    """ Point based window inferer, crop a patch centered at the point, and perform inference. Different patches are combined with gaussian weighted weights.
     Args:
         predictor: partial(infer_wrapper, model). infer_wrapper transpose the model output. The model output is [B, 1, H, W, D] which needs to be transposed to [1, B, H, W, D]
         point_coords: [B, N, 3]
@@ -82,7 +82,7 @@ def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode
         prev_mask: [1, B, H, W, D], THE VALUE IS BEFORE SIGMOID!
     Returns:
         stitched_output: [1, B, H, W, D]. The value is before sigmoid.
-    Notice: The function currently only supports SINGLE OBJECT INFERENCE with B=1. 
+    Notice: The function currently only supports SINGLE OBJECT INFERENCE with B=1.
     """
     assert point_coords.shape[0] == 1, 'Only supports single object point click'
     image, pad = pad_previous_mask(copy.deepcopy(inputs), roi_size)
@@ -101,7 +101,7 @@ def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode
                     unravel_slice = [slice(None), slice(None), slice(int(lx), int(rx)), slice(int(ly), int(ry)), slice(int(lz), int(rz))]
                     batch_image = image[unravel_slice]
                     # ball = get_gaussian_ball(batch_image.shape[-3:])
-                    output = predictor(batch_image, 
+                    output = predictor(batch_image,
                                 point_coords=point_coords,
                                 point_labels=point_labels,
                                 class_vector=class_vector,
@@ -258,11 +258,11 @@ def sliding_window_inference(
             kwargs["labels"] = F.pad(kwargs["labels"], pad=pad_size, mode=look_up_option(padding_mode, PytorchPadMode),
                                     value=cval)
         if "prev_mask" in kwargs.keys() and kwargs["prev_mask"] is not None:
-            kwargs["prev_mask"] = F.pad(kwargs["prev_mask"], pad=pad_size, mode=look_up_option(padding_mode, PytorchPadMode), 
+            kwargs["prev_mask"] = F.pad(kwargs["prev_mask"], pad=pad_size, mode=look_up_option(padding_mode, PytorchPadMode),
                                     value=cval)
         if "point_coords" in kwargs.keys() and kwargs["point_coords"] is not None:
             kwargs["point_coords"] = kwargs["point_coords"] + torch.tensor([pad_size[-2], pad_size[-4], pad_size[-6]]).to(kwargs["point_coords"].device)
-            
+
     # Store all slices
     scan_interval = _get_scan_interval(image_size, roi_size, num_spatial_dims, overlap)
     slices = dense_patch_slices(image_size, roi_size, scan_interval, return_slice=not buffered)

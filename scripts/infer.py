@@ -28,12 +28,13 @@ from functools import partial
 import pdb
 from vista3d import vista_model_registry
 from monai.utils import ensure_tuple_rep, look_up_option, optional_import
-rearrange, _ = optional_import("einops", name="rearrange")
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from monai.auto3dseg.utils import datafold_read
 from monai.apps.utils import DEFAULT_FMT
 from monai.data import partition_dataset
 from .utils.trans_utils import get_largest_connected_component_point
+
+rearrange, _ = optional_import("einops", name="rearrange")
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -92,7 +93,7 @@ class InferClass:
         parser = ConfigParser()
         parser.read_config(config_file_)
         parser.update(pairs=_args)
-        
+
         self.amp = parser.get_parsed_content("amp")
         input_channels = parser.get_parsed_content("input_channels")
         patch_size = parser.get_parsed_content("patch_size")
@@ -102,8 +103,8 @@ class InferClass:
         output_path = parser.get_parsed_content("infer")["output_path"]
         if not os.path.exists(output_path):
             os.makedirs(output_path, exist_ok=True)
-	    
-        CONFIG["handlers"]["file"]["filename"] =parser.get_parsed_content("infer")["log_output_file"]	
+
+        CONFIG["handlers"]["file"]["filename"] =parser.get_parsed_content("infer")["log_output_file"]
         logging.config.dictConfig(CONFIG)
         self.infer_transforms = parser.get_parsed_content("transforms_infer")
 
@@ -114,23 +115,23 @@ class InferClass:
 
         pretrained_ckpt = torch.load(ckpt_name, map_location=self.device)
         self.model.load_state_dict(pretrained_ckpt, strict=False)
-        logger.debug(f"[debug] checkpoint {ckpt_name:s} loaded")      
-        post_transforms = [	
-            transforms.Invertd(	
-                keys="pred",	
-                transform=self.infer_transforms,	
-                orig_keys="image",	
-                meta_keys="pred_meta_dict",	
-                orig_meta_keys="image_meta_dict",	
-                meta_key_postfix="meta_dict",	
-                nearest_interp=False,	
+        logger.debug(f"[debug] checkpoint {ckpt_name:s} loaded")
+        post_transforms = [
+            transforms.Invertd(
+                keys="pred",
+                transform=self.infer_transforms,
+                orig_keys="image",
+                meta_keys="pred_meta_dict",
+                orig_meta_keys="image_meta_dict",
+                meta_key_postfix="meta_dict",
+                nearest_interp=False,
                 to_tensor=True),
             transforms.AsDiscreted(
                 keys="pred",
                 threshold=0.)
-                ]        	
+                ]
 
-        # For Vista3d, sigmoid is always used, but for visualization, argmax is needed    
+        # For Vista3d, sigmoid is always used, but for visualization, argmax is needed
         save_transforms = [
             transforms.SaveImaged(
                 keys="pred",
@@ -180,27 +181,27 @@ class InferClass:
             self.sliding_window_inferer = partial(point_based_window_inferer, point_start=0)
         else:
             self.sliding_window_inferer = sliding_window_inference
-        device_list_input = [self.device, self.device, "cpu"]	
-        device_list_output = [self.device, "cpu", "cpu"]	
-        for _device_in, _device_out in zip(	
-                device_list_input, device_list_output):	
-            try:	
-                with torch.cuda.amp.autocast(enabled=self.amp):	
-                    batch_data["pred"] = self.sliding_window_inferer(	
-                        inputs=batch_data["image"].to(_device_in),	
-                        roi_size=self.patch_size,	
-                        sw_batch_size=1,	
+        device_list_input = [self.device, self.device, "cpu"]
+        device_list_output = [self.device, "cpu", "cpu"]
+        for _device_in, _device_out in zip(
+                device_list_input, device_list_output):
+            try:
+                with torch.cuda.amp.autocast(enabled=self.amp):
+                    batch_data["pred"] = self.sliding_window_inferer(
+                        inputs=batch_data["image"].to(_device_in),
+                        roi_size=self.patch_size,
+                        sw_batch_size=1,
                         predictor=partial(infer_wrapper, model=self.model),
-                        mode="gaussian",	
-                        overlap=0.625,	
-                        sw_device=self.device,	
+                        mode="gaussian",
+                        overlap=0.625,
+                        sw_device=self.device,
                         device=_device_out,
                         point_coords=torch.tensor(point).to(_device_in) if point is not None else None,
                         point_labels=torch.tensor(point_label).to(_device_in) if point_label is not None else None,
                         class_vector=torch.tensor(label_prompt).to(_device_in) if label_prompt is not None else None,
                         prompt_class=torch.tensor(prompt_class).to(_device_in) if prompt_class is not None else None,
                         prev_mask=torch.tensor(self.prev_mask).to(_device_in) if self.prev_mask is not None else None)
-                    
+
                     if not hasattr(batch_data["pred"],'meta'):
                         batch_data["pred"] = monai.data.MetaTensor(batch_data["pred"], affine=batch_data["image"].meta["affine"], meta=batch_data["image"].meta)
                 self.prev_mask = batch_data["pred"]
@@ -217,18 +218,18 @@ class InferClass:
                 # batch_data[0]['pred'] = torch.nan_to_num(batch_data[0]['pred'][0]  > 0.5,0).unsqueeze(0)
                 if save_mask:
                     batch_data = [self.save_transforms(i) for i in batch_data]
-                                    
-                finished = True	
+
+                finished = True
             except RuntimeError as e:
                 if not any(x in str(e).lower() for x in ("memory", "cuda", "cudnn")):
                     raise e
-                finished = False	
-            if finished:	
+                finished = False
+            if finished:
                 break
         if not finished:
             raise RuntimeError('Infer not finished due to OOM.')
         return batch_data[0]["pred"]
-    
+
     def infer_everything(self, image_file, label_prompt=EVERYTHING_PROMPT, rank=0):
         self.model.eval()
         device = f'cuda:{rank}'
@@ -238,20 +239,20 @@ class InferClass:
             batch_data = self.infer_transforms(image_file)
             batch_data = list_data_collate([batch_data])
             self.batch_data = batch_data
-        device_list_input = [device, device, "cpu"]	
-        device_list_output = [device, "cpu", "cpu"]	
-        for _device_in, _device_out in zip(	
-                device_list_input, device_list_output):	
-            try:	
-                with torch.cuda.amp.autocast(enabled=self.amp):	
-                    batch_data["pred"] = sliding_window_inference(	
-                        inputs=batch_data["image"].to(_device_in),	
-                        roi_size=self.patch_size,	
-                        sw_batch_size=1,	
+        device_list_input = [device, device, "cpu"]
+        device_list_output = [device, "cpu", "cpu"]
+        for _device_in, _device_out in zip(
+                device_list_input, device_list_output):
+            try:
+                with torch.cuda.amp.autocast(enabled=self.amp):
+                    batch_data["pred"] = sliding_window_inference(
+                        inputs=batch_data["image"].to(_device_in),
+                        roi_size=self.patch_size,
+                        sw_batch_size=1,
                         predictor=partial(infer_wrapper, model=self.model),
-                        mode="gaussian",	
-                        overlap=0.625,	
-                        sw_device=device,	
+                        mode="gaussian",
+                        overlap=0.625,
+                        sw_device=device,
                         device=_device_out,
                         class_vector=torch.tensor(label_prompt).to(_device_in))
                     if not hasattr(batch_data["pred"],'meta'):
@@ -264,13 +265,13 @@ class InferClass:
                 batch_data = [self.post_transforms(i)
                             for i in decollate_batch(batch_data)]
                 batch_data = [self.save_transforms(i) for i in batch_data]
-                                    
-                finished = True	
+
+                finished = True
             except RuntimeError as e:
                 if not any(x in str(e).lower() for x in ("memory", "cuda", "cudnn")):
                     raise e
-                finished = False	
-            if finished:	
+                finished = False
+            if finished:
                 break
         if not finished:
             raise RuntimeError('Infer not finished due to OOM.')
@@ -281,7 +282,7 @@ class InferClass:
         train_files = [_['image'] for _ in train_files]
         dist.init_process_group(backend="nccl", init_method="env://")
         world_size = dist.get_world_size()
-        rank = dist.get_rank()        
+        rank = dist.get_rank()
         # no need to wrap model with DistributedDataParallel
         self.model = self.model.to(f'cuda:{rank}')
         infer_files = partition_dataset(

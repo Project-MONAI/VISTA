@@ -21,7 +21,6 @@ import yaml
 import numpy as np
 import pdb
 import nibabel as nib
-nib.imageglobals.logger.setLevel(40)
 from datetime import datetime, timedelta
 from typing import Optional, Sequence, Union
 from tqdm import tqdm
@@ -64,6 +63,7 @@ from .utils.sample_utils import Point_sampler
 from .utils.trans_utils import DatasetSelectTansformd, RelabelD
 
 
+nib.imageglobals.logger.setLevel(40)
 CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -91,7 +91,7 @@ CONFIG = {
         },
     },
 }
-                                                                                                                                                                                                                                                                                                                                                                   
+
 
 def infer_wrapper(inputs, model, **kwargs):
     """ VISTA3D output is [B, 1, H, W, D], which segment B foregrounds and stacked at the batch dimension.
@@ -161,7 +161,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     logger.debug(f"World_size: {world_size}")
     logger.debug(f"num_epochs: {num_epochs}")
     logger.debug(f"num_epochs_per_validation: {num_epochs_per_validation}")
-        
+
     # training hyperparameters - model and optimizer
     input_channels = parser.get_parsed_content("input_channels")
     model_registry = parser.get_parsed_content("model")
@@ -221,8 +221,8 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                                      patch_size=parser.get_parsed_content("patch_size"),
                                                      json_dir=json_dir
                                                      )
-    
-                                                     
+
+
     _, val_files = get_datalist_with_dataset_name(datasets=val_datasets, fold_idx=fold, json_dir=json_dir)
     if world_size > 1:
         if len(val_files) < world_size:
@@ -250,9 +250,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         for k, v in dataset_specific_transforms_val.items():
             logger.debug(k)
             try:
-                logger.debug(v.transforms)       
-            except:
-                logger.debug(v) 
+                logger.debug(v.transforms)
+            except BaseException:
+                logger.debug(v)
         val_transforms = transforms.Compose(val_transforms)
 
 
@@ -285,9 +285,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             val_sampler = DistributedSampler(val_ds, shuffle=False, even_divisible=False)
         else:
             train_sampler = RandomSampler(train_ds)
-    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=(train_sampler is None), persistent_workers=True, 
+    train_loader = DataLoader(train_ds, num_workers=4, batch_size=num_images_per_batch, shuffle=(train_sampler is None), persistent_workers=True,
                               pin_memory=True, sampler=train_sampler, prefetch_factor=1)
-    val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1, 
+    val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1,
                             persistent_workers=False)
 
     # ---------  Start training  ---------
@@ -300,7 +300,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     num_rounds = int(np.ceil(float(num_epochs) // float(num_epochs_per_validation)))
     best_metric = -1
     best_metric_epoch = -1
-    idx_iter = 0 
+    idx_iter = 0
     if num_rounds == 0:
         raise RuntimeError("num_epochs_per_validation > num_epochs, modify hyper_parameters.yaml")
 
@@ -339,7 +339,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         point_freeze = True
                     try:
                         model.module.set_auto_grad(auto_freeze = auto_freeze, point_freeze=point_freeze)
-                    except:
+                    except BaseException:
                         model.set_auto_grad(auto_freeze = auto_freeze, point_freeze=point_freeze)
                     if world_size == 1 or dist.get_rank() == 0:
                         logger.debug(f'Auto freeze {auto_freeze}, point freeze {point_freeze} at epoch {epoch}!')
@@ -348,9 +348,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                     drop_point_prob_train = drop_point_prob
                     try:
                         model.module.set_auto_grad(auto_freeze=False, point_freeze=False)
-                    except:
-                        model.set_auto_grad(auto_freeze=False, point_freeze=False)    
-                    if world_size == 1 or dist.get_rank() == 0: 
+                    except BaseException:
+                        model.set_auto_grad(auto_freeze=False, point_freeze=False)
+                    if world_size == 1 or dist.get_rank() == 0:
                         logger.debug(f'Auto freeze {False}, point freeze {False} at epoch {epoch}!')
 
                 if world_size == 1 or dist.get_rank() == 0:
@@ -372,7 +372,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             else:
                 pl_reliability_l = None
             ds_l = batch_data["dataset_name"]
-            
+
 
             if len(inputs_l) > 1:
                 _idx = torch.randperm(inputs_l.shape[0])
@@ -387,7 +387,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 inputs = inputs_l[_k * num_patches_per_iter: (_k + 1) * num_patches_per_iter, ...]
                 labels = labels_l[_k * num_patches_per_iter: (_k + 1) * num_patches_per_iter, ...]
                 labels_sv = labels_sv_l[_k * num_patches_per_iter: (_k + 1) * num_patches_per_iter, ...] if labels_sv_l is not None else None
-                
+
                 inputs = inputs.to(device)
                 labels = labels.to(device)
                 labels_sv = labels_sv.to(device) if labels_sv is not None else None
@@ -396,9 +396,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 # label_mapping does not contain unlabeled dataset, use totalsegv2's labelmapping for unlabeled datasets.
                 try:
                     train_label_set = {_xx[1] for _xx in label_mappings[ds_name]}
-                except:
+                except BaseException:
                     train_label_set = {_xx[1] for _xx in label_mappings['TotalSegmentatorV2']}
-                # hepatic vessel and airway are generated in pseudolabel generation 
+                # hepatic vessel and airway are generated in pseudolabel generation
                 train_label_set_pseudo = {_xx[1] for _xx in label_mappings['TotalSegmentatorV2']} | {25, 132}
 
                 pl_reliability = pl_reliability_l[_k * num_patches_per_iter: (_k + 1) * num_patches_per_iter, ...] if pl_reliability_l is not None else None
@@ -424,7 +424,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
                 point_sampler = None
                 point_sampler_pseudo = None
-                # for dataset other than totalseg, use pseudolabel for zero-shot. for totalseg, if labels_p exist, use labels_p for zero-shot, 
+                # for dataset other than totalseg, use pseudolabel for zero-shot. for totalseg, if labels_p exist, use labels_p for zero-shot,
                 # gt for regular sample. If labels_p does not exist, use gt for zero-shot.
                 if labels_sv is not None:
                     if labels_p is not None:
@@ -455,7 +455,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                                                                                         point_sampler=point_sampler_pseudo)
                 # point sampler updates the labels internally.
                 if point_sampler is not None and prompt_class is not None:
-                    # update the labels. The shifted prompt index means zero-shot index. 
+                    # update the labels. The shifted prompt index means zero-shot index.
                     labels = point_sampler.label.unsqueeze(0).unsqueeze(0)
                     shifted = point_sampler.shifted
                     for i, p in enumerate(prompt_class):
@@ -463,7 +463,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             prompt_class[i] = shifted[p.item()]
                 del point_sampler
                 if point_sampler_pseudo is not None and prompt_class_pseudo is not None:
-                    # update the labels. The shifted prompt index means zero-shot index. 
+                    # update the labels. The shifted prompt index means zero-shot index.
                     labels_p = point_sampler_pseudo.label.unsqueeze(0).unsqueeze(0)
                     shifted = point_sampler_pseudo.shifted
                     for i, p in enumerate(prompt_class_pseudo):
@@ -483,7 +483,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 # clear image_embedding
                 try:
                     model.module.clear_cache()
-                except:
+                except BaseException:
                     model.clear_cache()
                 for click_indx in range(num_iters):
                     outputs = None
@@ -511,7 +511,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 for m in MERGE_LIST[prompt_class[idx].item()]:
                                     gt = torch.logical_or(gt, labels==m)
                             loss += loss_function(outputs[[idx]].float(), gt)
-                    
+
                     if prompt_class_pseudo is not None:
                         if balance_gt:
                             multiplier = len(prompt_class_pseudo) / len(prompt_class)
@@ -535,7 +535,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 point, point_label = get_next_points(outputs[:len(prompt_class)], labels, prompt_class,
                                                                                 point, point_label)
                             if prompt_class_pseudo is not None:
-                                point_pseudo, point_label_pseudo = get_next_points(outputs[ps_start:], 
+                                point_pseudo, point_label_pseudo = get_next_points(outputs[ps_start:],
                                                                                 labels_p, prompt_class_pseudo,
                                                                                 point_pseudo, point_label_pseudo)
                             # stop iterative if no new points are added.
@@ -556,7 +556,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 break
                     del outputs
                     torch.cuda.empty_cache()
-                        
+
                     for param in model.parameters():
                         param.grad = None
                     inputs = inputs.to('cpu')
@@ -570,7 +570,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 epoch_loss += loss.item()
                 loss_torch[0] += loss.item()
                 loss_torch[1] += 1.0
-                epoch_len = len(train_loader) 
+                epoch_len = len(train_loader)
                 idx_iter += 1
                 if world_size == 1 or dist.get_rank() == 0:
                     logger.debug(
@@ -595,12 +595,12 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
 
         # ---------  Start Validation  ---------
-        """ Note: 
+        """ Note:
             In training transform, labels are mapped to global index with Relabel transform. However, there could be local index that are not used since it can excluded
-            from label_mapping definition. In training sample generation, training pairs will only be sampled from label_set. In validation, the label_prompt 
-            will use global mapping, but the val label is not mapped to global index, so we need the val_orig_set. Notice the compute_dice assume gt label starts 
+            from label_mapping definition. In training sample generation, training pairs will only be sampled from label_set. In validation, the label_prompt
+            will use global mapping, but the val label is not mapped to global index, so we need the val_orig_set. Notice the compute_dice assume gt label starts
             from 0,1,2,3,4,.... If some are index are not used (not defined in label_mapping.json thus label_set does not include them), compute_dice directly will give wrong
-            number. We calculate dice for each class with a for loop. 
+            number. We calculate dice for each class with a for loop.
         """
         model.eval()
         model_inferer = partial(infer_wrapper, model=model)
