@@ -11,7 +11,6 @@
 
 from __future__ import annotations
 
-
 import monai
 import numpy as np
 import torch

@@ -36,9 +36,7 @@ from monai.utils import (
     min_version,
     optional_import,
 )
-from monai.utils.type_conversion import (
-    convert_to_dst_type,
-)
+from monai.utils.type_conversion import convert_to_dst_type
 
 measure, has_measure = optional_import("skimage.measure", "0.14.2", min_version)
 morphology, has_morphology = optional_import("skimage.morphology")
