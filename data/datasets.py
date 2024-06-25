@@ -171,9 +171,9 @@ def get_datalist_with_dataset_name_and_transform(image_key, label_key, label_sv_
     return ensure_tuple(train_list), ensure_tuple(val_list), dataset_transforms, dataset_transforms_val
 
 
-def compute_dataset_weights(datalist, class_weights):
+def compute_dataset_weights(datalist, weight_path="./data/dataset_weights.yaml"):
     """based on class-wise weight, assign a weight to each training sample"""
-    cfg = ConfigParser.load_config_file("./dataset_weights.yaml")
+    cfg = ConfigParser.load_config_file(weight_path)
     w = []
     for item in datalist:
         fg_w = cfg[item['dataset_name']]

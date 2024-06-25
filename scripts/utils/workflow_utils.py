@@ -316,6 +316,7 @@ def get_next_points_auto_point(pred, gt, prompt_class, class_vector=None, pred_t
     new_points_label = []
     for id in range(len(prompt_class)):
         neg_id, pos_id = get_point_label(-1)
+        _gt = (gt == prompt_class[id])[0,0]
         if mapped:
             # if in the global index, some supported classes need modification. prompt_class is the local index
             if class_vector is not None:
@@ -327,8 +328,7 @@ def get_next_points_auto_point(pred, gt, prompt_class, class_vector=None, pred_t
                 neg_id, pos_id = get_point_label(prompt_class[id])
                 if prompt_class[id].item() in MERGE_LIST.keys():
                     for m in MERGE_LIST[prompt_class[id].item()]:
-                        _gt = torch.logical_or(_gt, (gt==m)[0,0])          
-        _gt = (gt == prompt_class[id])[0,0]
+                        _gt = torch.logical_or(_gt, (gt==m)[0,0])                  
         if (prompt_class[id] == 0 and not include_background) or _gt.sum() == 0:
             # if background or no foreground and no false positive
             if _gt.sum() == 0 and  (pred[id][0]>pred_thresh).sum() > 0:

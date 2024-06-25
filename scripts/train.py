@@ -272,7 +272,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     train_sampler, val_sampler = None, None
     train_w = None
     if weighted_sampling:
-        train_w = compute_dataset_weights(train_files) * num_epochs_per_validation
+        train_w = compute_dataset_weights(train_files, weight_path="./data/dataset_weights.yaml") * num_epochs_per_validation
         logger.debug('using uniform sample')
         if world_size > 1:
             train_sampler = DistributedWeightedRandomSampler(train_ds, train_w)
@@ -624,7 +624,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 for _device_in, _device_out in zip([device, device, "cpu"], [device, "cpu", "cpu"]):
                     try:
                         label_prompt = torch.tensor(val_label_set).to(device).unsqueeze(0)
-                        promot_class = torch.ones(len(val_orig_set), 1).to(device) # supported class
+                        prompt_class = torch.ones(len(val_orig_set), 1).to(device) # supported class
                         if drop_point_prob_train > 0.99 or (freeze_head=='point' and freeze_epoch > 0) :
                             point = None
                             point_label = None

@@ -213,7 +213,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                               pin_memory=True, sampler=train_sampler, prefetch_factor=1)
     val_loader = DataLoader(val_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1, 
                             persistent_workers=False)
-    test_loader = DataLoader(test_ds, num_workers=4, batch_size=1, shuffle=False, sampler=val_sampler, prefetch_factor=1, 
+    test_loader = DataLoader(test_ds, num_workers=4, batch_size=1, shuffle=False, sampler=test_sampler, prefetch_factor=1, 
                             persistent_workers=False)
     
 
