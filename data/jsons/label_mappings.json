@@ -1,5 +1,5 @@
 {
-    "AbdomenCT-1K":[
+    "AbdomenCT-1K": [
         [
             1,
             1
@@ -13,7 +13,7 @@
             4
         ]
     ],
-    "FLARE22":[
+    "FLARE22": [
         [
             1,
             1
@@ -67,7 +67,7 @@
             14
         ]
     ],
-    "AMOS22":[
+    "AMOS22": [
         [
             1,
             3
@@ -129,7 +129,7 @@
             118
         ]
     ],
-    "BTCV-Abdomen":[
+    "BTCV-Abdomen": [
         [
             1,
             3
@@ -183,7 +183,7 @@
             9
         ]
     ],
-    "BTCV-Cervix":[
+    "BTCV-Cervix": [
         [
             1,
             15
@@ -197,7 +197,7 @@
             19
         ]
     ],
-    "CT-ORG":[
+    "CT-ORG": [
         [
             1,
             1
@@ -211,7 +211,7 @@
             22
         ]
     ],
-    "Multi-organ-Abdominal-CT-btcv":[
+    "Multi-organ-Abdominal-CT-btcv": [
         [
             1,
             3
@@ -269,7 +269,7 @@
             13
         ]
     ],
-    "Multi-organ-Abdominal-CT-tcia":[
+    "Multi-organ-Abdominal-CT-tcia": [
         [
             1,
             3
@@ -307,19 +307,19 @@
             13
         ]
     ],
-    "Pancreas-CT":[
+    "Pancreas-CT": [
         [
             1,
             4
         ]
     ],
-    "Task06":[
+    "Task06": [
         [
             1,
             23
         ]
     ],
-    "Task07":[
+    "Task07": [
         [
             1,
             4
@@ -329,7 +329,7 @@
             24
         ]
     ],
-    "Task08":[
+    "Task08": [
         [
             1,
             25
@@ -339,19 +339,19 @@
             26
         ]
     ],
-    "Task09":[
+    "Task09": [
         [
             1,
             3
         ]
     ],
-    "Task10":[
+    "Task10": [
         [
             1,
             27
         ]
     ],
-    "TotalSegmentatorV2":[
+    "TotalSegmentatorV2": [
         [
             1,
             3
@@ -821,7 +821,7 @@
             127
         ]
     ],
-    "Task03":[
+    "Task03": [
         [
             1,
             1
@@ -831,7 +831,7 @@
             26
         ]
     ],
-    "Bone-NIH":[
+    "Bone-NIH": [
         [
             1,
             128
@@ -841,7 +841,7 @@
             128
         ]
     ],
-    "CRLM-CT":[
+    "CRLM-CT": [
         [
             3,
             25
@@ -855,7 +855,7 @@
             26
         ]
     ],
-    "VerSe":[
+    "VerSe": [
         [
             1,
             56
@@ -953,25 +953,25 @@
             33
         ]
     ],
-    "AeroPath":[
+    "AeroPath": [
         [
             2,
             132
         ]
     ],
-    "Autopet23":[
+    "Autopet23": [
         [
             1,
             133
         ]
     ],
-    "LIDC-IDRI":[
+    "LIDC-IDRI": [
         [
             1,
             134
         ]
     ],
-    "CTPelvic1K-CLINIC":[
+    "CTPelvic1K-CLINIC": [
         [
             1,
             97
@@ -985,7 +985,7 @@
             96
         ]
     ],
-    "COLON_ACRIN6664":[
+    "COLON_ACRIN6664": [
         [
             1,
             97

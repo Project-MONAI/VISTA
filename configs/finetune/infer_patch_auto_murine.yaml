@@ -7,7 +7,7 @@ mapped_label_set: [0,115,121,30,28]
 val_auto: true
 overlap: 0.625
 data_file_base_dir: '/data/micro-ct-murine/1_nativeCTdata_nifti/'
-data_list_file_path: './data/external/micro-ct-murine-native_5_folds.json' 
+data_list_file_path: './data/external/micro-ct-murine-native_5_folds.json'
 log_output_file: "$@output_path + '/test_set.log'"
 list_key: 'testing'
 five_fold: true
@@ -41,4 +41,3 @@ transforms_infer:
     keys: ['@image_key','@label_key']
     track_meta: true
 model: "vista3d_segresnet_d"
-

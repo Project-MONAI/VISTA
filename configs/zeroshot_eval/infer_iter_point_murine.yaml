@@ -38,4 +38,3 @@ transforms_infer:
     keys: ['@image_key','@label_key']
     track_meta: true
 model: "vista3d_segresnet_d"
-

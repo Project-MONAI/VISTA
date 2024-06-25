@@ -17,13 +17,12 @@ from typing import Union
 import numpy as np
 import torch
 import torch.nn as nn
-
 from monai.networks.blocks.upsample import UpSample
 from monai.networks.layers.factories import Act, Conv, Norm, split_args
 from monai.networks.layers.utils import get_act_layer, get_norm_layer
 from monai.utils import UpsampleMode, has_option
 
-__all__ = ["SegResNetDS"]
+__all__ = ["SegResNetDS2"]
 
 
 def scales_for_resolution(resolution: tuple | list, n_stages: int | None = None):
@@ -95,7 +94,9 @@ class SegResBlock(nn.Module):
         else:
             padding = kernel_size // 2  # type: ignore
 
-        self.norm1 = get_norm_layer(name=norm, spatial_dims=spatial_dims, channels=in_channels)
+        self.norm1 = get_norm_layer(
+            name=norm, spatial_dims=spatial_dims, channels=in_channels
+        )
         self.act1 = get_act_layer(act)
         self.conv1 = Conv[Conv.CONV, spatial_dims](
             in_channels=in_channels,
@@ -106,7 +107,9 @@ class SegResBlock(nn.Module):
             bias=False,
         )
 
-        self.norm2 = get_norm_layer(name=norm, spatial_dims=spatial_dims, channels=in_channels)
+        self.norm2 = get_norm_layer(
+            name=norm, spatial_dims=spatial_dims, channels=in_channels
+        )
         self.act2 = get_act_layer(act)
         self.conv2 = Conv[Conv.CONV, spatial_dims](
             in_channels=in_channels,
@@ -170,7 +173,9 @@ class SegResEncoder(nn.Module):
 
         filters = init_filters  # base number of features
 
-        kernel_size, padding, _ = aniso_kernel(anisotropic_scales[0]) if anisotropic_scales else (3, 1, 1)
+        kernel_size, padding, _ = (
+            aniso_kernel(anisotropic_scales[0]) if anisotropic_scales else (3, 1, 1)
+        )
         self.conv_init = Conv[Conv.CONV, spatial_dims](
             in_channels=in_channels,
             out_channels=filters,
@@ -184,9 +189,17 @@ class SegResEncoder(nn.Module):
         for i in range(len(blocks_down)):
             level = nn.ModuleDict()
 
-            kernel_size, padding, stride = aniso_kernel(anisotropic_scales[i]) if anisotropic_scales else (3, 1, 2)
+            kernel_size, padding, stride = (
+                aniso_kernel(anisotropic_scales[i]) if anisotropic_scales else (3, 1, 2)
+            )
             blocks = [
-                SegResBlock(spatial_dims=spatial_dims, in_channels=filters, kernel_size=kernel_size, norm=norm, act=act)
+                SegResBlock(
+                    spatial_dims=spatial_dims,
+                    in_channels=filters,
+                    kernel_size=kernel_size,
+                    norm=norm,
+                    act=act,
+                )
                 for _ in range(blocks_down[i])
             ]
             level["blocks"] = nn.Sequential(*blocks)
@@ -306,7 +319,9 @@ class SegResNetDS2(nn.Module):
 
         anisotropic_scales = None
         if resolution:
-            anisotropic_scales = scales_for_resolution(resolution, n_stages=len(blocks_down))
+            anisotropic_scales = scales_for_resolution(
+                resolution, n_stages=len(blocks_down)
+            )
         self.anisotropic_scales = anisotropic_scales
 
         self.encoder = SegResEncoder(
@@ -326,12 +341,14 @@ class SegResNetDS2(nn.Module):
 
         filters = init_filters * 2**n_up
         self.up_layers = nn.ModuleList()
-        self.up_layers_auto = nn.ModuleList() 
+        self.up_layers_auto = nn.ModuleList()
 
         for i in range(n_up):
             filters = filters // 2
             kernel_size, _, stride = (
-                aniso_kernel(anisotropic_scales[len(blocks_up) - i - 1]) if anisotropic_scales else (3, 1, 2)
+                aniso_kernel(anisotropic_scales[len(blocks_up) - i - 1])
+                if anisotropic_scales
+                else (3, 1, 2)
             )
 
             level = nn.ModuleDict()
@@ -357,21 +374,39 @@ class SegResNetDS2(nn.Module):
                 align_corners=False,
             )
             blocks = [
-                SegResBlock(spatial_dims=spatial_dims, in_channels=filters, kernel_size=kernel_size, norm=norm, act=act)
+                SegResBlock(
+                    spatial_dims=spatial_dims,
+                    in_channels=filters,
+                    kernel_size=kernel_size,
+                    norm=norm,
+                    act=act,
+                )
                 for _ in range(blocks_up[i])
             ]
             level["blocks"] = nn.Sequential(*blocks)
             blocks = [
-                SegResBlock(spatial_dims=spatial_dims, in_channels=filters, kernel_size=kernel_size, norm=norm, act=act)
+                SegResBlock(
+                    spatial_dims=spatial_dims,
+                    in_channels=filters,
+                    kernel_size=kernel_size,
+                    norm=norm,
+                    act=act,
+                )
                 for _ in range(blocks_up[i])
             ]
             level_auto["blocks"] = nn.Sequential(*blocks)
             if len(blocks_up) - i <= dsdepth:  # deep supervision heads
                 level["head"] = Conv[Conv.CONV, spatial_dims](
-                    in_channels=filters, out_channels=out_channels, kernel_size=1, bias=True
+                    in_channels=filters,
+                    out_channels=out_channels,
+                    kernel_size=1,
+                    bias=True,
                 )
                 level_auto["head"] = Conv[Conv.CONV, spatial_dims](
-                    in_channels=filters, out_channels=out_channels, kernel_size=1, bias=True
+                    in_channels=filters,
+                    out_channels=out_channels,
+                    kernel_size=1,
+                    bias=True,
                 )
             else:
                 level["head"] = nn.Identity()
@@ -380,13 +415,18 @@ class SegResNetDS2(nn.Module):
             self.up_layers.append(level)
             self.up_layers_auto.append(level_auto)
 
-        if n_up == 0:  # in a corner case of flat structure (no downsampling), attache a single head
+        if (
+            n_up == 0
+        ):  # in a corner case of flat structure (no downsampling), attache a single head
             level = nn.ModuleDict(
                 {
                     "upsample": nn.Identity(),
                     "blocks": nn.Identity(),
                     "head": Conv[Conv.CONV, spatial_dims](
-                        in_channels=filters, out_channels=out_channels, kernel_size=1, bias=True
+                        in_channels=filters,
+                        out_channels=out_channels,
+                        kernel_size=1,
+                        bias=True,
                     ),
                 }
             )
@@ -395,7 +435,10 @@ class SegResNetDS2(nn.Module):
                     "upsample": nn.Identity(),
                     "blocks": nn.Identity(),
                     "head": Conv[Conv.CONV, spatial_dims](
-                        in_channels=filters, out_channels=out_channels, kernel_size=1, bias=True
+                        in_channels=filters,
+                        out_channels=out_channels,
+                        kernel_size=1,
+                        bias=True,
                     ),
                 }
             )
@@ -419,12 +462,16 @@ class SegResNetDS2(nn.Module):
         a = [i % j == 0 for i, j in zip(x.shape[2:], self.shape_factor())]
         return all(a)
 
-    def _forward(self, x: torch.Tensor, with_point, with_label) -> Union[None, torch.Tensor, list[torch.Tensor]]:
+    def _forward(
+        self, x: torch.Tensor, with_point, with_label
+    ) -> Union[None, torch.Tensor, list[torch.Tensor]]:
         if self.preprocess is not None:
             x = self.preprocess(x)
 
         if not self.is_valid_shape(x):
-            raise ValueError(f"Input spatial dims {x.shape} must be divisible by {self.shape_factor()}")
+            raise ValueError(
+                f"Input spatial dims {x.shape} must be divisible by {self.shape_factor()}"
+            )
 
         x_down = self.encoder(x)
 
@@ -466,17 +513,19 @@ class SegResNetDS2(nn.Module):
         # in eval() mode, always return a single final output
         if not self.training or len(outputs) == 1:
             outputs = outputs[0] if len(outputs) == 1 else outputs
-        
+
         if not self.training or len(outputs_auto) == 1:
             outputs_auto = outputs_auto[0] if len(outputs_auto) == 1 else outputs_auto
-            
+
         # return a list of DS outputs
         return outputs, outputs_auto
 
-    def forward(self, x: torch.Tensor, with_point=True, with_label=True, **kwargs) -> Union[None, torch.Tensor, list[torch.Tensor]]:
+    def forward(
+        self, x: torch.Tensor, with_point=True, with_label=True, **kwargs
+    ) -> Union[None, torch.Tensor, list[torch.Tensor]]:
         return self._forward(x, with_point, with_label)
 
-    def set_auto_grad(self, auto_freeze = False, point_freeze=False):
+    def set_auto_grad(self, auto_freeze=False, point_freeze=False):
         for param in self.encoder.parameters():
             param.requires_grad = (not auto_freeze) and (not point_freeze)
 

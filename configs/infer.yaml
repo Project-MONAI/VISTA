@@ -3,7 +3,7 @@ input_channels: 1
 patch_size: [128, 128, 128]
 bundle_root: './models'
 fold: 0
-infer: {ckpt_name: $@bundle_root + '/model.pt',  
+infer: {ckpt_name: $@bundle_root + '/model.pt',
         output_path: $@bundle_root + '/prediction',
         log_output_file: $@bundle_root + '/inference.log'}
 resample_to_spacing: [1.5, 1.5, 1.5]
