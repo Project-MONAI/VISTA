@@ -236,6 +236,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             _index += 1
 
             for idx in range(max_iters):
+                val_outputs = None
                 if idx == 0:
                     point, point_label = generate_prompt_pairs_val(
                         val_data["label"].to(device),
