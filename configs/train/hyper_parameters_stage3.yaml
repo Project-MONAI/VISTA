@@ -119,5 +119,3 @@ transforms_validate:
     keys: ['@image_key', '@label_key']
     track_meta: true
   - "Placeholder for dataset-specific transform"
-
-

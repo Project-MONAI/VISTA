@@ -12,24 +12,25 @@
 import logging
 import os
 import sys
+import time
+
+import monai
 import numpy as np
 import torch
-import monai
-from monai import transforms
 import torch.distributed as dist
-from monai.data import partition_dataset
-from monai.utils import ensure_tuple_rep, optional_import
-from monai.apps.utils import DEFAULT_FMT
-from monai.utils import set_determinism, RankFilter
-from monai.data import partition_dataset
-from tqdm import tqdm
-from .train import CONFIG
-import time
 import torch.nn.functional as F
-from skimage.segmentation import slic
-from segment_anything import SamPredictor, sam_model_registry
+from monai import transforms
+from monai.apps.utils import DEFAULT_FMT
 from monai.auto3dseg.utils import datafold_read
-from .utils.trans_utils import erode3d, dilate3d
+from monai.data import partition_dataset
+from monai.utils import RankFilter, ensure_tuple_rep, optional_import, set_determinism
+from segment_anything import SamPredictor, sam_model_registry
+from skimage.segmentation import slic
+from tqdm import tqdm
+
+from .train import CONFIG
+from .utils.trans_utils import dilate3d, erode3d
+
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 

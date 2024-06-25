@@ -11,45 +11,33 @@
 
 from __future__ import annotations
 
-import itertools
-import random
-import pdb
-import warnings
-from collections.abc import Callable, Hashable, Iterable, Mapping, Sequence
-from contextlib import contextmanager
-from functools import lru_cache, wraps
-from inspect import getmembers, isclass
-from typing import Any
+from collections.abc import Hashable, Mapping
 
 import numpy as np
 import torch
 import torch.nn.functional as F
-
-import monai
-from monai.utils import ensure_tuple_rep
-from monai.config import DtypeLike, IndexSelection
-from monai.config.type_definitions import NdarrayOrTensor, NdarrayTensor
-from monai.networks.layers import GaussianFilter
-from monai.networks.utils import meshgrid_ij
-from monai.transforms.compose import Compose
-from monai.utils import (
-    min_version,
-    optional_import,
-)
-from monai.utils.type_conversion import convert_to_cupy, convert_to_dst_type, convert_to_tensor
-from matplotlib import pyplot as plt
-from monai.transforms import RandCropByLabelClassesd, SpatialCrop, RandCropByLabelClasses, MapLabelValue, MapTransform
-
-
-from monai.config.type_definitions import NdarrayOrTensor
 from monai.config import DtypeLike, KeysCollection
+from monai.config.type_definitions import NdarrayOrTensor, NdarrayTensor
 from monai.data.meta_obj import get_track_meta
 from monai.data.meta_tensor import MetaTensor
+from monai.transforms import (
+    MapLabelValue,
+    MapTransform,
+    RandCropByLabelClasses,
+    RandCropByLabelClassesd,
+    SpatialCrop,
+)
 from monai.utils import ImageMetaKey as Key
 from monai.utils import (
     convert_data_type,
+    ensure_tuple_rep,
     fall_back_tuple,
-    look_up_option
+    look_up_option,
+    min_version,
+    optional_import,
+)
+from monai.utils.type_conversion import (
+    convert_to_dst_type,
 )
 
 measure, has_measure = optional_import("skimage.measure", "0.14.2", min_version)
@@ -66,39 +54,83 @@ __all__ = [
     "erode2d",
     "dilate3d",
     "VistaPostTransform",
-    "convert_points_to_disc"
+    "convert_points_to_disc",
 ]
+
 
 def convert_points_to_disc(image_size, point, point_label, radius=2, disc=False):
     # [b, N, 3], [b, N]
     # generate masks [b,2,h,w,d]
     if not torch.is_tensor(point):
         point = torch.from_numpy(point)
-    masks = torch.zeros([point.shape[0], 2, image_size[0], image_size[1],image_size[2]],device=point.device)
-    row_array = torch.arange(start=0, end=image_size[0], step=1, dtype=torch.float32, device=point.device)
-    col_array = torch.arange(start=0, end=image_size[1], step=1, dtype=torch.float32, device=point.device)
-    z_array = torch.arange(start=0, end=image_size[2], step=1, dtype=torch.float32, device=point.device)
+    masks = torch.zeros(
+        [point.shape[0], 2, image_size[0], image_size[1], image_size[2]],
+        device=point.device,
+    )
+    row_array = torch.arange(
+        start=0, end=image_size[0], step=1, dtype=torch.float32, device=point.device
+    )
+    col_array = torch.arange(
+        start=0, end=image_size[1], step=1, dtype=torch.float32, device=point.device
+    )
+    z_array = torch.arange(
+        start=0, end=image_size[2], step=1, dtype=torch.float32, device=point.device
+    )
     coord_rows, coord_cols, coord_z = torch.meshgrid(z_array, col_array, row_array)
     # [1,3,h,w,d] -> [b, 2, 3, h,w,d]
-    coords = torch.stack((coord_rows, coord_cols, coord_z), dim=0).unsqueeze(0).unsqueeze(0).repeat(point.shape[0], 2, 1, 1, 1, 1)
+    coords = (
+        torch.stack((coord_rows, coord_cols, coord_z), dim=0)
+        .unsqueeze(0)
+        .unsqueeze(0)
+        .repeat(point.shape[0], 2, 1, 1, 1, 1)
+    )
     for b in range(point.shape[0]):
         for n in range(point.shape[1]):
-            if point_label[b,n] > -1:
-                channel = 0 if (point_label[b,n] == 0 or point_label[b,n]==2) else 1
+            if point_label[b, n] > -1:
+                channel = 0 if (point_label[b, n] == 0 or point_label[b, n] == 2) else 1
                 if disc:
-                    masks[b,channel] += torch.pow(coords[b,channel] - point[b,n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),2).sum(0) < radius ** 2
+                    masks[b, channel] += (
+                        torch.pow(
+                            coords[b, channel]
+                            - point[b, n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),
+                            2,
+                        ).sum(0)
+                        < radius**2
+                    )
                 else:
-                    masks[b,channel] += torch.exp(-torch.pow(coords[b,channel] - point[b,n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),2).sum(0)/ (2 *radius ** 2))
+                    masks[b, channel] += torch.exp(
+                        -torch.pow(
+                            coords[b, channel]
+                            - point[b, n].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1),
+                            2,
+                        ).sum(0)
+                        / (2 * radius**2)
+                    )
     # masks[masks>1] = 1
     return masks
+
 
 def erode3d(input_tensor, erosion=3):
     # Define the structuring element
     erosion = ensure_tuple_rep(erosion, 3)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(input_tensor.device)
+    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(
+        input_tensor.device
+    )
 
     # Pad the input tensor to handle border pixels
-    input_padded = F.pad(input_tensor.float().unsqueeze(0).unsqueeze(0), (erosion[2]//2, erosion[2]//2, erosion[1]//2, erosion[1]//2, erosion[0]//2, erosion[0]//2), mode='constant', value=1.0)
+    input_padded = F.pad(
+        input_tensor.float().unsqueeze(0).unsqueeze(0),
+        (
+            erosion[2] // 2,
+            erosion[2] // 2,
+            erosion[1] // 2,
+            erosion[1] // 2,
+            erosion[0] // 2,
+            erosion[0] // 2,
+        ),
+        mode="constant",
+        value=1.0,
+    )
 
     # Apply erosion operation
     output = F.conv3d(input_padded, structuring_element, padding=0)
@@ -108,13 +140,21 @@ def erode3d(input_tensor, erosion=3):
 
     return output.squeeze(0).squeeze(0)
 
+
 def erode2d(input_tensor, erosion=3):
     # Define the structuring element
     erosion = ensure_tuple_rep(erosion, 2)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1]).to(input_tensor.device)
+    structuring_element = torch.ones(1, 1, erosion[0], erosion[1]).to(
+        input_tensor.device
+    )
 
     # Pad the input tensor to handle border pixels
-    input_padded = F.pad(input_tensor.float().unsqueeze(0).unsqueeze(0), (erosion[1]//2, erosion[1]//2, erosion[0]//2, erosion[0]//2), mode='constant', value=1.0)
+    input_padded = F.pad(
+        input_tensor.float().unsqueeze(0).unsqueeze(0),
+        (erosion[1] // 2, erosion[1] // 2, erosion[0] // 2, erosion[0] // 2),
+        mode="constant",
+        value=1.0,
+    )
 
     # Apply erosion operation
     output = F.conv2d(input_padded, structuring_element, padding=0)
@@ -124,13 +164,28 @@ def erode2d(input_tensor, erosion=3):
 
     return output.squeeze(0).squeeze(0)
 
+
 def dilate3d(input_tensor, erosion=3):
     # Define the structuring element
     erosion = ensure_tuple_rep(erosion, 3)
-    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(input_tensor.device)
+    structuring_element = torch.ones(1, 1, erosion[0], erosion[1], erosion[2]).to(
+        input_tensor.device
+    )
 
     # Pad the input tensor to handle border pixels
-    input_padded = F.pad(input_tensor.float().unsqueeze(0).unsqueeze(0), (erosion[2]//2, erosion[2]//2, erosion[1]//2, erosion[1]//2, erosion[0]//2, erosion[0]//2), mode='constant', value=0.0)
+    input_padded = F.pad(
+        input_tensor.float().unsqueeze(0).unsqueeze(0),
+        (
+            erosion[2] // 2,
+            erosion[2] // 2,
+            erosion[1] // 2,
+            erosion[1] // 2,
+            erosion[0] // 2,
+            erosion[0] // 2,
+        ),
+        mode="constant",
+        value=0.0,
+    )
 
     # Apply erosion operation
     output = F.conv3d(input_padded, structuring_element, padding=0)
@@ -139,6 +194,7 @@ def dilate3d(input_tensor, erosion=3):
     output = torch.where(output > 0, 1.0, 0.0)
 
     return output.squeeze(0).squeeze(0)
+
 
 def get_largest_connected_component_point(
     img: NdarrayTensor, point_coords=None, point_labels=None, post_idx=3
@@ -154,9 +210,12 @@ def get_largest_connected_component_point(
     for c in range(len(point_coords)):
         if not ((point_labels[c] == 3).any() or (point_labels[c] == 1).any()):
             continue
-        coords = point_coords[c, point_labels[c]==3].tolist() + point_coords[c, point_labels[c]==1].tolist()
-        not_nan_mask = ~torch.isnan(img[0,c])
-        img_ = torch.nan_to_num(img[0,c] > 0, 0)
+        coords = (
+            point_coords[c, point_labels[c] == 3].tolist()
+            + point_coords[c, point_labels[c] == 1].tolist()
+        )
+        not_nan_mask = ~torch.isnan(img[0, c])
+        img_ = torch.nan_to_num(img[0, c] > 0, 0)
         img_, *_ = convert_data_type(img_, np.ndarray)
         label = measure.label
         features = label(img_, connectivity=3)
@@ -171,15 +230,22 @@ def get_largest_connected_component_point(
         for i in idx:
             if i == 0:
                 continue
-            outs[0,c] += features == i
+            outs[0, c] += features == i
         outs = outs > 0
         # find negative mean value
-        fill_in = img[0,c][torch.logical_and(~outs[0,c], not_nan_mask)].mean()
-        img[0,c][torch.logical_and(pos_mask, ~outs[0,c])] = fill_in
+        fill_in = img[0, c][torch.logical_and(~outs[0, c], not_nan_mask)].mean()
+        img[0, c][torch.logical_and(pos_mask, ~outs[0, c])] = fill_in
     return img
 
+
 def get_largest_connected_component_mask(
-    img_pos: NdarrayTensor, img_neg: NdarrayTensor, connectivity: int | None = None, num_components: int = 1, point_coords=None, point_labels=None, margins=3
+    img_pos: NdarrayTensor,
+    img_neg: NdarrayTensor,
+    connectivity: int | None = None,
+    num_components: int = 1,
+    point_coords=None,
+    point_labels=None,
+    margins=3,
 ) -> NdarrayTensor:
     """
     Gets the largest connected component mask of an image that include the point_coords.
@@ -227,22 +293,29 @@ def get_largest_connected_component_mask(
                 # if -1 padding point, skip
                 continue
             for margin in range(margins):
-                left,right = max(p[0].round().int().item() - margin, 0), min(p[0].round().int().item() + margin + 1, features.shape[-3])
-                t,d = max(p[1].round().int().item() - margin, 0), min(p[1].round().int().item() + margin + 1, features.shape[-2])
-                f,b = max(p[2].round().int().item() - margin, 0), min(p[2].round().int().item() + margin + 1, features.shape[-1])
-                if (features[bs,0,left:right,t:d,f:b] > 0).any():
-                    index = features[bs,0,left:right,t:d,f:b].max()
+                left, right = max(p[0].round().int().item() - margin, 0), min(
+                    p[0].round().int().item() + margin + 1, features.shape[-3]
+                )
+                t, d = max(p[1].round().int().item() - margin, 0), min(
+                    p[1].round().int().item() + margin + 1, features.shape[-2]
+                )
+                f, b = max(p[2].round().int().item() - margin, 0), min(
+                    p[2].round().int().item() + margin + 1, features.shape[-1]
+                )
+                if (features[bs, 0, left:right, t:d, f:b] > 0).any():
+                    index = features[bs, 0, left:right, t:d, f:b].max()
                     outs[[bs]] += lib.isin(features[[bs]], index)
                     break
-    outs[outs>1] = 1
+    outs[outs > 1] = 1
     outs = convert_to_dst_type(outs, dst=img_pos, dtype=outs.dtype)[0]
     return outs
 
+
 class VistaPostTransform(MapTransform):
     def __init__(
-            self,
-            keys: KeysCollection,
-            allow_missing_keys: bool = False,
+        self,
+        keys: KeysCollection,
+        allow_missing_keys: bool = False,
     ) -> None:
         """
         Args:
@@ -256,7 +329,9 @@ class VistaPostTransform(MapTransform):
         """
         super().__init__(keys, allow_missing_keys)
 
-    def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> dict[Hashable, NdarrayOrTensor]:
+    def __call__(
+        self, data: Mapping[Hashable, NdarrayOrTensor]
+    ) -> dict[Hashable, NdarrayOrTensor]:
         for keys in self.keys:
             if keys in data:
                 pred = data[keys]
@@ -273,11 +348,12 @@ class VistaPostTransform(MapTransform):
                     pred[pred > 0] = 1
                     pred[pred < 0] = 0
                 pred_mapping = pred.clone()
-                if "label_prompt" in data and data['label_prompt'] is not None:
+                if "label_prompt" in data and data["label_prompt"] is not None:
                     for i in range(1, object_num):
-                        pred_mapping[pred == i] = data['label_prompt'][i]
+                        pred_mapping[pred == i] = data["label_prompt"][i]
                 data[keys] = pred_mapping
         return data
+
 
 class RandCropByLabelClassesShift(RandCropByLabelClasses):
     def __call__(
@@ -308,13 +384,26 @@ class RandCropByLabelClassesShift(RandCropByLabelClasses):
             self.randomize(label, indices, image)
         results: list[torch.Tensor] = []
         if self.centers is not None:
-            img_shape = img.peek_pending_shape() if isinstance(img, MetaTensor) else img.shape[1:]
+            img_shape = (
+                img.peek_pending_shape()
+                if isinstance(img, MetaTensor)
+                else img.shape[1:]
+            )
             roi_size = fall_back_tuple(self.spatial_size, default=img_shape)
             lazy_ = self.lazy if lazy is None else lazy
             for i, center in enumerate(self.centers):
                 for i in range(3):
-                    center[i] = min(img_shape[i], max(0, np.random.randint(-roi_size[i]//3, roi_size[i]//3) + center[i]))
-                cropper = SpatialCrop(roi_center=tuple(center), roi_size=roi_size, lazy=lazy_)
+                    center[i] = min(
+                        img_shape[i],
+                        max(
+                            0,
+                            np.random.randint(-roi_size[i] // 3, roi_size[i] // 3)
+                            + center[i],
+                        ),
+                    )
+                cropper = SpatialCrop(
+                    roi_center=tuple(center), roi_size=roi_size, lazy=lazy_
+                )
                 cropped = cropper(img)
                 if get_track_meta():
                     ret_: MetaTensor = cropped  # type: ignore
@@ -324,6 +413,7 @@ class RandCropByLabelClassesShift(RandCropByLabelClasses):
                 results.append(cropped)
 
         return results
+
 
 class RandCropByLabelClassesShiftd(RandCropByLabelClassesd):
     backend = RandCropByLabelClassesShift.backend
@@ -355,10 +445,14 @@ class RelabelD(MapTransform):
         self.dataset_key = dataset_key
         for name, mapping in label_mappings.items():
             self.mappers[name] = MapLabelValue(
-                orig_labels=[pair[0] for pair in mapping], target_labels=[pair[1] for pair in mapping], dtype=dtype
+                orig_labels=[pair[0] for pair in mapping],
+                target_labels=[pair[1] for pair in mapping],
+                dtype=dtype,
             )
 
-    def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> dict[Hashable, NdarrayOrTensor]:
+    def __call__(
+        self, data: Mapping[Hashable, NdarrayOrTensor]
+    ) -> dict[Hashable, NdarrayOrTensor]:
         d = dict(data)
         dataset_name = d.get(self.dataset_key, "default")
         _m = look_up_option(dataset_name, self.mappers, default=None)
@@ -368,13 +462,14 @@ class RelabelD(MapTransform):
             d[key] = _m(d[key])
         return d
 
+
 class DatasetSelectTansformd(MapTransform):
     def __init__(
-            self,
-            keys: KeysCollection,
-            dataset_transforms,
-            dataset_key: str = "dataset_name",
-            allow_missing_keys: bool = False,
+        self,
+        keys: KeysCollection,
+        dataset_transforms,
+        dataset_key: str = "dataset_name",
+        allow_missing_keys: bool = False,
     ) -> None:
         """
         Args:
@@ -389,7 +484,9 @@ class DatasetSelectTansformd(MapTransform):
         self.dataset_transforms = dataset_transforms
         self.dataset_key = dataset_key
 
-    def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> dict[Hashable, NdarrayOrTensor]:
+    def __call__(
+        self, data: Mapping[Hashable, NdarrayOrTensor]
+    ) -> dict[Hashable, NdarrayOrTensor]:
         d = dict(data)
         dataset_name = d[self.dataset_key]
         _m = self.dataset_transforms[dataset_name]

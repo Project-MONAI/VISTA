@@ -7,7 +7,7 @@ mapped_label_set: [0,1,3,14,5,12,10,11,4,13,62,19,8,18,15,93,94]
 val_auto: true
 overlap: 0.625
 data_file_base_dir: '/data/WORD'
-data_list_file_path: './data/external/WORD.json' 
+data_list_file_path: './data/external/WORD.json'
 log_output_file: "$@output_path + '/test_set.log'"
 list_key: 'testing'
 five_fold: false
@@ -46,4 +46,3 @@ transforms_infer:
     keys: ['@image_key','@label_key']
     track_meta: true
 model: "vista3d_segresnet_d"
-

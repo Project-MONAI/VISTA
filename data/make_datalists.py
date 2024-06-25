@@ -61,7 +61,9 @@ def search_image_files(base_dir, ext, regex=None):
     print(f"searching ext={ext} from base_dir={base_dir}")
     images = []
     for root, _, files in os.walk(base_dir):
-        images.extend(os.path.join(root, filename) for filename in files if filename.endswith(ext))
+        images.extend(
+            os.path.join(root, filename) for filename in files if filename.endswith(ext)
+        )
     if regex is not None:
         images = [x for x in images if re.compile(regex).search(x) is not None]
     print(f"found {len(images)} *.{ext} files")
@@ -69,16 +71,27 @@ def search_image_files(base_dir, ext, regex=None):
 
 
 def create_splits_and_write_json(
-    images, labels, ratio, num_folds, json_name, rng_seed, label_dict, original_label_dict=None
+    images,
+    labels,
+    ratio,
+    num_folds,
+    json_name,
+    rng_seed,
+    label_dict,
+    original_label_dict=None,
 ):
     """
     first generate training/test split, then from the training part,
     generate training/validation num_folds
     """
     items = [{"image": img, "label": lab} for img, lab in zip(images, labels)]
-    train_test = partition_dataset(items, ratios=[1 - ratio, ratio], shuffle=True, seed=rng_seed)
+    train_test = partition_dataset(
+        items, ratios=[1 - ratio, ratio], shuffle=True, seed=rng_seed
+    )
     print(f"training: {len(train_test[0])}, testing: {len(train_test[1])}")
-    train_val = partition_dataset(train_test[0], num_partitions=num_folds, shuffle=True, seed=rng_seed)
+    train_val = partition_dataset(
+        train_test[0], num_partitions=num_folds, shuffle=True, seed=rng_seed
+    )
     print(f"training validation folds sizes: {[len(x) for x in train_val]}")
     training = []
     for f, x in enumerate(train_val):
@@ -131,14 +144,20 @@ def make_abdomenct_1k():
         labels.append(rel_mask)
         idx = re.compile(r"Case_(\d+).nii.gz").search(rel_mask)[1]
         img_name = f"Case_{idx}_0000.nii.gz"
-        for f in ["AbdomenCT-1K-ImagePart1", "AbdomenCT-1K-ImagePart2", "AbdomenCT-1K-ImagePart3"]:
+        for f in [
+            "AbdomenCT-1K-ImagePart1",
+            "AbdomenCT-1K-ImagePart2",
+            "AbdomenCT-1K-ImagePart3",
+        ]:
             if os.path.exists(os.path.join(base_url, f, img_name)):
                 images.append(os.path.join(f, img_name))
                 break
         # print(f"image: {images[-1]}, label: {labels[-1]}")
         filtering_files(base_url, images, labels)
     label_dict = {1: "liver", 2: "kidney", 3: "spleen", 4: "pancreas"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -171,7 +190,9 @@ def make_flare22():
         12: "duodenum",
         13: "left kidney",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -231,7 +252,16 @@ def make_amos22():
         14: "bladder",
         15: "prostate or uterus",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -240,7 +270,9 @@ def make_btcv_abdomen():
     base_url = "/data/BTCV/Abdomen"
     dataset_name = "BTCV-Abdomen"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "RawData", "Training", "label"), ".nii.gz")
+    masks = search_image_files(
+        os.path.join(base_url, "RawData", "Training", "label"), ".nii.gz"
+    )
     images, labels = [], []
     for mask in masks:
         rel_mask = os.path.relpath(mask, base_url)
@@ -264,7 +296,9 @@ def make_btcv_abdomen():
         12: "right adrenal gland",
         13: "left adrenal gland",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -273,7 +307,9 @@ def make_btcv_cervix():
     base_url = "/data/BTCV/Cervix"
     dataset_name = "BTCV-Cervix"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "FixedDataV2", "Training", "label"), ".nii.gz")
+    masks = search_image_files(
+        os.path.join(base_url, "FixedDataV2", "Training", "label"), ".nii.gz"
+    )
     images, labels = [], []
     for mask in masks:
         rel_mask = os.path.relpath(mask, base_url)
@@ -284,7 +320,16 @@ def make_btcv_cervix():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "bladder", 2: "uterus", 3: "rectum", 4: "small bowel"}
     label_dict = {1: "bladder", 2: "prostate or uterus", 3: "rectum", 4: "small bowel"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -293,7 +338,9 @@ def make_chaos():
     base_url = "/data/CHAOS"
     dataset_name = "CHAOS"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "Train_Sets_nifti_ct"), "segmentation.nii.gz")
+    masks = search_image_files(
+        os.path.join(base_url, "Train_Sets_nifti_ct"), "segmentation.nii.gz"
+    )
     images, labels = [], []
     for mask in masks:
         rel_mask = os.path.relpath(mask, base_url)
@@ -303,7 +350,9 @@ def make_chaos():
         images.append(os.path.join("Train_Sets_nifti_ct", img_name))
         filtering_files(base_url, images, labels)
     label_dict = {1: "liver"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -312,7 +361,9 @@ def make_ct_org():
     base_url = "/data/CT-ORG"
     dataset_name = "CT-ORG"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "OrganSegmentations"), ".nii.gz", regex=r"labels")
+    masks = search_image_files(
+        os.path.join(base_url, "OrganSegmentations"), ".nii.gz", regex=r"labels"
+    )
     images, labels = [], []
     for mask in masks:
         idx = re.compile(r"labels-(\d+).nii.gz").search(mask)[1]
@@ -344,7 +395,16 @@ def make_ct_org():
         5: "bone",
         6: "brain",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -364,7 +424,16 @@ def make_kits23():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "kidney", 2: "tumor", 3: "cyst"}
     label_dict = {1: "kidney", 2: "kidney tumor", 3: "kidney cyst"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -384,7 +453,16 @@ def make_lits23():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "liver", 2: "tumor"}
     label_dict = {1: "liver", 2: "liver tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -418,7 +496,9 @@ def make_multi_organ_btcv():
         13: "left adrenal gland",
         14: "duodenum",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -427,7 +507,9 @@ def make_multi_organ_tcia():
     base_url = "/data/Multi-organ-Abdominal-CT/res_1.0mm_relabeled2"
     dataset_name = "Multi-organ-Abdominal-CT-tcia"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "label_tcia_multiorgan+rkidney"), ".nii")
+    masks = search_image_files(
+        os.path.join(base_url, "label_tcia_multiorgan+rkidney"), ".nii"
+    )
     images, labels = [], []
     for mask in masks:
         rel_mask = os.path.relpath(mask, base_url)
@@ -447,7 +529,9 @@ def make_multi_organ_tcia():
         8: "pancreas",
         9: "duodenum",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -456,7 +540,9 @@ def make_pancreas_ct():
     base_url = "/data/Pancreas-CT"
     dataset_name = "Pancreas-CT"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "TCIA_pancreas_labels-02-05-2017"), ".nii.gz")
+    masks = search_image_files(
+        os.path.join(base_url, "TCIA_pancreas_labels-02-05-2017"), ".nii.gz"
+    )
     images, labels = [], []
     for mask in masks:
         rel_mask = os.path.relpath(mask, base_url)
@@ -466,7 +552,9 @@ def make_pancreas_ct():
         images.append(os.path.join("manifest-1599750808610", "nifti", img_name))
         filtering_files(base_url, images, labels)
     label_dict = {1: "pancreas"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -486,7 +574,16 @@ def make_task06():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "cancer"}
     label_dict = {1: "lung tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -506,7 +603,16 @@ def make_task07():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "pancreas", 2: "cancer"}
     label_dict = {1: "pancreas", 2: "pancreatic tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -526,7 +632,16 @@ def make_task08():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "Vessel", 2: "Tumour"}
     label_dict = {1: "hepatic vessel", 2: "hepatic tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -545,7 +660,9 @@ def make_task09():
         images.append(os.path.join("imagesTr", img_name))
         filtering_files(base_url, images, labels)
     label_dict = {1: "spleen"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -564,7 +681,9 @@ def make_task10():
         images.append(os.path.join("imagesTr", img_name))
         filtering_files(base_url, images, labels)
     label_dict = {1: "colon cancer primaries"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -582,114 +701,112 @@ def make_total_segmentator():
         img_name = f"s{idx}.nii.gz"
         images.append(os.path.join("images", img_name))
         filtering_files(base_url, images, labels)
-    original_label_dict = (
-        {  # https://github.com/wasserth/TotalSegmentator/blob/master/totalsegmentator/map_to_binary.py
-            1: "spleen",
-            2: "kidney_right",
-            3: "kidney_left",
-            4: "gallbladder",
-            5: "liver",
-            6: "stomach",
-            7: "aorta",
-            8: "inferior_vena_cava",
-            9: "portal_vein_and_splenic_vein",
-            10: "pancreas",
-            11: "adrenal_gland_right",
-            12: "adrenal_gland_left",
-            13: "lung_upper_lobe_left",
-            14: "lung_lower_lobe_left",
-            15: "lung_upper_lobe_right",
-            16: "lung_middle_lobe_right",
-            17: "lung_lower_lobe_right",
-            18: "vertebrae_L5",
-            19: "vertebrae_L4",
-            20: "vertebrae_L3",
-            21: "vertebrae_L2",
-            22: "vertebrae_L1",
-            23: "vertebrae_T12",
-            24: "vertebrae_T11",
-            25: "vertebrae_T10",
-            26: "vertebrae_T9",
-            27: "vertebrae_T8",
-            28: "vertebrae_T7",
-            29: "vertebrae_T6",
-            30: "vertebrae_T5",
-            31: "vertebrae_T4",
-            32: "vertebrae_T3",
-            33: "vertebrae_T2",
-            34: "vertebrae_T1",
-            35: "vertebrae_C7",
-            36: "vertebrae_C6",
-            37: "vertebrae_C5",
-            38: "vertebrae_C4",
-            39: "vertebrae_C3",
-            40: "vertebrae_C2",
-            41: "vertebrae_C1",
-            42: "esophagus",
-            43: "trachea",
-            44: "heart_myocardium",
-            45: "heart_atrium_left",
-            46: "heart_ventricle_left",
-            47: "heart_atrium_right",
-            48: "heart_ventricle_right",
-            49: "pulmonary_artery",
-            50: "brain",
-            51: "iliac_artery_left",
-            52: "iliac_artery_right",
-            53: "iliac_vena_left",
-            54: "iliac_vena_right",
-            55: "small_bowel",
-            56: "duodenum",
-            57: "colon",
-            58: "rib_left_1",
-            59: "rib_left_2",
-            60: "rib_left_3",
-            61: "rib_left_4",
-            62: "rib_left_5",
-            63: "rib_left_6",
-            64: "rib_left_7",
-            65: "rib_left_8",
-            66: "rib_left_9",
-            67: "rib_left_10",
-            68: "rib_left_11",
-            69: "rib_left_12",
-            70: "rib_right_1",
-            71: "rib_right_2",
-            72: "rib_right_3",
-            73: "rib_right_4",
-            74: "rib_right_5",
-            75: "rib_right_6",
-            76: "rib_right_7",
-            77: "rib_right_8",
-            78: "rib_right_9",
-            79: "rib_right_10",
-            80: "rib_right_11",
-            81: "rib_right_12",
-            82: "humerus_left",
-            83: "humerus_right",
-            84: "scapula_left",
-            85: "scapula_right",
-            86: "clavicula_left",
-            87: "clavicula_right",
-            88: "femur_left",
-            89: "femur_right",
-            90: "hip_left",
-            91: "hip_right",
-            92: "sacrum",
-            93: "face",
-            94: "gluteus_maximus_left",
-            95: "gluteus_maximus_right",
-            96: "gluteus_medius_left",
-            97: "gluteus_medius_right",
-            98: "gluteus_minimus_left",
-            99: "gluteus_minimus_right",
-            100: "autochthon_left",
-            101: "autochthon_right",
-            102: "iliopsoas_left",
-            103: "iliopsoas_right",
-            104: "urinary_bladder",
-        }
-    )
+    original_label_dict = {  # https://github.com/wasserth/TotalSegmentator/blob/master/totalsegmentator/map_to_binary.py
+        1: "spleen",
+        2: "kidney_right",
+        3: "kidney_left",
+        4: "gallbladder",
+        5: "liver",
+        6: "stomach",
+        7: "aorta",
+        8: "inferior_vena_cava",
+        9: "portal_vein_and_splenic_vein",
+        10: "pancreas",
+        11: "adrenal_gland_right",
+        12: "adrenal_gland_left",
+        13: "lung_upper_lobe_left",
+        14: "lung_lower_lobe_left",
+        15: "lung_upper_lobe_right",
+        16: "lung_middle_lobe_right",
+        17: "lung_lower_lobe_right",
+        18: "vertebrae_L5",
+        19: "vertebrae_L4",
+        20: "vertebrae_L3",
+        21: "vertebrae_L2",
+        22: "vertebrae_L1",
+        23: "vertebrae_T12",
+        24: "vertebrae_T11",
+        25: "vertebrae_T10",
+        26: "vertebrae_T9",
+        27: "vertebrae_T8",
+        28: "vertebrae_T7",
+        29: "vertebrae_T6",
+        30: "vertebrae_T5",
+        31: "vertebrae_T4",
+        32: "vertebrae_T3",
+        33: "vertebrae_T2",
+        34: "vertebrae_T1",
+        35: "vertebrae_C7",
+        36: "vertebrae_C6",
+        37: "vertebrae_C5",
+        38: "vertebrae_C4",
+        39: "vertebrae_C3",
+        40: "vertebrae_C2",
+        41: "vertebrae_C1",
+        42: "esophagus",
+        43: "trachea",
+        44: "heart_myocardium",
+        45: "heart_atrium_left",
+        46: "heart_ventricle_left",
+        47: "heart_atrium_right",
+        48: "heart_ventricle_right",
+        49: "pulmonary_artery",
+        50: "brain",
+        51: "iliac_artery_left",
+        52: "iliac_artery_right",
+        53: "iliac_vena_left",
+        54: "iliac_vena_right",
+        55: "small_bowel",
+        56: "duodenum",
+        57: "colon",
+        58: "rib_left_1",
+        59: "rib_left_2",
+        60: "rib_left_3",
+        61: "rib_left_4",
+        62: "rib_left_5",
+        63: "rib_left_6",
+        64: "rib_left_7",
+        65: "rib_left_8",
+        66: "rib_left_9",
+        67: "rib_left_10",
+        68: "rib_left_11",
+        69: "rib_left_12",
+        70: "rib_right_1",
+        71: "rib_right_2",
+        72: "rib_right_3",
+        73: "rib_right_4",
+        74: "rib_right_5",
+        75: "rib_right_6",
+        76: "rib_right_7",
+        77: "rib_right_8",
+        78: "rib_right_9",
+        79: "rib_right_10",
+        80: "rib_right_11",
+        81: "rib_right_12",
+        82: "humerus_left",
+        83: "humerus_right",
+        84: "scapula_left",
+        85: "scapula_right",
+        86: "clavicula_left",
+        87: "clavicula_right",
+        88: "femur_left",
+        89: "femur_right",
+        90: "hip_left",
+        91: "hip_right",
+        92: "sacrum",
+        93: "face",
+        94: "gluteus_maximus_left",
+        95: "gluteus_maximus_right",
+        96: "gluteus_medius_left",
+        97: "gluteus_medius_right",
+        98: "gluteus_minimus_left",
+        99: "gluteus_minimus_right",
+        100: "autochthon_left",
+        101: "autochthon_right",
+        102: "iliopsoas_left",
+        103: "iliopsoas_right",
+        104: "urinary_bladder",
+    }
     label_dict = {
         1: "spleen",
         2: "right kidney",
@@ -796,7 +913,16 @@ def make_total_segmentator():
         103: "right iliopsoas",
         104: "bladder",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -855,7 +981,16 @@ def make_word():
         15: "left head of femur",
         16: "right head of femur",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -875,7 +1010,16 @@ def make_task03():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "liver", 2: "cancer"}
     label_dict = {1: "liver", 2: "hepatic tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -907,7 +1051,16 @@ def make_bone():
         raise ValueError("Remaining items in the full ct set.")
     original_label_dict = {1: "lesion 1", 2: "lesion 2"}
     label_dict = {1: "bone lesion", 2: "bone lesion"}  # merging 1 and 2
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1165,7 +1318,16 @@ def make_total_segmentator_v2():
         116: "thyroid gland",
         117: "vertebrae S1",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1190,7 +1352,16 @@ def make_c4kc_kits():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "Kidney", 2: "Mass"}
     label_dict = {1: "kidney", 2: "kidney mass"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1213,13 +1384,28 @@ def make_crlm_ct():
         images.append(rel_img)
         labels.append(rel_mask)
         filtering_files(base_url, images, labels)
-    original_label_dict = {1: "Liver", 2: "Liver Remnant", 3: "Hepatic Vein", 4: "Portal Vein", 5: "Tumor"}
+    original_label_dict = {
+        1: "Liver",
+        2: "Liver Remnant",
+        3: "Hepatic Vein",
+        4: "Portal Vein",
+        5: "Tumor",
+    }
     label_dict = {
         3: "hepatic vessel",
         4: "portal vein and splenic vein",
         5: "liver tumor",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1228,17 +1414,29 @@ def make_verse():
     base_url = "/data/VerSe/"
     dataset_name = "VerSe"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "dataset-01training"), "_msk.nii.gz")
-    masks += search_image_files(os.path.join(base_url, "dataset-02validation"), "_msk.nii.gz")
+    masks = search_image_files(
+        os.path.join(base_url, "dataset-01training"), "_msk.nii.gz"
+    )
+    masks += search_image_files(
+        os.path.join(base_url, "dataset-02validation"), "_msk.nii.gz"
+    )
     masks += search_image_files(os.path.join(base_url, "dataset-03test"), "_msk.nii.gz")
-    masks += search_image_files(os.path.join(base_url, "dataset-verse19test"), "_msk.nii.gz")
-    masks += search_image_files(os.path.join(base_url, "dataset-verse19training"), "_msk.nii.gz")
-    masks += search_image_files(os.path.join(base_url, "dataset-verse19validation"), "_msk.nii.gz")
+    masks += search_image_files(
+        os.path.join(base_url, "dataset-verse19test"), "_msk.nii.gz"
+    )
+    masks += search_image_files(
+        os.path.join(base_url, "dataset-verse19training"), "_msk.nii.gz"
+    )
+    masks += search_image_files(
+        os.path.join(base_url, "dataset-verse19validation"), "_msk.nii.gz"
+    )
     masks = sorted(masks)
     images, labels = [], []
     for mask in masks:
         rel_mask = os.path.relpath(mask, base_url)
-        img_name = f"{mask}".replace("derivatives", "rawdata").replace("_seg-vert_msk", "_ct")
+        img_name = f"{mask}".replace("derivatives", "rawdata").replace(
+            "_seg-vert_msk", "_ct"
+        )
         rel_img = os.path.relpath(img_name, base_url)
         images.append(rel_img)
         labels.append(rel_mask)
@@ -1270,7 +1468,9 @@ def make_verse():
         24: "vertebrae L5",
         25: "vertebrae L6",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1285,7 +1485,9 @@ def make_aeropath():
         rel_mask = os.path.relpath(mask, base_url)
         img_folder = os.path.dirname(mask)
         img_name = [
-            s for s in sorted(glob(os.path.join(img_folder, "*.nii.gz"))) if not ("label" in os.path.basename(s))
+            s
+            for s in sorted(glob(os.path.join(img_folder, "*.nii.gz")))
+            if "label" not in os.path.basename(s)
         ][0]
         rel_img = os.path.relpath(img_name, base_url)
         images.append(rel_img)
@@ -1293,7 +1495,16 @@ def make_aeropath():
         filtering_files(base_url, images, labels)
     original_label_dict = {1: "lung", 2: "airway"}
     label_dict = {2: "airway"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1313,7 +1524,9 @@ def make_autopet23():
         labels.append(rel_mask)
         filtering_files(base_url, images, labels)
     label_dict = {1: "FDG-avid lesion"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1333,7 +1546,9 @@ def make_LIDC_IDRI():
         labels.append(rel_mask)
         filtering_files(base_url, images, labels)
     label_dict = {1: "lung nodule"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1342,19 +1557,33 @@ def make_ctpelvic1k_clinic():
     base_url = "/data/CTPelvic1K-CLINIC"
     dataset_name = "CTPelvic1K-CLINIC"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
-    masks = search_image_files(os.path.join(base_url, "ipcai2021_dataset6_Anonymized"), ".nii.gz")
-    masks += search_image_files(os.path.join(base_url, "CTPelvic1K_dataset7_mask"), ".nii.gz")
+    masks = search_image_files(
+        os.path.join(base_url, "ipcai2021_dataset6_Anonymized"), ".nii.gz"
+    )
+    masks += search_image_files(
+        os.path.join(base_url, "CTPelvic1K_dataset7_mask"), ".nii.gz"
+    )
     images, labels = [], []
     for mask in masks:
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
         if "dataset7" in mask:
-            img = mask.replace("mask", "data").replace("CLINIC_metal", "dataset7_CLINIC_metal").replace("_4label", "")
+            img = (
+                mask.replace("mask", "data")
+                .replace("CLINIC_metal", "dataset7_CLINIC_metal")
+                .replace("_4label", "")
+            )
         if "dataset6" in mask:
-            img = mask.replace("ipcai2021", "CTPelvic1K").replace("_Anonymized", "_data").replace("mask_4label", "data")
+            img = (
+                mask.replace("ipcai2021", "CTPelvic1K")
+                .replace("_Anonymized", "_data")
+                .replace("mask_4label", "data")
+            )
         images.append(img)
     label_dict = {1: "sacrum", 2: "left hip", 3: "right hip", 4: "lumbar spine"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1372,7 +1601,9 @@ def make_colon_acrin6664():
         img = os.path.join("nifti", img)
         images.append(img)
     label_dict = {1: "sacrum", 2: "left hip", 3: "right hip", 4: "lumbar spine"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1388,16 +1619,25 @@ def make_adrenal_ki67():
         labels.append(mask)
         img_folder = os.path.join(base_url, os.path.dirname(mask))
         img_name = [
-            s for s in sorted(glob(os.path.join(img_folder, "*.nii.gz"))) if not ("seg" in os.path.basename(s))
+            s
+            for s in sorted(glob(os.path.join(img_folder, "*.nii.gz")))
+            if "seg" not in os.path.basename(s)
         ][0]
         img_name = os.path.relpath(img_name, base_url)
         if "Ki67_Seg_049" in img_name:
-            img_name = os.path.join("Adrenal_Ki67_Seg_049-Adrenal_Ki67_Seg_049", "3-CAP_W_O_5.0_I30f_3_3.nii.gz")
+            img_name = os.path.join(
+                "Adrenal_Ki67_Seg_049-Adrenal_Ki67_Seg_049",
+                "3-CAP_W_O_5.0_I30f_3_3.nii.gz",
+            )
         if "Ki67_Seg_053" in img_name:
-            img_name = os.path.join("Adrenal_Ki67_Seg_053-Adrenal_Ki67_Seg_053", "7-ABD_AX_3_PV_7.nii.gz")
+            img_name = os.path.join(
+                "Adrenal_Ki67_Seg_053-Adrenal_Ki67_Seg_053", "7-ABD_AX_3_PV_7.nii.gz"
+            )
         images.append(img_name)
     label_dict = {1: "adrenocortical tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1415,12 +1655,16 @@ def make_hcc_tace():
         labels.append(mask)
         img_folder = os.path.join(base_url, os.path.dirname(mask))
         img_name = [
-            s for s in sorted(glob(os.path.join(img_folder, "*.nii.gz"))) if not ("seg" in os.path.basename(s))
+            s
+            for s in sorted(glob(os.path.join(img_folder, "*.nii.gz")))
+            if "seg" not in os.path.basename(s)
         ][0]
         img_name = os.path.relpath(img_name, base_url)
         images.append(img_name)
     label_dict = {2: "hepatic tumor"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1437,7 +1681,9 @@ def make_micro_ct_murine_native():
         img_name = mask.replace("seg.nii.gz", "CT140.nii.gz")
         images.append(img_name)
     label_dict = {1: "heart", 2: "spinal cord", 3: "right lung", 4: "left lung"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1454,7 +1700,9 @@ def make_micro_ct_murine_contrast():
         img_name = mask.replace("seg.nii.gz", "CT140.nii.gz")
         images.append(img_name)
     label_dict = {1: "heart", 2: "spinal cord", 3: "right lung", 4: "left lung"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1464,14 +1712,19 @@ def make_segrap2023_task1():
     dataset_name = "segrap23-task1"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
     masks = search_image_files(
-        os.path.join(base_url, "SegRap2023_Training_Set_120cases_OneHot_Labels", "Task001"), ".nii.gz"
+        os.path.join(
+            base_url, "SegRap2023_Training_Set_120cases_OneHot_Labels", "Task001"
+        ),
+        ".nii.gz",
     )
     images, labels = [], []
     for mask in masks:
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
         s_id = os.path.basename(mask)[: -len(".nii.gz")]
-        img_name = os.path.join("SegRap2023_Training_Set_120cases", f"{s_id}", "image.nii.gz")
+        img_name = os.path.join(
+            "SegRap2023_Training_Set_120cases", f"{s_id}", "image.nii.gz"
+        )
         images.append(img_name)
     original_label_dict = {
         "1": "Brain",
@@ -1585,7 +1838,16 @@ def make_segrap2023_task1():
         "53": "thyroid",
         "54": "trachea",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1664,7 +1926,16 @@ def make_pediatric_ct_seg():
         28: "skin",
         29: "bones",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 ####
@@ -1679,7 +1950,9 @@ def make_autopet_atlas():
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
         pat_id = mask.split("_")[1]
-        img_folder = os.path.join(base_url, "Autopet23", "FDG-PET-CT-Lesions", f"PETCT_{pat_id}")
+        img_folder = os.path.join(
+            base_url, "Autopet23", "FDG-PET-CT-Lesions", f"PETCT_{pat_id}"
+        )
         image_nii = search_image_files(img_folder, "CT.nii.gz")[0]
         img_name = os.path.relpath(image_nii, base_url)
         images.append(img_name)
@@ -1815,7 +2088,9 @@ def make_autopet_atlas():
         130: "left eyeball",
         131: "right eyeball",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1825,16 +2100,27 @@ def make_uls23():
     dataset_name = "ULS23_DeepLesion"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
     # data/ULS23/ULS23_annotations/processed_data/partially_annotated/DeepLesion/labels_grabcut
-    seg_folder = [base_url, "ULS23_annotations", "processed_data", "partially_annotated", "DeepLesion", "labels_grabcut"]
+    seg_folder = [
+        base_url,
+        "ULS23_annotations",
+        "processed_data",
+        "partially_annotated",
+        "DeepLesion",
+        "labels_grabcut",
+    ]
     masks = search_image_files(os.path.join(*seg_folder), ".nii.gz")
     images, labels = [], []
     for mask in masks:
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
-        img_name = mask.replace("ULS23_annotations", "ULS23").replace("labels_grabcut", "images")
+        img_name = mask.replace("ULS23_annotations", "ULS23").replace(
+            "labels_grabcut", "images"
+        )
         images.append(img_name)
     label_dict = {1: "lesion"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1844,16 +2130,26 @@ def make_uls23_deeplesion3d():
     dataset_name = "ULS23_DeepLesion3D"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
     # /data/ULS23/ULS23_annotations/novel_data/ULS23_DeepLesion3D/labels
-    seg_folder = [base_url, "ULS23_annotations", "novel_data", "ULS23_DeepLesion3D", "labels"]
+    seg_folder = [
+        base_url,
+        "ULS23_annotations",
+        "novel_data",
+        "ULS23_DeepLesion3D",
+        "labels",
+    ]
     masks = search_image_files(os.path.join(*seg_folder), ".nii.gz")
     images, labels = [], []
     for mask in masks:
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
-        img_name = mask.replace("ULS23_annotations", "ULS23").replace("labels", "images")
+        img_name = mask.replace("ULS23_annotations", "ULS23").replace(
+            "labels", "images"
+        )
         images.append(img_name)
     label_dict = {1: "lesion"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1863,16 +2159,26 @@ def make_uls23_bone():
     dataset_name = "ULS23_Bone"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
     # /data/ULS23/ULS23_annotations/novel_data/ULS23_Radboudumc_Bone/labels
-    seg_folder = [base_url, "ULS23_annotations", "novel_data", "ULS23_Radboudumc_Bone", "labels"]
+    seg_folder = [
+        base_url,
+        "ULS23_annotations",
+        "novel_data",
+        "ULS23_Radboudumc_Bone",
+        "labels",
+    ]
     masks = search_image_files(os.path.join(*seg_folder), ".nii.gz")
     images, labels = [], []
     for mask in masks:
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
-        img_name = mask.replace("ULS23_annotations", "ULS23").replace("labels", "images")
+        img_name = mask.replace("ULS23_annotations", "ULS23").replace(
+            "labels", "images"
+        )
         images.append(img_name)
     label_dict = {1: "lesion"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1882,16 +2188,26 @@ def make_uls23_pancreas():
     dataset_name = "ULS23_Pancreas"
     json_name = os.path.join(output_json_dir, f"{dataset_name}_{n_folds}_folds.json")
     # /data/ULS23/ULS23_annotations/novel_data/ULS23_Radboudumc_Pancreas/labels
-    seg_folder = [base_url, "ULS23_annotations", "novel_data", "ULS23_Radboudumc_Pancreas", "labels"]
+    seg_folder = [
+        base_url,
+        "ULS23_annotations",
+        "novel_data",
+        "ULS23_Radboudumc_Pancreas",
+        "labels",
+    ]
     masks = search_image_files(os.path.join(*seg_folder), ".nii.gz")
     images, labels = [], []
     for mask in masks:
         mask = os.path.relpath(mask, base_url)
         labels.append(mask)
-        img_name = mask.replace("ULS23_annotations", "ULS23").replace("labels", "images")
+        img_name = mask.replace("ULS23_annotations", "ULS23").replace(
+            "labels", "images"
+        )
         images.append(img_name)
     label_dict = {1: "lesion"}
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict)
+    create_splits_and_write_json(
+        images, labels, test_ratio, n_folds, json_name, seed, label_dict
+    )
 
 
 ####
@@ -1951,7 +2267,16 @@ def make_mr_amos22():
         14: "bladder",
         15: "prostate or uterus",
     }
-    create_splits_and_write_json(images, labels, test_ratio, n_folds, json_name, seed, label_dict, original_label_dict)
+    create_splits_and_write_json(
+        images,
+        labels,
+        test_ratio,
+        n_folds,
+        json_name,
+        seed,
+        label_dict,
+        original_label_dict,
+    )
 
 
 if __name__ == "__main__":

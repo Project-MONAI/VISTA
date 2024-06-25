@@ -11,18 +11,21 @@
 
 from __future__ import annotations
 
+import copy
 import itertools
 from collections.abc import Callable, Mapping, Sequence
 from typing import Any, Iterable
 
+import monai
 import numpy as np
-import copy
 import torch
 import torch.nn.functional as F
-
-import monai
 from monai.data.meta_tensor import MetaTensor
-from monai.data.utils import compute_importance_map, dense_patch_slices, get_valid_patch_size
+from monai.data.utils import (
+    compute_importance_map,
+    dense_patch_slices,
+    get_valid_patch_size,
+)
 from monai.utils import (
     BlendMode,
     PytorchPadMode,
@@ -34,8 +37,8 @@ from monai.utils import (
     look_up_option,
     optional_import,
     pytorch_after,
-    convert_to_numpy
 )
+
 tqdm, _ = optional_import("tqdm", name="tqdm")
 _nearest_mode = "nearest-exact" if pytorch_after(1, 11) else "nearest"
 
@@ -43,13 +46,14 @@ __all__ = ["sliding_window_inference", "point_based_window_inferer"]
 
 
 def get_window_idx_c(p, roi, s):
-    if p - roi//2 < 0:
+    if p - roi // 2 < 0:
         left, right = 0, roi
-    elif p + roi//2 > s:
+    elif p + roi // 2 > s:
         left, right = s - roi, s
     else:
-        left, right = int(p)-roi//2, int(p)+roi//2
+        left, right = int(p) - roi // 2, int(p) + roi // 2
     return left, right
+
 
 def get_window_idx(p, roi, s, center_only=True, margin=5):
     left, right = get_window_idx_c(p, roi, s)
@@ -57,9 +61,10 @@ def get_window_idx(p, roi, s, center_only=True, margin=5):
         return [left], [right]
     left_most = max(0, p - roi + margin)
     right_most = min(s, p + roi - margin)
-    left = [left_most, right_most-roi, left]
+    left = [left_most, right_most - roi, left]
     right = [left_most + roi, right_most, right]
     return left, right
+
 
 def pad_previous_mask(inputs, roi_size, padvalue=0):
     pad_size = []
@@ -68,12 +73,31 @@ def pad_previous_mask(inputs, roi_size, padvalue=0):
         half = diff // 2
         pad_size.extend([half, diff - half])
     if any(pad_size):
-        inputs = torch.nn.functional.pad(inputs, pad=pad_size, mode="constant", value=padvalue)
+        inputs = torch.nn.functional.pad(
+            inputs, pad=pad_size, mode="constant", value=padvalue
+        )
     return inputs, pad_size
 
-def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode, overlap, sw_device, device, point_coords, point_labels, class_vector, prompt_class, prev_mask, point_mask=None,
-                               point_start=0,**kwargs):
-    """ Point based window inferer, crop a patch centered at the point, and perform inference. Different patches are combined with gaussian weighted weights.
+
+def point_based_window_inferer(
+    inputs,
+    roi_size,
+    sw_batch_size,
+    predictor,
+    mode,
+    overlap,
+    sw_device,
+    device,
+    point_coords,
+    point_labels,
+    class_vector,
+    prompt_class,
+    prev_mask,
+    point_mask=None,
+    point_start=0,
+    **kwargs,
+):
+    """Point based window inferer, crop a patch centered at the point, and perform inference. Different patches are combined with gaussian weighted weights.
     Args:
         predictor: partial(infer_wrapper, model). infer_wrapper transpose the model output. The model output is [B, 1, H, W, D] which needs to be transposed to [1, B, H, W, D]
         point_coords: [B, N, 3]
@@ -84,55 +108,123 @@ def point_based_window_inferer(inputs, roi_size, sw_batch_size,  predictor, mode
         stitched_output: [1, B, H, W, D]. The value is before sigmoid.
     Notice: The function currently only supports SINGLE OBJECT INFERENCE with B=1.
     """
-    assert point_coords.shape[0] == 1, 'Only supports single object point click'
+    assert point_coords.shape[0] == 1, "Only supports single object point click"
     image, pad = pad_previous_mask(copy.deepcopy(inputs), roi_size)
-    point_coords = point_coords + torch.tensor([pad[-2], pad[-4], pad[-6]]).to(point_coords.device)
-    prev_mask = pad_previous_mask(copy.deepcopy(prev_mask), roi_size)[0] if prev_mask is not None else None
+    point_coords = point_coords + torch.tensor([pad[-2], pad[-4], pad[-6]]).to(
+        point_coords.device
+    )
+    prev_mask = (
+        pad_previous_mask(copy.deepcopy(prev_mask), roi_size)[0]
+        if prev_mask is not None
+        else None
+    )
     stitched_output = None
     center_only = True
     for p in point_coords[0][point_start:]:
-        lx_, rx_ = get_window_idx(p[0], roi_size[0], image.shape[-3], center_only=center_only, margin=5)
-        ly_, ry_ = get_window_idx(p[1], roi_size[1], image.shape[-2], center_only=center_only, margin=5)
-        lz_, rz_ = get_window_idx(p[2], roi_size[2], image.shape[-1], center_only=center_only, margin=5)
+        lx_, rx_ = get_window_idx(
+            p[0], roi_size[0], image.shape[-3], center_only=center_only, margin=5
+        )
+        ly_, ry_ = get_window_idx(
+            p[1], roi_size[1], image.shape[-2], center_only=center_only, margin=5
+        )
+        lz_, rz_ = get_window_idx(
+            p[2], roi_size[2], image.shape[-1], center_only=center_only, margin=5
+        )
         for i in range(len(lx_)):
             for j in range(len(ly_)):
                 for k in range(len(lz_)):
-                    lx, rx, ly, ry, lz, rz = lx_[i], rx_[i], ly_[j], ry_[j], lz_[k], rz_[k]
-                    unravel_slice = [slice(None), slice(None), slice(int(lx), int(rx)), slice(int(ly), int(ry)), slice(int(lz), int(rz))]
+                    lx, rx, ly, ry, lz, rz = (
+                        lx_[i],
+                        rx_[i],
+                        ly_[j],
+                        ry_[j],
+                        lz_[k],
+                        rz_[k],
+                    )
+                    unravel_slice = [
+                        slice(None),
+                        slice(None),
+                        slice(int(lx), int(rx)),
+                        slice(int(ly), int(ry)),
+                        slice(int(lz), int(rz)),
+                    ]
                     batch_image = image[unravel_slice]
                     # ball = get_gaussian_ball(batch_image.shape[-3:])
-                    output = predictor(batch_image,
-                                point_coords=point_coords,
-                                point_labels=point_labels,
-                                class_vector=class_vector,
-                                prompt_class=prompt_class,
-                                patch_coords=unravel_slice,
-                                prev_mask=prev_mask,
-                                **kwargs)
+                    output = predictor(
+                        batch_image,
+                        point_coords=point_coords,
+                        point_labels=point_labels,
+                        class_vector=class_vector,
+                        prompt_class=prompt_class,
+                        patch_coords=unravel_slice,
+                        prev_mask=prev_mask,
+                        **kwargs,
+                    )
                     if stitched_output is None:
-                        stitched_output = torch.zeros([1, output.shape[1], image.shape[-3],image.shape[-2],image.shape[-1]],device='cpu')
-                        stitched_mask = torch.zeros([1, output.shape[1], image.shape[-3],image.shape[-2],image.shape[-1]],device='cpu')
-                    stitched_output[unravel_slice] += output.to('cpu')
+                        stitched_output = torch.zeros(
+                            [
+                                1,
+                                output.shape[1],
+                                image.shape[-3],
+                                image.shape[-2],
+                                image.shape[-1],
+                            ],
+                            device="cpu",
+                        )
+                        stitched_mask = torch.zeros(
+                            [
+                                1,
+                                output.shape[1],
+                                image.shape[-3],
+                                image.shape[-2],
+                                image.shape[-1],
+                            ],
+                            device="cpu",
+                        )
+                    stitched_output[unravel_slice] += output.to("cpu")
                     stitched_mask[unravel_slice] = 1
     # if stitched_mask is 0, then NaN value
-    stitched_output = stitched_output/stitched_mask
+    stitched_output = stitched_output / stitched_mask
     # revert padding
-    stitched_output = stitched_output[:,:,pad[4]:image.shape[-3]-pad[5], pad[2]:image.shape[-2]-pad[3], pad[0]:image.shape[-1]-pad[1]]
-    stitched_mask = stitched_mask[:,:,pad[4]:image.shape[-3]-pad[5], pad[2]:image.shape[-2]-pad[3], pad[0]:image.shape[-1]-pad[1]]
+    stitched_output = stitched_output[
+        :,
+        :,
+        pad[4] : image.shape[-3] - pad[5],
+        pad[2] : image.shape[-2] - pad[3],
+        pad[0] : image.shape[-1] - pad[1],
+    ]
+    stitched_mask = stitched_mask[
+        :,
+        :,
+        pad[4] : image.shape[-3] - pad[5],
+        pad[2] : image.shape[-2] - pad[3],
+        pad[0] : image.shape[-1] - pad[1],
+    ]
     if prev_mask is not None:
-        prev_mask = prev_mask[:,:,pad[4]:image.shape[-3]-pad[5], pad[2]:image.shape[-2]-pad[3], pad[0]:image.shape[-1]-pad[1]]
-        prev_mask = prev_mask.to('cpu')
+        prev_mask = prev_mask[
+            :,
+            :,
+            pad[4] : image.shape[-3] - pad[5],
+            pad[2] : image.shape[-2] - pad[3],
+            pad[0] : image.shape[-1] - pad[1],
+        ]
+        prev_mask = prev_mask.to("cpu")
         # for un-calculated place, use previous mask
         stitched_output[stitched_mask < 1] = prev_mask[stitched_mask < 1]
-    if not hasattr(stitched_output, 'meta'):
-        stitched_output = monai.data.MetaTensor(stitched_output, affine=inputs.meta["affine"], meta=inputs.meta)
+    if not hasattr(stitched_output, "meta"):
+        stitched_output = monai.data.MetaTensor(
+            stitched_output, affine=inputs.meta["affine"], meta=inputs.meta
+        )
     return stitched_output
+
 
 def sliding_window_inference(
     inputs: torch.Tensor | MetaTensor,
     roi_size: Sequence[int] | int,
     sw_batch_size: int,
-    predictor: Callable[..., torch.Tensor | Sequence[torch.Tensor] | dict[Any, torch.Tensor]],
+    predictor: Callable[
+        ..., torch.Tensor | Sequence[torch.Tensor] | dict[Any, torch.Tensor]
+    ],
     overlap: Sequence[float] | float = 0.25,
     mode: BlendMode | str = BlendMode.CONSTANT,
     sigma_scale: Sequence[float] | float = 0.125,
@@ -224,7 +316,9 @@ def sliding_window_inference(
     num_spatial_dims = len(inputs.shape) - 2
     if buffered:
         if buffer_dim < -num_spatial_dims or buffer_dim > num_spatial_dims:
-            raise ValueError(f"buffer_dim must be in [{-num_spatial_dims}, {num_spatial_dims}], got {buffer_dim}.")
+            raise ValueError(
+                f"buffer_dim must be in [{-num_spatial_dims}, {num_spatial_dims}], got {buffer_dim}."
+            )
         if buffer_dim < 0:
             buffer_dim += num_spatial_dims
     overlap = ensure_tuple_rep(overlap, num_spatial_dims)
@@ -246,26 +340,45 @@ def sliding_window_inference(
     roi_size = fall_back_tuple(roi_size, image_size_)
 
     # in case that image size is smaller than roi size
-    image_size = tuple(max(image_size_[i], roi_size[i]) for i in range(num_spatial_dims))
+    image_size = tuple(
+        max(image_size_[i], roi_size[i]) for i in range(num_spatial_dims)
+    )
     pad_size = []
     for k in range(len(inputs.shape) - 1, 1, -1):
         diff = max(roi_size[k - 2] - inputs.shape[k], 0)
         half = diff // 2
         pad_size.extend([half, diff - half])
     if any(pad_size):
-        inputs = F.pad(inputs, pad=pad_size, mode=look_up_option(padding_mode, PytorchPadMode), value=cval)
+        inputs = F.pad(
+            inputs,
+            pad=pad_size,
+            mode=look_up_option(padding_mode, PytorchPadMode),
+            value=cval,
+        )
         if "labels" in kwargs.keys() and kwargs["labels"] is not None:
-            kwargs["labels"] = F.pad(kwargs["labels"], pad=pad_size, mode=look_up_option(padding_mode, PytorchPadMode),
-                                    value=cval)
+            kwargs["labels"] = F.pad(
+                kwargs["labels"],
+                pad=pad_size,
+                mode=look_up_option(padding_mode, PytorchPadMode),
+                value=cval,
+            )
         if "prev_mask" in kwargs.keys() and kwargs["prev_mask"] is not None:
-            kwargs["prev_mask"] = F.pad(kwargs["prev_mask"], pad=pad_size, mode=look_up_option(padding_mode, PytorchPadMode),
-                                    value=cval)
+            kwargs["prev_mask"] = F.pad(
+                kwargs["prev_mask"],
+                pad=pad_size,
+                mode=look_up_option(padding_mode, PytorchPadMode),
+                value=cval,
+            )
         if "point_coords" in kwargs.keys() and kwargs["point_coords"] is not None:
-            kwargs["point_coords"] = kwargs["point_coords"] + torch.tensor([pad_size[-2], pad_size[-4], pad_size[-6]]).to(kwargs["point_coords"].device)
+            kwargs["point_coords"] = kwargs["point_coords"] + torch.tensor(
+                [pad_size[-2], pad_size[-4], pad_size[-6]]
+            ).to(kwargs["point_coords"].device)
 
     # Store all slices
     scan_interval = _get_scan_interval(image_size, roi_size, num_spatial_dims, overlap)
-    slices = dense_patch_slices(image_size, roi_size, scan_interval, return_slice=not buffered)
+    slices = dense_patch_slices(
+        image_size, roi_size, scan_interval, return_slice=not buffered
+    )
 
     num_win = len(slices)  # number of windows per image
     total_slices = num_win * batch_size  # total number of windows
@@ -292,32 +405,50 @@ def sliding_window_inference(
         try:
             valid_p_size = ensure_tuple(valid_patch_size)
             importance_map_ = compute_importance_map(
-                valid_p_size, mode=mode, sigma_scale=sigma_scale, device=sw_device, dtype=compute_dtype
+                valid_p_size,
+                mode=mode,
+                sigma_scale=sigma_scale,
+                device=sw_device,
+                dtype=compute_dtype,
             )
             if len(importance_map_.shape) == num_spatial_dims and not process_fn:
-                importance_map_ = importance_map_[None, None]  # adds batch, channel dimensions
+                importance_map_ = importance_map_[
+                    None, None
+                ]  # adds batch, channel dimensions
         except Exception as e:
             raise RuntimeError(
                 f"patch size {valid_p_size}, mode={mode}, sigma_scale={sigma_scale}, device={device}\n"
                 "Seems to be OOM. Please try smaller patch size or mode='constant' instead of mode='gaussian'."
             ) from e
-    importance_map_ = convert_data_type(importance_map_, torch.Tensor, device=sw_device, dtype=compute_dtype)[0]
+    importance_map_ = convert_data_type(
+        importance_map_, torch.Tensor, device=sw_device, dtype=compute_dtype
+    )[0]
 
     # stores output and count map
     output_image_list, count_map_list, sw_device_buffer, b_s, b_i = [], [], [], 0, 0  # type: ignore
     # for each patch
     for slice_g in tqdm(windows_range) if progress else windows_range:
-        slice_range = range(slice_g, min(slice_g + sw_batch_size, b_slices[b_s][0] if buffered else total_slices))
+        slice_range = range(
+            slice_g,
+            min(
+                slice_g + sw_batch_size, b_slices[b_s][0] if buffered else total_slices
+            ),
+        )
         unravel_slice = [
-            [slice(idx // num_win, idx // num_win + 1), slice(None)] + list(slices[idx % num_win])
+            [slice(idx // num_win, idx // num_win + 1), slice(None)]
+            + list(slices[idx % num_win])
             for idx in slice_range
         ]
         if sw_batch_size > 1:
-            win_data = torch.cat([inputs[win_slice] for win_slice in unravel_slice]).to(sw_device)
+            win_data = torch.cat([inputs[win_slice] for win_slice in unravel_slice]).to(
+                sw_device
+            )
         else:
             win_data = inputs[unravel_slice[0]].to(sw_device)
 
-        seg_prob_out = predictor(win_data, patch_coords=unravel_slice[0], *args, **kwargs)  # batched patch
+        seg_prob_out = predictor(
+            win_data, patch_coords=unravel_slice[0], *args, **kwargs
+        )  # batched patch
 
         # convert seg_prob_out to tuple seg_tuple, this does not allocate new memory.
         dict_keys, seg_tuple = _flatten_struct(seg_prob_out)
@@ -334,7 +465,11 @@ def sliding_window_inference(
                 k = seg_tuple[0].shape[1]  # len(seg_tuple) > 1 is currently ignored
                 sp_size = list(image_size)
                 sp_size[buffer_dim] = c_end - c_start
-                sw_device_buffer = [torch.zeros(size=[1, k, *sp_size], dtype=compute_dtype, device=sw_device)]
+                sw_device_buffer = [
+                    torch.zeros(
+                        size=[1, k, *sp_size], dtype=compute_dtype, device=sw_device
+                    )
+                ]
             for p, s in zip(seg_tuple[0], unravel_slice):
                 offset = s[buffer_dim + 2].start - c_start
                 s[buffer_dim + 2] = slice(offset, offset + roi_size[buffer_dim])
@@ -351,19 +486,35 @@ def sliding_window_inference(
             seg_chns, seg_shape = b_shape[1], b_shape[2:]
             z_scale = None
             if not buffered and seg_shape != roi_size:
-                z_scale = [out_w_i / float(in_w_i) for out_w_i, in_w_i in zip(seg_shape, roi_size)]
+                z_scale = [
+                    out_w_i / float(in_w_i)
+                    for out_w_i, in_w_i in zip(seg_shape, roi_size)
+                ]
                 w_t = F.interpolate(w_t, seg_shape, mode=_nearest_mode)
             if len(output_image_list) <= ss:
                 output_shape = [batch_size, seg_chns]
-                output_shape += [int(_i * _z) for _i, _z in zip(image_size, z_scale)] if z_scale else list(image_size)
+                output_shape += (
+                    [int(_i * _z) for _i, _z in zip(image_size, z_scale)]
+                    if z_scale
+                    else list(image_size)
+                )
                 # allocate memory to store the full output and the count for overlapping parts
                 new_tensor: Callable = torch.empty if non_blocking else torch.zeros  # type: ignore
-                output_image_list.append(new_tensor(output_shape, dtype=compute_dtype, device=device))
-                count_map_list.append(torch.zeros([1, 1] + output_shape[2:], dtype=compute_dtype, device=device))
+                output_image_list.append(
+                    new_tensor(output_shape, dtype=compute_dtype, device=device)
+                )
+                count_map_list.append(
+                    torch.zeros(
+                        [1, 1] + output_shape[2:], dtype=compute_dtype, device=device
+                    )
+                )
                 w_t_ = w_t.to(device)
                 for __s in slices:
                     if z_scale is not None:
-                        __s = tuple(slice(int(_si.start * z_s), int(_si.stop * z_s)) for _si, z_s in zip(__s, z_scale))
+                        __s = tuple(
+                            slice(int(_si.start * z_s), int(_si.stop * z_s))
+                            for _si, z_s in zip(__s, z_scale)
+                        )
                     count_map_list[-1][(slice(None), slice(None), *__s)] += w_t_
             if buffered:
                 o_slice = [slice(None)] * len(inputs.shape)
@@ -371,13 +522,19 @@ def sliding_window_inference(
                 img_b = b_s // n_per_batch  # image batch index
                 o_slice[0] = slice(img_b, img_b + 1)
                 if non_blocking:
-                    output_image_list[0][o_slice].copy_(sw_device_buffer[0], non_blocking=non_blocking)
+                    output_image_list[0][o_slice].copy_(
+                        sw_device_buffer[0], non_blocking=non_blocking
+                    )
                 else:
-                    output_image_list[0][o_slice] += sw_device_buffer[0].to(device=device)
+                    output_image_list[0][o_slice] += sw_device_buffer[0].to(
+                        device=device
+                    )
             else:
                 sw_device_buffer[ss] *= w_t
                 sw_device_buffer[ss] = sw_device_buffer[ss].to(device)
-                _compute_coords(unravel_slice, z_scale, output_image_list[ss], sw_device_buffer[ss])
+                _compute_coords(
+                    unravel_slice, z_scale, output_image_list[ss], sw_device_buffer[ss]
+                )
         sw_device_buffer = []
         if buffered:
             b_s += 1
@@ -392,7 +549,10 @@ def sliding_window_inference(
     # remove padding if image_size smaller than roi_size
     if any(pad_size):
         for ss, output_i in enumerate(output_image_list):
-            zoom_scale = [_shape_d / _roi_size_d for _shape_d, _roi_size_d in zip(output_i.shape[2:], roi_size)]
+            zoom_scale = [
+                _shape_d / _roi_size_d
+                for _shape_d, _roi_size_d in zip(output_i.shape[2:], roi_size)
+            ]
             final_slicing: list[slice] = []
             for sp in range(num_spatial_dims):
                 si = num_spatial_dims - sp - 1
@@ -412,7 +572,9 @@ def sliding_window_inference(
     return final_output  # type: ignore
 
 
-def _create_buffered_slices(slices, batch_size, sw_batch_size, buffer_dim, buffer_steps):
+def _create_buffered_slices(
+    slices, batch_size, sw_batch_size, buffer_dim, buffer_steps
+):
     """rearrange slices for buffering"""
     slices_np = np.asarray(slices)
     slices_np = slices_np[np.argsort(slices_np[:, buffer_dim, 0], kind="mergesort")]
@@ -446,13 +608,17 @@ def _compute_coords(coords, z_scale, out, patch):
         if z_scale:
             for axis in range(2, len(idx_zm)):
                 idx_zm[axis] = slice(
-                    int(original_idx[axis].start * z_scale[axis - 2]), int(original_idx[axis].stop * z_scale[axis - 2])
+                    int(original_idx[axis].start * z_scale[axis - 2]),
+                    int(original_idx[axis].stop * z_scale[axis - 2]),
                 )
         out[idx_zm] += p
 
 
 def _get_scan_interval(
-    image_size: Sequence[int], roi_size: Sequence[int], num_spatial_dims: int, overlap: Sequence[float]
+    image_size: Sequence[int],
+    roi_size: Sequence[int],
+    num_spatial_dims: int,
+    overlap: Sequence[float],
 ) -> tuple[int, ...]:
     """
     Compute scan interval according to the image size, roi size and overlap.
@@ -461,9 +627,13 @@ def _get_scan_interval(
 
     """
     if len(image_size) != num_spatial_dims:
-        raise ValueError(f"len(image_size) {len(image_size)} different from spatial dims {num_spatial_dims}.")
+        raise ValueError(
+            f"len(image_size) {len(image_size)} different from spatial dims {num_spatial_dims}."
+        )
     if len(roi_size) != num_spatial_dims:
-        raise ValueError(f"len(roi_size) {len(roi_size)} different from spatial dims {num_spatial_dims}.")
+        raise ValueError(
+            f"len(roi_size) {len(roi_size)} different from spatial dims {num_spatial_dims}."
+        )
 
     scan_interval = []
     for i, o in zip(range(num_spatial_dims), overlap):

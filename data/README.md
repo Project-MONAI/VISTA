@@ -115,7 +115,7 @@ wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 @torch.no_grad()
 def get_feature_upsampled(self, input_image=None):
     if input_image is None:
-        image_embeddings = self.model.mask_decoder.predict_masks_noprompt(self.features) 
+        image_embeddings = self.model.mask_decoder.predict_masks_noprompt(self.features)
     else:
         image_embeddings = self.model.mask_decoder.predict_masks_noprompt(self.model.image_encoder(input_image))
     return image_embeddings
@@ -136,7 +136,7 @@ def predict_masks_noprompt(
 
     return upscaled_embedding
 ```
-3. Run the supervoxel generation script. The processsing time is over 10 minutes, use `batch_infer` and multi-gpu for speed up. 
+3. Run the supervoxel generation script. The processsing time is over 10 minutes, use `batch_infer` and multi-gpu for speed up.
 ```
 python -m scripts.slic_process_sam infer --image_file xxxx
 ```

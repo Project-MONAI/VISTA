@@ -9,30 +9,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import torch
-import torch.nn as nn
-import pdb
-from functools import partial
-import monai
-from .modeling import VISTA3D2, Point_Mapping_SAM, Class_Mapping_Classify, SegResNetDS2
+
+
+from .modeling import VISTA3D2, Class_Mapping_Classify, Point_Mapping_SAM, SegResNetDS2
+
 
 def build_vista3d_segresnet_decoder(
-    encoder_embed_dim=48,
-    in_channels=1,
-    image_size=(96,96,96)
+    encoder_embed_dim=48, in_channels=1, image_size=(96, 96, 96)
 ):
     segresnet = SegResNetDS2(
-            in_channels=in_channels,
-            blocks_down=(1, 2, 2, 4, 4),
-            norm="instance",
-            out_channels=encoder_embed_dim,
-            init_filters=encoder_embed_dim,
-            dsdepth=1
-        )
-    point_head = Point_Mapping_SAM(
-        feature_size=encoder_embed_dim,
-        last_supported=132
+        in_channels=in_channels,
+        blocks_down=(1, 2, 2, 4, 4),
+        norm="instance",
+        out_channels=encoder_embed_dim,
+        init_filters=encoder_embed_dim,
+        dsdepth=1,
     )
+    point_head = Point_Mapping_SAM(feature_size=encoder_embed_dim, last_supported=132)
     class_head = Class_Mapping_Classify(
         n_classes=512, feature_size=encoder_embed_dim, use_mlp=True
     )
@@ -40,10 +33,9 @@ def build_vista3d_segresnet_decoder(
         image_encoder=segresnet,
         class_head=class_head,
         point_head=point_head,
-        feature_size=encoder_embed_dim
+        feature_size=encoder_embed_dim,
     )
     return vista
 
-vista_model_registry = {
-    "vista3d_segresnet_d": build_vista3d_segresnet_decoder
-}
+
+vista_model_registry = {"vista3d_segresnet_d": build_vista3d_segresnet_decoder}
