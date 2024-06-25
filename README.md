@@ -11,144 +11,77 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# MONAI VISTA
-
-MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
-
-<div align="center"> <img src="./assets/imgs/demo_gif.gif" width="800"/> </div>
-
-*(We're seeking collaborators.
-If your institution is interested, please fill out the survey: https://forms.office.com/r/RedPQc9fmw)*
-
-### Table of Contents
-- [Overview](#overview)
-- [MONAI VISTA Training and FineTuning](training/)
-- [MONAI VISTA with MONAI Label](#monai-label-integration)
-  - [Step 1. Installation](#installation)
-  - [Step 2. MONAI Label monaivista app](#monai-vista-app)
-  - [Step 3. MONAI VISTA - Label Plugins](#monai-vista-viewer-plugins)
-  - [Step 4. Data Preparation](#sample-data)
-  - [Step 5. Start MONAI Label Server and Start Annotating!](#start-monai-label-server-with-vista-model)
-- [Video Demo](https://drive.google.com/file/d/1rEF1y9ZKo3Kj0Zms_gxkKwHlz75CYjwA/view?usp=sharing)
-- [Community](#community)
-- [License](#license)
-- [Reference](#reference)
-
+# MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
+[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Container`](https://docs.nvidia.com/ai-enterprise/nim-medical-imaging/latest/vista-3d.html)] 
 ## Overview
 
-[MONAI Meetup presentation at MIDL 2023](https://docs.google.com/presentation/d/1evp8txCyTzkqLT0fVE_0eFlXL4hux5myb7ggFhokRFQ)
+The **VISTA3D** is a foundation model trained systematically on 11454 volumes encompassing 127 types of human anatomical structures and various lesions. It provides accurate out-of-the-box segmentation that matches state-of-the-art supervised models which are trained on each dataset. The model also achieves state-of-the-art zero-shot interactive segmentation in 3D, representing a promising step toward developing a versatile medical image foundation model.
+<div align="center"> <img src="./assets/imgs/scores.png" width="800"/> </div>
 
-MONAI VISTA provides domain-specific workflows for building and utilizing foundation models
-for medical image segmentation.
-It leverages state-of-the-art deep learning technology to establish a
-new collaborative approach for developing robust and versatile
- segmentation models and applications.
+### Out-of box automatic segmentation
+For supported 127 classes, the model can perform highly accurate out-of-box automatic segmentation ('VISTA3D auto' in Table.1). The automatic segmentation is using patch-based sliding-window inference and is designed using `class prompt`.
+Compared to nnUNet and auto3dseg, which are trained on each dataset separately, VISTA3D showed comparable out-of-box performances and strong generalizability. 
+<!-- <div align="center"> <img src="" width="800"/> </div> -->
 
-This repository hosts the ongoing effort of building MONAI VISTA and
-is currently under active development.
+### Refine auto-results with interactive editing
+The interactive segmentation is based on 3D click points. Each click point will crop a 3D patch and the inference is performed on the patch. User can refine the automatic results with clicks ('VISTA3D auto+point' in Table.1). The single-click only results are also shown as 'VISTA3D point'. 
+<!-- <div align="center"> <img src="" width="800"/> </div> -->
 
+### Zero-shot interactive segmentation
+A major feature of VISTA3D is its zero-shot ability. VISTA3D can perform state-of-the-art 3D interactive segmentation on unseen classes. It usually takes more click points than supported classes. 
 
+### Fine-tuning
+VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Once a few annotated examples are provided, user can start finetune with the VISTA3D checkpoint. 
+<div align="center"> <img src="./assets/imgs/finetune.png" width="600"/> </div>
 
-<div align="center"> <img src="./assets/imgs/montage.png" width="800"/> </div>
-
-
-## MONAI Label Integration
-This section provides MONAI Label integration and sample apps. The integration is a server-client
-system that facilitates interactive medical image segmentation using VISTA via the sample 3D slicer plugin.
+## Usage
 
 ### Installation
+The code requires `monai>=1.3`. Download the [model checkpoint](xxxx) and save it at ./models/model.pt. 
 
-MONAI VISTA models are integrated based on [MONAI Label](https://docs.monai.io/projects/label/en/latest/index.html#).
-Start using MONAI Label locally and run the installation with your familiar visualization tools.
-Stable version software represents the currently tested and supported visualization tools with
-the latest release of MONAI Label.
 
-Refer to [MONAI Label installation](https://docs.monai.io/projects/label/en/latest/installation.html) page
-for details. For milestone releases, users can install from PyPl with the command:
+### Inference
+We support multiple inference methods. We optimized and standardized the VISTA3D model into the [monai bundle](), but the bundle does not contain user interface and might be difficult for interactive segmentation. We build an online [NVIDIA Inference Microservices (NIM)]() as the interface, which is using monai bundle as backend. Users are encouraged to try the model online on NIM. 
 
-```bash
-pip install monailabel
-
+Another way is to use `infer.py` in the repository. We provide a simple local-running user interface `gui.py` that's using `infer.py` as backend, which can run on a 12GB GPU. Note we will priotize the updates of [NIM]() and the [monai bundle]() updates.  
+```
+python -m scripts.gui run
 ```
 
-For Docker and Github installation, refer to MONAI Label [Github](https://github.com/Project-MONAI/MONAILabel)
-
-### MONAI VISTA APP
-
-Based on MONAI Label, MONAI VISTA is developed as an app. This app has example models
-to do both interactive and "Everything" segmentation over medical images.
-Prompt-based segment experience is highlighted. Including class prompts and point click prompts, Segmentation with the latest deep learning architectures (e.g., Segmentation Anything Model (SAM)) for multiple lung, abdominal, and pelvis
-organs. Interactive tools include control points and class prompt check boxes developed with viewer plugins.
-
-Get the monaivista app with:
-
-```bash
-# Clone MONAI VISTA repo
-git clone git@github.com:Project-MONAI/VISTA.git
-# the sample monaivista app is in the monailabel folder
-cd VISTA/monailabel
+### Training
+#### Dataset and SuperVoxel Curation
+All dataset must contain a json data list file. We provide the json lists for all our training data in `data/jsons`. More details can be found [here](./data/README.md). For datasets used in VISTA3D training, we already included the json splits and registered their data specific label index to the global index as [label_mapping](./data/jsons/label_mappings.json) and their data path coded in `./data/datasets.py`. The supported global class index is defined in [label_dict](./data/jsons/label_dict.json). To generate supervoxels, refer to the [instruction](./data/README.md).
+#### Execute training
+VISTA3D has four stages training. The configurations represents the training procedure but may not fully reproduce the weights of VISTA3D since each stage has multiple rounds with slightly varying configuration changes. 
+```
+export CUDA_VISIBLE_DEVICES=0; python -m scripts.train run --config_file "['configs/train/hyper_parameters_stage1.yaml']"
 ```
 
-For more details on `monaivista` app, see the [sample-app page](https://github.com/Project-MONAI/VISTA/tree/main/monailabel/monaivista).
+Execute multi-GPU model training (the codebase also supports multi-node training):
 
-### MONAI VISTA Viewer Plugins
+```
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.train run --config_file "['configs/train/hyper_parameters_stage1.yaml']" 
+```
+### Evaluation
+We provide code for supported class fully automatic dice score evaluation (val_multigpu_point_patch), point click only (val_multigpu_point_patch), and auto + point (val_multigpu_autopoint_patch). 
 
-The interactive annotation experience with prompt-based segmentation models needs the integration of medical image viewers.
-MONAI VISTA and MONAI Label support multiple open-sourced viewers, such as [3D Slicer](https://www.slicer.org/) and [OHIF](https://ohif.org/).
+```
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_point_patch run --config_file "['configs/supported_eval/infer_patch_auto.yaml']" --dataset_name 'xxxx' 
 
-Example of 3D Slicer integration:
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_point_patch run --config_file "['configs/supported_eval/infer_patch_point.yaml']" --dataset_name 'xxxx' 
 
-3D Slicer is a free, open-source software for visualization, processing, segmentation, registration,
-and other 3D images and meshes. 3D Slicer is a mature and well-tested viewer for radiology studies and algorithms.
-
-#### Installing 3D Slicer
-
-To use MONAI Label with 3D Slicer, you'll need to download and install 3D Slicer.
-MONAI Label supports stable and preview versions of 3D Slicer, version 5.0 or higher.
-For more information on installing 3D Slicer,
-check out the [3D Slicer Documentation](https://slicer.readthedocs.io/en/latest/user_guide/getting_started.html#installing-3d-slicer)
-
-#### Install MONAI VISTA-Label plugin of 3D Slicer
-
-The plugin needs to be added in developer mode. Please follow the below steps.
-
-##### Plugin in Developer Mode
-
-- `git clone git@github.com:Project-MONAI/VISTA.git`
-- Find the plugin folder: `plugins/slicer/MONAILabel`
-- Open 3D Slicer: Go to **Edit** -> **Application Settings** -> **Modules** -> **Additional Module Paths**
-- Add New Module Path: _<FULL_PATH>_/plugins/slicer/MONAILabel (You can drag the slicer/MONAILabel folder to the module panel.)
-- _**Restart**_ 3D Slicer
-
-<div align="center"> <img src="./assets/imgs/3dslicer_module.png" width="500"/> </div>
-
-<div align="center"> <img src="./assets/imgs/3dslicer_plugin.png" width="500"/> </div>
-
-### Sample Data
-
-Prepare some sample data to start with:
-
-Download MSD pancreas dataset as the sample dataset using monailabel API.
-The task is the volumetric (3D) segmentation of the pancreas from CT image.
-The dataset is from the 2018 MICCAI challenge.
-
-```bash
-monailabel datasets --download --name Task07_Pancreas --output .
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_autopoint_patch run --config_file "['configs/supported_eval/infer_patch_autopoint.yaml']" --dataset_name 'xxxx' 
+```
+For zero-shot, we perform iterative point sampling. To create a new zero-shot evaluation dataset, user only need to change `label_set` in the json config to match the class indexes in the original groundtruth. 
+```
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_point_iterative run --config_file "['configs/zeroshot_eval/infer_iter_point_hcc.yaml']" 
+```
+### Finetune
+For finetuning, user need to change `label_set` and `mapped_label_set` in the json config, where `label_set` matches the index values in the groundtruth files. The `mapped_label_set` can be random selected but we recommend pick the most related global index defined in [label_dict](./data/jsons/label_dict.json). User should modify the transforms, resolutions, patch sizes e.t.c regarding to their dataset for optimal finetuning performances, we recommend using configs generated by auto3dseg. The learning rate 5e-5 should be good enough for finetuning purposes. 
+```
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.train_finetune run --config_file "['configs/finetune/train_finetune_word.yaml']" 
 ```
 
-### Start MONAI Label Server with VISTA Model
-
-Specify the sample app and sample datasets' path in the following command:
-
-```bash
-monailabel start_server --app monaivista --studies ./Task07_Pancreas/imagesTs --conf models vista_point_2pt5
-```
-
-- Open 3D Slicer and MONAI VISTA-Label plugin.
-<div align="center"> <img src="./assets/imgs/3dslicer_open.jpeg" width="800"/> </div>
-
-- Connect to the monailabel server, start annotating!
-<div align="center"> <img src="./assets/imgs/3dslicer_annotating.png" width="800"/> </div>
 
 ## Community
 
@@ -159,36 +92,15 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The model is licensed under the Apache 2.0 license.
+The codebase is under Apache 2.0 Licence.
 
 ## Reference
 
-The current model is trained and developed based on [Segment Anything Model (SAM)](https://github.com/facebookresearch/segment-anything). Check the 3rd party license for reference.
-
-We greatly appreciate the authors of [`Segment Anything`](https://github.com/facebookresearch/segment-anything) and [`TotalSegmentator`](https://github.com/wasserth/TotalSegmentator) for releasing their work under a permissive license to the community.
-
 ```
 @article{kirillov2023segany,
-      title={Segment Anything},
-      author={Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll{\'a}r, Piotr and Girshick, Ross},
-      journal={arXiv:2304.02643},
-      year={2023}
+      title={VISTA3D: Versatile Imaging SegmenTation and Annotation model for 3D Computed Tomography},
+      author={Yufan He, Pengfei Guo, Yucheng Tang, Andriy Myronenko, Vishwesh Nath, Ziyue Xu, Dong Yang, Can Zhao, Benjamin Simon, Mason Belue, Stephanie Harmon, Baris Turkbey, Daguang Xu, Wenqi Li},
+      journal={arXiv:2406.05285},
+      year={2024}
     }
-@article{wasserthal2022totalsegmentator,
-      title={TotalSegmentator: robust segmentation of 104 anatomical structures in CT images},
-      author={Wasserthal, Jakob and Meyer, Manfred and Breit, Hanns-Christian and Cyriac, Joshy and Yang, Shan and Segeroth, Martin},
-      journal={arXiv preprint arXiv:2208.05868},
-      year={2022}
-    }
-```
-
-This integration is based on MONAI Label:
-
-```bash
-@article{diaz2022monai,
-  title={Monai label: A framework for ai-assisted interactive labeling of 3d medical images},
-  author={Diaz-Pinto, Andres and Alle, Sachidanand and Nath, Vishwesh and Tang, Yucheng and Ihsani, Alvin and Asad, Muhammad and P{\'e}rez-Garc{\'\i}a, Fernando and Mehta, Pritesh and Li, Wenqi and Flores, Mona and others},
-  journal={arXiv preprint arXiv:2203.12362},
-  year={2022}
-}
 ```

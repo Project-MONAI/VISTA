@@ -9,7 +9,7 @@ overlap: 0.625
 json_name: "$@dataset_name + '_5_folds.json'"
 data_file_base_dir: "$'/data/' + @dataset_name + '/nifti'"
 data_list_file_path: "$'./data/external/' + @json_name"
-log_output_file: $@output_path + '/inference_kits_res1_80_2Derode.log'
+log_output_file: $@output_path + '/inference_kits.log'
 list_key: 'all'
 fold: 0
 input_channels: 1

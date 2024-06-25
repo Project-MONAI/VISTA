@@ -9,7 +9,7 @@ overlap: 0.625
 json_name: "$@dataset_name + '_5_folds.json'"
 data_file_base_dir: "$'/data/' + @dataset_name"
 data_list_file_path: "$'./data/external/' + @json_name"
-log_output_file: $@output_path + '/inference_adrenal_dicestop_2derode.log'
+log_output_file: $@output_path + '/inference_adrenal.log'
 list_key: 'all'
 fold: 0
 input_channels: 1

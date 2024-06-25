@@ -100,3 +100,43 @@ python -m data.analyzer ...
 This file (`data/analyzer.py`) contains useful transforms for reading images
 and labels, converting labels from dataset-specific labels to the global labels
 according to `jsons/label_dict.json`.
+
+
+## SupverVoxel Generation
+1. Download the segment anything repo and download the ViT-H weights
+```
+git clone https://github.com/facebookresearch/segment-anything.git
+mv segment-anything/segment_anything/ segment_anything/
+wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+```
+2. Modify the code for supervoxel generation
+- Add this function to `predictor.py/SamPredictor`
+```python
+@torch.no_grad()
+def get_feature_upsampled(self, input_image=None):
+    if input_image is None:
+        image_embeddings = self.model.mask_decoder.predict_masks_noprompt(self.features) 
+    else:
+        image_embeddings = self.model.mask_decoder.predict_masks_noprompt(self.model.image_encoder(input_image))
+    return image_embeddings
+```
+- Add this function to `modeling/mask_decoder.py/MaskDecoder`
+```python
+def predict_masks_noprompt(
+    self,
+    image_embeddings: torch.Tensor,
+) -> Tuple[torch.Tensor, torch.Tensor]:
+    """Predicts masks. See 'forward' for more details."""
+    # Concatenate output tokens
+
+    # Expand per-image data in batch direction to be per-mask
+    src = image_embeddings
+    # Upscale mask embeddings and predict masks using the mask tokens
+    upscaled_embedding = self.output_upscaling(src)
+
+    return upscaled_embedding
+```
+3. Run the supervoxel generation script. The processsing time is over 10 minutes, use `batch_infer` and multi-gpu for speed up. 
+```
+python -m scripts.slic_process_sam infer --image_file xxxx
+```

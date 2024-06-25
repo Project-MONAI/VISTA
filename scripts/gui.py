@@ -8,9 +8,8 @@ import fire
 import pdb
 from .infer import InferClass
 from .utils.workflow_utils import get_point_label
-configs='configs_total'
 inferer = InferClass(
-    config_file=['./docs/interactive.yaml']
+    config_file=['./configs/infer.yaml']
 )
 class samm_visualizer():
     def __init__(self):
@@ -50,14 +49,21 @@ class samm_visualizer():
         point_label = []
         self.point_only = self.checkbox.get_status()[0]
         self.class_label = self.text_box.text
+        
         if len(self.class_label) == 0:
-            messagebox.showwarning("Warning", 'Label prompt is required input. For zero-shot, input random number > 132')
-            return
-        label_prompt = int(self.class_label)
-        neg_id, pos_id = get_point_label(label_prompt)
-        label_prompt = np.array([label_prompt])[np.newaxis,...]
-        prompt_class = copy.deepcopy(label_prompt)
-        if self.point_only or label_prompt[0] > 512:
+            messagebox.showwarning("Warning", 'Label prompt is not specified. Assuming the point is for supported class. \
+                                   For zero-shot, input random number > 132')
+            label_prompt = None
+            prompt_class = np.array([1])
+            neg_id, pos_id = get_point_label(1)
+        else:
+            label_prompt = int(self.class_label)
+            prompt_class = copy.deepcopy(label_prompt)
+            neg_id, pos_id = get_point_label(label_prompt)
+            label_prompt = np.array([label_prompt])[np.newaxis,...]
+            prompt_class = copy.deepcopy(label_prompt)
+        # if zero-shot
+        if label_prompt[0] > 132:
             label_prompt = None
         for p in self.clicked_points:
             point.append([p[1],p[0],p[2]])

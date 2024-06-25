@@ -22,6 +22,7 @@ from monai.utils import ensure_tuple_rep, optional_import
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from monai.apps.utils import DEFAULT_FMT
+from monai.utils import set_determinism, RankFilter
 from monai.data import partition_dataset
 from tqdm import tqdm
 from .train import CONFIG
@@ -52,7 +53,7 @@ def pad_to_divisible_by_16(image):
 class InferClass:
     def __init__(self):
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-        output_path = "./sam_supervoxel"
+        output_path = "./supervoxel_sam"
         if not os.path.exists(output_path):
             os.makedirs(output_path, exist_ok=True)
         self.amp = True

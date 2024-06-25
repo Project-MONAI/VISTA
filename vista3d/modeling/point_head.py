@@ -86,8 +86,8 @@ class Point_Mapping_SAM(nn.Module):
         
         output_tokens = output_tokens.unsqueeze(0).expand(point_embedding.size(0), -1, -1)
         if class_vector is None:
-            # tokens_all = torch.cat((output_tokens, point_embedding, self.zeroshot_embed.weight.unsqueeze(0).expand(point_embedding.size(0), -1, -1)), dim=1)
-            tokens_all = torch.cat((output_tokens, point_embedding), dim=1)
+            tokens_all = torch.cat((output_tokens, point_embedding, self.supported_embed.weight.unsqueeze(0).expand(point_embedding.size(0), -1, -1)), dim=1)
+            # tokens_all = torch.cat((output_tokens, point_embedding), dim=1)
         else:
             class_embeddings = []
             for i in class_vector:
