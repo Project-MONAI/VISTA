@@ -235,8 +235,8 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             val_filename = val_data["image"].meta["filename_or_obj"][0]
             _index += 1
 
+            val_outputs = None
             for idx in range(max_iters):
-                val_outputs = None
                 if idx == 0:
                     point, point_label = generate_prompt_pairs_val(
                         val_data["label"].to(device),
