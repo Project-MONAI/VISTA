@@ -10,25 +10,25 @@
 # limitations under the License.
 
 import glob
-import json
 import os
 import unittest
 
 from monai.bundle import ConfigParser
+from monai.apps.utils import get_logger
 
 
 class TestConfig(unittest.TestCase):
     def test_vista3d_configs_parsing(self):
         config_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "configs")
-        print(config_dir)
+        get_logger("TestConfig").info(config_dir)
 
         configs = glob.glob(os.path.join(config_dir, "**", "*.yaml"), recursive=True)
         for x in configs:
             parser = ConfigParser()
             parser.read_config(x)
             keys = sorted(parser.config.keys())
-            print(parser[keys[0]], keys[0])  # verify parser key fetching
-            print(parser[keys[-1]], keys[-1])  # verify parser key fetching
+            # verify parser key fetching
+            get_logger("TestConfig").info(f"{parser[keys[0]]}, {keys[0]}, {parser[keys[-1]]}, {keys[-1]}")
 
 
 if __name__ == "__main__":
