@@ -20,7 +20,7 @@ The JSON file has the following structure:
     ],
     "training_transform": [
         # a set of monai transform configuration for dataset-specific loading
-    ]
+    ],
     "original_label_dict": {"1": "liver", ...},
     "label_dict": {"1": "liver", ...}
 }
