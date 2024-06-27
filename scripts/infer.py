@@ -162,7 +162,7 @@ class InferClass:
         time and avoid repeated inference. This is by default disabled.
         """
         self.model.eval()
-        if type(image_file) is not dict:
+        if not isinstance(image_file, dict):
             image_file = {"image": image_file}
         if self.batch_data is not None:
             batch_data = self.batch_data
@@ -254,7 +254,7 @@ class InferClass:
     def infer_everything(self, image_file, label_prompt=EVERYTHING_PROMPT, rank=0):
         self.model.eval()
         device = f"cuda:{rank}"
-        if type(image_file) is not dict:
+        if not isinstance(image_file, dict):
             image_file = {"image": image_file}
         batch_data = self.infer_transforms(image_file)
         batch_data["label_prompt"] = label_prompt

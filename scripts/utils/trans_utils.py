@@ -333,7 +333,7 @@ class VistaPostTransform(MapTransform):
             if keys in data:
                 pred = data[keys]
                 object_num = pred.shape[0]
-                device = pred.device
+                # device = pred.device
                 pred[pred < 0] = 0.0
                 # if it's multichannel, perform argmax
                 if object_num > 1:
