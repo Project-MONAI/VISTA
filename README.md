@@ -45,9 +45,9 @@ docker pull projectmonai/monai:1.3.2
 
 
 ### Inference
-We provide two ways to use the model for inference. 
-1. We recommend users to use the optimized and standardized [MONAI bundle]() model. The bundle provides a unified API for inference. 
-The [VISTA3D NVIDIA Inference Microservices (NIM)]() deploys the bundle with an interactive front-end. 
+We provide two ways to use the model for inference.
+1. We recommend users to use the optimized and standardized [MONAI bundle]() model. The bundle provides a unified API for inference.
+The [VISTA3D NVIDIA Inference Microservices (NIM)]() deploys the bundle with an interactive front-end.
 2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM]() and [monai bundle]() developments and those functions will be deprecated in the future.
 ```
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --label_prompt [1] --save_mask true

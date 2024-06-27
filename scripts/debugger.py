@@ -1,12 +1,11 @@
 import copy
-from tkinter import Tk, filedialog, messagebox, simpledialog
+from tkinter import Tk, filedialog, messagebox
 
 import fire
-import pdb
 import matplotlib.pyplot as plt
 import nibabel as nib
 import numpy as np
-from matplotlib.widgets import Button, CheckButtons, TextBox
+from matplotlib.widgets import Button, TextBox
 
 from .infer import InferClass
 from .utils.workflow_utils import get_point_label
@@ -62,6 +61,12 @@ class samm_visualizer:
             prompt_class = None
             neg_id, pos_id = get_point_label(1)
         else:
+            if self.class_label in [2, 20, 21]:
+                messagebox.showwarning(
+                    "Warning",
+                    "Current debugger skip kidney (2), lung (20), and bone (21). Use their subclasses.",
+                )
+                return
             label_prompt = int(self.class_label)
             neg_id, pos_id = get_point_label(label_prompt)
             label_prompt = np.array([label_prompt])[np.newaxis, ...]
@@ -85,7 +90,7 @@ class samm_visualizer:
             label_prompt,
             prompt_class,
             save_mask=True,
-            point_start=self.point_start
+            point_start=self.point_start,
         )[0]
         nan_mask = np.isnan(mask)
         mask = mask.data.cpu().numpy() > 0.5
@@ -118,8 +123,12 @@ class samm_visualizer:
             print("-- segmenting ---")
             self.generate_mask()
             print("-- done ---")
-            print("-- Note: Click points on different foreground class will cause segmentation conflicts. Clear first. ---")
-            print("-- Note: Click points not matching class prompts will also cause confusion. ---")
+            print(
+                "-- Note: Click points on different foreground class will cause segmentation conflicts. Clear first. ---"
+            )
+            print(
+                "-- Note: Click points not matching class prompts will also cause confusion. ---"
+            )
             print("-- Note: CTRL + Right Click will be adding negative points. ---")
             self.update_slice(ax)
             # self.point_start = len(self.clicked_points)

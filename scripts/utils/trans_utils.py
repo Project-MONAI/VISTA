@@ -311,9 +311,9 @@ def get_largest_connected_component_mask(
 
 class VistaPostTransform(MapTransform):
     def __init__(
-            self,
-            keys: KeysCollection,
-            allow_missing_keys: bool = False,
+        self,
+        keys: KeysCollection,
+        allow_missing_keys: bool = False,
     ) -> None:
         """
         Args:
@@ -326,29 +326,31 @@ class VistaPostTransform(MapTransform):
         """
         super().__init__(keys, allow_missing_keys)
 
-    def __call__(self, data: Mapping[Hashable, NdarrayOrTensor]) -> dict[Hashable, NdarrayOrTensor]:
+    def __call__(
+        self, data: Mapping[Hashable, NdarrayOrTensor]
+    ) -> dict[Hashable, NdarrayOrTensor]:
         for keys in self.keys:
             if keys in data:
                 pred = data[keys]
                 object_num = pred.shape[0]
-                device = pred.device
+                # device = pred.device
                 pred[pred < 0] = 0.0
                 # if it's multichannel, perform argmax
                 if object_num > 1:
                     # concate background channel. Make sure user did not provide 0 as prompt.
-                    is_bk = torch.all(pred<=0, dim=0, keepdim=True)
+                    is_bk = torch.all(pred <= 0, dim=0, keepdim=True)
                     pred = pred.argmax(0).unsqueeze(0).float() + 1.0
                     pred[is_bk] = 0.0
                 else:
                     # AsDiscrete will remove NaN
                     # pred = monai.transforms.AsDiscrete(threshold=0.5)(pred)
                     pred[pred > 0] = 1.0
-                if "label_prompt" in data and data['label_prompt'] is not None:
-                        pred += 0.5  # inplace mapping to avoid cloning pred
-                        for i in range(1, object_num + 1):
-                            frac = i + 0.5
-                            pred[pred == frac] = data['label_prompt'][i-1].to(pred.dtype)
-                        pred[pred == 0.5] = 0.0
+                if "label_prompt" in data and data["label_prompt"] is not None:
+                    pred += 0.5  # inplace mapping to avoid cloning pred
+                    for i in range(1, object_num + 1):
+                        frac = i + 0.5
+                        pred[pred == frac] = data["label_prompt"][i - 1].to(pred.dtype)
+                    pred[pred == 0.5] = 0.0
                 data[keys] = pred
         return data
 
