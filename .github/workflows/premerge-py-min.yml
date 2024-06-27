@@ -53,4 +53,4 @@ jobs:
       run: |
         python -c 'import torch; print(torch.__version__); print(torch.rand(5,3))'
         python -c "import monai; monai.config.print_config()"
-        python tests/test_config.py
+        python -m unittest -v
