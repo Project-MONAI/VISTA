@@ -353,7 +353,5 @@ class InferClass:
 
 
 if __name__ == "__main__":
-    from monai.utils import optional_import
-
     fire, _ = optional_import("fire")
     fire.Fire(InferClass)
