@@ -25,45 +25,15 @@ from monai.auto3dseg.utils import datafold_read
 from monai.bundle import ConfigParser
 from monai.bundle.scripts import _pop_args, _update_args
 from monai.data import decollate_batch, list_data_collate, partition_dataset
-from monai.utils import optional_import, RankFilter
+from monai.utils import optional_import
 
 from vista3d import vista_model_registry
 
 from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .utils.trans_utils import get_largest_connected_component_point, VistaPostTransform
-# from .train import CONFIG
+from .train import CONFIG
 rearrange, _ = optional_import("einops", name="rearrange")
-RankFilter, _ = optional_import("monai.utils", name="RankFilter")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
-CONFIG = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {"monai_default": {"format": DEFAULT_FMT}},
-    "loggers": {
-        "monai.apps.auto3dseg.auto_runner": {
-            "handlers": ["file", "console"],
-            "level": "DEBUG",
-            "propagate": False,
-        }
-    },
-    "filters": {"rank_filter": {"{}": RankFilter}},
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "runner.log",
-            "mode": "a",  # append or overwrite
-            "level": "DEBUG",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "monai_default",
-            "filters": ["rank_filter"],
-        },
-    },
-}
 IGNORE_PROMPT = set(
     [
         2,  # kidney

@@ -62,6 +62,12 @@ class samm_visualizer:
             prompt_class = None
             neg_id, pos_id = get_point_label(1)
         else:
+            if self.class_label in [2, 20, 21]:
+                messagebox.showwarning(
+                    "Warning",
+                    "Current debugger skip kidney (2), lung (20), and bone (21). Use their subclasses.",
+                )                
+                return
             label_prompt = int(self.class_label)
             neg_id, pos_id = get_point_label(label_prompt)
             label_prompt = np.array([label_prompt])[np.newaxis, ...]
