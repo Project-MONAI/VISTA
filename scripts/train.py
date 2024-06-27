@@ -35,7 +35,7 @@ from monai.bundle.scripts import _pop_args, _update_args
 from monai.data import DataLoader, DistributedSampler, DistributedWeightedRandomSampler
 from monai.metrics import compute_dice
 from monai.networks.utils import copy_model_state
-from monai.utils import set_determinism, RankFilter
+from monai.utils import optional_import, set_determinism
 from torch.nn.parallel import DistributedDataParallel
 from torch.utils.data.sampler import RandomSampler, WeightedRandomSampler
 from torch.utils.tensorboard import SummaryWriter
@@ -62,6 +62,7 @@ from .utils.workflow_utils import (
 )
 
 nib.imageglobals.logger.setLevel(40)
+RankFilter, _ = optional_import("monai.utils", name="RankFilter")
 CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -83,7 +84,7 @@ CONFIG = {
             "propagate": False,
         },
     },
-    "filters": {"rank_filter": {"()": "__main__.RankFilter"}},
+    "filters": {"rank_filter": {"()": RankFilter}},
     "handlers": {
         "file": {
             "class": "logging.FileHandler",
@@ -1023,7 +1024,5 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
 
 if __name__ == "__main__":
-    from monai.utils import optional_import
-
     fire, _ = optional_import("fire")
     fire.Fire()

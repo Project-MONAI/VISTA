@@ -33,6 +33,7 @@ from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .utils.trans_utils import get_largest_connected_component_point, VistaPostTransform
 # from .train import CONFIG
 rearrange, _ = optional_import("einops", name="rearrange")
+RankFilter, _ = optional_import("monai.utils", name="RankFilter")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 CONFIG = {
     "version": 1,
@@ -45,7 +46,7 @@ CONFIG = {
             "propagate": False,
         }
     },
-    "filters": {"rank_filter": {"{}": "__main__.RankFilter"}},
+    "filters": {"rank_filter": {"{}": RankFilter}},
     "handlers": {
         "file": {
             "class": "logging.FileHandler",
@@ -344,7 +345,5 @@ class InferClass:
 
 
 if __name__ == "__main__":
-    from monai.utils import optional_import
-
     fire, _ = optional_import("fire")
     fire.Fire(InferClass)
