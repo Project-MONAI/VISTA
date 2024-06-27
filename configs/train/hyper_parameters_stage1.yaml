@@ -44,7 +44,7 @@ skip_iter_prob: 0
 train_datasets: [CTPelvic1K-CLINIC, AbdomenCT-1K, AeroPath, AMOS22,
   BTCV-Abdomen, BTCV-Cervix, CT-ORG, FLARE22, Multi-organ-Abdominal-CT-btcv,
   Multi-organ-Abdominal-CT-tcia, Pancreas-CT, Task03, Task06, Task07,
-  Task08, Task09, Task10, VerSe, Bone-NIH, CRLM-CT, TotalSegmentatorV2, NLST, LIDC, StonyBrook-CT, TCIA_Colon, Covid19]
+  Task08, Task09, Task10, VerSe, CRLM-CT, TotalSegmentatorV2, NLST, LIDC, StonyBrook-CT, TCIA_Colon, Covid19]
 val_datasets: [TotalSegmentatorV2]
 transforms_train:
   _target_: Compose

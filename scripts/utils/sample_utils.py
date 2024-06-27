@@ -289,6 +289,7 @@ class Point_sampler:
                 self.label[self.label == id] = id + self.map_shift
                 self.shifted[id] = id + self.map_shift
                 self.read_only_id.append(id + self.map_shift)
+            print("organ add")
             return _point, _point_label
         return self.regular(id, Np, Nn)
 
