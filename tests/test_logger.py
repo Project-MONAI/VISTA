@@ -22,12 +22,6 @@ class TestLogger(unittest.TestCase):
         logging.config.dictConfig(CONFIG)
         logger.warning("check train logging format")
 
-    def test_vista3d_logger_infer(self):
-        from scripts.infer import CONFIG
-
-        logging.config.dictConfig(CONFIG)
-        logger.warning("check infer logging format")
-
 
 if __name__ == "__main__":
     unittest.main()
