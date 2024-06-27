@@ -2,6 +2,7 @@ import copy
 from tkinter import Tk, filedialog, messagebox, simpledialog
 
 import fire
+import pdb
 import matplotlib.pyplot as plt
 import nibabel as nib
 import numpy as np
@@ -22,7 +23,6 @@ class samm_visualizer:
         self.data_path = None
         self.circle_artists = []
         self.class_label = None
-        self.point_only = False
 
     def select_data_file(self):
         root = Tk()
@@ -51,9 +51,7 @@ class samm_visualizer:
     def generate_mask(self):
         point = []
         point_label = []
-        self.point_only = self.checkbox.get_status()[0]
         self.class_label = self.text_box.text
-
         if len(self.class_label) == 0:
             messagebox.showwarning(
                 "Warning",
@@ -61,16 +59,15 @@ class samm_visualizer:
                                    For zero-shot, input random number > 132",
             )
             label_prompt = None
-            prompt_class = np.array([1])
+            prompt_class = None
             neg_id, pos_id = get_point_label(1)
         else:
             label_prompt = int(self.class_label)
-            prompt_class = copy.deepcopy(label_prompt)
             neg_id, pos_id = get_point_label(label_prompt)
             label_prompt = np.array([label_prompt])[np.newaxis, ...]
             prompt_class = copy.deepcopy(label_prompt)
         # if zero-shot
-        if label_prompt[0] > 132:
+        if label_prompt is not None and label_prompt[0] > 132:
             label_prompt = None
         for p in self.clicked_points:
             point.append([p[1], p[0], p[2]])
@@ -88,12 +85,16 @@ class samm_visualizer:
             label_prompt,
             prompt_class,
             save_mask=True,
-            point_start=self.point_start,
+            point_start=self.point_start
         )[0]
+        nan_mask = np.isnan(mask)
         mask = mask.data.cpu().numpy() > 0.5
         mask = mask.astype(np.float32)
         mask[mask == 0] = np.nan
-        self.mask = mask
+        if self.mask is None:
+            self.mask = mask
+        else:
+            self.mask[~nan_mask] = mask[~nan_mask]
 
     def display_3d_slices(self):
         fig, ax = plt.subplots()
@@ -105,28 +106,27 @@ class samm_visualizer:
         self.update_slice(ax)
         fig.canvas.mpl_connect("scroll_event", self.process_scroll)
         fig.canvas.mpl_connect("button_press_event", self.process_click)
-        check_ax = plt.axes([0.55, 0.01, 0.4, 0.05])  # Position of the checkbox
-        self.checkbox = CheckButtons(
-            check_ax, ["Point Only Inference"], [self.point_only]
-        )
         # Add numerical input box for slice index
-        text_ax = plt.axes([0.35, 0.01, 0.15, 0.05])  # Position of the text box
+        text_ax = plt.axes([0.45, 0.01, 0.2, 0.05])  # Position of the text box
         self.text_box = TextBox(text_ax, "Class prompt", initial=self.class_label)
         # Add a button
-        button_ax = plt.axes([0.0, 0.01, 0.2, 0.075])  # Position of the button
-        button = Button(button_ax, "Update Slice")
+        button_ax = plt.axes([0.05, 0.01, 0.2, 0.05])  # Position of the button
+        button = Button(button_ax, "Run")
 
         def on_button_click(event, ax=ax):
             # Define what happens when the button is clicked
             print("-- segmenting ---")
             self.generate_mask()
             print("-- done ---")
+            print("-- Note: Click points on different foreground class will cause segmentation conflicts. Clear first. ---")
+            print("-- Note: Click points not matching class prompts will also cause confusion. ---")
+            print("-- Note: CTRL + Right Click will be adding negative points. ---")
             self.update_slice(ax)
             # self.point_start = len(self.clicked_points)
 
         button.on_clicked(on_button_click)
 
-        button_ax_clear = plt.axes([0.0, 0.3, 0.2, 0.075])  # Position of the button
+        button_ax_clear = plt.axes([0.75, 0.01, 0.2, 0.05])  # Position of the button
         button_clear = Button(button_ax_clear, "Clear")
 
         def on_button_click_clear(event, ax=ax):
@@ -143,14 +143,6 @@ class samm_visualizer:
         button_clear.on_clicked(on_button_click_clear)
 
         plt.show()
-
-    def process_class(self):
-        self.class_label = simpledialog.askinteger(
-            "Class prompt, click Cancel if using point only", "Enter scalar value:"
-        )
-        self.zero_shot = simpledialog.askinteger(
-            "0/cancel: supported, 1: zeroshot, 2: special tumor", "Enter scalar value:"
-        )
 
     def process_scroll(self, event):
         ax = event.inaxes

@@ -39,13 +39,20 @@ VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Onc
 
 ### Installation
 The code requires `monai>=1.3`. Download the [model checkpoint](xxxx) and save it at ./models/model.pt.
+```
+docker pull projectmonai/monai:1.3.2
+```
 
 
 ### Inference
-An optimized and standardized model is made available as [a MONAI bundle]().
-Users are encouraged to access the [NVIDIA Inference Microservices (NIM)]() where the bundle is deployed with an interactive front-end.
-
-(For quick debugging purposes, we also provide a light-weight user interface script `gui.py` which can run on a 12GB GPU via `python -m scripts.gui run`. Note we will prioritize [NIM]() and [monai bundle]() developments.)
+We provide two ways to use the model for inference. 
+1. We recommend users to use the optimized and standardized [MONAI bundle]() model. The bundle provides a unified API for inference. 
+The [VISTA3D NVIDIA Inference Microservices (NIM)]() deploys the bundle with an interactive front-end. 
+2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM]() and [monai bundle]() developments and those functions will be deprecated in the future.
+```
+export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --label_prompt [1] --save_mask true
+export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
+```
 
 ### Training
 #### Dataset and SuperVoxel Curation
