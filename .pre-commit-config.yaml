@@ -54,8 +54,7 @@ repos:
           - pep8-naming
         exclude: |
           (?x)^(
-              monai/__init__.py|
-              docs/source/conf.py|
+              .*/__init__.py|
               tests/utils.py
           )$
 
