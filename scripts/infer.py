@@ -234,6 +234,8 @@ class InferClass:
                             affine=batch_data["image"].meta["affine"],
                             meta=batch_data["image"].meta,
                         )
+                if label_prompt is not None:
+                    batch_data["label_prompt"] = label_prompt
                 self.prev_mask = batch_data["pred"]
                 if label_prompt is None and point is not None:
                     batch_data["pred"] = get_largest_connected_component_point(
