@@ -229,6 +229,8 @@ class InferClass:
                             affine=batch_data["image"].meta["affine"],
                             meta=batch_data["image"].meta,
                         )
+                if label_prompt is not None:
+                    batch_data["label_prompt"] = label_prompt
                 self.prev_mask = batch_data["pred"]
                 batch_data["image"] = batch_data["image"].to("cpu")
                 batch_data["pred"] = batch_data["pred"].to("cpu")

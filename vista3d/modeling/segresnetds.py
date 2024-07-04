@@ -184,6 +184,7 @@ class SegResEncoder(nn.Module):
             stride=1,
             bias=False,
         )
+        self.in_channels = in_channels
         self.layers = nn.ModuleList()
 
         for i in range(len(blocks_down)):
@@ -229,7 +230,14 @@ class SegResEncoder(nn.Module):
 
     def _forward(self, x: torch.Tensor) -> list[torch.Tensor]:
         outputs = []
-        x = self.conv_init(x)
+        if self.in_channels == 1 and x.shape[1] > 1:
+            x_temp = 0
+            for i in range(x.shape[1]):
+                x_temp += self.conv_init(x[:,[i]])
+            x = x_temp
+            x_temp = None
+        else:
+            x = self.conv_init(x)
 
         for level in self.layers:
             x = level["blocks"](x)
