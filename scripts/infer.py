@@ -168,6 +168,7 @@ class InferClass:
             batch_data = self.batch_data
         else:
             batch_data = self.infer_transforms(image_file)
+            batch_data["label_prompt"] = label_prompt
             batch_data = list_data_collate([batch_data])
             self.batch_data = batch_data
         if point is not None:
