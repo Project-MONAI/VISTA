@@ -349,7 +349,9 @@ class VistaPostTransform(MapTransform):
                     pred += 0.5  # inplace mapping to avoid cloning pred
                     for i in range(1, object_num + 1):
                         frac = i + 0.5
-                        pred[pred == frac] = torch.tensor(data["label_prompt"][i - 1]).to(pred.dtype)
+                        pred[pred == frac] = torch.tensor(
+                            data["label_prompt"][i - 1]
+                        ).to(pred.dtype)
                     pred[pred == 0.5] = 0.0
                 data[keys] = pred
         return data
