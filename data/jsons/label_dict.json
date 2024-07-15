@@ -125,5 +125,19 @@
     "thyroid gland": 126,
     "vertebrae S1": 127,
     "bone lesion": 128,
-    "airway": 132
+    "airway": 132,
+    "fibula": 133,
+    "intervertebral discs": 134,
+    "left lung": 135,
+    "right lung": 136,
+    "left quadriceps femoris": 137,
+    "right quadriceps femoris": 138,
+    "left sartorius":139,
+    "right sartorius":140,
+    "left thigh medial compartment": 141,
+    "right thigh medial compartment": 142,
+    "left thigh posterior compartment": 143,
+    "right thigh posterior compartment": 144,
+    "tibia": 145,
+    "vertebrae": 146
 }

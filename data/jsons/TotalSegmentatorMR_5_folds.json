@@ -1,0 +1,1552 @@
+{
+    "training": [
+        {
+            "image": "s0111/mri.nii.gz",
+            "label": "s0111/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0199/mri.nii.gz",
+            "label": "s0199/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0253/mri.nii.gz",
+            "label": "s0253/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0170/mri.nii.gz",
+            "label": "s0170/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0287/mri.nii.gz",
+            "label": "s0287/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0275/mri.nii.gz",
+            "label": "s0275/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0012/mri.nii.gz",
+            "label": "s0012/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0018/mri.nii.gz",
+            "label": "s0018/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0120/mri.nii.gz",
+            "label": "s0120/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0256/mri.nii.gz",
+            "label": "s0256/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0192/mri.nii.gz",
+            "label": "s0192/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0209/mri.nii.gz",
+            "label": "s0209/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0288/mri.nii.gz",
+            "label": "s0288/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0194/mri.nii.gz",
+            "label": "s0194/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0123/mri.nii.gz",
+            "label": "s0123/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0272/mri.nii.gz",
+            "label": "s0272/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0005/mri.nii.gz",
+            "label": "s0005/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0290/mri.nii.gz",
+            "label": "s0290/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0138/mri.nii.gz",
+            "label": "s0138/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0268/mri.nii.gz",
+            "label": "s0268/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0080/mri.nii.gz",
+            "label": "s0080/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0179/mri.nii.gz",
+            "label": "s0179/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0104/mri.nii.gz",
+            "label": "s0104/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0087/mri.nii.gz",
+            "label": "s0087/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0070/mri.nii.gz",
+            "label": "s0070/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0201/mri.nii.gz",
+            "label": "s0201/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0085/mri.nii.gz",
+            "label": "s0085/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0029/mri.nii.gz",
+            "label": "s0029/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0245/mri.nii.gz",
+            "label": "s0245/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0242/mri.nii.gz",
+            "label": "s0242/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0041/mri.nii.gz",
+            "label": "s0041/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0225/mri.nii.gz",
+            "label": "s0225/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0162/mri.nii.gz",
+            "label": "s0162/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0015/mri.nii.gz",
+            "label": "s0015/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0238/mri.nii.gz",
+            "label": "s0238/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0073/mri.nii.gz",
+            "label": "s0073/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0259/mri.nii.gz",
+            "label": "s0259/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0001/mri.nii.gz",
+            "label": "s0001/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0058/mri.nii.gz",
+            "label": "s0058/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0163/mri.nii.gz",
+            "label": "s0163/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0174/mri.nii.gz",
+            "label": "s0174/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0089/mri.nii.gz",
+            "label": "s0089/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0048/mri.nii.gz",
+            "label": "s0048/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0208/mri.nii.gz",
+            "label": "s0208/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0292/mri.nii.gz",
+            "label": "s0292/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0222/mri.nii.gz",
+            "label": "s0222/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0254/mri.nii.gz",
+            "label": "s0254/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0031/mri.nii.gz",
+            "label": "s0031/seg.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "s0155/mri.nii.gz",
+            "label": "s0155/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0233/mri.nii.gz",
+            "label": "s0233/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0133/mri.nii.gz",
+            "label": "s0133/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0206/mri.nii.gz",
+            "label": "s0206/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0156/mri.nii.gz",
+            "label": "s0156/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0006/mri.nii.gz",
+            "label": "s0006/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0187/mri.nii.gz",
+            "label": "s0187/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0117/mri.nii.gz",
+            "label": "s0117/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0101/mri.nii.gz",
+            "label": "s0101/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0298/mri.nii.gz",
+            "label": "s0298/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0134/mri.nii.gz",
+            "label": "s0134/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0097/mri.nii.gz",
+            "label": "s0097/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0270/mri.nii.gz",
+            "label": "s0270/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0219/mri.nii.gz",
+            "label": "s0219/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0186/mri.nii.gz",
+            "label": "s0186/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0266/mri.nii.gz",
+            "label": "s0266/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0069/mri.nii.gz",
+            "label": "s0069/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0226/mri.nii.gz",
+            "label": "s0226/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0249/mri.nii.gz",
+            "label": "s0249/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0252/mri.nii.gz",
+            "label": "s0252/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0038/mri.nii.gz",
+            "label": "s0038/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0197/mri.nii.gz",
+            "label": "s0197/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0078/mri.nii.gz",
+            "label": "s0078/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0164/mri.nii.gz",
+            "label": "s0164/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0251/mri.nii.gz",
+            "label": "s0251/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0285/mri.nii.gz",
+            "label": "s0285/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0210/mri.nii.gz",
+            "label": "s0210/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0161/mri.nii.gz",
+            "label": "s0161/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0068/mri.nii.gz",
+            "label": "s0068/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0113/mri.nii.gz",
+            "label": "s0113/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0094/mri.nii.gz",
+            "label": "s0094/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0188/mri.nii.gz",
+            "label": "s0188/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0093/mri.nii.gz",
+            "label": "s0093/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0053/mri.nii.gz",
+            "label": "s0053/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0129/mri.nii.gz",
+            "label": "s0129/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0017/mri.nii.gz",
+            "label": "s0017/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0202/mri.nii.gz",
+            "label": "s0202/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0065/mri.nii.gz",
+            "label": "s0065/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0196/mri.nii.gz",
+            "label": "s0196/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0218/mri.nii.gz",
+            "label": "s0218/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0109/mri.nii.gz",
+            "label": "s0109/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0262/mri.nii.gz",
+            "label": "s0262/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0247/mri.nii.gz",
+            "label": "s0247/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0034/mri.nii.gz",
+            "label": "s0034/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0295/mri.nii.gz",
+            "label": "s0295/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0239/mri.nii.gz",
+            "label": "s0239/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0042/mri.nii.gz",
+            "label": "s0042/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0098/mri.nii.gz",
+            "label": "s0098/seg.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "s0036/mri.nii.gz",
+            "label": "s0036/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0232/mri.nii.gz",
+            "label": "s0232/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0007/mri.nii.gz",
+            "label": "s0007/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0128/mri.nii.gz",
+            "label": "s0128/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0235/mri.nii.gz",
+            "label": "s0235/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0008/mri.nii.gz",
+            "label": "s0008/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0258/mri.nii.gz",
+            "label": "s0258/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0213/mri.nii.gz",
+            "label": "s0213/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0296/mri.nii.gz",
+            "label": "s0296/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0076/mri.nii.gz",
+            "label": "s0076/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0153/mri.nii.gz",
+            "label": "s0153/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0211/mri.nii.gz",
+            "label": "s0211/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0195/mri.nii.gz",
+            "label": "s0195/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0212/mri.nii.gz",
+            "label": "s0212/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0079/mri.nii.gz",
+            "label": "s0079/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0291/mri.nii.gz",
+            "label": "s0291/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0039/mri.nii.gz",
+            "label": "s0039/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0131/mri.nii.gz",
+            "label": "s0131/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0190/mri.nii.gz",
+            "label": "s0190/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0086/mri.nii.gz",
+            "label": "s0086/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0074/mri.nii.gz",
+            "label": "s0074/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0009/mri.nii.gz",
+            "label": "s0009/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0116/mri.nii.gz",
+            "label": "s0116/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0112/mri.nii.gz",
+            "label": "s0112/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0071/mri.nii.gz",
+            "label": "s0071/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0064/mri.nii.gz",
+            "label": "s0064/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0013/mri.nii.gz",
+            "label": "s0013/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0143/mri.nii.gz",
+            "label": "s0143/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0248/mri.nii.gz",
+            "label": "s0248/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0092/mri.nii.gz",
+            "label": "s0092/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0141/mri.nii.gz",
+            "label": "s0141/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0088/mri.nii.gz",
+            "label": "s0088/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0115/mri.nii.gz",
+            "label": "s0115/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0261/mri.nii.gz",
+            "label": "s0261/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0139/mri.nii.gz",
+            "label": "s0139/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0150/mri.nii.gz",
+            "label": "s0150/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0084/mri.nii.gz",
+            "label": "s0084/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0231/mri.nii.gz",
+            "label": "s0231/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0025/mri.nii.gz",
+            "label": "s0025/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0221/mri.nii.gz",
+            "label": "s0221/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0027/mri.nii.gz",
+            "label": "s0027/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0044/mri.nii.gz",
+            "label": "s0044/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0176/mri.nii.gz",
+            "label": "s0176/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0010/mri.nii.gz",
+            "label": "s0010/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0149/mri.nii.gz",
+            "label": "s0149/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0023/mri.nii.gz",
+            "label": "s0023/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0241/mri.nii.gz",
+            "label": "s0241/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0279/mri.nii.gz",
+            "label": "s0279/seg.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "s0043/mri.nii.gz",
+            "label": "s0043/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0293/mri.nii.gz",
+            "label": "s0293/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0021/mri.nii.gz",
+            "label": "s0021/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0277/mri.nii.gz",
+            "label": "s0277/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0102/mri.nii.gz",
+            "label": "s0102/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0224/mri.nii.gz",
+            "label": "s0224/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0095/mri.nii.gz",
+            "label": "s0095/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0024/mri.nii.gz",
+            "label": "s0024/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0132/mri.nii.gz",
+            "label": "s0132/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0151/mri.nii.gz",
+            "label": "s0151/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0002/mri.nii.gz",
+            "label": "s0002/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0236/mri.nii.gz",
+            "label": "s0236/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0273/mri.nii.gz",
+            "label": "s0273/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0214/mri.nii.gz",
+            "label": "s0214/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0255/mri.nii.gz",
+            "label": "s0255/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0049/mri.nii.gz",
+            "label": "s0049/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0160/mri.nii.gz",
+            "label": "s0160/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0140/mri.nii.gz",
+            "label": "s0140/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0178/mri.nii.gz",
+            "label": "s0178/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0054/mri.nii.gz",
+            "label": "s0054/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0280/mri.nii.gz",
+            "label": "s0280/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0193/mri.nii.gz",
+            "label": "s0193/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0142/mri.nii.gz",
+            "label": "s0142/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0118/mri.nii.gz",
+            "label": "s0118/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0059/mri.nii.gz",
+            "label": "s0059/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0028/mri.nii.gz",
+            "label": "s0028/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0216/mri.nii.gz",
+            "label": "s0216/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0267/mri.nii.gz",
+            "label": "s0267/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0223/mri.nii.gz",
+            "label": "s0223/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0047/mri.nii.gz",
+            "label": "s0047/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0204/mri.nii.gz",
+            "label": "s0204/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0105/mri.nii.gz",
+            "label": "s0105/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0189/mri.nii.gz",
+            "label": "s0189/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0244/mri.nii.gz",
+            "label": "s0244/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0020/mri.nii.gz",
+            "label": "s0020/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0257/mri.nii.gz",
+            "label": "s0257/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0166/mri.nii.gz",
+            "label": "s0166/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0154/mri.nii.gz",
+            "label": "s0154/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0282/mri.nii.gz",
+            "label": "s0282/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0191/mri.nii.gz",
+            "label": "s0191/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0144/mri.nii.gz",
+            "label": "s0144/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0168/mri.nii.gz",
+            "label": "s0168/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0230/mri.nii.gz",
+            "label": "s0230/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0063/mri.nii.gz",
+            "label": "s0063/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0067/mri.nii.gz",
+            "label": "s0067/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0075/mri.nii.gz",
+            "label": "s0075/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0062/mri.nii.gz",
+            "label": "s0062/seg.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "s0056/mri.nii.gz",
+            "label": "s0056/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0050/mri.nii.gz",
+            "label": "s0050/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0046/mri.nii.gz",
+            "label": "s0046/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0077/mri.nii.gz",
+            "label": "s0077/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0198/mri.nii.gz",
+            "label": "s0198/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0260/mri.nii.gz",
+            "label": "s0260/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0264/mri.nii.gz",
+            "label": "s0264/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0181/mri.nii.gz",
+            "label": "s0181/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0157/mri.nii.gz",
+            "label": "s0157/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0052/mri.nii.gz",
+            "label": "s0052/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0289/mri.nii.gz",
+            "label": "s0289/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0037/mri.nii.gz",
+            "label": "s0037/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0217/mri.nii.gz",
+            "label": "s0217/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0121/mri.nii.gz",
+            "label": "s0121/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0126/mri.nii.gz",
+            "label": "s0126/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0082/mri.nii.gz",
+            "label": "s0082/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0090/mri.nii.gz",
+            "label": "s0090/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0243/mri.nii.gz",
+            "label": "s0243/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0227/mri.nii.gz",
+            "label": "s0227/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0180/mri.nii.gz",
+            "label": "s0180/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0130/mri.nii.gz",
+            "label": "s0130/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0269/mri.nii.gz",
+            "label": "s0269/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0081/mri.nii.gz",
+            "label": "s0081/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0122/mri.nii.gz",
+            "label": "s0122/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0014/mri.nii.gz",
+            "label": "s0014/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0114/mri.nii.gz",
+            "label": "s0114/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0184/mri.nii.gz",
+            "label": "s0184/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0125/mri.nii.gz",
+            "label": "s0125/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0032/mri.nii.gz",
+            "label": "s0032/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0250/mri.nii.gz",
+            "label": "s0250/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0099/mri.nii.gz",
+            "label": "s0099/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0119/mri.nii.gz",
+            "label": "s0119/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0011/mri.nii.gz",
+            "label": "s0011/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0205/mri.nii.gz",
+            "label": "s0205/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0276/mri.nii.gz",
+            "label": "s0276/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0240/mri.nii.gz",
+            "label": "s0240/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0072/mri.nii.gz",
+            "label": "s0072/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0177/mri.nii.gz",
+            "label": "s0177/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0203/mri.nii.gz",
+            "label": "s0203/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0152/mri.nii.gz",
+            "label": "s0152/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0057/mri.nii.gz",
+            "label": "s0057/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0066/mri.nii.gz",
+            "label": "s0066/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0171/mri.nii.gz",
+            "label": "s0171/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0100/mri.nii.gz",
+            "label": "s0100/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0167/mri.nii.gz",
+            "label": "s0167/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0158/mri.nii.gz",
+            "label": "s0158/seg.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "s0281/mri.nii.gz",
+            "label": "s0281/seg.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "s0061/mri.nii.gz",
+            "label": "s0061/seg.nii.gz"
+        },
+        {
+            "image": "s0148/mri.nii.gz",
+            "label": "s0148/seg.nii.gz"
+        },
+        {
+            "image": "s0175/mri.nii.gz",
+            "label": "s0175/seg.nii.gz"
+        },
+        {
+            "image": "s0030/mri.nii.gz",
+            "label": "s0030/seg.nii.gz"
+        },
+        {
+            "image": "s0265/mri.nii.gz",
+            "label": "s0265/seg.nii.gz"
+        },
+        {
+            "image": "s0173/mri.nii.gz",
+            "label": "s0173/seg.nii.gz"
+        },
+        {
+            "image": "s0060/mri.nii.gz",
+            "label": "s0060/seg.nii.gz"
+        },
+        {
+            "image": "s0103/mri.nii.gz",
+            "label": "s0103/seg.nii.gz"
+        },
+        {
+            "image": "s0145/mri.nii.gz",
+            "label": "s0145/seg.nii.gz"
+        },
+        {
+            "image": "s0294/mri.nii.gz",
+            "label": "s0294/seg.nii.gz"
+        },
+        {
+            "image": "s0165/mri.nii.gz",
+            "label": "s0165/seg.nii.gz"
+        },
+        {
+            "image": "s0124/mri.nii.gz",
+            "label": "s0124/seg.nii.gz"
+        },
+        {
+            "image": "s0019/mri.nii.gz",
+            "label": "s0019/seg.nii.gz"
+        },
+        {
+            "image": "s0045/mri.nii.gz",
+            "label": "s0045/seg.nii.gz"
+        },
+        {
+            "image": "s0106/mri.nii.gz",
+            "label": "s0106/seg.nii.gz"
+        },
+        {
+            "image": "s0182/mri.nii.gz",
+            "label": "s0182/seg.nii.gz"
+        },
+        {
+            "image": "s0283/mri.nii.gz",
+            "label": "s0283/seg.nii.gz"
+        },
+        {
+            "image": "s0016/mri.nii.gz",
+            "label": "s0016/seg.nii.gz"
+        },
+        {
+            "image": "s0234/mri.nii.gz",
+            "label": "s0234/seg.nii.gz"
+        },
+        {
+            "image": "s0169/mri.nii.gz",
+            "label": "s0169/seg.nii.gz"
+        },
+        {
+            "image": "s0051/mri.nii.gz",
+            "label": "s0051/seg.nii.gz"
+        },
+        {
+            "image": "s0263/mri.nii.gz",
+            "label": "s0263/seg.nii.gz"
+        },
+        {
+            "image": "s0033/mri.nii.gz",
+            "label": "s0033/seg.nii.gz"
+        },
+        {
+            "image": "s0135/mri.nii.gz",
+            "label": "s0135/seg.nii.gz"
+        },
+        {
+            "image": "s0297/mri.nii.gz",
+            "label": "s0297/seg.nii.gz"
+        },
+        {
+            "image": "s0229/mri.nii.gz",
+            "label": "s0229/seg.nii.gz"
+        },
+        {
+            "image": "s0040/mri.nii.gz",
+            "label": "s0040/seg.nii.gz"
+        },
+        {
+            "image": "s0003/mri.nii.gz",
+            "label": "s0003/seg.nii.gz"
+        },
+        {
+            "image": "s0004/mri.nii.gz",
+            "label": "s0004/seg.nii.gz"
+        },
+        {
+            "image": "s0137/mri.nii.gz",
+            "label": "s0137/seg.nii.gz"
+        },
+        {
+            "image": "s0127/mri.nii.gz",
+            "label": "s0127/seg.nii.gz"
+        },
+        {
+            "image": "s0215/mri.nii.gz",
+            "label": "s0215/seg.nii.gz"
+        },
+        {
+            "image": "s0091/mri.nii.gz",
+            "label": "s0091/seg.nii.gz"
+        },
+        {
+            "image": "s0246/mri.nii.gz",
+            "label": "s0246/seg.nii.gz"
+        },
+        {
+            "image": "s0237/mri.nii.gz",
+            "label": "s0237/seg.nii.gz"
+        },
+        {
+            "image": "s0200/mri.nii.gz",
+            "label": "s0200/seg.nii.gz"
+        },
+        {
+            "image": "s0136/mri.nii.gz",
+            "label": "s0136/seg.nii.gz"
+        },
+        {
+            "image": "s0110/mri.nii.gz",
+            "label": "s0110/seg.nii.gz"
+        },
+        {
+            "image": "s0286/mri.nii.gz",
+            "label": "s0286/seg.nii.gz"
+        },
+        {
+            "image": "s0108/mri.nii.gz",
+            "label": "s0108/seg.nii.gz"
+        },
+        {
+            "image": "s0083/mri.nii.gz",
+            "label": "s0083/seg.nii.gz"
+        },
+        {
+            "image": "s0220/mri.nii.gz",
+            "label": "s0220/seg.nii.gz"
+        },
+        {
+            "image": "s0271/mri.nii.gz",
+            "label": "s0271/seg.nii.gz"
+        },
+        {
+            "image": "s0147/mri.nii.gz",
+            "label": "s0147/seg.nii.gz"
+        },
+        {
+            "image": "s0207/mri.nii.gz",
+            "label": "s0207/seg.nii.gz"
+        },
+        {
+            "image": "s0035/mri.nii.gz",
+            "label": "s0035/seg.nii.gz"
+        },
+        {
+            "image": "s0159/mri.nii.gz",
+            "label": "s0159/seg.nii.gz"
+        },
+        {
+            "image": "s0022/mri.nii.gz",
+            "label": "s0022/seg.nii.gz"
+        },
+        {
+            "image": "s0055/mri.nii.gz",
+            "label": "s0055/seg.nii.gz"
+        },
+        {
+            "image": "s0107/mri.nii.gz",
+            "label": "s0107/seg.nii.gz"
+        },
+        {
+            "image": "s0185/mri.nii.gz",
+            "label": "s0185/seg.nii.gz"
+        },
+        {
+            "image": "s0026/mri.nii.gz",
+            "label": "s0026/seg.nii.gz"
+        },
+        {
+            "image": "s0228/mri.nii.gz",
+            "label": "s0228/seg.nii.gz"
+        },
+        {
+            "image": "s0146/mri.nii.gz",
+            "label": "s0146/seg.nii.gz"
+        },
+        {
+            "image": "s0274/mri.nii.gz",
+            "label": "s0274/seg.nii.gz"
+        },
+        {
+            "image": "s0183/mri.nii.gz",
+            "label": "s0183/seg.nii.gz"
+        },
+        {
+            "image": "s0284/mri.nii.gz",
+            "label": "s0284/seg.nii.gz"
+        },
+        {
+            "image": "s0172/mri.nii.gz",
+            "label": "s0172/seg.nii.gz"
+        },
+        {
+            "image": "s0096/mri.nii.gz",
+            "label": "s0096/seg.nii.gz"
+        },
+        {
+            "image": "s0278/mri.nii.gz",
+            "label": "s0278/seg.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "left adrenal gland",
+        "2": "right adrenal gland",
+        "3": "aorta",
+        "4": "left autochthon",
+        "5": "right autochthon",
+        "6": "brain",
+        "7": "colon",
+        "8": "duodenum",
+        "9": "esophagus",
+        "10": "left femur",
+        "11": "right femur",
+        "12": "fibula",
+        "13": "gallbladder",
+        "14": "left gluteus maximus",
+        "15": "right gluteus maximus",
+        "16": "left gluteus medius",
+        "17": "right gluteus medius",
+        "18": "left gluteus minimus",
+        "19": "right gluteus minimus",
+        "20": "heart",
+        "21": "left hip",
+        "22": "right hip",
+        "23": "left humerus",
+        "24": "right humerus",
+        "25": "left iliac artery",
+        "26": "right iliac artery",
+        "27": "left iliac vena",
+        "28": "right iliac vena",
+        "29": "left iliopsoas",
+        "30": "right iliopsoas",
+        "31": "inferior vena cava",
+        "32": "intervertebral discs",
+        "33": "left kidney",
+        "34": "right kidney",
+        "35": "liver",
+        "36": "left lung",
+        "37": "right lung",
+        "38": "pancreas",
+        "39": "portal vein and splenic vein",
+        "40": "prostate",
+        "41": "left quadriceps femoris",
+        "42": "right quadriceps femoris",
+        "43": "sacrum",
+        "44": "left sartorius",
+        "45": "right sartorius",
+        "46": "small bowel",
+        "47": "spinal cord",
+        "48": "spleen",
+        "49": "stomach",
+        "50": "left thigh medial compartment",
+        "51": "right thigh medial compartment",
+        "52": "left thigh posterior compartment",
+        "53": "right thigh posterior compartment",
+        "54": "tibia",
+        "55": "bladder",
+        "56": "vertebrae"
+    },
+    "original_label_dict": {
+        "adrenal_gland_left": 1,
+        "adrenal_gland_right": 2,
+        "aorta": 3,
+        "autochthon_left": 4,
+        "autochthon_right": 5,
+        "brain": 6,
+        "colon": 7,
+        "duodenum": 8,
+        "esophagus": 9,
+        "femur_left": 10,
+        "femur_right": 11,
+        "fibula": 12,
+        "gallbladder": 13,
+        "gluteus_maximus_left": 14,
+        "gluteus_maximus_right": 15,
+        "gluteus_medius_left": 16,
+        "gluteus_medius_right": 17,
+        "gluteus_minimus_left": 18,
+        "gluteus_minimus_right": 19,
+        "heart": 20,
+        "hip_left": 21,
+        "hip_right": 22,
+        "humerus_left": 23,
+        "humerus_right": 24,
+        "iliac_artery_left": 25,
+        "iliac_artery_right": 26,
+        "iliac_vena_left": 27,
+        "iliac_vena_right": 28,
+        "iliopsoas_left": 29,
+        "iliopsoas_right": 30,
+        "inferior_vena_cava": 31,
+        "intervertebral_discs": 32,
+        "kidney_left": 33,
+        "kidney_right": 34,
+        "liver": 35,
+        "lung_left": 36,
+        "lung_right": 37,
+        "pancreas": 38,
+        "portal_vein_and_splenic_vein": 39,
+        "prostate": 40,
+        "quadriceps_femoris_left": 41,
+        "quadriceps_femoris_right": 42,
+        "sacrum": 43,
+        "sartorius_left": 44,
+        "sartorius_right": 45,
+        "small_bowel": 46,
+        "spinal_cord": 47,
+        "spleen": 48,
+        "stomach": 49,
+        "thigh_medial_compartment_left": 50,
+        "thigh_medial_compartment_right": 51,
+        "thigh_posterior_compartment_left": 52,
+        "thigh_posterior_compartment_right": 53,
+        "tibia": 54,
+        "urinary_bladder": 55,
+        "vertebrae": 56
+    }
+}
