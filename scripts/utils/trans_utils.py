@@ -195,7 +195,7 @@ def dilate3d(input_tensor, erosion=3):
 
 
 def get_largest_connected_component_point(
-    img: NdarrayTensor, point_coords=None, point_labels=None, post_idx=3
+    img: NdarrayTensor, point_coords=None, point_labels=None
 ) -> NdarrayTensor:
     """
     Gets the largest connected component mask of an image. img is before post process! And will include NaN values.
