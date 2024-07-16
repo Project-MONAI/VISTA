@@ -233,7 +233,9 @@ class InferClass:
                         )
                 self.prev_mask = batch_data["pred"]
                 if label_prompt is None and point is not None:
-                    batch_data['pred'] = get_largest_connected_component_point(batch_data['pred'],point_coords=point, point_labels=point_label)
+                    batch_data["pred"] = get_largest_connected_component_point(
+                        batch_data["pred"], point_coords=point, point_labels=point_label
+                    )
                 batch_data["image"] = batch_data["image"].to("cpu")
                 batch_data["pred"] = batch_data["pred"].to("cpu")
                 torch.cuda.empty_cache()
