@@ -173,6 +173,9 @@ class InferClass:
             batch_data = list_data_collate([batch_data])
             self.batch_data = batch_data
         if point is not None:
+            if type(point) is list:
+                point = np.array(point)[np.newaxis, ...]
+                point_label = np.array(point_label)[np.newaxis, ...]
             point = self.transform_points(
                 point,
                 np.linalg.inv(batch_data["image"].affine[0])
