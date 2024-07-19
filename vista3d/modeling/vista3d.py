@@ -310,7 +310,7 @@ class VISTA3D2(nn.Module):
             )
             torch.cuda.synchronize()
             print(f"Encoder Time: {time.time() - time0}, shape : {input_images.shape}, point: {point_coords is not None}")
-            if False: 
+            if self.engine is None: 
                 # breakpoint()
                 torch.onnx.export(self.image_encoder,
                                   (input_images,),
@@ -318,7 +318,6 @@ class VISTA3D2(nn.Module):
                                   verbose=False,
                                   opset_version=18
                                   )
-                self.engine = True
             
         input_images = None
         time1 = time.time()
