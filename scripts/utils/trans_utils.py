@@ -195,7 +195,7 @@ def dilate3d(input_tensor, erosion=3):
 
 
 def get_largest_connected_component_point(
-    img: NdarrayTensor, point_coords=None, point_labels=None, post_idx=3
+    img: NdarrayTensor, point_coords=None, point_labels=None
 ) -> NdarrayTensor:
     """
     Gets the largest connected component mask of an image. img is before post process! And will include NaN values.
@@ -349,8 +349,9 @@ class VistaPostTransform(MapTransform):
                     pred += 0.5  # inplace mapping to avoid cloning pred
                     for i in range(1, object_num + 1):
                         frac = i + 0.5
-                        pred[pred == frac] = torch.tensor(data["label_prompt"][i - 1]).to(pred.dtype)
-                        # pred[pred == frac] = data["label_prompt"][i - 1].to(pred.dtype)
+                        pred[pred == frac] = torch.tensor(
+                            data["label_prompt"][i - 1]
+                        ).to(pred.dtype)
                     pred[pred == 0.5] = 0.0
                 data[keys] = pred
         return data

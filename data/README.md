@@ -45,7 +45,6 @@ train_files, _, dataset_specific_transforms, dataset_specific_transforms_val = \
 
 The following steps are necessary for creating a multi-dataset data loader for model training.
 Step 1 and 2 generate persistent JSON files based on the original dataset (the `image` and `label` pairs; without the additional pseudo label or supervoxel-based label), and only need to be run once when the JSON files don't exist.
-Step 3 is optional for generating overall data analysis stats.
 
 ##### 1. Generate data list JSON file
 ```
@@ -73,7 +72,7 @@ creates a JSON file in a format:
 ```
 
 This step includes a 5-fold cross validation splitting and
-some logic for 80-20 training/testing splitting.
+some logic for 80-20 training/testing splitting. User need to modify the code in make_datalists.py for their own dataset. Meanwhile, the "training_transform" should manually added for each dataset.
 
 The `original_label_dict` corresponds to the original dataset label definitions.
 The `label_dict` modifies `original_label_dict` by simply rephrasing the terms.
@@ -81,26 +80,8 @@ For example in Task06, `cancer` is renamed to `lung tumor`.
 The output of this step is multiple JSON files, each file corresponds
 to one dataset.
 
-
-##### 2. Verify data pairs and generate a global label dictionary
-```
-python -m data.datasets
-```
-
-This script computes a super set of labels from all the dataset JSON files.
-The output of this step is a `jsons/label_dict.json` file,
-representing the global label dictionary mapping, from class names to globally unique class indices (integers).
-
-
-##### 3. Compute class frequencies, data transform utilities
-```
-python -m data.analyzer ...
-```
-
-This file (`data/analyzer.py`) contains useful transforms for reading images
-and labels, converting labels from dataset-specific labels to the global labels
-according to `jsons/label_dict.json`.
-
+##### 2. Add label_dict.json and label_mapping.json
+Add new class indexes to `label_dict.json` and the local to global mapping to `label_mapping.json`. 
 
 ## SupverVoxel Generation
 1. Download the segment anything repo and download the ViT-H weights

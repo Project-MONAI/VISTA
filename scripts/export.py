@@ -30,7 +30,7 @@ from vista3d import vista_model_registry
 
 from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .train import CONFIG
-from .utils.trans_utils import VistaPostTransform
+from .utils.trans_utils import VistaPostTransform, get_largest_connected_component_point
 from .utils.trt_utils import ExportWrapper, TRTWrapper
 import time
 
@@ -62,6 +62,7 @@ def infer_wrapper(inputs, model, **kwargs):
     outputs = model(input_images=inputs, **kwargs)
     return outputs.transpose(1, 0)
 
+
 class InferClass:
     def __init__(self, config_file="./configs/infer.yaml", **override):
         logging.basicConfig(stream=sys.stdout, level=logging.INFO)
@@ -73,7 +74,6 @@ class InferClass:
         parser.read_config(config_file_)
         parser.update(pairs=_args)
 
-        # We do not use AMP for export 
         self.amp = parser.get_parsed_content("amp")
         input_channels = parser.get_parsed_content("input_channels")
         patch_size = parser.get_parsed_content("patch_size")
@@ -182,10 +182,14 @@ class InferClass:
             batch_data = self.batch_data
         else:
             batch_data = self.infer_transforms(image_file)
-            batch_data["label_prompt"] = label_prompt
+            if label_prompt is not None:
+                batch_data["label_prompt"] = label_prompt
             batch_data = list_data_collate([batch_data])
             self.batch_data = batch_data
         if point is not None:
+            if type(point) is list:
+                point = np.array(point)[np.newaxis, ...]
+                point_label = np.array(point_label)[np.newaxis, ...]
             point = self.transform_points(
                 point,
                 np.linalg.inv(batch_data["image"].affine[0])
@@ -245,6 +249,10 @@ class InferClass:
                             meta=batch_data["image"].meta,
                         )
                 self.prev_mask = batch_data["pred"]
+                if label_prompt is None and point is not None:
+                    batch_data["pred"] = get_largest_connected_component_point(
+                        batch_data["pred"], point_coords=point, point_labels=point_label
+                    )
                 batch_data["image"] = batch_data["image"].to("cpu")
                 batch_data["pred"] = batch_data["pred"].to("cpu")
                 torch.cuda.empty_cache()
