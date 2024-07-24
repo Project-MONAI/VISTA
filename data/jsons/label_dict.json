@@ -139,5 +139,9 @@
     "left thigh posterior compartment": 143,
     "right thigh posterior compartment": 144,
     "tibia": 145,
-    "vertebrae": 146
+    "vertebrae": 146,
+    "prostate transitional zone": 147,
+    "prostate peripheral zone": 148,
+    "left atrium": 149,
+    "white matter hyperintensity": 150
 }

@@ -1,0 +1,302 @@
+{
+    "training": [
+        {
+            "image": "imagesTr/im44.nii.gz",
+            "label": "labelsTr/lb44.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im35.nii.gz",
+            "label": "labelsTr/lb35.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im51.nii.gz",
+            "label": "labelsTr/lb51.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im41.nii.gz",
+            "label": "labelsTr/lb41.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im17.nii.gz",
+            "label": "labelsTr/lb17.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im20.nii.gz",
+            "label": "labelsTr/lb20.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im27.nii.gz",
+            "label": "labelsTr/lb27.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im49.nii.gz",
+            "label": "labelsTr/lb49.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im11.nii.gz",
+            "label": "labelsTr/lb11.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im42.nii.gz",
+            "label": "labelsTr/lb42.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/im43.nii.gz",
+            "label": "labelsTr/lb43.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im6.nii.gz",
+            "label": "labelsTr/lb6.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im39.nii.gz",
+            "label": "labelsTr/lb39.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im23.nii.gz",
+            "label": "labelsTr/lb23.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im12.nii.gz",
+            "label": "labelsTr/lb12.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im45.nii.gz",
+            "label": "labelsTr/lb45.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im32.nii.gz",
+            "label": "labelsTr/lb32.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im2.nii.gz",
+            "label": "labelsTr/lb2.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im16.nii.gz",
+            "label": "labelsTr/lb16.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im3.nii.gz",
+            "label": "labelsTr/lb3.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/im59.nii.gz",
+            "label": "labelsTr/lb59.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im15.nii.gz",
+            "label": "labelsTr/lb15.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im10.nii.gz",
+            "label": "labelsTr/lb10.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im21.nii.gz",
+            "label": "labelsTr/lb21.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im0.nii.gz",
+            "label": "labelsTr/lb0.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im57.nii.gz",
+            "label": "labelsTr/lb57.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im4.nii.gz",
+            "label": "labelsTr/lb4.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im58.nii.gz",
+            "label": "labelsTr/lb58.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im9.nii.gz",
+            "label": "labelsTr/lb9.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im14.nii.gz",
+            "label": "labelsTr/lb14.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/im8.nii.gz",
+            "label": "labelsTr/lb8.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im46.nii.gz",
+            "label": "labelsTr/lb46.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im56.nii.gz",
+            "label": "labelsTr/lb56.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im1.nii.gz",
+            "label": "labelsTr/lb1.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im26.nii.gz",
+            "label": "labelsTr/lb26.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im7.nii.gz",
+            "label": "labelsTr/lb7.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im25.nii.gz",
+            "label": "labelsTr/lb25.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im38.nii.gz",
+            "label": "labelsTr/lb38.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im34.nii.gz",
+            "label": "labelsTr/lb34.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/im53.nii.gz",
+            "label": "labelsTr/lb53.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im19.nii.gz",
+            "label": "labelsTr/lb19.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im30.nii.gz",
+            "label": "labelsTr/lb30.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im52.nii.gz",
+            "label": "labelsTr/lb52.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im22.nii.gz",
+            "label": "labelsTr/lb22.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im13.nii.gz",
+            "label": "labelsTr/lb13.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im31.nii.gz",
+            "label": "labelsTr/lb31.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im54.nii.gz",
+            "label": "labelsTr/lb54.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/im36.nii.gz",
+            "label": "labelsTr/lb36.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "imagesTr/im40.nii.gz",
+            "label": "labelsTr/lb40.nii.gz"
+        },
+        {
+            "image": "imagesTr/im18.nii.gz",
+            "label": "labelsTr/lb18.nii.gz"
+        },
+        {
+            "image": "imagesTr/im55.nii.gz",
+            "label": "labelsTr/lb55.nii.gz"
+        },
+        {
+            "image": "imagesTr/im24.nii.gz",
+            "label": "labelsTr/lb24.nii.gz"
+        },
+        {
+            "image": "imagesTr/im29.nii.gz",
+            "label": "labelsTr/lb29.nii.gz"
+        },
+        {
+            "image": "imagesTr/im47.nii.gz",
+            "label": "labelsTr/lb47.nii.gz"
+        },
+        {
+            "image": "imagesTr/im33.nii.gz",
+            "label": "labelsTr/lb33.nii.gz"
+        },
+        {
+            "image": "imagesTr/im48.nii.gz",
+            "label": "labelsTr/lb48.nii.gz"
+        },
+        {
+            "image": "imagesTr/im50.nii.gz",
+            "label": "labelsTr/lb50.nii.gz"
+        },
+        {
+            "image": "imagesTr/im5.nii.gz",
+            "label": "labelsTr/lb5.nii.gz"
+        },
+        {
+            "image": "imagesTr/im37.nii.gz",
+            "label": "labelsTr/lb37.nii.gz"
+        },
+        {
+            "image": "imagesTr/im28.nii.gz",
+            "label": "labelsTr/lb28.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "liver": 1,
+        "hepatic tumor": 2
+    },
+    "original_label_dict": {
+        "liver": 1,
+        "hepatic tumor": 2
+    }
+}
