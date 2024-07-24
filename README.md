@@ -49,6 +49,7 @@ The interactive segmentation is based on user-provided clicks. Each click point 
   <figcaption> Interactive supported class segmentation without specifying class </figcaption>
 </figure>
 </div>
+
 ### Zero-shot interactive segmentation
 VISTA3D is built to produce visually plausible segmentations on previously unseen classes.
 This capability makes the model even more flexible and accelerates practical segmentation data curation processes.
@@ -127,7 +128,7 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The codebase is under Apache 2.0 Licence.
+The codebase is under Apache 2.0 Licence. The model weight is under special NVIDIA license. 
 
 ## Reference
 
