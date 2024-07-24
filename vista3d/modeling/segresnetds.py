@@ -472,7 +472,7 @@ class SegResNetDS2(nn.Module):
                 f"Input spatial dims {x.shape} must be divisible by {self.shape_factor()}"
             )
 
-        x_down = self.encoder(x)
+        x_down = self.encoder(x=x)
 
         x_down.reverse()
         x = x_down.pop(0)
@@ -482,8 +482,9 @@ class SegResNetDS2(nn.Module):
 
         outputs: list[torch.Tensor] = []
         outputs_auto: list[torch.Tensor] = []
-        x_ = x.clone()
+
         if with_point:
+            x_ = x.clone()
             i = 0
             for level in self.up_layers:
                 x = level["upsample"](x)
@@ -495,7 +496,8 @@ class SegResNetDS2(nn.Module):
                 i = i + 1
 
             outputs.reverse()
-        x = x_
+            x = x_
+ 
         if with_label:
             i = 0
             for level in self.up_layers_auto:
