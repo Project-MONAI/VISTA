@@ -133,13 +133,13 @@ class InferClass:
 
         en_wrapper = ExportWrapper.wrap(self.model.image_encoder.encoder,
                                         input_names = ['x'], output_names = ['x_out'])
-        self.model.image_encoder.encoder = TRTWrapper("Encoder", en_wrapper, use_cuda_graph=False)
-        # self.model.image_encoder.encoder.load_engine()
+        self.model.image_encoder.encoder = TRTWrapper("Encoder", en_wrapper)
+        self.model.image_encoder.encoder.load_engine()
 
         cls_wrapper = ExportWrapper.wrap(self.model.class_head,
                                          input_names = ['src', 'class_vector'], output_names = ['masks', 'class_embedding'])
-        self.model.class_head = TRTWrapper("ClassHead", cls_wrapper, use_cuda_graph=False)
-        # self.model.class_head.load_engine()
+        self.model.class_head = TRTWrapper("ClassHead", cls_wrapper)
+        self.model.class_head.load_engine()
         
         return
 

@@ -302,15 +302,16 @@ class VISTA3D2(nn.Module):
         ):
             out, out_auto = self.image_embeddings, None
         else:
-            # print(input_images.dtype)
-            self.image_encoder.encoder.build_and_save(
-                (input_images,),
-                dynamo=False,
-                verbose=False,
-                fp16=True, tf32=True,
-                builder_optimization_level=5,
-                enable_all_tactics=True
-            )
+            # Support for TRT wrappping
+            if hasattr(self.image_encoder.encoder, "build_and_save"):
+                self.image_encoder.encoder.build_and_save(
+                    (input_images,),
+                    dynamo=False,
+                    verbose=False,
+                    fp16=True, tf32=True,
+                    builder_optimization_level=5,
+                    enable_all_tactics=True
+                )
             
             time0 = time.time()
             out, out_auto = self.image_encoder(
@@ -325,19 +326,20 @@ class VISTA3D2(nn.Module):
         # force releasing memories that set to None
         torch.cuda.empty_cache()
         if class_vector is not None:
-            self.class_head.build_and_save(
-                (out_auto, class_vector,),
-                fp16=True, tf32=True,
-                dynamo=False,
-                verbose=False,
-            )
-            time2 = time.time()
+            if hasattr(self.class_head, "build_and_save"):
+                self.class_head.build_and_save(
+                    (out_auto, class_vector,),
+                    fp16=True, tf32=True,
+                    dynamo=False,
+                    verbose=False,
+                )
+            # time2 = time.time()
             logits, _ = self.class_head(src=out_auto, class_vector=class_vector)
             # torch.cuda.synchronize()
             # print(f"Class Head Time: {time.time() - time2}")            
                 
             if point_coords is not None:
-                time3 = time.time()
+                # time3 = time.time()
                 point_logits = self.point_head(
                     out, point_coords, point_labels, class_vector=prompt_class
                 )
@@ -376,8 +378,8 @@ class VISTA3D2(nn.Module):
                     mapping_index,
                 )
 
-        torch.cuda.synchronize()
-        # print(f"Head time: {time.time() - time1}, total time : {time.time() - time00} shape : {logits.shape}")
+        # torch.cuda.synchronize()
+        # print(f"Total time : {time.time() - time00} shape : {logits.shape}")
 
         if kwargs.get("keep_cache", False) and class_vector is None:
             self.image_embeddings = out.detach()
