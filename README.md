@@ -21,15 +21,44 @@ The **VISTA3D** is a foundation model trained systematically on 11,454 volumes e
 ### Out-of box automatic segmentation
 For supported 127 classes, the model can perform highly accurate out-of-box segmentation. The fully automated process adopts a patch-based sliding-window inference and only requires a class prompt.
 Compared to supervised segmentation models trained on each dataset separately, VISTA3D showed comparable out-of-box performances and strong generalizability ('VISTA3D auto' in Table.1).
-<!-- <div align="center"> <img src="" width="800"/> </div> -->
+<!-- <div align="center"> <img src="assets/imgs/everything.gif" width="800"/> </div> -->
+<div align="center">
+<figure>
+  <img
+  src="assets/imgs/everything.gif">
+  <figcaption> NIM Demo supports "Segment Everything" </figcaption>
+</figure>
+</div>
+
+
 
 ### Interactive editing
 The interactive segmentation is based on user-provided clicks. Each click point will impact a local 3D patch. User can either effectively refine the automatic results with clicks ('VISTA3D auto+point' in Table.1) or simply provide a click without specifying the target class ('VISTA3D point' in Table.1) .
 <!-- <div align="center"> <img src="" width="800"/> </div> -->
-
+<div align="center">
+<figure>
+  <img
+  src="assets/imgs/liver.gif">
+  <figcaption> Specify a supported class and edit the automatic results </figcaption>
+</figure>
+</div>
+<div align="center">
+<figure>
+  <img
+  src="assets/imgs/unspecified.gif">
+  <figcaption> Interactive supported class segmentation without specifying class </figcaption>
+</figure>
+</div>
 ### Zero-shot interactive segmentation
 VISTA3D is built to produce visually plausible segmentations on previously unseen classes.
 This capability makes the model even more flexible and accelerates practical segmentation data curation processes.
+<div align="center">
+<figure>
+  <img
+  src="assets/imgs/zeroshot.gif">
+  <figcaption> Add a new unseen class and do annotation </figcaption>
+</figure>
+</div>
 
 ### Fine-tuning
 VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Once a few annotated examples are provided, user can start finetune with the VISTA3D checkpoint.
