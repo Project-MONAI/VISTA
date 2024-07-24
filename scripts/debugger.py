@@ -124,7 +124,7 @@ class samm_visualizer:
             self.generate_mask()
             print("-- done ---")
             print("-- Note: Point only prompts will only do 128 cubic segmentation, a cropping artefact will be observed. ---")
-            print("-- Note: Point only prompts without specifying class will be treated as supported class, which has worse zero-shot ability. Try class > 132 to perform better zeroshot. ---")
+            print("-- Note: Point without class will be treated as supported class, which has worse zero-shot ability. Try class > 132 to perform better zeroshot. ---")
             print("-- Note: CTRL + Right Click will be adding negative points. ---")
             print(
                 "-- Note: Click points on different foreground class will cause segmentation conflicts. Clear first. ---"
