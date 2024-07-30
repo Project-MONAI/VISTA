@@ -128,7 +128,7 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The codebase is under Apache 2.0 Licence. The model weight is under special NVIDIA license.
+The codebase is under Apache 2.0 Licence. The model weight is released under CC-BY-NC-SA-4.0.
 
 ## Reference
 
