@@ -1,0 +1,850 @@
+{
+    "training": [
+        {
+            "image": "training/Utrecht/31/wmh.nii.gz",
+            "label": "training/Utrecht/31/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Singapore/55/wmh.nii.gz",
+            "label": "training/Singapore/55/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Singapore/69/wmh.nii.gz",
+            "label": "training/Singapore/69/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Utrecht/41/wmh.nii.gz",
+            "label": "training/Utrecht/41/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Singapore/65/wmh.nii.gz",
+            "label": "training/Singapore/65/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Amsterdam/GE3T/101/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/101/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Utrecht/37/wmh.nii.gz",
+            "label": "training/Utrecht/37/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Singapore/57/wmh.nii.gz",
+            "label": "training/Singapore/57/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Utrecht/33/wmh.nii.gz",
+            "label": "training/Utrecht/33/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Amsterdam/GE3T/137/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/137/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Amsterdam/GE3T/132/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/132/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Singapore/60/wmh.nii.gz",
+            "label": "training/Singapore/60/orig/FLAIR.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "training/Amsterdam/GE3T/114/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/114/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Singapore/68/wmh.nii.gz",
+            "label": "training/Singapore/68/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Singapore/54/wmh.nii.gz",
+            "label": "training/Singapore/54/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Singapore/56/wmh.nii.gz",
+            "label": "training/Singapore/56/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Singapore/66/wmh.nii.gz",
+            "label": "training/Singapore/66/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Utrecht/35/wmh.nii.gz",
+            "label": "training/Utrecht/35/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Utrecht/29/wmh.nii.gz",
+            "label": "training/Utrecht/29/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Amsterdam/GE3T/115/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/115/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Utrecht/19/wmh.nii.gz",
+            "label": "training/Utrecht/19/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Utrecht/4/wmh.nii.gz",
+            "label": "training/Utrecht/4/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Amsterdam/GE3T/103/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/103/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Utrecht/11/wmh.nii.gz",
+            "label": "training/Utrecht/11/orig/FLAIR.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "training/Amsterdam/GE3T/144/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/144/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Utrecht/6/wmh.nii.gz",
+            "label": "training/Utrecht/6/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Singapore/59/wmh.nii.gz",
+            "label": "training/Singapore/59/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/112/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/112/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/126/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/126/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/107/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/107/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Singapore/64/wmh.nii.gz",
+            "label": "training/Singapore/64/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/105/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/105/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Singapore/51/wmh.nii.gz",
+            "label": "training/Singapore/51/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/113/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/113/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/108/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/108/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Singapore/67/wmh.nii.gz",
+            "label": "training/Singapore/67/orig/FLAIR.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "training/Amsterdam/GE3T/116/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/116/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Amsterdam/GE3T/102/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/102/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Singapore/63/wmh.nii.gz",
+            "label": "training/Singapore/63/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Utrecht/25/wmh.nii.gz",
+            "label": "training/Utrecht/25/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Amsterdam/GE3T/110/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/110/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Amsterdam/GE3T/109/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/109/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Utrecht/21/wmh.nii.gz",
+            "label": "training/Utrecht/21/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Singapore/50/wmh.nii.gz",
+            "label": "training/Singapore/50/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Utrecht/2/wmh.nii.gz",
+            "label": "training/Utrecht/2/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Utrecht/39/wmh.nii.gz",
+            "label": "training/Utrecht/39/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Utrecht/8/wmh.nii.gz",
+            "label": "training/Utrecht/8/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Singapore/53/wmh.nii.gz",
+            "label": "training/Singapore/53/orig/FLAIR.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "training/Utrecht/49/wmh.nii.gz",
+            "label": "training/Utrecht/49/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Singapore/61/wmh.nii.gz",
+            "label": "training/Singapore/61/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Utrecht/27/wmh.nii.gz",
+            "label": "training/Utrecht/27/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Singapore/52/wmh.nii.gz",
+            "label": "training/Singapore/52/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Utrecht/23/wmh.nii.gz",
+            "label": "training/Utrecht/23/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Amsterdam/GE3T/104/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/104/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Utrecht/0/wmh.nii.gz",
+            "label": "training/Utrecht/0/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Amsterdam/GE3T/100/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/100/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Utrecht/17/wmh.nii.gz",
+            "label": "training/Utrecht/17/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Singapore/62/wmh.nii.gz",
+            "label": "training/Singapore/62/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Singapore/58/wmh.nii.gz",
+            "label": "training/Singapore/58/orig/FLAIR.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "training/Amsterdam/GE3T/106/wmh.nii.gz",
+            "label": "training/Amsterdam/GE3T/106/orig/FLAIR.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "test/Amsterdam/GE1T5/150/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/150/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/151/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/151/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/152/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/152/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/153/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/153/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/154/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/154/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/155/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/155/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/156/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/156/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/157/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/157/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/158/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/158/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE1T5/159/wmh.nii.gz",
+            "label": "test/Amsterdam/GE1T5/159/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/111/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/111/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/117/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/117/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/118/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/118/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/119/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/119/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/120/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/120/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/121/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/121/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/122/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/122/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/123/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/123/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/124/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/124/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/125/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/125/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/127/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/127/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/128/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/128/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/129/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/129/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/130/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/130/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/131/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/131/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/133/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/133/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/134/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/134/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/135/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/135/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/136/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/136/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/138/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/138/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/139/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/139/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/140/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/140/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/141/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/141/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/142/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/142/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/143/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/143/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/145/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/145/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/146/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/146/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/147/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/147/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/148/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/148/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/GE3T/149/wmh.nii.gz",
+            "label": "test/Amsterdam/GE3T/149/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./160/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./160/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./161/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./161/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./162/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./162/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./163/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./163/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./164/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./164/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./165/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./165/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./166/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./166/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./167/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./167/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./168/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./168/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Amsterdam/Philips_VU .PETMR_01./169/wmh.nii.gz",
+            "label": "test/Amsterdam/Philips_VU .PETMR_01./169/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/70/wmh.nii.gz",
+            "label": "test/Singapore/70/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/71/wmh.nii.gz",
+            "label": "test/Singapore/71/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/72/wmh.nii.gz",
+            "label": "test/Singapore/72/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/73/wmh.nii.gz",
+            "label": "test/Singapore/73/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/74/wmh.nii.gz",
+            "label": "test/Singapore/74/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/75/wmh.nii.gz",
+            "label": "test/Singapore/75/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/76/wmh.nii.gz",
+            "label": "test/Singapore/76/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/77/wmh.nii.gz",
+            "label": "test/Singapore/77/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/78/wmh.nii.gz",
+            "label": "test/Singapore/78/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/79/wmh.nii.gz",
+            "label": "test/Singapore/79/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/80/wmh.nii.gz",
+            "label": "test/Singapore/80/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/81/wmh.nii.gz",
+            "label": "test/Singapore/81/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/82/wmh.nii.gz",
+            "label": "test/Singapore/82/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/83/wmh.nii.gz",
+            "label": "test/Singapore/83/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/84/wmh.nii.gz",
+            "label": "test/Singapore/84/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/85/wmh.nii.gz",
+            "label": "test/Singapore/85/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/86/wmh.nii.gz",
+            "label": "test/Singapore/86/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/87/wmh.nii.gz",
+            "label": "test/Singapore/87/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/88/wmh.nii.gz",
+            "label": "test/Singapore/88/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/89/wmh.nii.gz",
+            "label": "test/Singapore/89/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/90/wmh.nii.gz",
+            "label": "test/Singapore/90/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/91/wmh.nii.gz",
+            "label": "test/Singapore/91/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/92/wmh.nii.gz",
+            "label": "test/Singapore/92/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/93/wmh.nii.gz",
+            "label": "test/Singapore/93/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/94/wmh.nii.gz",
+            "label": "test/Singapore/94/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/95/wmh.nii.gz",
+            "label": "test/Singapore/95/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/96/wmh.nii.gz",
+            "label": "test/Singapore/96/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/97/wmh.nii.gz",
+            "label": "test/Singapore/97/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/98/wmh.nii.gz",
+            "label": "test/Singapore/98/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Singapore/99/wmh.nii.gz",
+            "label": "test/Singapore/99/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/1/wmh.nii.gz",
+            "label": "test/Utrecht/1/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/10/wmh.nii.gz",
+            "label": "test/Utrecht/10/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/12/wmh.nii.gz",
+            "label": "test/Utrecht/12/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/13/wmh.nii.gz",
+            "label": "test/Utrecht/13/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/14/wmh.nii.gz",
+            "label": "test/Utrecht/14/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/15/wmh.nii.gz",
+            "label": "test/Utrecht/15/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/16/wmh.nii.gz",
+            "label": "test/Utrecht/16/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/18/wmh.nii.gz",
+            "label": "test/Utrecht/18/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/20/wmh.nii.gz",
+            "label": "test/Utrecht/20/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/22/wmh.nii.gz",
+            "label": "test/Utrecht/22/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/24/wmh.nii.gz",
+            "label": "test/Utrecht/24/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/26/wmh.nii.gz",
+            "label": "test/Utrecht/26/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/28/wmh.nii.gz",
+            "label": "test/Utrecht/28/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/3/wmh.nii.gz",
+            "label": "test/Utrecht/3/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/30/wmh.nii.gz",
+            "label": "test/Utrecht/30/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/32/wmh.nii.gz",
+            "label": "test/Utrecht/32/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/34/wmh.nii.gz",
+            "label": "test/Utrecht/34/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/36/wmh.nii.gz",
+            "label": "test/Utrecht/36/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/38/wmh.nii.gz",
+            "label": "test/Utrecht/38/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/40/wmh.nii.gz",
+            "label": "test/Utrecht/40/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/42/wmh.nii.gz",
+            "label": "test/Utrecht/42/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/43/wmh.nii.gz",
+            "label": "test/Utrecht/43/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/44/wmh.nii.gz",
+            "label": "test/Utrecht/44/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/45/wmh.nii.gz",
+            "label": "test/Utrecht/45/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/46/wmh.nii.gz",
+            "label": "test/Utrecht/46/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/47/wmh.nii.gz",
+            "label": "test/Utrecht/47/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/48/wmh.nii.gz",
+            "label": "test/Utrecht/48/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/5/wmh.nii.gz",
+            "label": "test/Utrecht/5/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/7/wmh.nii.gz",
+            "label": "test/Utrecht/7/orig/FLAIR.nii.gz"
+        },
+        {
+            "image": "test/Utrecht/9/wmh.nii.gz",
+            "label": "test/Utrecht/9/orig/FLAIR.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "white matter hyperintensity"
+    },
+    "original_label_dict": {
+        "1": "white matter hyperintensity"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+}

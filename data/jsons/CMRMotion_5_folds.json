@@ -1,0 +1,776 @@
+{
+    "training": [
+        {
+            "image": "P005-2/P005-2-ED.nii.gz",
+            "label": "P005-2/P005-2-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P006-4/P006-4-ES.nii.gz",
+            "label": "P006-4/P006-4-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P004-3/P004-3-ED.nii.gz",
+            "label": "P004-3/P004-3-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P008-1/P008-1-ES.nii.gz",
+            "label": "P008-1/P008-1-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P009-3/P009-3-ES.nii.gz",
+            "label": "P009-3/P009-3-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P003-3/P003-3-ED.nii.gz",
+            "label": "P003-3/P003-3-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P002-2/P002-2-ED.nii.gz",
+            "label": "P002-2/P002-2-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P018-2/P018-2-ES.nii.gz",
+            "label": "P018-2/P018-2-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P001-3/P001-3-ED.nii.gz",
+            "label": "P001-3/P001-3-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P002-1/P002-1-ES.nii.gz",
+            "label": "P002-1/P002-1-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P012-4/P012-4-ED.nii.gz",
+            "label": "P012-4/P012-4-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P008-1/P008-1-ED.nii.gz",
+            "label": "P008-1/P008-1-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P011-1/P011-1-ES.nii.gz",
+            "label": "P011-1/P011-1-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P012-4/P012-4-ES.nii.gz",
+            "label": "P012-4/P012-4-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P017-2/P017-2-ED.nii.gz",
+            "label": "P017-2/P017-2-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P007-4/P007-4-ES.nii.gz",
+            "label": "P007-4/P007-4-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P006-3/P006-3-ED.nii.gz",
+            "label": "P006-3/P006-3-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P010-1/P010-1-ED.nii.gz",
+            "label": "P010-1/P010-1-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P008-3/P008-3-ED.nii.gz",
+            "label": "P008-3/P008-3-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P015-3/P015-3-ED.nii.gz",
+            "label": "P015-3/P015-3-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P002-2/P002-2-ES.nii.gz",
+            "label": "P002-2/P002-2-ES-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P019-1/P019-1-ED.nii.gz",
+            "label": "P019-1/P019-1-ED-label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "P006-1/P006-1-ES.nii.gz",
+            "label": "P006-1/P006-1-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P001-2/P001-2-ES.nii.gz",
+            "label": "P001-2/P001-2-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P009-1/P009-1-ED.nii.gz",
+            "label": "P009-1/P009-1-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P015-1/P015-1-ES.nii.gz",
+            "label": "P015-1/P015-1-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P015-4/P015-4-ED.nii.gz",
+            "label": "P015-4/P015-4-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P019-4/P019-4-ED.nii.gz",
+            "label": "P019-4/P019-4-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P009-2/P009-2-ED.nii.gz",
+            "label": "P009-2/P009-2-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P004-1/P004-1-ED.nii.gz",
+            "label": "P004-1/P004-1-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P017-1/P017-1-ES.nii.gz",
+            "label": "P017-1/P017-1-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P019-1/P019-1-ES.nii.gz",
+            "label": "P019-1/P019-1-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P006-4/P006-4-ED.nii.gz",
+            "label": "P006-4/P006-4-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P006-3/P006-3-ES.nii.gz",
+            "label": "P006-3/P006-3-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P001-4/P001-4-ED.nii.gz",
+            "label": "P001-4/P001-4-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P001-1/P001-1-ES.nii.gz",
+            "label": "P001-1/P001-1-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P007-3/P007-3-ES.nii.gz",
+            "label": "P007-3/P007-3-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P002-3/P002-3-ED.nii.gz",
+            "label": "P002-3/P002-3-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P008-3/P008-3-ES.nii.gz",
+            "label": "P008-3/P008-3-ES-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P012-2/P012-2-ED.nii.gz",
+            "label": "P012-2/P012-2-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P016-3/P016-3-ED.nii.gz",
+            "label": "P016-3/P016-3-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P011-1/P011-1-ED.nii.gz",
+            "label": "P011-1/P011-1-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P018-3/P018-3-ED.nii.gz",
+            "label": "P018-3/P018-3-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P020-1/P020-1-ED.nii.gz",
+            "label": "P020-1/P020-1-ED-label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "P007-4/P007-4-ED.nii.gz",
+            "label": "P007-4/P007-4-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P009-1/P009-1-ES.nii.gz",
+            "label": "P009-1/P009-1-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P003-1/P003-1-ED.nii.gz",
+            "label": "P003-1/P003-1-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P007-3/P007-3-ED.nii.gz",
+            "label": "P007-3/P007-3-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P005-4/P005-4-ES.nii.gz",
+            "label": "P005-4/P005-4-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P020-1/P020-1-ES.nii.gz",
+            "label": "P020-1/P020-1-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P020-2/P020-2-ES.nii.gz",
+            "label": "P020-2/P020-2-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P015-4/P015-4-ES.nii.gz",
+            "label": "P015-4/P015-4-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P010-4/P010-4-ED.nii.gz",
+            "label": "P010-4/P010-4-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P016-4/P016-4-ED.nii.gz",
+            "label": "P016-4/P016-4-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P012-3/P012-3-ES.nii.gz",
+            "label": "P012-3/P012-3-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P010-2/P010-2-ED.nii.gz",
+            "label": "P010-2/P010-2-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P014-1/P014-1-ED.nii.gz",
+            "label": "P014-1/P014-1-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P014-3/P014-3-ED.nii.gz",
+            "label": "P014-3/P014-3-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P009-2/P009-2-ES.nii.gz",
+            "label": "P009-2/P009-2-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P017-2/P017-2-ES.nii.gz",
+            "label": "P017-2/P017-2-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P019-4/P019-4-ES.nii.gz",
+            "label": "P019-4/P019-4-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P007-2/P007-2-ED.nii.gz",
+            "label": "P007-2/P007-2-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P010-3/P010-3-ES.nii.gz",
+            "label": "P010-3/P010-3-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P015-2/P015-2-ES.nii.gz",
+            "label": "P015-2/P015-2-ES-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P015-2/P015-2-ED.nii.gz",
+            "label": "P015-2/P015-2-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P001-1/P001-1-ED.nii.gz",
+            "label": "P001-1/P001-1-ED-label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "P003-4/P003-4-ED.nii.gz",
+            "label": "P003-4/P003-4-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P018-3/P018-3-ES.nii.gz",
+            "label": "P018-3/P018-3-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P007-1/P007-1-ES.nii.gz",
+            "label": "P007-1/P007-1-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P009-4/P009-4-ED.nii.gz",
+            "label": "P009-4/P009-4-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P016-1/P016-1-ES.nii.gz",
+            "label": "P016-1/P016-1-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P014-2/P014-2-ES.nii.gz",
+            "label": "P014-2/P014-2-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P015-1/P015-1-ED.nii.gz",
+            "label": "P015-1/P015-1-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P007-1/P007-1-ED.nii.gz",
+            "label": "P007-1/P007-1-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P006-2/P006-2-ES.nii.gz",
+            "label": "P006-2/P006-2-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P010-3/P010-3-ED.nii.gz",
+            "label": "P010-3/P010-3-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P012-1/P012-1-ES.nii.gz",
+            "label": "P012-1/P012-1-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P017-3/P017-3-ED.nii.gz",
+            "label": "P017-3/P017-3-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P003-4/P003-4-ES.nii.gz",
+            "label": "P003-4/P003-4-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P004-2/P004-2-ED.nii.gz",
+            "label": "P004-2/P004-2-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P005-1/P005-1-ES.nii.gz",
+            "label": "P005-1/P005-1-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P009-4/P009-4-ES.nii.gz",
+            "label": "P009-4/P009-4-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P008-4/P008-4-ES.nii.gz",
+            "label": "P008-4/P008-4-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P020-2/P020-2-ED.nii.gz",
+            "label": "P020-2/P020-2-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P001-2/P001-2-ED.nii.gz",
+            "label": "P001-2/P001-2-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P002-1/P002-1-ED.nii.gz",
+            "label": "P002-1/P002-1-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P007-2/P007-2-ES.nii.gz",
+            "label": "P007-2/P007-2-ES-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P020-4/P020-4-ED.nii.gz",
+            "label": "P020-4/P020-4-ED-label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "P002-4/P002-4-ES.nii.gz",
+            "label": "P002-4/P002-4-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P013-2/P013-2-ED.nii.gz",
+            "label": "P013-2/P013-2-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P018-1/P018-1-ED.nii.gz",
+            "label": "P018-1/P018-1-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P010-1/P010-1-ES.nii.gz",
+            "label": "P010-1/P010-1-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P005-2/P005-2-ES.nii.gz",
+            "label": "P005-2/P005-2-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P014-2/P014-2-ED.nii.gz",
+            "label": "P014-2/P014-2-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P017-1/P017-1-ED.nii.gz",
+            "label": "P017-1/P017-1-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P016-1/P016-1-ED.nii.gz",
+            "label": "P016-1/P016-1-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P018-2/P018-2-ED.nii.gz",
+            "label": "P018-2/P018-2-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P002-3/P002-3-ES.nii.gz",
+            "label": "P002-3/P002-3-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P017-3/P017-3-ES.nii.gz",
+            "label": "P017-3/P017-3-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P006-1/P006-1-ED.nii.gz",
+            "label": "P006-1/P006-1-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P010-4/P010-4-ES.nii.gz",
+            "label": "P010-4/P010-4-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P016-4/P016-4-ES.nii.gz",
+            "label": "P016-4/P016-4-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P004-3/P004-3-ES.nii.gz",
+            "label": "P004-3/P004-3-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P019-3/P019-3-ED.nii.gz",
+            "label": "P019-3/P019-3-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P006-2/P006-2-ED.nii.gz",
+            "label": "P006-2/P006-2-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P013-1/P013-1-ES.nii.gz",
+            "label": "P013-1/P013-1-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P020-3/P020-3-ED.nii.gz",
+            "label": "P020-3/P020-3-ED-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P001-3/P001-3-ES.nii.gz",
+            "label": "P001-3/P001-3-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P013-2/P013-2-ES.nii.gz",
+            "label": "P013-2/P013-2-ES-label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "P015-3/P015-3-ES.nii.gz",
+            "label": "P015-3/P015-3-ES-label.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "P003-2/P003-2-ES.nii.gz",
+            "label": "P003-2/P003-2-ES-label.nii.gz"
+        },
+        {
+            "image": "P010-2/P010-2-ES.nii.gz",
+            "label": "P010-2/P010-2-ES-label.nii.gz"
+        },
+        {
+            "image": "P001-4/P001-4-ES.nii.gz",
+            "label": "P001-4/P001-4-ES-label.nii.gz"
+        },
+        {
+            "image": "P016-3/P016-3-ES.nii.gz",
+            "label": "P016-3/P016-3-ES-label.nii.gz"
+        },
+        {
+            "image": "P019-3/P019-3-ES.nii.gz",
+            "label": "P019-3/P019-3-ES-label.nii.gz"
+        },
+        {
+            "image": "P008-2/P008-2-ES.nii.gz",
+            "label": "P008-2/P008-2-ES-label.nii.gz"
+        },
+        {
+            "image": "P020-3/P020-3-ES.nii.gz",
+            "label": "P020-3/P020-3-ES-label.nii.gz"
+        },
+        {
+            "image": "P016-2/P016-2-ES.nii.gz",
+            "label": "P016-2/P016-2-ES-label.nii.gz"
+        },
+        {
+            "image": "P012-3/P012-3-ED.nii.gz",
+            "label": "P012-3/P012-3-ED-label.nii.gz"
+        },
+        {
+            "image": "P009-3/P009-3-ED.nii.gz",
+            "label": "P009-3/P009-3-ED-label.nii.gz"
+        },
+        {
+            "image": "P014-1/P014-1-ES.nii.gz",
+            "label": "P014-1/P014-1-ES-label.nii.gz"
+        },
+        {
+            "image": "P002-4/P002-4-ED.nii.gz",
+            "label": "P002-4/P002-4-ED-label.nii.gz"
+        },
+        {
+            "image": "P003-2/P003-2-ED.nii.gz",
+            "label": "P003-2/P003-2-ED-label.nii.gz"
+        },
+        {
+            "image": "P012-1/P012-1-ED.nii.gz",
+            "label": "P012-1/P012-1-ED-label.nii.gz"
+        },
+        {
+            "image": "P005-4/P005-4-ED.nii.gz",
+            "label": "P005-4/P005-4-ED-label.nii.gz"
+        },
+        {
+            "image": "P012-2/P012-2-ES.nii.gz",
+            "label": "P012-2/P012-2-ES-label.nii.gz"
+        },
+        {
+            "image": "P005-1/P005-1-ED.nii.gz",
+            "label": "P005-1/P005-1-ED-label.nii.gz"
+        },
+        {
+            "image": "P020-4/P020-4-ES.nii.gz",
+            "label": "P020-4/P020-4-ES-label.nii.gz"
+        },
+        {
+            "image": "P008-4/P008-4-ED.nii.gz",
+            "label": "P008-4/P008-4-ED-label.nii.gz"
+        },
+        {
+            "image": "P008-2/P008-2-ED.nii.gz",
+            "label": "P008-2/P008-2-ED-label.nii.gz"
+        },
+        {
+            "image": "P016-2/P016-2-ED.nii.gz",
+            "label": "P016-2/P016-2-ED-label.nii.gz"
+        },
+        {
+            "image": "P004-1/P004-1-ES.nii.gz",
+            "label": "P004-1/P004-1-ES-label.nii.gz"
+        },
+        {
+            "image": "P003-1/P003-1-ES.nii.gz",
+            "label": "P003-1/P003-1-ES-label.nii.gz"
+        },
+        {
+            "image": "P013-1/P013-1-ED.nii.gz",
+            "label": "P013-1/P013-1-ED-label.nii.gz"
+        },
+        {
+            "image": "P004-2/P004-2-ES.nii.gz",
+            "label": "P004-2/P004-2-ES-label.nii.gz"
+        },
+        {
+            "image": "P018-1/P018-1-ES.nii.gz",
+            "label": "P018-1/P018-1-ES-label.nii.gz"
+        },
+        {
+            "image": "P014-3/P014-3-ES.nii.gz",
+            "label": "P014-3/P014-3-ES-label.nii.gz"
+        },
+        {
+            "image": "P003-3/P003-3-ES.nii.gz",
+            "label": "P003-3/P003-3-ES-label.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "left ventricle",
+        "2": "left ventricle myocardium",
+        "3": "right ventricle"
+    },
+    "original_label_dict": {
+        "1": "left ventricle",
+        "2": "left ventricle myocardium",
+        "3": "right ventricle"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+}

@@ -1492,61 +1492,159 @@
         "56": "vertebrae"
     },
     "original_label_dict": {
-        "adrenal_gland_left": 1,
-        "adrenal_gland_right": 2,
-        "aorta": 3,
-        "autochthon_left": 4,
-        "autochthon_right": 5,
-        "brain": 6,
-        "colon": 7,
-        "duodenum": 8,
-        "esophagus": 9,
-        "femur_left": 10,
-        "femur_right": 11,
-        "fibula": 12,
-        "gallbladder": 13,
-        "gluteus_maximus_left": 14,
-        "gluteus_maximus_right": 15,
-        "gluteus_medius_left": 16,
-        "gluteus_medius_right": 17,
-        "gluteus_minimus_left": 18,
-        "gluteus_minimus_right": 19,
-        "heart": 20,
-        "hip_left": 21,
-        "hip_right": 22,
-        "humerus_left": 23,
-        "humerus_right": 24,
-        "iliac_artery_left": 25,
-        "iliac_artery_right": 26,
-        "iliac_vena_left": 27,
-        "iliac_vena_right": 28,
-        "iliopsoas_left": 29,
-        "iliopsoas_right": 30,
-        "inferior_vena_cava": 31,
-        "intervertebral_discs": 32,
-        "kidney_left": 33,
-        "kidney_right": 34,
-        "liver": 35,
-        "lung_left": 36,
-        "lung_right": 37,
-        "pancreas": 38,
-        "portal_vein_and_splenic_vein": 39,
-        "prostate": 40,
-        "quadriceps_femoris_left": 41,
-        "quadriceps_femoris_right": 42,
-        "sacrum": 43,
-        "sartorius_left": 44,
-        "sartorius_right": 45,
-        "small_bowel": 46,
-        "spinal_cord": 47,
-        "spleen": 48,
-        "stomach": 49,
-        "thigh_medial_compartment_left": 50,
-        "thigh_medial_compartment_right": 51,
-        "thigh_posterior_compartment_left": 52,
-        "thigh_posterior_compartment_right": 53,
-        "tibia": 54,
-        "urinary_bladder": 55,
-        "vertebrae": 56
-    }
+        "1": "left adrenal gland",
+        "2": "right adrenal gland",
+        "3": "aorta",
+        "4": "left autochthon",
+        "5": "right autochthon",
+        "6": "brain",
+        "7": "colon",
+        "8": "duodenum",
+        "9": "esophagus",
+        "10": "left femur",
+        "11": "right femur",
+        "12": "fibula",
+        "13": "gallbladder",
+        "14": "left gluteus maximus",
+        "15": "right gluteus maximus",
+        "16": "left gluteus medius",
+        "17": "right gluteus medius",
+        "18": "left gluteus minimus",
+        "19": "right gluteus minimus",
+        "20": "heart",
+        "21": "left hip",
+        "22": "right hip",
+        "23": "left humerus",
+        "24": "right humerus",
+        "25": "left iliac artery",
+        "26": "right iliac artery",
+        "27": "left iliac vena",
+        "28": "right iliac vena",
+        "29": "left iliopsoas",
+        "30": "right iliopsoas",
+        "31": "inferior vena cava",
+        "32": "intervertebral discs",
+        "33": "left kidney",
+        "34": "right kidney",
+        "35": "liver",
+        "36": "left lung",
+        "37": "right lung",
+        "38": "pancreas",
+        "39": "portal vein and splenic vein",
+        "40": "prostate",
+        "41": "left quadriceps femoris",
+        "42": "right quadriceps femoris",
+        "43": "sacrum",
+        "44": "left sartorius",
+        "45": "right sartorius",
+        "46": "small bowel",
+        "47": "spinal cord",
+        "48": "spleen",
+        "49": "stomach",
+        "50": "left thigh medial compartment",
+        "51": "right thigh medial compartment",
+        "52": "left thigh posterior compartment",
+        "53": "right thigh posterior compartment",
+        "54": "tibia",
+        "55": "bladder",
+        "56": "vertebrae"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
 }

@@ -1,0 +1,426 @@
+{
+    "training": [
+        {
+            "image": "imagesTr/amos_0600.nii.gz",
+            "label": "labelsTr/amos_0600.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0589.nii.gz",
+            "label": "labelsTr/amos_0589.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesVa/amos_0553.nii.gz",
+            "label": "labelsVa/amos_0553.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0596.nii.gz",
+            "label": "labelsTr/amos_0596.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0538.nii.gz",
+            "label": "labelsTr/amos_0538.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0551.nii.gz",
+            "label": "labelsTr/amos_0551.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0578.nii.gz",
+            "label": "labelsTr/amos_0578.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesVa/amos_0549.nii.gz",
+            "label": "labelsVa/amos_0549.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0514.nii.gz",
+            "label": "labelsTr/amos_0514.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0597.nii.gz",
+            "label": "labelsTr/amos_0597.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "imagesTr/amos_0599.nii.gz",
+            "label": "labelsTr/amos_0599.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesVa/amos_0575.nii.gz",
+            "label": "labelsVa/amos_0575.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0593.nii.gz",
+            "label": "labelsTr/amos_0593.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0557.nii.gz",
+            "label": "labelsTr/amos_0557.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0517.nii.gz",
+            "label": "labelsTr/amos_0517.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesVa/amos_0544.nii.gz",
+            "label": "labelsVa/amos_0544.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0586.nii.gz",
+            "label": "labelsTr/amos_0586.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0548.nii.gz",
+            "label": "labelsTr/amos_0548.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0532.nii.gz",
+            "label": "labelsTr/amos_0532.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesTr/amos_0583.nii.gz",
+            "label": "labelsTr/amos_0583.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "imagesVa/amos_0573.nii.gz",
+            "label": "labelsVa/amos_0573.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/amos_0530.nii.gz",
+            "label": "labelsTr/amos_0530.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/amos_0510.nii.gz",
+            "label": "labelsTr/amos_0510.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/amos_0554.nii.gz",
+            "label": "labelsTr/amos_0554.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/amos_0507.nii.gz",
+            "label": "labelsTr/amos_0507.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesVa/amos_0568.nii.gz",
+            "label": "labelsVa/amos_0568.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/amos_0594.nii.gz",
+            "label": "labelsTr/amos_0594.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesVa/amos_0572.nii.gz",
+            "label": "labelsVa/amos_0572.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesVa/amos_0598.nii.gz",
+            "label": "labelsVa/amos_0598.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesTr/amos_0522.nii.gz",
+            "label": "labelsTr/amos_0522.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "imagesVa/amos_0581.nii.gz",
+            "label": "labelsVa/amos_0581.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesVa/amos_0545.nii.gz",
+            "label": "labelsVa/amos_0545.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesVa/amos_0563.nii.gz",
+            "label": "labelsVa/amos_0563.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/amos_0508.nii.gz",
+            "label": "labelsTr/amos_0508.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/amos_0571.nii.gz",
+            "label": "labelsTr/amos_0571.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesVa/amos_0576.nii.gz",
+            "label": "labelsVa/amos_0576.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/amos_0570.nii.gz",
+            "label": "labelsTr/amos_0570.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/amos_0592.nii.gz",
+            "label": "labelsTr/amos_0592.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesTr/amos_0588.nii.gz",
+            "label": "labelsTr/amos_0588.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "imagesVa/amos_0559.nii.gz",
+            "label": "labelsVa/amos_0559.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/amos_0541.nii.gz",
+            "label": "labelsTr/amos_0541.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/amos_0584.nii.gz",
+            "label": "labelsTr/amos_0584.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesVa/amos_0556.nii.gz",
+            "label": "labelsVa/amos_0556.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/amos_0555.nii.gz",
+            "label": "labelsTr/amos_0555.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/amos_0518.nii.gz",
+            "label": "labelsTr/amos_0518.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/amos_0585.nii.gz",
+            "label": "labelsTr/amos_0585.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesVa/amos_0561.nii.gz",
+            "label": "labelsVa/amos_0561.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "imagesTr/amos_0590.nii.gz",
+            "label": "labelsTr/amos_0590.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "imagesTr/amos_0595.nii.gz",
+            "label": "labelsTr/amos_0595.nii.gz"
+        },
+        {
+            "image": "imagesTr/amos_0540.nii.gz",
+            "label": "labelsTr/amos_0540.nii.gz"
+        },
+        {
+            "image": "imagesVa/amos_0562.nii.gz",
+            "label": "labelsVa/amos_0562.nii.gz"
+        },
+        {
+            "image": "imagesTr/amos_0558.nii.gz",
+            "label": "labelsTr/amos_0558.nii.gz"
+        },
+        {
+            "image": "imagesTr/amos_0582.nii.gz",
+            "label": "labelsTr/amos_0582.nii.gz"
+        },
+        {
+            "image": "imagesVa/amos_0546.nii.gz",
+            "label": "labelsVa/amos_0546.nii.gz"
+        },
+        {
+            "image": "imagesTr/amos_0587.nii.gz",
+            "label": "labelsTr/amos_0587.nii.gz"
+        },
+        {
+            "image": "imagesVa/amos_0547.nii.gz",
+            "label": "labelsVa/amos_0547.nii.gz"
+        },
+        {
+            "image": "imagesVa/amos_0552.nii.gz",
+            "label": "labelsVa/amos_0552.nii.gz"
+        },
+        {
+            "image": "imagesVa/amos_0550.nii.gz",
+            "label": "labelsVa/amos_0550.nii.gz"
+        },
+        {
+            "image": "imagesTr/amos_0591.nii.gz",
+            "label": "labelsTr/amos_0591.nii.gz"
+        },
+        {
+            "image": "imagesTr/amos_0580.nii.gz",
+            "label": "labelsTr/amos_0580.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "spleen",
+        "2": "right kidney",
+        "3": "left kidney",
+        "4": "gallbladder",
+        "5": "esophagus",
+        "6": "liver",
+        "7": "stomach",
+        "8": "aorta",
+        "9": "inferior vena cava",
+        "10": "pancreas",
+        "11": "right adrenal gland",
+        "12": "left adrenal gland",
+        "13": "duodenum",
+        "14": "bladder",
+        "15": "prostate or uterus"
+    },
+    "original_label_dict": {
+        "1": "spleen",
+        "2": "right kidney",
+        "3": "left kidney",
+        "4": "gallbladder",
+        "5": "esophagus",
+        "6": "liver",
+        "7": "stomach",
+        "8": "aorta",
+        "9": "postcava",
+        "10": "pancreas",
+        "11": "right adrenal gland",
+        "12": "left adrenal gland",
+        "13": "duodenum",
+        "14": "bladder",
+        "15": "prostate or uterus"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": 133,
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(133))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+}

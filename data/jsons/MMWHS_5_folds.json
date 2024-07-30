@@ -1,0 +1,219 @@
+{
+    "training": [
+        {
+            "image": "mr_train/mr_train_1007_image.nii.gz",
+            "label": "mr_train/mr_train_1007_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "mr_train/mr_train_1005_image.nii.gz",
+            "label": "mr_train/mr_train_1005_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "mr_train/mr_train_1017_image.nii.gz",
+            "label": "mr_train/mr_train_1017_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "mr_train/mr_train_1003_image.nii.gz",
+            "label": "mr_train/mr_train_1003_label.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "mr_train/mr_train_1018_image.nii.gz",
+            "label": "mr_train/mr_train_1018_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "mr_train/mr_train_1020_image.nii.gz",
+            "label": "mr_train/mr_train_1020_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "mr_train/mr_train_1016_image.nii.gz",
+            "label": "mr_train/mr_train_1016_label.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "mr_train/mr_train_1001_image.nii.gz",
+            "label": "mr_train/mr_train_1001_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "mr_train/mr_train_1010_image.nii.gz",
+            "label": "mr_train/mr_train_1010_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "mr_train/mr_train_1013_image.nii.gz",
+            "label": "mr_train/mr_train_1013_label.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "mr_train/mr_train_1009_image.nii.gz",
+            "label": "mr_train/mr_train_1009_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "mr_train/mr_train_1004_image.nii.gz",
+            "label": "mr_train/mr_train_1004_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "mr_train/mr_train_1019_image.nii.gz",
+            "label": "mr_train/mr_train_1019_label.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "mr_train/mr_train_1008_image.nii.gz",
+            "label": "mr_train/mr_train_1008_label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "mr_train/mr_train_1006_image.nii.gz",
+            "label": "mr_train/mr_train_1006_label.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "mr_train/mr_train_1002_image.nii.gz",
+            "label": "mr_train/mr_train_1002_label.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "mr_train/mr_train_1011_image.nii.gz",
+            "label": "mr_train/mr_train_1011_label.nii.gz"
+        },
+        {
+            "image": "mr_train/mr_train_1012_image.nii.gz",
+            "label": "mr_train/mr_train_1012_label.nii.gz"
+        },
+        {
+            "image": "mr_train/mr_train_1015_image.nii.gz",
+            "label": "mr_train/mr_train_1015_label.nii.gz"
+        },
+        {
+            "image": "mr_train/mr_train_1014_image.nii.gz",
+            "label": "mr_train/mr_train_1014_label.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "500": "left ventricle",
+        "600": "right ventricle",
+        "420": "left atrium",
+        "550": "right atrium",
+        "205": "left ventricle myocardium",
+        "820": "ascending aorta",
+        "850": "pulmonary vein"
+    },
+    "original_label_dict": {
+        "500": "left ventricle blood cavity",
+        "600": "right ventricle blood cavity",
+        "420": "left atrium blood cavity",
+        "550": "right atrium blood cavity",
+        "205": "left ventricle myocardium",
+        "820": "ascending aorta",
+        "850": "pulmonary artery"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+
+}

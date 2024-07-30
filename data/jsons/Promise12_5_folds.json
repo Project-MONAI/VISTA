@@ -1,0 +1,562 @@
+{
+    "training": [
+        {
+            "image": "training/Case40.mhd",
+            "label": "training/Case40_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case29.mhd",
+            "label": "training/Case29_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case01.mhd",
+            "label": "training/Case01_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case26.mhd",
+            "label": "training/Case26_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case23.mhd",
+            "label": "training/Case23_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case00.mhd",
+            "label": "training/Case00_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case14.mhd",
+            "label": "training/Case14_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case21.mhd",
+            "label": "training/Case21_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case17.mhd",
+            "label": "training/Case17_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case42.mhd",
+            "label": "training/Case42_segmentation.mhd",
+            "fold": 0
+        },
+        {
+            "image": "training/Case44.mhd",
+            "label": "training/Case44_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case11.mhd",
+            "label": "training/Case11_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case37.mhd",
+            "label": "training/Case37_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case02.mhd",
+            "label": "training/Case02_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case34.mhd",
+            "label": "training/Case34_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case04.mhd",
+            "label": "training/Case04_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case12.mhd",
+            "label": "training/Case12_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case32.mhd",
+            "label": "training/Case32_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case39.mhd",
+            "label": "training/Case39_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case46.mhd",
+            "label": "training/Case46_segmentation.mhd",
+            "fold": 1
+        },
+        {
+            "image": "training/Case45.mhd",
+            "label": "training/Case45_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case36.mhd",
+            "label": "training/Case36_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case08.mhd",
+            "label": "training/Case08_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case10.mhd",
+            "label": "training/Case10_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case20.mhd",
+            "label": "training/Case20_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case31.mhd",
+            "label": "training/Case31_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case15.mhd",
+            "label": "training/Case15_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case28.mhd",
+            "label": "training/Case28_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case13.mhd",
+            "label": "training/Case13_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case43.mhd",
+            "label": "training/Case43_segmentation.mhd",
+            "fold": 2
+        },
+        {
+            "image": "training/Case03.mhd",
+            "label": "training/Case03_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case47.mhd",
+            "label": "training/Case47_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case24.mhd",
+            "label": "training/Case24_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case16.mhd",
+            "label": "training/Case16_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case35.mhd",
+            "label": "training/Case35_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case33.mhd",
+            "label": "training/Case33_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case41.mhd",
+            "label": "training/Case41_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case49.mhd",
+            "label": "training/Case49_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case22.mhd",
+            "label": "training/Case22_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case18.mhd",
+            "label": "training/Case18_segmentation.mhd",
+            "fold": 3
+        },
+        {
+            "image": "training/Case25.mhd",
+            "label": "training/Case25_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case09.mhd",
+            "label": "training/Case09_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case06.mhd",
+            "label": "training/Case06_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case19.mhd",
+            "label": "training/Case19_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case38.mhd",
+            "label": "training/Case38_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case27.mhd",
+            "label": "training/Case27_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case30.mhd",
+            "label": "training/Case30_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case05.mhd",
+            "label": "training/Case05_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case48.mhd",
+            "label": "training/Case48_segmentation.mhd",
+            "fold": 4
+        },
+        {
+            "image": "training/Case07.mhd",
+            "label": "training/Case07_segmentation.mhd",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "test/Case00.mhd",
+            "label": "test/Case00_segmentation.mhd"
+        },
+        {
+            "image": "test/Case01.mhd",
+            "label": "test/Case01_segmentation.mhd"
+        },
+        {
+            "image": "test/Case02.mhd",
+            "label": "test/Case02_segmentation.mhd"
+        },
+        {
+            "image": "test/Case03.mhd",
+            "label": "test/Case03_segmentation.mhd"
+        },
+        {
+            "image": "test/Case04.mhd",
+            "label": "test/Case04_segmentation.mhd"
+        },
+        {
+            "image": "test/Case05.mhd",
+            "label": "test/Case05_segmentation.mhd"
+        },
+        {
+            "image": "test/Case06.mhd",
+            "label": "test/Case06_segmentation.mhd"
+        },
+        {
+            "image": "test/Case07.mhd",
+            "label": "test/Case07_segmentation.mhd"
+        },
+        {
+            "image": "test/Case08.mhd",
+            "label": "test/Case08_segmentation.mhd"
+        },
+        {
+            "image": "test/Case09.mhd",
+            "label": "test/Case09_segmentation.mhd"
+        },
+        {
+            "image": "test/Case10.mhd",
+            "label": "test/Case10_segmentation.mhd"
+        },
+        {
+            "image": "test/Case11.mhd",
+            "label": "test/Case11_segmentation.mhd"
+        },
+        {
+            "image": "test/Case12.mhd",
+            "label": "test/Case12_segmentation.mhd"
+        },
+        {
+            "image": "test/Case13.mhd",
+            "label": "test/Case13_segmentation.mhd"
+        },
+        {
+            "image": "test/Case14.mhd",
+            "label": "test/Case14_segmentation.mhd"
+        },
+        {
+            "image": "test/Case15.mhd",
+            "label": "test/Case15_segmentation.mhd"
+        },
+        {
+            "image": "test/Case16.mhd",
+            "label": "test/Case16_segmentation.mhd"
+        },
+        {
+            "image": "test/Case17.mhd",
+            "label": "test/Case17_segmentation.mhd"
+        },
+        {
+            "image": "test/Case18.mhd",
+            "label": "test/Case18_segmentation.mhd"
+        },
+        {
+            "image": "test/Case19.mhd",
+            "label": "test/Case19_segmentation.mhd"
+        },
+        {
+            "image": "test/Case20.mhd",
+            "label": "test/Case20_segmentation.mhd"
+        },
+        {
+            "image": "test/Case21.mhd",
+            "label": "test/Case21_segmentation.mhd"
+        },
+        {
+            "image": "test/Case22.mhd",
+            "label": "test/Case22_segmentation.mhd"
+        },
+        {
+            "image": "test/Case23.mhd",
+            "label": "test/Case23_segmentation.mhd"
+        },
+        {
+            "image": "test/Case24.mhd",
+            "label": "test/Case24_segmentation.mhd"
+        },
+        {
+            "image": "test/Case25.mhd",
+            "label": "test/Case25_segmentation.mhd"
+        },
+        {
+            "image": "test/Case26.mhd",
+            "label": "test/Case26_segmentation.mhd"
+        },
+        {
+            "image": "test/Case27.mhd",
+            "label": "test/Case27_segmentation.mhd"
+        },
+        {
+            "image": "test/Case28.mhd",
+            "label": "test/Case28_segmentation.mhd"
+        },
+        {
+            "image": "test/Case29.mhd",
+            "label": "test/Case29_segmentation.mhd"
+        }
+    ],
+    "label_dict": {
+        "1": "prostate"
+    },
+    "original_label_dict": {
+        "1": "prostate"
+    },
+    "live_testing": [
+        {
+            "image": "live_test/Case00.mhd",
+            "label": "live_test/Case00_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case01.mhd",
+            "label": "live_test/Case01_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case02.mhd",
+            "label": "live_test/Case02_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case03.mhd",
+            "label": "live_test/Case03_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case04.mhd",
+            "label": "live_test/Case04_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case05.mhd",
+            "label": "live_test/Case05_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case06.mhd",
+            "label": "live_test/Case06_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case07.mhd",
+            "label": "live_test/Case07_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case08.mhd",
+            "label": "live_test/Case08_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case09.mhd",
+            "label": "live_test/Case09_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case10.mhd",
+            "label": "live_test/Case10_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case11.mhd",
+            "label": "live_test/Case11_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case12.mhd",
+            "label": "live_test/Case12_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case13.mhd",
+            "label": "live_test/Case13_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case14.mhd",
+            "label": "live_test/Case14_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case15.mhd",
+            "label": "live_test/Case15_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case16.mhd",
+            "label": "live_test/Case16_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case17.mhd",
+            "label": "live_test/Case17_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case18.mhd",
+            "label": "live_test/Case18_segmentation.mhd"
+        },
+        {
+            "image": "live_test/Case19.mhd",
+            "label": "live_test/Case19_segmentation.mhd"
+        }
+    ],
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+}

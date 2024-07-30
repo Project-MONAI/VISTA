@@ -1,0 +1,338 @@
+{
+    "training": [
+        {
+            "image": [
+                "train25/myops_training_105_C0.nii.gz",
+                "train25/myops_training_105_DE.nii.gz",
+                "train25/myops_training_105_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_105_gd.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": [
+                "train25/myops_training_124_C0.nii.gz",
+                "train25/myops_training_124_DE.nii.gz",
+                "train25/myops_training_124_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_124_gd.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": [
+                "train25/myops_training_104_C0.nii.gz",
+                "train25/myops_training_104_DE.nii.gz",
+                "train25/myops_training_104_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_104_gd.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": [
+                "train25/myops_training_125_C0.nii.gz",
+                "train25/myops_training_125_DE.nii.gz",
+                "train25/myops_training_125_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_125_gd.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": [
+                "train25/myops_training_113_C0.nii.gz",
+                "train25/myops_training_113_DE.nii.gz",
+                "train25/myops_training_113_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_113_gd.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": [
+                "train25/myops_training_108_C0.nii.gz",
+                "train25/myops_training_108_DE.nii.gz",
+                "train25/myops_training_108_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_108_gd.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": [
+                "train25/myops_training_120_C0.nii.gz",
+                "train25/myops_training_120_DE.nii.gz",
+                "train25/myops_training_120_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_120_gd.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": [
+                "train25/myops_training_107_C0.nii.gz",
+                "train25/myops_training_107_DE.nii.gz",
+                "train25/myops_training_107_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_107_gd.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": [
+                "train25/myops_training_117_C0.nii.gz",
+                "train25/myops_training_117_DE.nii.gz",
+                "train25/myops_training_117_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_117_gd.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": [
+                "train25/myops_training_106_C0.nii.gz",
+                "train25/myops_training_106_DE.nii.gz",
+                "train25/myops_training_106_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_106_gd.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": [
+                "train25/myops_training_118_C0.nii.gz",
+                "train25/myops_training_118_DE.nii.gz",
+                "train25/myops_training_118_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_118_gd.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": [
+                "train25/myops_training_119_C0.nii.gz",
+                "train25/myops_training_119_DE.nii.gz",
+                "train25/myops_training_119_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_119_gd.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": [
+                "train25/myops_training_103_C0.nii.gz",
+                "train25/myops_training_103_DE.nii.gz",
+                "train25/myops_training_103_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_103_gd.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": [
+                "train25/myops_training_102_C0.nii.gz",
+                "train25/myops_training_102_DE.nii.gz",
+                "train25/myops_training_102_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_102_gd.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": [
+                "train25/myops_training_123_C0.nii.gz",
+                "train25/myops_training_123_DE.nii.gz",
+                "train25/myops_training_123_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_123_gd.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": [
+                "train25/myops_training_109_C0.nii.gz",
+                "train25/myops_training_109_DE.nii.gz",
+                "train25/myops_training_109_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_109_gd.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": [
+                "train25/myops_training_121_C0.nii.gz",
+                "train25/myops_training_121_DE.nii.gz",
+                "train25/myops_training_121_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_121_gd.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": [
+                "train25/myops_training_101_C0.nii.gz",
+                "train25/myops_training_101_DE.nii.gz",
+                "train25/myops_training_101_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_101_gd.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": [
+                "train25/myops_training_110_C0.nii.gz",
+                "train25/myops_training_110_DE.nii.gz",
+                "train25/myops_training_110_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_110_gd.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": [
+                "train25/myops_training_116_C0.nii.gz",
+                "train25/myops_training_116_DE.nii.gz",
+                "train25/myops_training_116_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_116_gd.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": [
+                "train25/myops_training_111_C0.nii.gz",
+                "train25/myops_training_111_DE.nii.gz",
+                "train25/myops_training_111_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_111_gd.nii.gz"
+        },
+        {
+            "image": [
+                "train25/myops_training_112_C0.nii.gz",
+                "train25/myops_training_112_DE.nii.gz",
+                "train25/myops_training_112_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_112_gd.nii.gz"
+        },
+        {
+            "image": [
+                "train25/myops_training_115_C0.nii.gz",
+                "train25/myops_training_115_DE.nii.gz",
+                "train25/myops_training_115_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_115_gd.nii.gz"
+        },
+        {
+            "image": [
+                "train25/myops_training_114_C0.nii.gz",
+                "train25/myops_training_114_DE.nii.gz",
+                "train25/myops_training_114_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_114_gd.nii.gz"
+        },
+        {
+            "image": [
+                "train25/myops_training_122_C0.nii.gz",
+                "train25/myops_training_122_DE.nii.gz",
+                "train25/myops_training_122_T2.nii.gz"
+            ],
+            "label": "train25_myops_gd/myops_training_122_gd.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "500": "left ventricle",
+        "200": "left ventricle myocardium",
+        "600": "right ventricle",
+        "2221": "scar",
+        "1220": "edema"
+    },
+    "original_label_dict": {
+        "500": "left ventricle",
+        "200": "left ventricle myocardium",
+        "600": "right ventricle",
+        "2221": "scar",
+        "1220": "edema"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+}

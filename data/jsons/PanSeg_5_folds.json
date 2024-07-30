@@ -1,0 +1,3792 @@
+{
+    "training": [
+        {
+            "image": "t2/imagesTr/NYU_0053_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0053.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0073_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0073.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0084_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0084.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0105_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0105.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0037_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0037.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0124_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0124.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0021_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0021.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCA_0011_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0011.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0048_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0048.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0108_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0108.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/AHN_0028_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0141_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0141.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0108_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0108.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0060_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0060.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0134_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0134.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0080_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0080.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0001_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0001.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0060_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0060.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0045_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0045.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0100_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0100.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0116_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0116.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0035_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0035.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0018_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0018.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NWU_0013_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0013.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0155_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0155.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0156_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0156.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0047_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0047.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0130_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0130.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0026_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0026.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0115_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0115.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0041_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0041.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0094_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0094.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NWU_0002_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0002.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0024_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0024.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0091_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0091.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0032_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0032.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0118_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0118.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0007_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0007.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0139_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0139.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0075_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0075.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0032_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0032.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0022_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0022.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0089_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0089.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0028_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCA_0012_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0012.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0069_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0069.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0044_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0044.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0047_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0047.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0049_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0049.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0156_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0156.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0008_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0008.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0110_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0110.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCA_0004_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0004.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0053_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0053.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0067_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0067.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0020_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0020.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0104_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0104.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/AHN_0016_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0016.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0132_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0132.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0076_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0076.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0129_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0129.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0173_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0173.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0027_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0027.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCA_0023_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0023.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0127_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0127.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0035_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0035.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0147_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0147.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0018_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0018.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0079_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0079.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0136_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0136.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0149_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0149.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0028_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0028.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0048_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0048.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0098_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0098.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0024_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0024.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0101_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0101.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0110_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0110.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/AHN_0026_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0026.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0157_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0157.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0100_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0100.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0065_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0065.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0110_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0110.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/AHN_0002_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0002.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0067_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0067.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0048_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0048.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0132_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0132.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0072_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0072.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0134_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0134.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0103_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0103.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0080_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0080.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0095_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0095.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0044_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0044.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/AHN_0027_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0027.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0119_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0119.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0109_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0109.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0098_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0098.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0063_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0063.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0088_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0088.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0161_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0161.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0022_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0022.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0077_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0077.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/AHN_0022_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0022.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0099_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0099.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0047_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0047.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0142_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0142.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0044_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0044.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0071_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0071.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0034_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0034.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0101_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0101.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0076_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0076.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0040_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0040.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0056_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0056.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/AHN_0014_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0014.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0131_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0131.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0161_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0161.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0097_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0097.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/MCF_0013_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0013.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0130_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0130.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0061_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0061.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t2/imagesTr/NYU_0023_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0023.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NWU_0023_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0023.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/NYU_0027_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0027.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0010_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0010.nii.gz",
+            "fold": 0
+        },
+        {
+            "image": "t1/imagesTr/MCF_0025_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0025.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0016_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0016.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0020_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0020.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0129_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0129.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0115_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0115.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0018_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0018.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0063_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0063.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0089_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0089.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0001_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0001.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0017_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0017.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0062_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0062.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0125_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0125.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0059_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0059.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0025_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0025.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0128_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0128.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0015_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0015.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0034_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0034.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCA_0021_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0021.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0002_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0002.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0070_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0070.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0013_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0013.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0024_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0024.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0126_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0126.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0150_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0150.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0050_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0050.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0056_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0056.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0174_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0174.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0007_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0007.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0017_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0017.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0123_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0123.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0098_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0098.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0037_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0037.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0142_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0142.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0088_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0088.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0071_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0071.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCA_0021_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0021.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0015_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0015.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NWU_0016_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0016.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0038_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0038.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0160_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0160.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0013_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0013.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0159_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0159.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0012_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0012.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0116_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0116.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0015_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0015.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0080_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0080.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0033_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0033.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0119_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0119.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0011_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0011.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/AHN_0006_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0006.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0007_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0007.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0122_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0122.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0152_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0152.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0057_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0057.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0117_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0117.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCA_0019_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCA_0014_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0014.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0009_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0009.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0152_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0152.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0100_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0100.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0067_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0067.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0172_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0172.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0005_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0005.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0176_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0176.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0074_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0074.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0022_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0022.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCA_0004_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0004.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0055_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0055.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0090_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0090.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NWU_0004_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0004.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0034_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0034.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0005_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0005.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0126_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0126.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0006_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0006.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0012_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0012.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NWU_0019_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0102_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0102.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0120_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0120.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0060_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0060.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0019_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0112_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0112.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0147_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0147.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0117_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0117.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0001_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0001.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0114_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0114.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0055_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0055.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0113_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0113.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0030_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0030.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0116_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0116.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0168_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0168.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0160_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0160.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0121_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0121.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0163_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0163.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0090_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0090.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0033_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0033.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0137_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0137.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0056_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0056.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0064_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0064.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCA_0017_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0017.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0150_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0150.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0170_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0170.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0124_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0124.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0016_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0016.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0095_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0095.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0061_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0061.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0045_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0045.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0093_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0093.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0058_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0058.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0004_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0004.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0001_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0001.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0086_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0086.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCA_0019_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NYU_0106_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0106.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0027_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0027.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NWU_0017_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0017.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/MCF_0107_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0107.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0019_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0019.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0090_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0090.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCF_0042_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0042.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0014_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0014.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/MCA_0008_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0008.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/AHN_0023_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0023.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t1/imagesTr/NYU_0050_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0050.nii.gz",
+            "fold": 1
+        },
+        {
+            "image": "t2/imagesTr/NWU_0012_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0012.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0173_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0173.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCA_0022_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0022.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0119_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0119.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCA_0001_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0001.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0139_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0139.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0066_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0066.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NWU_0026_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0026.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0047_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0047.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0140_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0140.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0159_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0159.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0113_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0113.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0102_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0102.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCA_0025_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0025.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0094_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0094.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0081_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0081.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0011_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0011.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0158_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0158.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0143_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0143.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0019_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0019.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0096_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0096.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NWU_0021_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0021.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCA_0011_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0011.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0012_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0012.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0082_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0082.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0085_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0085.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/AHN_0020_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0020.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/AHN_0013_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0013.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0031_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0031.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0162_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0162.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0025_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0025.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0081_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0081.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCA_0006_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0006.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NWU_0003_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0003.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0062_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0062.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0148_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0148.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NWU_0003_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0003.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0122_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0122.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0124_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0124.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0057_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0057.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0020_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0020.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0120_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0120.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/AHN_0003_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0003.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCA_0015_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0015.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0123_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0123.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0120_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0120.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0155_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0155.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0145_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0145.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0052_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0052.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0024_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0024.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0055_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0055.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0171_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0171.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0099_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0099.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0023_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0023.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0026_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0026.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0160_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0160.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0058_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0058.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0080_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0080.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0114_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0114.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NWU_0011_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0011.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0004_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0004.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0093_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0093.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0073_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0073.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0075_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0075.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0097_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0097.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0157_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0157.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0119_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0119.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0108_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0108.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCA_0003_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0003.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0094_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0094.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0172_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0172.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0074_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0074.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0167_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0167.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0123_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0123.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0064_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0064.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0004_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0004.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0079_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0079.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0127_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0127.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0073_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0073.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0028_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0028.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0026_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0026.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0029_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0029.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0089_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0089.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0091_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0091.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NWU_0006_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0006.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0175_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0175.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0096_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0096.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/AHN_0002_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0002.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0117_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0117.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0074_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0074.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0167_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0167.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NWU_0014_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0014.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/AHN_0001_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0001.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0125_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0125.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0175_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0175.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0155_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0155.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NWU_0018_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0018.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0154_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0154.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0057_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0057.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0083_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0083.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0112_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0112.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0067_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0067.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0109_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0109.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0062_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0062.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0011_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0011.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0030_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0030.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0086_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0086.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0087_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0087.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0102_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0102.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/AHN_0024_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0024.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0089_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0089.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0091_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0091.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0045_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0045.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0092_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0092.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0153_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0153.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0102_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0102.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/NYU_0058_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0058.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0005_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0005.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0059_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0059.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0052_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0052.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0113_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0113.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/NYU_0138_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0138.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t1/imagesTr/MCF_0043_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0043.nii.gz",
+            "fold": 2
+        },
+        {
+            "image": "t2/imagesTr/MCF_0010_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0010.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0065_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0065.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0014_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0014.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0045_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0045.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0055_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0055.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0036_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0036.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0164_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0164.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0126_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0126.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0124_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0124.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0158_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0158.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0141_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0141.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0078_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0078.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0135_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0135.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0122_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0122.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0110_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0110.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0154_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0154.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0051_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0051.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0039_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0039.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0030_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0030.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NWU_0008_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0041_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0041.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/AHN_0004_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0004.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0085_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0085.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NWU_0015_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0015.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0033_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0033.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0154_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0154.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0031_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0031.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/AHN_0008_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCA_0006_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0006.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0031_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0031.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0039_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0039.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0054_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0054.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCA_0014_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0014.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0046_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0046.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0059_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0059.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0039_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0039.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0107_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0107.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0083_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0083.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0140_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0140.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCA_0002_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0002.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0157_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0157.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0099_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0099.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/AHN_0006_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0006.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/AHN_0011_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0011.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0016_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0016.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0087_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0087.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0087_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0087.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0033_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0033.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0101_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0101.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0063_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0063.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0031_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0031.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0174_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0174.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NWU_0010_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0010.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0121_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0121.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0002_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0002.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0113_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0113.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0137_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0137.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NWU_0001_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0001.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0025_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0025.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NWU_0028_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0028.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0135_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0135.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0121_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0121.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/AHN_0021_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0021.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0145_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0145.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0077_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0077.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0032_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0032.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0008_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0065_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0065.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0041_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0041.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCA_0007_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0007.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0131_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0131.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NWU_0020_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0020.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0019_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0019.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0056_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0056.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0064_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0064.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NWU_0008_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0037_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0037.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0029_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0029.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0115_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0115.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0108_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0108.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0006_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0006.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0114_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0114.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0024_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0024.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0038_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0038.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0121_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0121.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0171_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0171.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0082_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0082.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0112_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0112.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0013_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0013.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0069_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0069.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCA_0009_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0009.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0152_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0152.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0088_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0088.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0021_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0021.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0111_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0111.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0075_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0075.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0008_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0072_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0072.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0151_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0151.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0133_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0133.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0093_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0093.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCA_0016_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0016.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0099_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0099.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0042_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0042.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0105_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0105.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0144_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0144.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0042_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0042.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0052_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0052.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0081_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0081.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/AHN_0009_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0009.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0149_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0149.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0007_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0007.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0029_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0029.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCA_0003_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0003.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0072_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0072.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/AHN_0015_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0015.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0007_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0007.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/AHN_0008_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0008.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/AHN_0013_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0013.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NWU_0010_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0010.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/MCF_0066_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0066.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/MCF_0075_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0075.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t2/imagesTr/NYU_0057_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0057.nii.gz",
+            "fold": 3
+        },
+        {
+            "image": "t1/imagesTr/NYU_0069_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0069.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0006_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0006.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0154_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0154.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0016_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0016.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0066_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0066.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NWU_0009_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0009.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0111_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0111.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0090_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0090.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0152_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0152.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0101_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0101.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0103_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0103.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0015_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0015.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0003_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0003.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NWU_0030_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0030.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCA_0022_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0022.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0086_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0086.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0001_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0001.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/AHN_0017_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0017.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0009_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0009.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0106_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0106.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0158_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0158.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCA_0012_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0012.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0077_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0077.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0122_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0122.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0032_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0032.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0069_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0069.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0125_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0125.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0114_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0114.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0155_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0155.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0035_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0035.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0029_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0029.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0054_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0054.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0083_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0083.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0104_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0104.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0159_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0159.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0062_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0062.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0071_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0071.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0040_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0040.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0074_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0074.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0161_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0161.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0043_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0043.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0103_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0103.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0096_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0096.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0036_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0036.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0086_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0086.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCA_0016_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0016.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0011_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0011.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0002_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0002.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0118_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0118.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0148_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0148.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0041_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0041.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0036_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0036.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/AHN_0005_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0005.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0037_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0037.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0071_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0071.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NWU_0006_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0006.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0084_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0084.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0034_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0034.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0040_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0040.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0020_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0020.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0111_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0111.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0042_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0042.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0153_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0153.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCA_0010_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0010.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0151_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0151.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0021_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0021.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0022_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0022.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0118_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0118.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0061_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0061.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0066_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0066.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0159_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0159.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCA_0007_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0007.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0095_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0095.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/AHN_0025_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0025.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0128_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0128.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0018_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0018.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0107_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0107.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0111_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0111.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0151_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0151.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0115_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0115.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0012_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0012.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0053_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0053.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0081_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0081.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0168_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0168.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0160_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0160.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0133_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0133.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0158_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0158.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0054_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0054.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0040_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0040.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0161_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0161.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0106_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0106.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0012_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0012.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/AHN_0012_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0012.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0096_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0096.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NWU_0002_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0002.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0036_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0036.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0170_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0170.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0051_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0051.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0164_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0164.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0046_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0046.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0049_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0049.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/AHN_0009_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0009.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0085_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0085.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCA_0010_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0010.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0010_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0010.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0105_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0105.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/AHN_0001_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0001.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0008_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0008.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0046_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0046.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0082_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0082.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0078_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0078.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0061_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0061.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/AHN_0011_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0011.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0076_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0076.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0091_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0091.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NYU_0015_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0015.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0070_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0070.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/NWU_0004_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0004.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/NYU_0112_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0112.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0009_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0009.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t2/imagesTr/MCF_0035_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0035.nii.gz",
+            "fold": 4
+        },
+        {
+            "image": "t1/imagesTr/MCF_0046_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0046.nii.gz",
+            "fold": 4
+        }
+    ],
+    "testing": [
+        {
+            "image": "t2/imagesTr/MCA_0015_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0015.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0018_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0018.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0008_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0008.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0077_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0077.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0017_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0017.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCA_0005_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0005.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0063_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0063.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0026_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0026.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0025_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0025.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0049_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0049.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0095_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0095.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0053_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0053.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0019_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0019.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/AHN_0010_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0010.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0016_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0016.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NWU_0005_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0005.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0002_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0002.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0070_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0070.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0100_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0100.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0083_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0083.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0018_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0018.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0065_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0065.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0118_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0118.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0146_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0146.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0038_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0038.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0021_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0021.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0017_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0017.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0016_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0016.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0109_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0109.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NWU_0007_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0007.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0020_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0020.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0169_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0169.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0068_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0068.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0002_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0002.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0120_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0120.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0023_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0023.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0019_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0019.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0084_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0084.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0068_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0068.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0165_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0165.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0163_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0163.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0011_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0011.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0050_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0050.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0107_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0107.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0162_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0162.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NWU_0017_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0017.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0068_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0068.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0039_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0039.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0084_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0084.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0072_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0072.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0078_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0078.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCA_0001_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0001.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0060_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0060.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0144_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0144.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/AHN_0010_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0010.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0097_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0097.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0050_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0050.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0064_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0064.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0006_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0006.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0051_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0051.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0059_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0059.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0087_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0087.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCA_0020_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0020.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0012_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0012.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0103_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0103.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0104_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0104.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0125_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0125.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0166_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0166.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0038_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0038.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0003_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0003.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0017_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0017.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0028_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0028.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0010_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0010.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0079_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0079.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0058_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0058.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NWU_0013_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0013.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0097_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0097.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0138_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0138.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/AHN_0007_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0007.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0005_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0005.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0088_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0088.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0068_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0068.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0024_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0024.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0029_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0029.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0070_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0070.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0169_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0169.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0153_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0153.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0094_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0094.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0051_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0051.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0162_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0162.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0106_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0106.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0082_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0082.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0013_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0013.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0073_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0073.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0156_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0156.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0123_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0123.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0157_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0157.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0052_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0052.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0078_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0078.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0165_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0165.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0027_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0027.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0092_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0092.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0076_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0076.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0009_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0009.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0146_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0146.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0003_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0003.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0109_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0109.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0093_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0093.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0143_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0143.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0162_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0162.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0014_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0014.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0116_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0116.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0136_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0136.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/AHN_0003_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0003.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/AHN_0004_0000.nii.gz",
+            "label": "t1/labelsTr/AHN_0004.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/AHN_0005_0000.nii.gz",
+            "label": "t2/labelsTr/AHN_0005.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0044_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0044.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0085_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0085.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0022_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0022.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0049_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0049.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0023_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0023.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0014_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0014.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0007_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0007.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0043_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0043.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0017_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0017.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0098_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0098.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0004_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0004.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0015_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0015.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NWU_0009_0000.nii.gz",
+            "label": "t2/labelsTr/NWU_0009.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0027_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0027.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0048_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0048.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0105_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0105.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NWU_0014_0000.nii.gz",
+            "label": "t1/labelsTr/NWU_0014.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0018_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0018.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0030_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0030.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0117_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0117.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0005_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0005.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0092_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0092.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0156_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0156.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0043_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0043.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0014_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0014.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCA_0013_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0013.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0092_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0092.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCA_0009_0000.nii.gz",
+            "label": "t1/labelsTr/MCA_0009.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0005_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0005.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0023_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0023.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCF_0003_0000.nii.gz",
+            "label": "t2/labelsTr/MCF_0003.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0104_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0104.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0166_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0166.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/NYU_0153_0000.nii.gz",
+            "label": "t1/labelsTr/NYU_0153.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/NYU_0079_0000.nii.gz",
+            "label": "t2/labelsTr/NYU_0079.nii.gz"
+        },
+        {
+            "image": "t2/imagesTr/MCA_0018_0000.nii.gz",
+            "label": "t2/labelsTr/MCA_0018.nii.gz"
+        },
+        {
+            "image": "t1/imagesTr/MCF_0054_0000.nii.gz",
+            "label": "t1/labelsTr/MCF_0054.nii.gz"
+        }
+    ],
+    "label_dict": {
+        "1": "pancreas"
+    },
+    "original_label_dict": {
+        "1": "pancreas"
+    },
+    "training_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        },
+        {
+            "_target_": "RandCropByLabelClassesd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "label_key": "@label_key",
+            "num_classes": "$max(@label_dict)+1",
+            "num_samples": "@num_patches_per_image",
+            "spatial_size": "@patch_size",
+            "ratios": "$tuple(float(i >= 0) for i in range(max(@label_dict)+1))",
+            "warn": false,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandZoomd",
+            "keys": [
+                "@image_key",
+                "@label_key"
+            ],
+            "min_zoom": 0.8,
+            "max_zoom": 1.2,
+            "mode": [
+                "trilinear",
+                "nearest"
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandSimulateLowResolutiond",
+            "keys": [
+                "@image_key"
+            ],
+            "zoom_range": [
+                0.3,
+                1
+            ],
+            "prob": 0.2,
+            "allow_missing_keys": true
+        },
+        {
+            "_target_": "RandGaussianSmoothd",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "sigma_x": [
+                0.5,
+                1.0
+            ],
+            "sigma_y": [
+                0.5,
+                1.0
+            ],
+            "sigma_z": [
+                0.5,
+                1.0
+            ]
+        },
+        {
+            "_target_": "RandScaleIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "factors": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandShiftIntensityd",
+            "keys": [
+                "@image_key"
+            ],
+            "offsets": 0.1,
+            "prob": 0.2
+        },
+        {
+            "_target_": "RandGaussianNoised",
+            "keys": [
+                "@image_key"
+            ],
+            "prob": 0.2,
+            "mean": 0.0,
+            "std": 0.2
+        }
+    ],
+    "validation_transform": [
+        {   
+            "_target_": "NormalizeIntensityd", 
+            "channel_wise": true, 
+            "keys": "@image_key"
+        }]
+}
