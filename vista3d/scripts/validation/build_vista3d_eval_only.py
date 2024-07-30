@@ -16,7 +16,6 @@ import copy
 import numpy as np
 import torch
 from monai.metrics import compute_dice
-
 from vista3d.modeling import (
     VISTA3D2,
     Class_Mapping_Classify,

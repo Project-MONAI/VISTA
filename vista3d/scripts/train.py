@@ -27,6 +27,12 @@ import numpy as np
 import torch
 import torch.distributed as dist
 import yaml
+from data.datasets import (
+    compute_dataset_weights,
+    get_class_names,
+    get_datalist_with_dataset_name,
+    get_datalist_with_dataset_name_and_transform,
+)
 from monai import transforms
 from monai.apps.auto3dseg.auto_runner import logger
 from monai.apps.utils import DEFAULT_FMT
@@ -41,12 +47,6 @@ from torch.utils.data.sampler import RandomSampler, WeightedRandomSampler
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from data.datasets import (
-    compute_dataset_weights,
-    get_class_names,
-    get_datalist_with_dataset_name,
-    get_datalist_with_dataset_name_and_transform,
-)
 from vista3d import vista_model_registry
 
 from .sliding_window import sliding_window_inference
