@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: LicenseRef-NvidiaProprietary
-# 
+#
 # NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
 # property and proprietary rights in and to this material, related
 # documentation and any modifications thereto. Any use, reproduction,
@@ -22,16 +22,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-from contextlib import nullcontext
-from enum import Enum
 from typing import Callable, Dict, Optional, Type
-import logging
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .cast_utils import CastToFloat, CastToFloatAll
+from .cast_utils import CastToFloat
+
 
 class LinearWithBiasSkip(nn.Module):
     def __init__(self, weight, bias, skip_bias_add):
@@ -45,7 +43,10 @@ class LinearWithBiasSkip(nn.Module):
             return F.linear(x, self.weight), self.bias
         return F.linear(x, self.weight, self.bias), None
 
-def run_ts_and_compare(ts_model, ts_input_list, ts_input_dict, output_example, check_tolerance=0.01):
+
+def run_ts_and_compare(
+    ts_model, ts_input_list, ts_input_dict, output_example, check_tolerance=0.01
+):
     # Verify the model can be read, and is valid
     ts_out = ts_model(*ts_input_list, **ts_input_dict)
 
@@ -54,16 +55,20 @@ def run_ts_and_compare(ts_model, ts_input_list, ts_input_dict, output_example, c
         expected = output_example[i]
 
         if torch.is_tensor(expected):
-            tout = out.to('cpu')
+            tout = out.to("cpu")
             print(f"Checking output {i}, shape: {expected.shape}:\n")
             this_good = True
             try:
-                if not torch.allclose(tout, expected.cpu(), rtol=check_tolerance, atol=check_tolerance):
+                if not torch.allclose(
+                    tout, expected.cpu(), rtol=check_tolerance, atol=check_tolerance
+                ):
                     this_good = False
             except Exception:  # there may ne size mismatch and it may be OK
                 this_good = False
             if not this_good:
-                print(f"Results mismatch! PyTorch(expected):\n{expected}\nTorchScript:\n{tout}")
+                print(
+                    f"Results mismatch! PyTorch(expected):\n{expected}\nTorchScript:\n{tout}"
+                )
                 all_good = False
     return all_good
 
@@ -80,12 +85,19 @@ def run_ort_and_compare(sess, ort_input, output_example, check_tolerance=0.01):
             print(f"Checking output {i}, shape: {expected.shape}:\n")
             this_good = True
             try:
-                if not torch.allclose(tout, expected.cpu(), rtol=check_tolerance, atol=100 * check_tolerance):
+                if not torch.allclose(
+                    tout,
+                    expected.cpu(),
+                    rtol=check_tolerance,
+                    atol=100 * check_tolerance,
+                ):
                     this_good = False
             except Exception:  # there may ne size mismatch and it may be OK
                 this_good = False
             if not this_good:
-                print(f"onnxruntime results mismatch! PyTorch(expected):\n{expected}\nONNXruntime:\n{tout}")
+                print(
+                    f"onnxruntime results mismatch! PyTorch(expected):\n{expected}\nONNXruntime:\n{tout}"
+                )
                 all_good = False
     return all_good
 
@@ -96,7 +108,10 @@ try:
     from apex.contrib.layer_norm.layer_norm import FastLayerNorm
     from apex.normalization.fused_layer_norm import FusedLayerNorm, MixedFusedLayerNorm
     from apex.transformer.functional.fused_softmax import FusedScaleMaskSoftmax
-    from apex.transformer.tensor_parallel.layers import ColumnParallelLinear, RowParallelLinear
+    from apex.transformer.tensor_parallel.layers import (
+        ColumnParallelLinear,
+        RowParallelLinear,
+    )
 
     def replace_FusedLayerNorm(n: nn.Module) -> Optional[nn.LayerNorm]:
         """
@@ -115,7 +130,9 @@ try:
         else:
             return None
 
-        mod = nn.LayerNorm(shape, eps=eps, elementwise_affine=affine, device=p.device, dtype=p.dtype)
+        mod = nn.LayerNorm(
+            shape, eps=eps, elementwise_affine=affine, device=p.device, dtype=p.dtype
+        )
         n_state = n.state_dict()
         mod.load_state_dict(n_state)
         return mod
@@ -129,7 +146,9 @@ try:
            Equivalent LayerNorm module
         """
         if not isinstance(n, RowParallelLinear):
-            raise ValueError("This function can only change the RowParallelLinear module.")
+            raise ValueError(
+                "This function can only change the RowParallelLinear module."
+            )
 
         dev = next(n.parameters()).device
         mod = LinearWithBiasSkip(n.weight, n.bias, n.skip_bias_add).to(device=dev)
@@ -146,8 +165,12 @@ try:
         Returns:
            Equivalent Linear module
         """
-        if not (isinstance(n, ColumnParallelLinear) or isinstance(n, RowParallelLinear)):
-            raise ValueError("This function can only change the ColumnParallelLinear or RowParallelLinear module.")
+        if not (
+            isinstance(n, ColumnParallelLinear) or isinstance(n, RowParallelLinear)
+        ):
+            raise ValueError(
+                "This function can only change the ColumnParallelLinear or RowParallelLinear module."
+            )
 
         dev = next(n.parameters()).device
         mod = LinearWithBiasSkip(n.weight, n.bias, n.skip_bias_add).to(dev)
@@ -165,11 +188,19 @@ try:
            Equivalent LayerNorm module
         """
         if not isinstance(n, FusedScaleMaskSoftmax):
-            raise ValueError("This function can only change the FusedScaleMaskSoftmax module.")
+            raise ValueError(
+                "This function can only change the FusedScaleMaskSoftmax module."
+            )
 
         # disable the fusion only
         mod = FusedScaleMaskSoftmax(
-            n.input_in_fp16, n.input_in_bf16, n.attn_mask_type, False, n.mask_func, n.softmax_in_fp32, n.scale
+            n.input_in_fp16,
+            n.input_in_bf16,
+            n.attn_mask_type,
+            False,
+            n.mask_func,
+            n.softmax_in_fp32,
+            n.scale,
         )
 
         return mod
@@ -178,18 +209,20 @@ try:
         "FusedLayerNorm": replace_FusedLayerNorm,
         "MixedFusedLayerNorm": replace_FusedLayerNorm,
         "FastLayerNorm": replace_FusedLayerNorm,
-        "ESM1bLayerNorm" : replace_FusedLayerNorm,
+        "ESM1bLayerNorm": replace_FusedLayerNorm,
         "RowParallelLinear": replace_ParallelLinear,
         "ColumnParallelLinear": replace_ParallelLinear,
         "FusedScaleMaskSoftmax": replace_FusedScaleMaskSoftmax,
     }
 
-except Exception as e:
+except Exception:
     default_Apex_replacements = {}
     apex_available = False
 
 
-def simple_replace(BaseT: Type[nn.Module], DestT: Type[nn.Module]) -> Callable[[nn.Module], Optional[nn.Module]]:
+def simple_replace(
+    BaseT: Type[nn.Module], DestT: Type[nn.Module]
+) -> Callable[[nn.Module], Optional[nn.Module]]:
     """
     Generic function generator to replace BaseT module with DestT. BaseT and DestT should have same atrributes. No weights are copied.
     Args:
@@ -218,18 +251,28 @@ def replace_MatchedScaleMaskSoftmax(n: nn.Module) -> Optional[nn.Linear]:
         exportable module
     """
     # including the import here to avoid circular imports
-    from nemo.collections.nlp.modules.common.megatron.fused_softmax import MatchedScaleMaskSoftmax
+    from nemo.collections.nlp.modules.common.megatron.fused_softmax import (
+        MatchedScaleMaskSoftmax,
+    )
 
     # disabling fusion for the MatchedScaleMaskSoftmax
     mod = MatchedScaleMaskSoftmax(
-        n.input_in_fp16, n.input_in_bf16, n.attn_mask_type, False, n.mask_func, n.softmax_in_fp32, n.scale
+        n.input_in_fp16,
+        n.input_in_bf16,
+        n.attn_mask_type,
+        False,
+        n.mask_func,
+        n.softmax_in_fp32,
+        n.scale,
     )
     return mod
 
 
-def wrap_module(BaseT: Type[nn.Module], DestT: Type[nn.Module]) -> Callable[[nn.Module], Optional[nn.Module]]:
+def wrap_module(
+    BaseT: Type[nn.Module], DestT: Type[nn.Module]
+) -> Callable[[nn.Module], Optional[nn.Module]]:
     """
-    Generic function generator to replace BaseT module with DestT wrapper. 
+    Generic function generator to replace BaseT module with DestT wrapper.
     Args:
         BaseT : module type to replace
         DestT : destination module type
@@ -256,14 +299,15 @@ def swap_modules(model: nn.Module, mapping: Dict[str, nn.Module]):
         expanded_path = path.split(".")
         parent_mod = model
         for sub_path in expanded_path[:-1]:
-            parent_mod = parent_mod._modules[sub_path]  # noqa
-        parent_mod._modules[expanded_path[-1]] = new_mod  # noqa
+            parent_mod = parent_mod._modules[sub_path]
+        parent_mod._modules[expanded_path[-1]] = new_mod
 
     return model
 
 
 def replace_modules(
-    model: nn.Module, expansions: Dict[str, Callable[[nn.Module], Optional[nn.Module]]] = None
+    model: nn.Module,
+    expansions: Dict[str, Callable[[nn.Module], Optional[nn.Module]]] = None,
 ) -> nn.Module:
     """
     Top-level function to replace modules in model, specified by class name with a desired replacement.
@@ -308,7 +352,7 @@ def replace_for_export(model: nn.Module, do_cast: bool = False) -> nn.Module:
     if apex_available:
         print("Replacing Apex layers ...")
         replace_modules(model, default_Apex_replacements)
-    
+
     if do_cast:
         print("Adding casts around norms...")
         cast_replacements = {
@@ -319,6 +363,6 @@ def replace_for_export(model: nn.Module, do_cast: bool = False) -> nn.Module:
             "InstanceNorm3d": wrap_module(nn.InstanceNorm3d, CastToFloat),
         }
         replace_modules(model, cast_replacements)
-        
+
     # This one has to be the last
     replace_modules(model, script_replacements)
