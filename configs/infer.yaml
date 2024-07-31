@@ -1,3 +1,4 @@
+trt: true
 amp: true
 input_channels: 1
 patch_size: [128, 128, 128]

@@ -515,7 +515,6 @@ class TRTWrapper(torch.nn.Module):
                        builder_optimization_level=3,
                        direct_io=False,
                        enable_all_tactics=True):
-        return
         if not self.has_engine(): 
             if not self.has_onnx():
                 self.onnx_export(
