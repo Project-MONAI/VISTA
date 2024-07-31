@@ -16,7 +16,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 from monai.utils import optional_import
-import time
 
 from scripts.utils.trans_utils import convert_points_to_disc
 from scripts.utils.trans_utils import get_largest_connected_component_mask as lcc
@@ -42,8 +41,7 @@ class VISTA3D2(nn.Module):
         )
         self.auto_freeze = False
         self.point_freeze = False
-        self.engine = None
-            
+
     def precompute_embedding(self, input_images):
         """precompute image embedding, require sliding window inference"""
         raise NotImplementedError
@@ -205,8 +203,6 @@ class VISTA3D2(nn.Module):
                 param.requires_grad = not point_freeze
             self.point_freeze = point_freeze
 
-
-
     def forward(
         self,
         input_images,
@@ -249,8 +245,6 @@ class VISTA3D2(nn.Module):
             val_point_sampler: function used to sample points from labels. This is only used for point-only evaluation.
 
         """
-        time00 = time.time()
-
         image_size = input_images.shape[-3:]
         device = input_images.device
         if point_coords is None and class_vector is None:
@@ -313,16 +307,13 @@ class VISTA3D2(nn.Module):
                     enable_all_tactics=True
                 )
             
-            time0 = time.time()
             out, out_auto = self.image_encoder(
                 x=input_images,
                 with_point=point_coords is not None,
                 with_label=class_vector is not None,
             )
-            # torch.cuda.synchronize()
-            # time1 = time.time()
-            # print(f"Encoder Time: {time.time() - time0}, shape : {input_images.shape}, point: {point_coords is not None}")
-        input_images = None            
+        input_images = None
+
         # force releasing memories that set to None
         torch.cuda.empty_cache()
         if class_vector is not None:
@@ -333,19 +324,12 @@ class VISTA3D2(nn.Module):
                     dynamo=False,
                     verbose=False,
                 )
-            # time2 = time.time()
             logits, _ = self.class_head(src=out_auto, class_vector=class_vector)
-            # torch.cuda.synchronize()
-            # print(f"Class Head Time: {time.time() - time2}")            
                 
             if point_coords is not None:
-                # time3 = time.time()
                 point_logits = self.point_head(
                     out, point_coords, point_labels, class_vector=prompt_class
                 )
-                # torch.cuda.synchronize()
-                # print(f"Point Head Time: {time.time() - time3}")
-                # time4 = time.time()
                 if patch_coords is None:
                     logits = self.gaussian_combine(
                         logits,
@@ -360,8 +344,6 @@ class VISTA3D2(nn.Module):
                     logits = self.connected_components_combine(
                         logits, point_logits, point_coords, point_labels, mapping_index
                     )
-                # torch.cuda.synchronize()
-                # print(f"Combine Time: {time.time() - time4}")
         else:
             logits = NINF_VALUE + torch.zeros(
                 [bs, 1, *image_size], device=device, dtype=out.dtype
@@ -377,9 +359,6 @@ class VISTA3D2(nn.Module):
                     point_labels,
                     mapping_index,
                 )
-
-        # torch.cuda.synchronize()
-        # print(f"Total time : {time.time() - time00} shape : {logits.shape}")
 
         if kwargs.get("keep_cache", False) and class_vector is None:
             self.image_embeddings = out.detach()

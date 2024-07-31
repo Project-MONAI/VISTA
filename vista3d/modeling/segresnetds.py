@@ -238,6 +238,7 @@ class SegResEncoder(nn.Module):
 
         if self.head_module is not None:
             outputs = self.head_module(outputs)
+
         return outputs
 
     def forward(self, x: torch.Tensor) -> list[torch.Tensor]:
@@ -463,7 +464,7 @@ class SegResNetDS2(nn.Module):
 
     def _forward(
         self, x: torch.Tensor, with_point, with_label
-    ) -> Tuple[List[torch.Tensor], List[torch.Tensor]]:
+    ) -> Union[None, torch.Tensor, list[torch.Tensor]]:
         if self.preprocess is not None:
             x = self.preprocess(x)
 
@@ -522,7 +523,7 @@ class SegResNetDS2(nn.Module):
         return outputs, outputs_auto
 
     def forward(
-        self, x: torch.Tensor, with_point=True, with_label=True, # **kwargs
+        self, x: torch.Tensor, with_point=True, with_label=True, **kwargs
     ) -> Tuple[List[torch.Tensor], List[torch.Tensor]]:
         return self._forward(x, with_point, with_label)
 

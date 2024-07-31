@@ -123,13 +123,16 @@ class samm_visualizer:
             print("-- segmenting ---")
             self.generate_mask()
             print("-- done ---")
+            print("-- Note: Point only prompts will only do 128 cubic segmentation, a cropping artefact will be observed. ---")
+            print("-- Note: Point without class will be treated as supported class, which has worse zero-shot ability. Try class > 132 to perform better zeroshot. ---")
+            print("-- Note: CTRL + Right Click will be adding negative points. ---")
             print(
                 "-- Note: Click points on different foreground class will cause segmentation conflicts. Clear first. ---"
             )
             print(
                 "-- Note: Click points not matching class prompts will also cause confusion. ---"
             )
-            print("-- Note: CTRL + Right Click will be adding negative points. ---")
+            
             self.update_slice(ax)
             # self.point_start = len(self.clicked_points)
 
