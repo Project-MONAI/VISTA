@@ -41,9 +41,12 @@ def guess_convert_to_uint16(img, margin=30):
             imsmall = im[::4, ::4]  # subsample
             # imsmall = im
 
-            scale = int(np.round(1 / np.min(np.diff(np.unique(imsmall)))))  # guessing scale
+            scale = int(
+                np.round(1 / np.min(np.diff(np.unique(imsmall))))
+            )  # guessing scale
             test = [
-                (np.sum((imsmall * k) % 1)) for k in range(scale - margin, scale + margin)
+                (np.sum((imsmall * k) % 1))
+                for k in range(scale - margin, scale + margin)
             ]  # finetune, guess a multiplier that makes all pixels integers
             sid = np.argmin(test)  # fine tune scale
             # print('guessing scale', scale, test[margin], 'fine tuning scale', scale - margin + sid, 'dif', test[sid], 'time', time.time()-start)
@@ -131,7 +134,10 @@ def remove_overlaps(masks, medians, overlap_threshold=0.75):
     masks[tocell, overlaps[:, 0], overlaps[:, 1]] = 1
 
     # labels should be 1 to mask.shape[0]
-    masks = masks.astype(int) * np.arange(1, masks.shape[0] + 1, 1, int)[:, np.newaxis, np.newaxis]
+    masks = (
+        masks.astype(int)
+        * np.arange(1, masks.shape[0] + 1, 1, int)[:, np.newaxis, np.newaxis]
+    )
     masks = masks.sum(axis=0)
     gc.collect()
     return masks
@@ -151,11 +157,25 @@ def livecell_process_files(dataset_dir):
             print(f"Working on split: {split}")
 
             if split == "test":
-                img_path = os.path.join(dataset_dir, "images", "livecell_test_images", each_cell_tp)
-                msk_path = os.path.join(dataset_dir, "images", "livecell_test_images", each_cell_tp + "_masks")
+                img_path = os.path.join(
+                    dataset_dir, "images", "livecell_test_images", each_cell_tp
+                )
+                msk_path = os.path.join(
+                    dataset_dir,
+                    "images",
+                    "livecell_test_images",
+                    each_cell_tp + "_masks",
+                )
             else:
-                img_path = os.path.join(dataset_dir, "images", "livecell_train_val_images", each_cell_tp)
-                msk_path = os.path.join(dataset_dir, "images", "livecell_train_val_images", each_cell_tp + "_masks")
+                img_path = os.path.join(
+                    dataset_dir, "images", "livecell_train_val_images", each_cell_tp
+                )
+                msk_path = os.path.join(
+                    dataset_dir,
+                    "images",
+                    "livecell_train_val_images",
+                    each_cell_tp + "_masks",
+                )
             if not os.path.exists(msk_path):
                 os.makedirs(msk_path)
 
@@ -175,12 +195,18 @@ def livecell_process_files(dataset_dir):
             height = []
             width = []
             for index, im in enumerate(images):
-                print("Status: {}/{}, Process image: {}".format(index, len(images), im["file_name"]))
+                print(
+                    "Status: {}/{}, Process image: {}".format(
+                        index, len(images), im["file_name"]
+                    )
+                )
                 if (
                     im["file_name"] == "BV2_Phase_C4_2_03d00h00m_1.tif"
                     or im["file_name"] == "BV2_Phase_C4_2_03d00h00m_3.tif"
                 ):
-                    print("Skipping the file: BV2_Phase_C4_2_03d00h00m_1.tif, as it is troublesome")
+                    print(
+                        "Skipping the file: BV2_Phase_C4_2_03d00h00m_1.tif, as it is troublesome"
+                    )
                     continue
                 # load image
                 img = Image.open(os.path.join(img_path, im["file_name"])).convert("L")
@@ -200,7 +226,14 @@ def livecell_process_files(dataset_dir):
                     mask = annotation.annToMask(ann)
                     masks.append(mask)
                     ypix, xpix = mask.nonzero()
-                    medians.append(np.array([ypix.mean().astype(np.float32), xpix.mean().astype(np.float32)]))
+                    medians.append(
+                        np.array(
+                            [
+                                ypix.mean().astype(np.float32),
+                                xpix.mean().astype(np.float32),
+                            ]
+                        )
+                    )
                     k += 1
                     # add instance mask to image mask
                     # msk = np.add(msk, mask*idx)
@@ -219,7 +252,9 @@ def livecell_process_files(dataset_dir):
                 # cell_type = t_filename.split('_')[0] #? not used
                 new_mask_name = t_filename[:-4] + "_masks.tif"
                 # mask_pil.save(os.path.join(msk_path, new_mask_name))
-                imageio.imwrite(os.path.join(msk_path, new_mask_name), min_label_precision(masks))
+                imageio.imwrite(
+                    os.path.join(msk_path, new_mask_name), min_label_precision(masks)
+                )
                 gc.collect()
 
             print(f"In total {len(images)} images")
@@ -254,18 +289,33 @@ def tissuenet_process_files(dataset_dir):
                     print(f"Working on {t} {p}")
 
                     for k, i in enumerate(ix):
-                        print(f"Status: {k}/{len(ix)} {tp}/{len(tlabels) * len(plabels)} {t} {p}")
+                        print(
+                            f"Status: {k}/{len(ix)} {tp}/{len(tlabels) * len(plabels)} {t} {p}"
+                        )
                         img = data[i].transpose(2, 0, 1)
                         label = labels[i][:, :, 0]
 
-                        img = guess_convert_to_uint16(img)  # guess inverse scale and convert to uint16
+                        img = guess_convert_to_uint16(
+                            img
+                        )  # guess inverse scale and convert to uint16
                         label = min_label_precision(label)
 
                         if folder == "train":
-                            img = img.reshape(2, 2, 256, 2, 256).transpose(0, 1, 3, 2, 4).reshape(2, 4, 256, 256)
-                            label = label.reshape(2, 256, 2, 256).transpose(0, 2, 1, 3).reshape(4, 256, 256)
+                            img = (
+                                img.reshape(2, 2, 256, 2, 256)
+                                .transpose(0, 1, 3, 2, 4)
+                                .reshape(2, 4, 256, 256)
+                            )
+                            label = (
+                                label.reshape(2, 256, 2, 256)
+                                .transpose(0, 2, 1, 3)
+                                .reshape(4, 256, 256)
+                            )
 
-                            zero_channel = np.zeros((1, img.shape[1], img.shape[2], img.shape[3]), dtype=img.dtype)
+                            zero_channel = np.zeros(
+                                (1, img.shape[1], img.shape[2], img.shape[3]),
+                                dtype=img.dtype,
+                            )
 
                             # Concatenate the zero channel with the original array along the first dimension
                             new_array = np.concatenate([img, zero_channel], axis=0)
@@ -275,16 +325,34 @@ def tissuenet_process_files(dataset_dir):
                                 # imwrite(f'/scratch_2/cell_imaging_2023/tissuenet/tissuenet_v1.0/tissuenet_1_cellpose_way/{folder}/{t}_{p}_{k}_{j}_masks.tif', label[j])
                                 img_name = f"{folder}/{t}_{p}_{k}_{j}.tif"
                                 mask_name = f"{folder}/{t}_{p}_{k}_{j}_masks.tif"
-                                imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", img_name), new_array[:, j])
-                                imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", mask_name), label[j])
+                                imageio.imwrite(
+                                    os.path.join(
+                                        dataset_dir, "tissuenet_1.0", img_name
+                                    ),
+                                    new_array[:, j],
+                                )
+                                imageio.imwrite(
+                                    os.path.join(
+                                        dataset_dir, "tissuenet_1.0", mask_name
+                                    ),
+                                    label[j],
+                                )
                         else:
-                            zero_channel = np.zeros((1, img.shape[1], img.shape[2]), dtype=img.dtype)
+                            zero_channel = np.zeros(
+                                (1, img.shape[1], img.shape[2]), dtype=img.dtype
+                            )
                             new_array = np.concatenate([img, zero_channel], axis=0)
                             # reshaped_array = np.transpose(new_array, (1, 2, 0))
                             img_name = f"{folder}/{t}_{p}_{k}.tif"
                             mask_name = f"{folder}/{t}_{p}_{k}_masks.tif"
-                            imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", img_name), new_array)
-                            imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", mask_name), label)
+                            imageio.imwrite(
+                                os.path.join(dataset_dir, "tissuenet_1.0", img_name),
+                                new_array,
+                            )
+                            imageio.imwrite(
+                                os.path.join(dataset_dir, "tissuenet_1.0", mask_name),
+                                label,
+                            )
 
 
 def kaggle_process_files(dataset_dir):
@@ -316,8 +384,13 @@ def kaggle_process_files(dataset_dir):
                 # image_data = imageio.imread(image_file)
                 # normalized_image = normalize_image(image_data[..., :3])
                 # imageio.imwrite(os.path.join(saving_path, f"{filename_prefix}img.tiff"), normalized_image)
-                shutil.copyfile(image_file, os.path.join(saving_path, f"{filename_prefix}img.png"))
-                imageio.imwrite(os.path.join(saving_path, f"{filename_prefix}img_masks.tiff"), mask_data)
+                shutil.copyfile(
+                    image_file, os.path.join(saving_path, f"{filename_prefix}img.png")
+                )
+                imageio.imwrite(
+                    os.path.join(saving_path, f"{filename_prefix}img_masks.tiff"),
+                    mask_data,
+                )
 
 
 def extract_zip(zip_path, extract_to):
@@ -334,8 +407,15 @@ def extract_zip(zip_path, extract_to):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Script to process the cell imaging datasets")
-    parser.add_argument("--dir", type=str, help="Directory of datasets to process it ...", default="/set/the/path")
+    parser = argparse.ArgumentParser(
+        description="Script to process the cell imaging datasets"
+    )
+    parser.add_argument(
+        "--dir",
+        type=str,
+        help="Directory of datasets to process it ...",
+        default="/set/the/path",
+    )
 
     args = parser.parse_args()
     data_root_path = os.path.normpath(args.dir)
@@ -365,7 +445,9 @@ def main():
             out_path = os.path.join(dataset_path)
             extract_zip(in_path, out_path)
 
-    print("If we reached here, that means all zip files got extracted ... Working on pre-processing")
+    print(
+        "If we reached here, that means all zip files got extracted ... Working on pre-processing"
+    )
 
     # Looping over all datasets again, Cellpose & Deepbacs have a similar directory structure
     for key, value in dataset_dict.items():

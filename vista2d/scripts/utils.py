@@ -25,14 +25,20 @@ logger = get_logger("VistaCell")
 
 np.set_printoptions(formatter={"float": "{: 0.3f}".format}, suppress=True)
 logging.getLogger("torch.nn.parallel.distributed").setLevel(logging.WARNING)
-warnings.filterwarnings("ignore", message=".*Divide by zero.*")  # intensity transform divide by zero warning
+warnings.filterwarnings(
+    "ignore", message=".*Divide by zero.*"
+)  # intensity transform divide by zero warning
 
 LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {"monai_default": {"format": DEFAULT_FMT}},
     "loggers": {
-        "VistaCell": {"handlers": ["file", "console"], "level": "DEBUG", "propagate": False},
+        "VistaCell": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
     },
     "filters": {"rank_filter": {"()": RankFilter}},
     "handlers": {
@@ -70,13 +76,17 @@ def parsing_bundle_config(config_file, logging_file=None, meta_file=None):
     else:
         config_root_path = Path("configs")
 
-    logging_file = str(config_root_path / "logging.conf") if logging_file is None else logging_file
+    logging_file = (
+        str(config_root_path / "logging.conf") if logging_file is None else logging_file
+    )
     if os.path.exists(logging_file):
         fileConfig(logging_file, disable_existing_loggers=False)
 
     parser = ConfigParser()
     parser.read_config(config_file)
-    meta_file = str(config_root_path / "metadata.json") if meta_file is None else meta_file
+    meta_file = (
+        str(config_root_path / "metadata.json") if meta_file is None else meta_file
+    )
     if isinstance(meta_file, str) and not os.path.exists(meta_file):
         logger.error(
             f"Cannot find the metadata config file: {meta_file}. "

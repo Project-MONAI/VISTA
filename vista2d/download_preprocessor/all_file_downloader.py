@@ -54,7 +54,12 @@ def download_files(url_dict, directory):
 
 def main():
     parser = argparse.ArgumentParser(description="Process some integers.")
-    parser.add_argument("--dir", type=str, help="Directory to download files to", default="/set/the/path")
+    parser.add_argument(
+        "--dir",
+        type=str,
+        help="Directory to download files to",
+        default="/set/the/path",
+    )
 
     args = parser.parse_args()
     directory = os.path.normpath(args.dir)
@@ -63,7 +68,7 @@ def main():
         "deepbacs.zip": "https://zenodo.org/records/5551009/files/DeepBacs_Data_Segmentation_StarDist_MIXED_dataset.zip?download=1",
         "nips_test.zip": "https://zenodo.org/records/10719375/files/Testing.zip?download=1",
         "nips_train.zip": "https://zenodo.org/records/10719375/files/Training-labeled.zip?download=1",
-        "livecell": "wget --recursive --no-parent --cut-dirs=0 --timestamping -i urls.txt --directory-prefix="
+        "livecell": "wget --recursive --no-parent --cut-dirs=0 --timestamping -i urls.txt --directory-prefix=",
         # Add URLs with keys here
     }
     download_files(url_dict, directory)

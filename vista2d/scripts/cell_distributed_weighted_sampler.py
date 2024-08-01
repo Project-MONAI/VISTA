@@ -35,13 +35,20 @@ class DistributedWeightedSampler(Sampler[T_co]):
         seed: int = 0,
         drop_last: bool = False,
     ) -> None:
-        if not isinstance(num_samples, int) or isinstance(num_samples, bool) or num_samples <= 0:
-            raise ValueError(f"num_samples should be a positive integer value, but got num_samples={num_samples}")
+        if (
+            not isinstance(num_samples, int)
+            or isinstance(num_samples, bool)
+            or num_samples <= 0
+        ):
+            raise ValueError(
+                f"num_samples should be a positive integer value, but got num_samples={num_samples}"
+            )
 
         weights_tensor = torch.as_tensor(weights, dtype=torch.float)
         if len(weights_tensor.shape) != 1:
             raise ValueError(
-                "weights should be a 1d sequence but given " f"weights have shape {tuple(weights_tensor.shape)}"
+                "weights should be a 1d sequence but given "
+                f"weights have shape {tuple(weights_tensor.shape)}"
             )
 
         self.weights = weights_tensor
@@ -56,7 +63,9 @@ class DistributedWeightedSampler(Sampler[T_co]):
                 raise RuntimeError("Requires distributed package to be available")
             rank = dist.get_rank()
         if rank >= num_replicas or rank < 0:
-            raise ValueError(f"Invalid rank {rank}, rank should be in the interval [0, {num_replicas - 1}]")
+            raise ValueError(
+                f"Invalid rank {rank}, rank should be in the interval [0, {num_replicas - 1}]"
+            )
         self.dataset = dataset
         self.num_replicas = num_replicas
         self.rank = rank
@@ -100,7 +109,9 @@ class DistributedWeightedSampler(Sampler[T_co]):
                 if padding_size <= len(indices):
                     indices += indices[:padding_size]
                 else:
-                    indices += (indices * math.ceil(padding_size / len(indices)))[:padding_size]
+                    indices += (indices * math.ceil(padding_size / len(indices)))[
+                        :padding_size
+                    ]
             else:
                 # remove tail of data to make it evenly divisible.
                 indices = indices[: self.total_size]

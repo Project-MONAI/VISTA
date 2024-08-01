@@ -42,10 +42,20 @@ class CellSamWrapper(torch.nn.Module):
         model.mask_decoder = nn.Sequential(
             nn.BatchNorm2d(num_features=256),
             nn.ReLU(inplace=True),
-            nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, output_padding=1, bias=False),
+            nn.ConvTranspose2d(
+                256,
+                128,
+                kernel_size=3,
+                stride=2,
+                padding=1,
+                output_padding=1,
+                bias=False,
+            ),
             nn.BatchNorm2d(num_features=128),
             nn.ReLU(inplace=True),
-            nn.ConvTranspose2d(128, 3, kernel_size=3, stride=2, padding=1, output_padding=1, bias=True),
+            nn.ConvTranspose2d(
+                128, 3, kernel_size=3, stride=2, padding=1, output_padding=1, bias=True
+            ),
         )
 
         self.model = model

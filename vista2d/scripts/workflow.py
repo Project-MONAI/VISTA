@@ -79,11 +79,15 @@ class VistaCell(BundleWorkflow):
         the rest key-values in the `override` are to override config content.
         """
 
-        parser = parsing_bundle_config(config_file, logging_file=logging_file, meta_file=meta_file)
+        parser = parsing_bundle_config(
+            config_file, logging_file=logging_file, meta_file=meta_file
+        )
         parser.update(pairs=override)
 
         mode = parser.get("mode", None)
-        if mode is not None:  # if user specified a `mode` it'll override the workflow_type arg
+        if (
+            mode is not None
+        ):  # if user specified a `mode` it'll override the workflow_type arg
             workflow_type = mode
         else:
             mode = workflow_type  # if user didn't specify mode, the workflow_type will be used
@@ -98,7 +102,8 @@ class VistaCell(BundleWorkflow):
 
         # check if torchrun or bcprun started it
         if dist.is_torchelastic_launched() or (
-            os.getenv("NGC_ARRAY_SIZE") is not None and int(os.getenv("NGC_ARRAY_SIZE")) > 1
+            os.getenv("NGC_ARRAY_SIZE") is not None
+            and int(os.getenv("NGC_ARRAY_SIZE")) > 1
         ):
             if dist.is_available():
                 dist.init_process_group(backend="nccl", init_method="env://")
@@ -111,7 +116,11 @@ class VistaCell(BundleWorkflow):
         else:
             self.is_distributed = False
 
-        if self.global_rank == 0 and self.config("ckpt_path") and not os.path.exists(self.config("ckpt_path")):
+        if (
+            self.global_rank == 0
+            and self.config("ckpt_path")
+            and not os.path.exists(self.config("ckpt_path"))
+        ):
             os.makedirs(self.config("ckpt_path"), exist_ok=True)
 
         if self.rank == 0:
@@ -196,7 +205,9 @@ class VistaCell(BundleWorkflow):
 
     def get_mode(self):
         mode_str = self.config("mode", self.workflow_type)
-        return look_up_option(mode_str, ("train", "training", "infer", "inference", "eval", "evaluation"))
+        return look_up_option(
+            mode_str, ("train", "training", "infer", "inference", "eval", "evaluation")
+        )
 
     def run(self):
         if str(self.mode).startswith("train"):
@@ -218,9 +229,13 @@ class VistaCell(BundleWorkflow):
         pretrained_ckpt_path = self.config("pretrained_ckpt_path", None)
         if pretrained_ckpt_name is not None and pretrained_ckpt_path is None:
             # if relative name specified, append to default ckpt_path dir
-            pretrained_ckpt_path = os.path.join(self.config("ckpt_path"), pretrained_ckpt_name)
+            pretrained_ckpt_path = os.path.join(
+                self.config("ckpt_path"), pretrained_ckpt_name
+            )
 
-        if pretrained_ckpt_path is not None and not os.path.exists(pretrained_ckpt_path):
+        if pretrained_ckpt_path is not None and not os.path.exists(
+            pretrained_ckpt_path
+        ):
             logger.info(f"Pretrained checkpoint {pretrained_ckpt_path} not found.")
             raise ValueError(f"Pretrained checkpoint {pretrained_ckpt_path} not found.")
 
@@ -251,7 +266,9 @@ class VistaCell(BundleWorkflow):
             )
 
         pytorch_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-        logger.info(f"total parameters count {pytorch_params} distributed {self.is_distributed}")
+        logger.info(
+            f"total parameters count {pytorch_params} distributed {self.is_distributed}"
+        )
         return model
 
     def get_train_dataset_data(self):
@@ -274,10 +291,14 @@ class VistaCell(BundleWorkflow):
 
         for idx, d in enumerate(data_list_files):
             logger.info(f"adding datalist ({idx}): {d['datalist']}")
-            t, v = datafold_read(datalist=d["datalist"], basedir=d["basedir"], fold=self.config("fold"))
+            t, v = datafold_read(
+                datalist=d["datalist"], basedir=d["basedir"], fold=self.config("fold")
+            )
 
             if val_key is not None:
-                v, _ = datafold_read(datalist=d["datalist"], basedir=d["basedir"], fold=-1, key=val_key)  # e.g. testing
+                v, _ = datafold_read(
+                    datalist=d["datalist"], basedir=d["basedir"], fold=-1, key=val_key
+                )  # e.g. testing
 
             for item in t:
                 item["datalist_id"] = idx
@@ -296,7 +317,9 @@ class VistaCell(BundleWorkflow):
             logger.warning("No validation data found.")
         return train_files, valid_files
 
-    def read_val_datalists(self, section="validate", data_list_files=None, val_key=None, merge=True):
+    def read_val_datalists(
+        self, section="validate", data_list_files=None, val_key=None, merge=True
+    ):
         """read the corresponding folds of the datalist for validation or inference"""
         dataset_data = self.config(f"{section}#dataset#data")
 
@@ -319,10 +342,18 @@ class VistaCell(BundleWorkflow):
         val_files, idx = [], 0
         for d in data_list_files:
             if val_key is not None:
-                v_files, _ = datafold_read(datalist=d["datalist"], basedir=d["basedir"], fold=-1, key=val_key)
+                v_files, _ = datafold_read(
+                    datalist=d["datalist"], basedir=d["basedir"], fold=-1, key=val_key
+                )
             else:
-                _, v_files = datafold_read(datalist=d["datalist"], basedir=d["basedir"], fold=self.config("fold"))
-            logger.info(f"adding datalist ({idx} -- {val_key}): {d['datalist']} {len(v_files)}")
+                _, v_files = datafold_read(
+                    datalist=d["datalist"],
+                    basedir=d["basedir"],
+                    fold=self.config("fold"),
+                )
+            logger.info(
+                f"adding datalist ({idx} -- {val_key}): {d['datalist']} {len(v_files)}"
+            )
             if merge:
                 val_files.extend(v_files)
             else:
@@ -339,17 +370,33 @@ class VistaCell(BundleWorkflow):
 
         train_xforms = []
         train_xforms.append(LoadTiffd(keys=["image", "label"]))
-        train_xforms.append(mt.EnsureTyped(keys=["image", "label"], data_type="tensor", dtype=torch.float))
-        if self.config("prescale", True):
-            print("Prescaling images to 0..1")
-            train_xforms.append(mt.ScaleIntensityd(keys="image", minv=0, maxv=1, channel_wise=True))
-        train_xforms.append(mt.ScaleIntensityd(keys="image", minv=0, maxv=1, channel_wise=True))
         train_xforms.append(
-            mt.ScaleIntensityRangePercentilesd(
-                keys="image", lower=1, upper=99, b_min=0.0, b_max=1.0, channel_wise=True, clip=True
+            mt.EnsureTyped(
+                keys=["image", "label"], data_type="tensor", dtype=torch.float
             )
         )
-        train_xforms.append(mt.SpatialPadd(keys=["image", "label"], spatial_size=roi_size))
+        if self.config("prescale", True):
+            print("Prescaling images to 0..1")
+            train_xforms.append(
+                mt.ScaleIntensityd(keys="image", minv=0, maxv=1, channel_wise=True)
+            )
+        train_xforms.append(
+            mt.ScaleIntensityd(keys="image", minv=0, maxv=1, channel_wise=True)
+        )
+        train_xforms.append(
+            mt.ScaleIntensityRangePercentilesd(
+                keys="image",
+                lower=1,
+                upper=99,
+                b_min=0.0,
+                b_max=1.0,
+                channel_wise=True,
+                clip=True,
+            )
+        )
+        train_xforms.append(
+            mt.SpatialPadd(keys=["image", "label"], spatial_size=roi_size)
+        )
         train_xforms.append(
             mt.RandSpatialCropd(keys=["image", "label"], roi_size=roi_size)
         )  # crop roi_size (if image is large)
@@ -386,19 +433,34 @@ class VistaCell(BundleWorkflow):
         val_xforms = []
         val_xforms.append(LoadTiffd(keys=["image", "label"], allow_missing_keys=True))
         val_xforms.append(
-            mt.EnsureTyped(keys=["image", "label"], data_type="tensor", dtype=torch.float, allow_missing_keys=True)
+            mt.EnsureTyped(
+                keys=["image", "label"],
+                data_type="tensor",
+                dtype=torch.float,
+                allow_missing_keys=True,
+            )
         )
 
         if self.config("prescale", True):
             print("Prescaling val images to 0..1")
-            val_xforms.append(mt.ScaleIntensityd(keys="image", minv=0, maxv=1, channel_wise=True))
+            val_xforms.append(
+                mt.ScaleIntensityd(keys="image", minv=0, maxv=1, channel_wise=True)
+            )
 
         val_xforms.append(
             mt.ScaleIntensityRangePercentilesd(
-                keys="image", lower=1, upper=99, b_min=0.0, b_max=1.0, channel_wise=True, clip=True
+                keys="image",
+                lower=1,
+                upper=99,
+                b_min=0.0,
+                b_max=1.0,
+                channel_wise=True,
+                clip=True,
             )
         )
-        val_xforms.append(LabelsToFlows(keys="label", flow_key="flow", allow_missing_keys=True))
+        val_xforms.append(
+            LabelsToFlows(keys="label", flow_key="flow", allow_missing_keys=True)
+        )
 
         return val_xforms
 
@@ -445,9 +507,14 @@ class VistaCell(BundleWorkflow):
 
             if self.is_distributed:
                 return DistributedWeightedSampler(
-                    self.train_dataset, shuffle=True, weights=sample_weights, num_samples=num_samples_per_epoch
+                    self.train_dataset,
+                    shuffle=True,
+                    weights=sample_weights,
+                    num_samples=num_samples_per_epoch,
                 )  # custom implementation, as Pytorch does not have one
-            return WeightedRandomSampler(weights=sample_weights, num_samples=num_samples_per_epoch)
+            return WeightedRandomSampler(
+                weights=sample_weights, num_samples=num_samples_per_epoch
+            )
 
         if self.is_distributed:
             return DistributedSampler(self.train_dataset, shuffle=True)
@@ -486,9 +553,11 @@ class VistaCell(BundleWorkflow):
         sliding_inferrer = config("inferer#sliding_inferer")
         use_amp = config("amp")
 
-        amp_dtype = {"float32": torch.float32, "bfloat16": torch.bfloat16, "float16": torch.float16}[
-            config("amp_dtype")
-        ]
+        amp_dtype = {
+            "float32": torch.float32,
+            "bfloat16": torch.bfloat16,
+            "float16": torch.float16,
+        }[config("amp_dtype")]
         if amp_dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
             amp_dtype = torch.float16
             logger.warning(
@@ -496,8 +565,12 @@ class VistaCell(BundleWorkflow):
             )
 
         use_gradscaler = use_amp and amp_dtype == torch.float16
-        logger.info(f"Using grad scaler {use_gradscaler} amp_dtype {amp_dtype} use_amp {use_amp}")
-        grad_scaler = GradScaler(enabled=use_gradscaler)  # using GradScaler only for AMP float16 (not bfloat16)
+        logger.info(
+            f"Using grad scaler {use_gradscaler} amp_dtype {amp_dtype} use_amp {use_amp}"
+        )
+        grad_scaler = GradScaler(
+            enabled=use_gradscaler
+        )  # using GradScaler only for AMP float16 (not bfloat16)
 
         loss_function = config("loss_function")
         acc_function = config("key_metric")
@@ -533,21 +606,38 @@ class VistaCell(BundleWorkflow):
                     mlflow.set_tracking_uri(config("mlflow_tracking_uri"))
                     mlflow.set_experiment("vista2d")
 
-                    mlflow_run_name = config("mlflow_run_name", f'vista2d train fold{config("fold")}')
+                    mlflow_run_name = config(
+                        "mlflow_run_name", f'vista2d train fold{config("fold")}'
+                    )
                     mlflow.start_run(
-                        run_name=mlflow_run_name, log_system_metrics=config("mlflow_log_system_metrics", False)
+                        run_name=mlflow_run_name,
+                        log_system_metrics=config("mlflow_log_system_metrics", False),
                     )
                     mlflow.log_params(self.parser.config)
-                    mlflow.log_dict(self.parser.config, "hyper_parameters.yaml")  # experimental
+                    mlflow.log_dict(
+                        self.parser.config, "hyper_parameters.yaml"
+                    )  # experimental
 
             csv_path = os.path.join(ckpt_path, "accuracy_history.csv")
             self.save_history_csv(
                 csv_path=csv_path,
-                header=["epoch", "metric", "loss", "iter", "time", "train_time", "validation_time", "epoch_time"],
+                header=[
+                    "epoch",
+                    "metric",
+                    "loss",
+                    "iter",
+                    "time",
+                    "train_time",
+                    "validation_time",
+                    "epoch_time",
+                ],
             )
 
         do_torch_save = (
-            (self.global_rank == 0) and ckpt_path and config("ckpt_save") and not config("train#skip", False)
+            (self.global_rank == 0)
+            and ckpt_path
+            and config("ckpt_save")
+            and not config("train#skip", False)
         )
         best_ckpt_path = os.path.join(ckpt_path, "model.pt")
         intermediate_ckpt_path = os.path.join(ckpt_path, "model_final.pt")
@@ -582,7 +672,12 @@ class VistaCell(BundleWorkflow):
         if distributed:
             dist.barrier()
 
-        if self.global_rank == 0 and tb_writer is not None and mlflow_is_imported and mlflow.is_tracking_uri_set():
+        if (
+            self.global_rank == 0
+            and tb_writer is not None
+            and mlflow_is_imported
+            and mlflow.is_tracking_uri_set()
+        ):
             mlflow.log_param("len_train_set", len(train_loader.dataset))
             mlflow.log_param("len_val_set", len(val_loader.dataset))
 
@@ -675,8 +770,12 @@ class VistaCell(BundleWorkflow):
                         tb_writer.add_scalar("val/acc", val_acc_mean, report_epoch)
                         tb_writer.add_scalar("val/loss", val_loss, report_epoch)
                         if mlflow_is_imported and mlflow.is_tracking_uri_set():
-                            mlflow.log_metric("val/acc", val_acc_mean, step=report_epoch)
-                            mlflow.log_metric("val/epoch_time", validation_time, step=report_epoch)
+                            mlflow.log_metric(
+                                "val/acc", val_acc_mean, step=report_epoch
+                            )
+                            mlflow.log_metric(
+                                "val/epoch_time", validation_time, step=report_epoch
+                            )
 
                     timing_dict = {
                         "time": f"{(time.time() - pre_loop_time) / 3600:.2f} hr",
@@ -686,12 +785,17 @@ class VistaCell(BundleWorkflow):
                     }
 
                     if val_acc_mean > best_metric:
-                        logger.info(f"New best metric ({best_metric:.6f} --> {val_acc_mean:.6f}). ")
+                        logger.info(
+                            f"New best metric ({best_metric:.6f} --> {val_acc_mean:.6f}). "
+                        )
                         best_metric, best_metric_epoch = val_acc_mean, report_epoch
                         save_time = 0
                         if do_torch_save:
                             save_time = self.checkpoint_save(
-                                ckpt=best_ckpt_path, model=model, epoch=best_metric_epoch, best_metric=best_metric
+                                ckpt=best_ckpt_path,
+                                model=model,
+                                epoch=best_metric_epoch,
+                                best_metric=best_metric,
                             )
 
                         if progress_path is not None:
@@ -714,7 +818,11 @@ class VistaCell(BundleWorkflow):
                         )
 
                 # sanity check
-                if epoch > max(20, num_epochs / 4) and 0 <= val_acc_mean < 0.01 and config("stop_on_lowacc", True):
+                if (
+                    epoch > max(20, num_epochs / 4)
+                    and 0 <= val_acc_mean < 0.01
+                    and config("stop_on_lowacc", True)
+                ):
                     logger.info(
                         f"Accuracy seems very low at epoch {report_epoch}, acc {val_acc_mean}. "
                         "Most likely optimization diverged, try setting a smaller learning_rate"
@@ -727,16 +835,25 @@ class VistaCell(BundleWorkflow):
                     )
 
             # save intermediate checkpoint every num_epochs_per_saving epochs
-            if do_torch_save and ((epoch + 1) % num_epochs_per_saving == 0 or (epoch + 1) >= num_epochs):
+            if do_torch_save and (
+                (epoch + 1) % num_epochs_per_saving == 0 or (epoch + 1) >= num_epochs
+            ):
                 if report_epoch != best_metric_epoch:
                     self.checkpoint_save(
-                        ckpt=intermediate_ckpt_path, model=model, epoch=report_epoch, best_metric=val_acc_mean
+                        ckpt=intermediate_ckpt_path,
+                        model=model,
+                        epoch=report_epoch,
+                        best_metric=val_acc_mean,
                     )
                 else:
                     try:
-                        shutil.copyfile(best_ckpt_path, intermediate_ckpt_path)  # if already saved once
+                        shutil.copyfile(
+                            best_ckpt_path, intermediate_ckpt_path
+                        )  # if already saved once
                     except Exception as err:
-                        logger.warning(f"error copying {best_ckpt_path} {intermediate_ckpt_path} {err}")
+                        logger.warning(
+                            f"error copying {best_ckpt_path} {intermediate_ckpt_path} {err}"
+                        )
                         pass
 
             if lr_scheduler is not None:
@@ -765,9 +882,15 @@ class VistaCell(BundleWorkflow):
         if config("run_final_testing"):
             if distributed:
                 dist.barrier()
-            _ckpt_name = best_ckpt_path if os.path.exists(best_ckpt_path) else intermediate_ckpt_path
+            _ckpt_name = (
+                best_ckpt_path
+                if os.path.exists(best_ckpt_path)
+                else intermediate_ckpt_path
+            )
             if not os.path.exists(_ckpt_name):
-                logger.info(f"Unable to validate final no checkpoints found {best_ckpt_path}, {intermediate_ckpt_path}")
+                logger.info(
+                    f"Unable to validate final no checkpoints found {best_ckpt_path}, {intermediate_ckpt_path}"
+                )
             else:
                 # self._props.pop("network", None)
                 # self._set_props.pop("network", None)
@@ -802,7 +925,9 @@ class VistaCell(BundleWorkflow):
         )
         return best_metric
 
-    def run_final_testing(self, pretrained_ckpt_path, progress_path, best_metric_epoch, pre_loop_time):
+    def run_final_testing(
+        self, pretrained_ckpt_path, progress_path, best_metric_epoch, pre_loop_time
+    ):
         logger.info("Running final best model testing set!")
 
         # validate
@@ -815,7 +940,9 @@ class VistaCell(BundleWorkflow):
         val_acc_mean, val_loss, val_acc = self.validate(val_key="testing")
         validation_time = f"{time.time() - start_time:.2f}s"
         val_acc_mean = float(np.mean(val_acc))
-        logger.info(f"Testing: loss: {val_loss:.4f} acc_avg: {val_acc_mean:.4f} acc {val_acc} time {validation_time}")
+        logger.info(
+            f"Testing: loss: {val_loss:.4f} acc_avg: {val_acc_mean:.4f} acc {val_acc} time {validation_time}"
+        )
 
         if self.global_rank == 0 and progress_path is not None:
             self.save_progress_yaml(
@@ -830,24 +957,35 @@ class VistaCell(BundleWorkflow):
         return val_acc_mean
 
     def validate(self, validation_files=None, val_key=None, datalist=None):
-        if self.config("pretrained_ckpt_name", None) is None and self.config("pretrained_ckpt_path", None) is None:
+        if (
+            self.config("pretrained_ckpt_name", None) is None
+            and self.config("pretrained_ckpt_path", None) is None
+        ):
             self.parser["pretrained_ckpt_name"] = "model.pt"
             logger.info("Using default model.pt checkpoint for validation.")
 
-        grouping = self.config("validate#grouping", False)  # whether to computer average per datalist
+        grouping = self.config(
+            "validate#grouping", False
+        )  # whether to computer average per datalist
         if validation_files is None:
-            validation_files = self.read_val_datalists("validate", datalist, val_key=val_key, merge=not grouping)
+            validation_files = self.read_val_datalists(
+                "validate", datalist, val_key=val_key, merge=not grouping
+            )
         if len(validation_files) == 0:
             logger.warning(f"No validation files found {datalist} {val_key}!")
             return 0, 0, 0
         if not grouping or not isinstance(validation_files[0], (list, tuple)):
             validation_files = [validation_files]
-        logger.info(f"validation file groups {len(validation_files)} grouping {grouping}")
+        logger.info(
+            f"validation file groups {len(validation_files)} grouping {grouping}"
+        )
         val_acc_dict = {}
 
-        amp_dtype = {"float32": torch.float32, "bfloat16": torch.bfloat16, "float16": torch.float16}[
-            self.config("amp_dtype")
-        ]
+        amp_dtype = {
+            "float32": torch.float32,
+            "bfloat16": torch.bfloat16,
+            "float16": torch.float16,
+        }[self.config("amp_dtype")]
         if amp_dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
             amp_dtype = torch.float16
             logger.warning(
@@ -886,12 +1024,17 @@ class VistaCell(BundleWorkflow):
         return val_acc_mean, val_loss, val_acc
 
     def infer(self, infer_files=None, infer_key=None, datalist=None):
-        if self.config("pretrained_ckpt_name", None) is None and self.config("pretrained_ckpt_path", None) is None:
+        if (
+            self.config("pretrained_ckpt_name", None) is None
+            and self.config("pretrained_ckpt_path", None) is None
+        ):
             self.parser["pretrained_ckpt_name"] = "model.pt"
             logger.info("Using default model.pt checkpoint for inference.")
 
         if infer_files is None:
-            infer_files = self.read_val_datalists("infer", datalist, val_key=infer_key, merge=True)
+            infer_files = self.read_val_datalists(
+                "infer", datalist, val_key=infer_key, merge=True
+            )
         if len(infer_files) == 0:
             logger.warning(f"no file to infer {datalist} {infer_key}.")
             return
@@ -899,9 +1042,11 @@ class VistaCell(BundleWorkflow):
         self.set_val_datalist(infer_files)
         val_loader = self.val_loader
 
-        amp_dtype = {"float32": torch.float32, "bfloat16": torch.bfloat16, "float16": torch.float16}[
-            self.config("amp_dtype")
-        ]
+        amp_dtype = {
+            "float32": torch.float32,
+            "bfloat16": torch.bfloat16,
+            "float16": torch.float16,
+        }[self.config("amp_dtype")]
         if amp_dtype == torch.bfloat16 and not torch.cuda.is_bf16_supported():
             amp_dtype = torch.bfloat16
             logger.warning(
@@ -961,11 +1106,21 @@ class VistaCell(BundleWorkflow):
         # hence let's compute a proper subset length
         nonrepeated_data_length = len(val_loader.dataset)
         sampler = val_loader.sampler
-        if distributed and isinstance(sampler, DistributedSampler) and not sampler.drop_last:
-            nonrepeated_data_length = len(range(sampler.rank, len(sampler.dataset), sampler.num_replicas))
+        if (
+            distributed
+            and isinstance(sampler, DistributedSampler)
+            and not sampler.drop_last
+        ):
+            nonrepeated_data_length = len(
+                range(sampler.rank, len(sampler.dataset), sampler.num_replicas)
+            )
 
         for idx, batch_data in enumerate(val_loader):
-            data = batch_data["image"].as_subclass(torch.Tensor).to(memory_format=memory_format, device=device)
+            data = (
+                batch_data["image"]
+                .as_subclass(torch.Tensor)
+                .to(memory_format=memory_format, device=device)
+            )
             filename = batch_data["image"].meta[ImageMetaKey.FILENAME_OR_OBJ]
             batch_size = data.shape[0]
             loss = acc = None
@@ -976,7 +1131,11 @@ class VistaCell(BundleWorkflow):
 
             # calc loss
             if loss_function is not None:
-                target = batch_data["flow"].as_subclass(torch.Tensor).to(device=logits.device)
+                target = (
+                    batch_data["flow"]
+                    .as_subclass(torch.Tensor)
+                    .to(device=logits.device)
+                )
                 loss = loss_function(logits, target)
                 run_loss.append(loss.to(device=device), count=batch_size)
                 target = None
@@ -992,7 +1151,11 @@ class VistaCell(BundleWorkflow):
 
                 for b_ind in range(label.shape[0]):
                     acc = acc_function(pred_mask_all[b_ind], label[b_ind, 0].long())
-                    acc = acc.detach().clone() if isinstance(acc, torch.Tensor) else torch.tensor(acc)
+                    acc = (
+                        acc.detach().clone()
+                        if isinstance(acc, torch.Tensor)
+                        else torch.tensor(acc)
+                    )
 
                     if idx < nonrepeated_data_length:
                         run_acc.append(acc.to(device=device), count=1)
@@ -1009,9 +1172,14 @@ class VistaCell(BundleWorkflow):
             )
 
             if post_transforms:
-                seg = torch.from_numpy(np.stack(pred_mask_all, axis=0).astype(np.int32)).unsqueeze(1)
+                seg = torch.from_numpy(
+                    np.stack(pred_mask_all, axis=0).astype(np.int32)
+                ).unsqueeze(1)
                 batch_data["seg"] = convert_to_dst_type(
-                    seg, batch_data["image"], dtype=torch.int32, device=torch.device("cpu")
+                    seg,
+                    batch_data["image"],
+                    dtype=torch.int32,
+                    device=torch.device("cpu"),
                 )[0]
                 for bd in decollate_batch(batch_data):
                     post_transforms(bd)  # (currently only to save output mask)
@@ -1028,7 +1196,9 @@ class VistaCell(BundleWorkflow):
 
         if np.any(avg_acc < 0):
             dist.barrier()
-            logger.warning(f"Avg accuracy is negative ({avg_acc}), something went wrong!!!!!")
+            logger.warning(
+                f"Avg accuracy is negative ({avg_acc}), something went wrong!!!!!"
+            )
 
         return avg_loss, avg_acc
 
@@ -1057,8 +1227,16 @@ class VistaCell(BundleWorkflow):
         start_time = time.time()
         avg_loss = avg_acc = 0
         for idx, batch_data in enumerate(train_loader):
-            data = batch_data["image"].as_subclass(torch.Tensor).to(memory_format=memory_format, device=device)
-            target = batch_data["flow"].as_subclass(torch.Tensor).to(memory_format=memory_format, device=device)
+            data = (
+                batch_data["image"]
+                .as_subclass(torch.Tensor)
+                .to(memory_format=memory_format, device=device)
+            )
+            target = (
+                batch_data["flow"]
+                .as_subclass(torch.Tensor)
+                .to(memory_format=memory_format, device=device)
+            )
 
             optimizer.zero_grad(set_to_none=True)
 
@@ -1110,10 +1288,19 @@ class VistaCell(BundleWorkflow):
 
         if progress_path is not None:
             yaml.add_representer(
-                float, lambda dumper, value: dumper.represent_scalar("tag:yaml.org,2002:float", f"{value:.4f}")
+                float,
+                lambda dumper, value: dumper.represent_scalar(
+                    "tag:yaml.org,2002:float", f"{value:.4f}"
+                ),
             )
             with open(progress_path, "a") as progress_file:
-                yaml.dump([report], stream=progress_file, allow_unicode=True, default_flow_style=None, sort_keys=False)
+                yaml.dump(
+                    [report],
+                    stream=progress_file,
+                    allow_unicode=True,
+                    default_flow_style=None,
+                    sort_keys=False,
+                )
 
         logger.info("Progress:" + ",".join(f" {k}: {v}" for k, v in report.items()))
 
@@ -1128,13 +1315,18 @@ class VistaCell(BundleWorkflow):
         if self.config("compile", False):
             # remove key prefix of compiled models
             state_dict = OrderedDict(
-                (k[len("_orig_mod.") :] if k.startswith("_orig_mod.") else k, v) for k, v in state_dict.items()
+                (k[len("_orig_mod.") :] if k.startswith("_orig_mod.") else k, v)
+                for k, v in state_dict.items()
             )
 
-        torch.save({"state_dict": state_dict, "config": self.parser.config, **kwargs}, ckpt)
+        torch.save(
+            {"state_dict": state_dict, "config": self.parser.config, **kwargs}, ckpt
+        )
 
         save_time = time.time() - save_time
-        logger.info(f"Saving checkpoint process: {ckpt}, {kwargs}, save_time {save_time:.2f}s")
+        logger.info(
+            f"Saving checkpoint process: {ckpt}, {kwargs}, save_time {save_time:.2f}s"
+        )
 
         return save_time
 
@@ -1165,7 +1357,9 @@ class VistaCell(BundleWorkflow):
         self.parser["start_epoch"] = int(self.config("start_epoch")) + 1
         return
 
-    def schedule_validation_epochs(self, num_epochs, num_epochs_per_validation=None, fraction=0.16) -> list:
+    def schedule_validation_epochs(
+        self, num_epochs, num_epochs_per_validation=None, fraction=0.16
+    ) -> list:
         """
         Schedule of epochs to validate (progressively more frequently)
             num_epochs - total number of epochs
@@ -1174,7 +1368,10 @@ class VistaCell(BundleWorkflow):
         """
 
         if num_epochs_per_validation is None:
-            x = (np.sin(np.linspace(0, np.pi / 2, max(10, int(fraction * num_epochs)))) * num_epochs).astype(int)
+            x = (
+                np.sin(np.linspace(0, np.pi / 2, max(10, int(fraction * num_epochs))))
+                * num_epochs
+            ).astype(int)
             x = np.cumsum(np.sort(np.diff(np.unique(x)))[::-1])
             x[-1] = num_epochs
             x = x.tolist()
@@ -1182,7 +1379,11 @@ class VistaCell(BundleWorkflow):
             if num_epochs_per_validation >= num_epochs:
                 x = [num_epochs_per_validation]
             else:
-                x = list(range(num_epochs_per_validation, num_epochs, num_epochs_per_validation))
+                x = list(
+                    range(
+                        num_epochs_per_validation, num_epochs, num_epochs_per_validation
+                    )
+                )
 
         if len(x) == 0:
             x = [0]

@@ -36,8 +36,12 @@ class TestVista2d(unittest.TestCase):
         self.dataset_size = 5
         input_shape = (256, 256)
         for s in range(self.dataset_size):
-            test_image = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
-            test_label = np.random.randint(low=0, high=2, size=input_shape).astype(np.int8)
+            test_image = np.random.randint(low=0, high=2, size=input_shape).astype(
+                np.int8
+            )
+            test_label = np.random.randint(low=0, high=2, size=input_shape).astype(
+                np.int8
+            )
             image_filename = os.path.join(self.dataset_dir, f"image_{s}.png")
             label_filename = os.path.join(self.dataset_dir, f"label_{s}.png")
             plt.imsave(image_filename, test_image, cmap="gray")

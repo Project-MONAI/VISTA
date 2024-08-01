@@ -41,16 +41,23 @@ class LoadTiffd(MapTransform):
                 img_array = tifffile.imread(filename)  # use tifffile for tif images
                 image_size = img_array.shape
                 if len(img_array.shape) == 3 and img_array.shape[-1] <= 3:
-                    img_array = np.transpose(img_array, (2, 0, 1))  # channels first without transpose
+                    img_array = np.transpose(
+                        img_array, (2, 0, 1)
+                    )  # channels first without transpose
             else:
-                img_array = np.array(PIL.Image.open(filename))  # PIL for all other images (png, jpeg)
+                img_array = np.array(
+                    PIL.Image.open(filename)
+                )  # PIL for all other images (png, jpeg)
                 image_size = img_array.shape
                 if len(img_array.shape) == 3:
                     img_array = np.transpose(img_array, (2, 0, 1))  # channels first
 
             if len(img_array.shape) not in [2, 3]:
                 raise ValueError(
-                    "Unsupported image dimensions, filename " + str(filename) + " shape " + str(img_array.shape)
+                    "Unsupported image dimensions, filename "
+                    + str(filename)
+                    + " shape "
+                    + str(img_array.shape)
                 )
 
             if len(img_array.shape) == 2:
@@ -65,7 +72,9 @@ class LoadTiffd(MapTransform):
 
             elif key == "image":
                 if img_array.shape[0] == 1:
-                    img_array = np.repeat(img_array, repeats=3, axis=0)  # if grayscale, repeat as 3 channels
+                    img_array = np.repeat(
+                        img_array, repeats=3, axis=0
+                    )  # if grayscale, repeat as 3 channels
                 elif img_array.shape[0] == 2:
                     print(
                         f"Strange case, image with 2 channels {filename} shape {img_array.shape}, appending first channel to make 3"
@@ -74,17 +83,24 @@ class LoadTiffd(MapTransform):
                         (img_array[0], img_array[1], img_array[0]), axis=0
                     )  # this should not happen, we got 2 channel input image
                 elif img_array.shape[0] > 3:
-                    print(f"Strange case, image with >3 channels,  {filename} shape {img_array.shape}, keeping first 3")
+                    print(
+                        f"Strange case, image with >3 channels,  {filename} shape {img_array.shape}, keeping first 3"
+                    )
                     img_array = img_array[:3]
 
-            meta_data = {ImageMetaKey.FILENAME_OR_OBJ: filename, ImageMetaKey.SPATIAL_SHAPE: image_size}
+            meta_data = {
+                ImageMetaKey.FILENAME_OR_OBJ: filename,
+                ImageMetaKey.SPATIAL_SHAPE: image_size,
+            }
             d[key] = MetaTensor.ensure_torch_and_prune_meta(img_array, meta_data)
 
         return d
 
 
 class SaveTiffd(MapTransform):
-    def __init__(self, output_dir, data_root_dir="/", nested_folder=False, *args, **kwargs) -> None:
+    def __init__(
+        self, output_dir, data_root_dir="/", nested_folder=False, *args, **kwargs
+    ) -> None:
         super().__init__(*args, **kwargs)
 
         self.output_dir = output_dir
@@ -124,7 +140,9 @@ class SaveTiffd(MapTransform):
 
             tifffile.imwrite(outname, label)
 
-            print(f"Saving {outname} shape {label.shape} max {label.max()} dtype {label.dtype}")
+            print(
+                f"Saving {outname} shape {label.shape} max {label.max()} dtype {label.dtype}"
+            )
 
         return d
 
@@ -146,7 +164,9 @@ class LabelsToFlows(MapTransform):
             veci = masks_to_flows(label[0], device=None)
 
             flows = np.concatenate((label > 0.5, veci), axis=0).astype(np.float32)
-            flows = convert_to_dst_type(flows, d[key], dtype=torch.float, device=d[key].device)[0]
+            flows = convert_to_dst_type(
+                flows, d[key], dtype=torch.float, device=d[key].device
+            )[0]
             d[self.flow_key] = flows
             # meta_data = {ImageMetaKey.FILENAME_OR_OBJ : filename}
             # d[key] = MetaTensor.ensure_torch_and_prune_meta(img_array, meta_data)
@@ -171,7 +191,9 @@ class LogitsToLabels:
                 device=device,
             )
         except RuntimeError as e:
-            logger.warning(f"compute_masks failed on GPU retrying on CPU {logits.shape} file {filename} {e}")
+            logger.warning(
+                f"compute_masks failed on GPU retrying on CPU {logits.shape} file {filename} {e}"
+            )
             pred_mask, p = compute_masks(
                 dP,
                 cellprob,
@@ -197,7 +219,15 @@ class LogitsToLabelsd(MapTransform):
 
 
 class SaveTiffExd(MapTransform):
-    def __init__(self, output_dir, output_ext=".png", output_postfix="seg", image_key="image", *args, **kwargs) -> None:
+    def __init__(
+        self,
+        output_dir,
+        output_ext=".png",
+        output_postfix="seg",
+        image_key="image",
+        *args,
+        **kwargs,
+    ) -> None:
         super().__init__(*args, **kwargs)
 
         self.output_dir = output_dir
@@ -224,9 +254,15 @@ class SaveTiffExd(MapTransform):
         os.makedirs(self.output_dir, exist_ok=True)
 
         img = d.get(self.image_key, None)
-        filename = img.meta.get(ImageMetaKey.FILENAME_OR_OBJ) if img is not None else None
-        image_size = img.meta.get(ImageMetaKey.SPATIAL_SHAPE) if img is not None else None
-        basename = os.path.splitext(os.path.basename(filename))[0] if filename else "mask"
+        filename = (
+            img.meta.get(ImageMetaKey.FILENAME_OR_OBJ) if img is not None else None
+        )
+        image_size = (
+            img.meta.get(ImageMetaKey.SPATIAL_SHAPE) if img is not None else None
+        )
+        basename = (
+            os.path.splitext(os.path.basename(filename))[0] if filename else "mask"
+        )
         logger.info(f"File: {filename}; Base: {basename}")
 
         for key in self.key_iterator(d):
@@ -256,13 +292,17 @@ class SaveTiffExd(MapTransform):
                     m = np.zeros_like(mask)
                     m[mask == i] = 1
                     color = np.random.choice(range(256), size=3).tolist()
-                    contours, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+                    contours, _ = cv2.findContours(
+                        m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE
+                    )
                     polygons.extend(self.to_polygons(contours))
                     cv2.drawContours(image, contours, -1, color, 1)
                 cv2.imwrite(output_filepath, image)
                 logger.info(f"Overlay Masks: Saving {output_filepath}")
             else:
-                contours, _ = cv2.findContours(label, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+                contours, _ = cv2.findContours(
+                    label, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE
+                )
                 polygons.extend(self.to_polygons(contours))
 
             meta_json = {"image_size": image_size, "contours": len(polygons)}
@@ -272,7 +312,9 @@ class SaveTiffExd(MapTransform):
             if output_contours:
                 logger.info(f"Total Polygons: {len(polygons)}")
                 with open(os.path.join(output_dir, "contours.json"), "w") as fp:
-                    json.dump({"count": len(polygons), "contours": polygons}, fp, indent=2)
+                    json.dump(
+                        {"count": len(polygons), "contours": polygons}, fp, indent=2
+                    )
 
         return d
 
@@ -280,9 +322,9 @@ class SaveTiffExd(MapTransform):
 # Loss (adopted from Cellpose)
 class CellLoss:
     def __call__(self, y_pred, y):
-        loss = 0.5 * F.mse_loss(y_pred[:, 1:], 5 * y[:, 1:]) + F.binary_cross_entropy_with_logits(
-            y_pred[:, [0]], y[:, [0]]
-        )
+        loss = 0.5 * F.mse_loss(
+            y_pred[:, 1:], 5 * y[:, 1:]
+        ) + F.binary_cross_entropy_with_logits(y_pred[:, [0]], y[:, [0]])
         return loss
 
 

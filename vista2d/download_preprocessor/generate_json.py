@@ -47,9 +47,12 @@ def guess_convert_to_uint16(img, margin=30):
             imsmall = im[::4, ::4]  # subsample
             # imsmall = im
 
-            scale = int(np.round(1 / np.min(np.diff(np.unique(imsmall)))))  # guessing scale
+            scale = int(
+                np.round(1 / np.min(np.diff(np.unique(imsmall))))
+            )  # guessing scale
             test = [
-                (np.sum((imsmall * k) % 1)) for k in range(scale - margin, scale + margin)
+                (np.sum((imsmall * k) % 1))
+                for k in range(scale - margin, scale + margin)
             ]  # finetune, guess a multiplier that makes all pixels integers
             sid = np.argmin(test)  # fine tune scale
             # print('guessing scale', scale, test[margin], 'fine tuning scale', scale - margin + sid, 'dif', test[sid], 'time', time.time()-start)
@@ -159,7 +162,10 @@ def remove_overlaps(masks, medians, overlap_threshold=0.75):
     masks[tocell, overlaps[:, 0], overlaps[:, 1]] = 1
 
     # labels should be 1 to mask.shape[0]
-    masks = masks.astype(int) * np.arange(1, masks.shape[0] + 1, 1, int)[:, np.newaxis, np.newaxis]
+    masks = (
+        masks.astype(int)
+        * np.arange(1, masks.shape[0] + 1, 1, int)[:, np.newaxis, np.newaxis]
+    )
     masks = masks.sum(axis=0)
     gc.collect()
     return masks
@@ -181,11 +187,25 @@ def livecell_json_files(dataset_dir, json_f_path):
             print(f"Working on split: {split}")
 
             if split == "test":
-                img_path = os.path.join(dataset_dir, "images", "livecell_test_images", each_cell_tp)
-                msk_path = os.path.join(dataset_dir, "images", "livecell_test_images", each_cell_tp + "_masks")
+                img_path = os.path.join(
+                    dataset_dir, "images", "livecell_test_images", each_cell_tp
+                )
+                msk_path = os.path.join(
+                    dataset_dir,
+                    "images",
+                    "livecell_test_images",
+                    each_cell_tp + "_masks",
+                )
             else:
-                img_path = os.path.join(dataset_dir, "images", "livecell_train_val_images", each_cell_tp)
-                msk_path = os.path.join(dataset_dir, "images", "livecell_train_val_images", each_cell_tp + "_masks")
+                img_path = os.path.join(
+                    dataset_dir, "images", "livecell_train_val_images", each_cell_tp
+                )
+                msk_path = os.path.join(
+                    dataset_dir,
+                    "images",
+                    "livecell_train_val_images",
+                    each_cell_tp + "_masks",
+                )
             if not os.path.exists(msk_path):
                 os.makedirs(msk_path)
 
@@ -205,12 +225,18 @@ def livecell_json_files(dataset_dir, json_f_path):
             height = []
             width = []
             for index, im in enumerate(images):
-                print("Status: {}/{}, Process image: {}".format(index, len(images), im["file_name"]))
+                print(
+                    "Status: {}/{}, Process image: {}".format(
+                        index, len(images), im["file_name"]
+                    )
+                )
                 if (
                     im["file_name"] == "BV2_Phase_C4_2_03d00h00m_1.tif"
                     or im["file_name"] == "BV2_Phase_C4_2_03d00h00m_3.tif"
                 ):
-                    print("Skipping the file: BV2_Phase_C4_2_03d00h00m_1.tif, as it is troublesome")
+                    print(
+                        "Skipping the file: BV2_Phase_C4_2_03d00h00m_1.tif, as it is troublesome"
+                    )
                     continue
                 # load image
                 img = Image.open(os.path.join(img_path, im["file_name"])).convert("L")
@@ -230,7 +256,14 @@ def livecell_json_files(dataset_dir, json_f_path):
                     mask = annotation.annToMask(ann)
                     masks.append(mask)
                     ypix, xpix = mask.nonzero()
-                    medians.append(np.array([ypix.mean().astype(np.float32), xpix.mean().astype(np.float32)]))
+                    medians.append(
+                        np.array(
+                            [
+                                ypix.mean().astype(np.float32),
+                                xpix.mean().astype(np.float32),
+                            ]
+                        )
+                    )
                     k += 1
                     # add instance mask to image mask
                     # msk = np.add(msk, mask*idx)
@@ -249,7 +282,9 @@ def livecell_json_files(dataset_dir, json_f_path):
                 # cell_type = t_filename.split('_')[0] #? not used
                 new_mask_name = t_filename[:-4] + "_masks.tif"
                 # mask_pil.save(os.path.join(msk_path, new_mask_name))
-                imageio.imwrite(os.path.join(msk_path, new_mask_name), min_label_precision(masks))
+                imageio.imwrite(
+                    os.path.join(msk_path, new_mask_name), min_label_precision(masks)
+                )
                 gc.collect()
 
             print(f"In total {len(images)} images")
@@ -257,10 +292,18 @@ def livecell_json_files(dataset_dir, json_f_path):
         # The directory containing your files
         # cell_type = 'BV2'
         json_save_path = os.path.join(json_f_path, f"lc_{each_cell_tp}.json")
-        directory = os.path.join(dataset_dir, "images", "livecell_train_val_images", each_cell_tp)
-        mask_directory = os.path.join(dataset_dir, "images", "livecell_train_val_images", each_cell_tp + "_masks")
-        test_directory = os.path.join(dataset_dir, "images", "livecell_test_images", each_cell_tp)
-        mask_test_directory = os.path.join(dataset_dir, "images", "livecell_test_images", each_cell_tp + "_masks")
+        directory = os.path.join(
+            dataset_dir, "images", "livecell_train_val_images", each_cell_tp
+        )
+        mask_directory = os.path.join(
+            dataset_dir, "images", "livecell_train_val_images", each_cell_tp + "_masks"
+        )
+        test_directory = os.path.join(
+            dataset_dir, "images", "livecell_test_images", each_cell_tp
+        )
+        mask_test_directory = os.path.join(
+            dataset_dir, "images", "livecell_test_images", each_cell_tp + "_masks"
+        )
         # List to hold all image-mask pairs
         data_pairs = []
         test_data_pairs = []
@@ -278,7 +321,11 @@ def livecell_json_files(dataset_dir, json_f_path):
                     data_pairs.append(
                         {
                             "image": os.path.join(
-                                "livecell_dataset", "images", "livecell_train_val_images", each_cell_tp, filename
+                                "livecell_dataset",
+                                "images",
+                                "livecell_train_val_images",
+                                each_cell_tp,
+                                filename,
                             ),
                             "label": os.path.join(
                                 "livecell_dataset",
@@ -318,7 +365,11 @@ def livecell_json_files(dataset_dir, json_f_path):
                     test_data_pairs.append(
                         {
                             "image": os.path.join(
-                                "livecell_dataset", "images", "livecell_test_images", each_cell_tp, filename
+                                "livecell_dataset",
+                                "images",
+                                "livecell_test_images",
+                                each_cell_tp,
+                                filename,
                             ),
                             "label": os.path.join(
                                 "livecell_dataset",
@@ -370,18 +421,33 @@ def tissuenet_json_files(dataset_dir, json_f_path):
                     print(f"Working on {t} {p}")
 
                     for k, i in enumerate(ix):
-                        print(f"Status: {k}/{len(ix)} {tp}/{len(tlabels) * len(plabels)} {t} {p}")
+                        print(
+                            f"Status: {k}/{len(ix)} {tp}/{len(tlabels) * len(plabels)} {t} {p}"
+                        )
                         img = data[i].transpose(2, 0, 1)
                         label = labels[i][:, :, 0]
 
-                        img = guess_convert_to_uint16(img)  # guess inverse scale and convert to uint16
+                        img = guess_convert_to_uint16(
+                            img
+                        )  # guess inverse scale and convert to uint16
                         label = min_label_precision(label)
 
                         if folder == "train":
-                            img = img.reshape(2, 2, 256, 2, 256).transpose(0, 1, 3, 2, 4).reshape(2, 4, 256, 256)
-                            label = label.reshape(2, 256, 2, 256).transpose(0, 2, 1, 3).reshape(4, 256, 256)
+                            img = (
+                                img.reshape(2, 2, 256, 2, 256)
+                                .transpose(0, 1, 3, 2, 4)
+                                .reshape(2, 4, 256, 256)
+                            )
+                            label = (
+                                label.reshape(2, 256, 2, 256)
+                                .transpose(0, 2, 1, 3)
+                                .reshape(4, 256, 256)
+                            )
 
-                            zero_channel = np.zeros((1, img.shape[1], img.shape[2], img.shape[3]), dtype=img.dtype)
+                            zero_channel = np.zeros(
+                                (1, img.shape[1], img.shape[2], img.shape[3]),
+                                dtype=img.dtype,
+                            )
 
                             # Concatenate the zero channel with the original array along the first dimension
                             new_array = np.concatenate([img, zero_channel], axis=0)
@@ -391,16 +457,34 @@ def tissuenet_json_files(dataset_dir, json_f_path):
                                 # imwrite(f'/scratch_2/cell_imaging_2023/tissuenet/tissuenet_v1.0/tissuenet_1_cellpose_way/{folder}/{t}_{p}_{k}_{j}_masks.tif', label[j])
                                 img_name = f"{folder}/{t}_{p}_{k}_{j}.tif"
                                 mask_name = f"{folder}/{t}_{p}_{k}_{j}_masks.tif"
-                                imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", img_name), new_array[:, j])
-                                imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", mask_name), label[j])
+                                imageio.imwrite(
+                                    os.path.join(
+                                        dataset_dir, "tissuenet_1.0", img_name
+                                    ),
+                                    new_array[:, j],
+                                )
+                                imageio.imwrite(
+                                    os.path.join(
+                                        dataset_dir, "tissuenet_1.0", mask_name
+                                    ),
+                                    label[j],
+                                )
                         else:
-                            zero_channel = np.zeros((1, img.shape[1], img.shape[2]), dtype=img.dtype)
+                            zero_channel = np.zeros(
+                                (1, img.shape[1], img.shape[2]), dtype=img.dtype
+                            )
                             new_array = np.concatenate([img, zero_channel], axis=0)
                             # reshaped_array = np.transpose(new_array, (1, 2, 0))
                             img_name = f"{folder}/{t}_{p}_{k}.tif"
                             mask_name = f"{folder}/{t}_{p}_{k}_masks.tif"
-                            imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", img_name), new_array)
-                            imageio.imwrite(os.path.join(dataset_dir, "tissuenet_1.0", mask_name), label)
+                            imageio.imwrite(
+                                os.path.join(dataset_dir, "tissuenet_1.0", img_name),
+                                new_array,
+                            )
+                            imageio.imwrite(
+                                os.path.join(dataset_dir, "tissuenet_1.0", mask_name),
+                                label,
+                            )
 
     t_p_combos = [
         ["breast", "imc"],
@@ -424,31 +508,58 @@ def tissuenet_json_files(dataset_dir, json_f_path):
         json_f_subset_path = os.path.join(json_f_path, json_f_name)
 
         tp_match = each_t_p[0] + "_" + each_t_p[1]
-        train_filenames = get_filenames_exclude_masks(os.path.join(dataset_dir, "tissuenet_1.0", "train"), tp_match)
-        val_filenames = get_filenames_exclude_masks(os.path.join(dataset_dir, "tissuenet_1.0", "val"), tp_match)
-        test_filenames = get_filenames_exclude_masks(os.path.join(dataset_dir, "tissuenet_1.0", "test"), tp_match)
+        train_filenames = get_filenames_exclude_masks(
+            os.path.join(dataset_dir, "tissuenet_1.0", "train"), tp_match
+        )
+        val_filenames = get_filenames_exclude_masks(
+            os.path.join(dataset_dir, "tissuenet_1.0", "val"), tp_match
+        )
+        test_filenames = get_filenames_exclude_masks(
+            os.path.join(dataset_dir, "tissuenet_1.0", "test"), tp_match
+        )
 
         train_data_list = []
         test_data_list = []
 
         for each_tf in train_filenames:
             t_dict = {
-                "image": os.path.join("tissuenet_dataset", "tissuenet_1.0", "train", each_tf),
-                "label": os.path.join("tissuenet_dataset", "tissuenet_1.0", "train", each_tf[:-4] + "_masks.tif"),
+                "image": os.path.join(
+                    "tissuenet_dataset", "tissuenet_1.0", "train", each_tf
+                ),
+                "label": os.path.join(
+                    "tissuenet_dataset",
+                    "tissuenet_1.0",
+                    "train",
+                    each_tf[:-4] + "_masks.tif",
+                ),
             }
             train_data_list.append(t_dict)
 
         for each_vf in val_filenames:
             t_dict = {
-                "image": os.path.join("tissuenet_dataset", "tissuenet_1.0", "val", each_vf),
-                "label": os.path.join("tissuenet_dataset", "tissuenet_1.0", "val", each_vf[:-4] + "_masks.tif"),
+                "image": os.path.join(
+                    "tissuenet_dataset", "tissuenet_1.0", "val", each_vf
+                ),
+                "label": os.path.join(
+                    "tissuenet_dataset",
+                    "tissuenet_1.0",
+                    "val",
+                    each_vf[:-4] + "_masks.tif",
+                ),
             }
             train_data_list.append(t_dict)
 
         for each_tf in test_filenames:
             t_dict = {
-                "image": os.path.join("tissuenet_dataset", "tissuenet_1.0", "test", each_tf),
-                "label": os.path.join("tissuenet_dataset", "tissuenet_1.0", "test", each_tf[:-4] + "_masks.tif"),
+                "image": os.path.join(
+                    "tissuenet_dataset", "tissuenet_1.0", "test", each_tf
+                ),
+                "label": os.path.join(
+                    "tissuenet_dataset",
+                    "tissuenet_1.0",
+                    "test",
+                    each_tf[:-4] + "_masks.tif",
+                ),
             }
             test_data_list.append(t_dict)
 
@@ -511,16 +622,36 @@ def omnipose_json_file(dataset_dir, json_path):
                 base_name = os.path.splitext(image_file)[0]
 
                 # Construct the label file name by adding '_label' before the extension
-                label_file = base_name + "_masks.tif"  # + os.path.splitext(image_file)[1]
+                label_file = (
+                    base_name + "_masks.tif"
+                )  # + os.path.splitext(image_file)[1]
                 flows_file = base_name + "_flows.tif"
                 # Check if the corresponding label file exists in the labels folder
                 if label_file in os.listdir(os.path.join(images_folder, each_sub)):
                     # Add the file names to the training data list
                     training_data.append(
                         {
-                            "image": os.path.join("omnipose_dataset", each_op, "train_sorted", each_sub, image_file),
-                            "label": os.path.join("omnipose_dataset", each_op, "train_sorted", each_sub, label_file),
-                            "flows": os.path.join("omnipose_dataset", each_op, "train_sorted", each_sub, flows_file),
+                            "image": os.path.join(
+                                "omnipose_dataset",
+                                each_op,
+                                "train_sorted",
+                                each_sub,
+                                image_file,
+                            ),
+                            "label": os.path.join(
+                                "omnipose_dataset",
+                                each_op,
+                                "train_sorted",
+                                each_sub,
+                                label_file,
+                            ),
+                            "flows": os.path.join(
+                                "omnipose_dataset",
+                                each_op,
+                                "train_sorted",
+                                each_sub,
+                                flows_file,
+                            ),
                         }
                     )
 
@@ -547,24 +678,38 @@ def omnipose_json_file(dataset_dir, json_path):
         # Loop through each image file to find its corresponding label file
         for each_test_sub in test_sub_dirs:
             # List files in the images folder
-            test_image_files = os.listdir(os.path.join(test_images_folder, each_test_sub))
+            test_image_files = os.listdir(
+                os.path.join(test_images_folder, each_test_sub)
+            )
             for image_file in test_image_files:
                 # Extract the name without the extension
                 base_name = os.path.splitext(image_file)[0]
 
                 # Construct the label file name by adding '_label' before the extension
-                label_file = base_name + "_masks.tif"  # + os.path.splitext(image_file)[1]
+                label_file = (
+                    base_name + "_masks.tif"
+                )  # + os.path.splitext(image_file)[1]
 
                 # Check if the corresponding label file exists in the labels folder
-                if label_file in os.listdir(os.path.join(test_images_folder, each_test_sub)):
+                if label_file in os.listdir(
+                    os.path.join(test_images_folder, each_test_sub)
+                ):
                     # Add the file names to the training data list
                     testing_data.append(
                         {
                             "image": os.path.join(
-                                "omnipose_dataset", each_op, "test_sorted", each_test_sub, image_file
+                                "omnipose_dataset",
+                                each_op,
+                                "test_sorted",
+                                each_test_sub,
+                                image_file,
                             ),
                             "label": os.path.join(
-                                "omnipose_dataset", each_op, "test_sorted", each_test_sub, label_file
+                                "omnipose_dataset",
+                                each_op,
+                                "test_sorted",
+                                each_test_sub,
+                                label_file,
                             ),
                         }
                     )
@@ -609,8 +754,12 @@ def nips_json_file(dataset_dir, json_f_path):
                 # Add the file names to the training data list
                 data_pairs.append(
                     {
-                        "image": os.path.join("nips_dataset", "Training-labeled", "images", filename),
-                        "label": os.path.join("nips_dataset", "Training-labeled", "labels", label_file),
+                        "image": os.path.join(
+                            "nips_dataset", "Training-labeled", "images", filename
+                        ),
+                        "label": os.path.join(
+                            "nips_dataset", "Training-labeled", "labels", label_file
+                        ),
                     }
                 )
 
@@ -644,8 +793,12 @@ def nips_json_file(dataset_dir, json_f_path):
                 # Add the file names to the training data list
                 test_data_pairs.append(
                     {
-                        "image": os.path.join("nips_dataset", "Testing", "Public", "images", filename),
-                        "label": os.path.join("nips_dataset", "Testing", "Public", "labels", label_file),
+                        "image": os.path.join(
+                            "nips_dataset", "Testing", "Public", "images", filename
+                        ),
+                        "label": os.path.join(
+                            "nips_dataset", "Testing", "Public", "labels", label_file
+                        ),
                     }
                 )
 
@@ -686,8 +839,13 @@ def kaggle_json_file(dataset_dir, json_f_path):
                 # image_data = imageio.imread(image_file)
                 # normalized_image = normalize_image(image_data[..., :3])
                 # imageio.imwrite(os.path.join(saving_path, f"{filename_prefix}img.tiff"), normalized_image)
-                shutil.copyfile(image_file, os.path.join(saving_path, f"{filename_prefix}img.png"))
-                imageio.imwrite(os.path.join(saving_path, f"{filename_prefix}img_masks.tiff"), mask_data)
+                shutil.copyfile(
+                    image_file, os.path.join(saving_path, f"{filename_prefix}img.png")
+                )
+                imageio.imwrite(
+                    os.path.join(saving_path, f"{filename_prefix}img_masks.tiff"),
+                    mask_data,
+                )
 
     directory = saving_path
 
@@ -706,8 +864,12 @@ def kaggle_json_file(dataset_dir, json_f_path):
                 # Add the pair to the list
                 data_pairs.append(
                     {
-                        "image": os.path.join("kaggle_dataset", "instance_processed_data", filename),
-                        "label": os.path.join("kaggle_dataset", "instance_processed_data", mask_filename),
+                        "image": os.path.join(
+                            "kaggle_dataset", "instance_processed_data", filename
+                        ),
+                        "label": os.path.join(
+                            "kaggle_dataset", "instance_processed_data", mask_filename
+                        ),
                     }
                 )
 
@@ -762,8 +924,12 @@ def deepbacs_json_file(dataset_dir, json_f_path):
                 # Add the pair to the list
                 data_pairs.append(
                     {
-                        "image": os.path.join("deepbacs_dataset", "training", "source", filename),
-                        "label": os.path.join("deepbacs_dataset", "training", "target", mask_filename),
+                        "image": os.path.join(
+                            "deepbacs_dataset", "training", "source", filename
+                        ),
+                        "label": os.path.join(
+                            "deepbacs_dataset", "training", "target", mask_filename
+                        ),
                     }
                 )
 
@@ -794,8 +960,12 @@ def deepbacs_json_file(dataset_dir, json_f_path):
                 # Add the pair to the list
                 test_data_pairs.append(
                     {
-                        "image": os.path.join("deepbacs_dataset", "test", "source", filename),
-                        "label": os.path.join("deepbacs_dataset", "test", "target", filename),
+                        "image": os.path.join(
+                            "deepbacs_dataset", "test", "source", filename
+                        ),
+                        "label": os.path.join(
+                            "deepbacs_dataset", "test", "target", filename
+                        ),
                     }
                 )
 
@@ -837,7 +1007,9 @@ def cellpose_json_file(dataset_dir, json_f_path):
                 data_pairs.append(
                     {
                         "image": os.path.join("cellpose_dataset", "train", filename),
-                        "label": os.path.join("cellpose_dataset", "train", mask_filename),
+                        "label": os.path.join(
+                            "cellpose_dataset", "train", mask_filename
+                        ),
                     }
                 )
 
@@ -869,7 +1041,9 @@ def cellpose_json_file(dataset_dir, json_f_path):
                 test_data_pairs.append(
                     {
                         "image": os.path.join("cellpose_dataset", "test", filename),
-                        "label": os.path.join("cellpose_dataset", "test", mask_filename),
+                        "label": os.path.join(
+                            "cellpose_dataset", "test", mask_filename
+                        ),
                     }
                 )
 
@@ -896,7 +1070,12 @@ def extract_zip(zip_path, extract_to):
 
 def main():
     parser = argparse.ArgumentParser(description="Process some integers.")
-    parser.add_argument("--dir", type=str, help="Directory of datasets to generate json", default="/set/the/path")
+    parser.add_argument(
+        "--dir",
+        type=str,
+        help="Directory of datasets to generate json",
+        default="/set/the/path",
+    )
 
     args = parser.parse_args()
     data_root_path = os.path.normpath(args.dir)
@@ -964,7 +1143,9 @@ def main():
             kaggle_json_file(dataset_dir=dataset_path, json_f_path=json_f_path)
 
         elif key == "livecell_dataset":
-            print("Creating LiveCell Dataset Json files ... Please note that 7 files will be created from livecell")
+            print(
+                "Creating LiveCell Dataset Json files ... Please note that 7 files will be created from livecell"
+            )
             dataset_path = os.path.join(data_root_path, key)
             json_base_name = os.path.join(data_root_path, "json_files")
             livecell_json_files(dataset_dir=dataset_path, json_f_path=json_base_name)
@@ -976,7 +1157,9 @@ def main():
             deepbacs_json_file(dataset_dir=dataset_path, json_f_path=json_path)
 
         elif key == "tissuenet_dataset":
-            print("Creating TissueNet Dataset Json files ... Please note that 13 files will be created from tissuenet")
+            print(
+                "Creating TissueNet Dataset Json files ... Please note that 13 files will be created from tissuenet"
+            )
             dataset_path = os.path.join(data_root_path, key)
             json_base_name = os.path.join(data_root_path, "json_files")
             tissuenet_json_files(dataset_dir=dataset_path, json_f_path=json_base_name)

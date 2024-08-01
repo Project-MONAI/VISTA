@@ -59,7 +59,9 @@ def export_config_and_run_mgpu_cmd(
     step 3: produce multi-gpu running command
     step 4: run produced command
     """
-    export_overrided_config(config_file=config_file, override_dict=override_dict, output_path=output_path)
+    export_overrided_config(
+        config_file=config_file, override_dict=override_dict, output_path=output_path
+    )
     if check_config is True:
         workflow = create_workflow(
             workflow_name=workflow_name,
@@ -69,8 +71,12 @@ def export_config_and_run_mgpu_cmd(
         )
         check_result = workflow.check_properties()
         if check_result is not None and len(check_result) > 0:
-            raise ValueError(f"check properties for overrided mgpu configs failed: {check_result}")
-    cmd = produce_mgpu_cmd(config_file=output_path, meta_file=meta_file, nnodes=nnode, nproc_per_node=ngpu)
+            raise ValueError(
+                f"check properties for overrided mgpu configs failed: {check_result}"
+            )
+    cmd = produce_mgpu_cmd(
+        config_file=output_path, meta_file=meta_file, nnodes=nnode, nproc_per_node=ngpu
+    )
     env = os.environ.copy()
     # ensure customized library can be loaded in subprocess
     env["PYTHONPATH"] = override_dict.get("bundle_root", ".")
