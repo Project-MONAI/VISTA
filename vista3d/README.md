@@ -68,7 +68,7 @@ VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Onc
 ## Usage
 
 ### Installation
-The code requires `monai>=1.3`. Download the [model checkpoint](xxxx) and save it at ./models/model.pt.
+The code requires `monai>=1.3`. Download the [model checkpoint](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing) and save it at ./models/model.pt.
 ```
 docker pull projectmonai/monai:1.3.2
 ```
@@ -77,8 +77,8 @@ docker pull projectmonai/monai:1.3.2
 ### Inference
 We provide two ways to use the model for inference.
 1. We recommend users to use the optimized and standardized [MONAI bundle]() model. The bundle provides a unified API for inference.
-The [VISTA3D NVIDIA Inference Microservices (NIM)]() deploys the bundle with an interactive front-end.
-2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM]() and [monai bundle]() developments and those functions will be deprecated in the future.
+The [VISTA3D NVIDIA Inference Microservices (NIM)](https://build.nvidia.com/nvidia/vista-3d) deploys the bundle with an interactive front-end.
+2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM](https://build.nvidia.com/nvidia/vista-3d) and [monai bundle]() developments and those functions will be deprecated in the future.
 ```
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --label_prompt [1] --save_mask true
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
@@ -128,7 +128,7 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The codebase is under Apache 2.0 Licence. The model weight is released under CC-BY-NC-SA-4.0.
+The codebase is under Apache 2.0 Licence. The model weight is released under [NVIDIA OneWay Noncommercial License](./NVIDIA%20OneWay%20Noncommercial%20License_22Mar2022.docx).
 
 ## Reference
 
