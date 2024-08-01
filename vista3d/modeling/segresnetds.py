@@ -12,7 +12,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Union
+from typing import Union, List, Tuple
 
 import numpy as np
 import torch

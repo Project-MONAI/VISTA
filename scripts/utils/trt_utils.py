@@ -161,7 +161,6 @@ class Engine():
         
     def allocate_buffers(self, device):        
         # allocate outputs
-        e = self.engine
         ctx = self.context
                 
         for i, binding in enumerate(self.output_names):
@@ -214,9 +213,7 @@ class Engine():
 
 
             
-    def infer(self, stream, use_cuda_graph=False):        
-        e = self.engine
-        ctx = self.context
+    def infer(self, stream, use_cuda_graph=False):
         if use_cuda_graph:
             if self.cuda_graph_instance is not None:
                 CUASSERT(cudart.cudaGraphLaunch(self.cuda_graph_instance, stream))
@@ -413,7 +410,7 @@ class TRTWrapper(torch.nn.Module):
             ret = runner.infer(trt_inputs)
         ret = list(ret.values())
         ret = [r.cuda() for r in ret]
-        check = [check_m(r) for r in ret]
+        # check = [check_m(r) for r in ret]
         if len(ret)==1:
             ret = ret[0]
         return ret
