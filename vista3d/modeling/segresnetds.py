@@ -498,7 +498,7 @@ class SegResNetDS2(nn.Module):
 
             outputs.reverse()
             x = x_
- 
+
         if with_label:
             i = 0
             for level in self.up_layers_auto:

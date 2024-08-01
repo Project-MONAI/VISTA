@@ -302,11 +302,12 @@ class VISTA3D2(nn.Module):
                     (input_images,),
                     dynamo=False,
                     verbose=False,
-                    fp16=True, tf32=True,
+                    fp16=True,
+                    tf32=True,
                     builder_optimization_level=5,
-                    enable_all_tactics=True
+                    enable_all_tactics=True,
                 )
-            
+
             out, out_auto = self.image_encoder(
                 x=input_images,
                 with_point=point_coords is not None,
@@ -319,13 +320,17 @@ class VISTA3D2(nn.Module):
         if class_vector is not None:
             if hasattr(self.class_head, "build_and_save"):
                 self.class_head.build_and_save(
-                    (out_auto, class_vector,),
-                    fp16=True, tf32=True,
+                    (
+                        out_auto,
+                        class_vector,
+                    ),
+                    fp16=True,
+                    tf32=True,
                     dynamo=False,
                     verbose=False,
                 )
             logits, _ = self.class_head(src=out_auto, class_vector=class_vector)
-                
+
             if point_coords is not None:
                 point_logits = self.point_head(
                     out, point_coords, point_labels, class_vector=prompt_class
