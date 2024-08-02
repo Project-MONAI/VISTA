@@ -26,40 +26,41 @@
 # limitations under the License.
 #
 
+from collections import OrderedDict
+from typing import List
+from copy import copy
+import numpy as np
 import os
 import pickle
-import threading
-from collections import OrderedDict
+from PIL import Image
+from polygraphy.backend.common import bytes_from_path
+from polygraphy.backend.onnx import onnx_from_path, fold_constants, save_onnx
+from polygraphy.backend.onnxrt import OnnxrtRunner, session_from_onnx
+from polygraphy.backend.trt import TrtRunner, CreateConfig, ModifyNetworkOutputs, Profile
+from polygraphy.backend.trt import engine_from_bytes, engine_from_network, network_from_onnx_path, save_engine
+from polygraphy.logger import G_LOGGER as L_
 
+import random
+from scipy import integrate
 import tensorrt as trt
 import torch
+import traceback
+
+from io import BytesIO
 from cuda import cudart
-from polygraphy.backend.common import bytes_from_path
-from polygraphy.backend.onnx import fold_constants, onnx_from_path, save_onnx
-from polygraphy.backend.onnxrt import OnnxrtRunner, session_from_onnx
-from polygraphy.backend.trt import (
-    CreateConfig,
-    ModifyNetworkOutputs,
-    Profile,
-    TrtRunner,
-    engine_from_bytes,
-    engine_from_network,
-    network_from_onnx_path,
-    save_engine,
-)
-from polygraphy.logger import G_LOGGER as L_
+from enum import Enum, auto
+
+import threading
 
 # TRT_LOGGER = trt.Logger(trt.Logger.VERBOSE)
 # trt.init_libnvinfer_plugins(TRT_LOGGER, '')
 
 lock_sm = threading.Lock()
 
-
 @torch.jit.script
 def check_m(m):
     t = torch.isnan(m)
     return not torch.any(t)
-
 
 # Map of torch dtype -> numpy dtype
 trt_to_torch_dtype_dict = {
@@ -72,17 +73,27 @@ trt_to_torch_dtype_dict = {
     trt.bool: torch.bool,
 }
 
+def get_dynamic_axes(profiles, extra_axes={}):
+    dynamic_axes=extra_axes
+    for profile in profiles:
+        for key in profile:
+            axes=[]
+            vals=profile[key]
+            for i in range(len(vals[0])):
+                if vals[0][i] != vals[2][i]:
+                    axes.append(i)
+            if len(axes) > 0:
+                dynamic_axes[key] = axes
+        # print(f"Dynamic axes = {dynamic_axes}")
+        return dynamic_axes
 
 def CUASSERT(cuda_ret):
     err = cuda_ret[0]
     if err != 0:
-        raise RuntimeError(
-            f"CUDA ERROR: {err}, error code reference: https://nvidia.github.io/cuda-python/module/cudart.html#cuda.cudart.cudaError_t"
-        )
+         raise RuntimeError(f"CUDA ERROR: {err}, error code reference: https://nvidia.github.io/cuda-python/module/cudart.html#cuda.cudart.cudaError_t")
     if len(cuda_ret) > 1:
         return cuda_ret[1]
     return None
-
 
 class ShapeException(Exception):
     pass
@@ -97,7 +108,7 @@ class Engine:
         self.engine = None
         self.context = None
         self.tensors = OrderedDict()
-        self.cuda_graph_instance = None  # cuda graph
+        self.cuda_graph_instance = None # cuda graph
 
     def build(
         self,
@@ -142,7 +153,7 @@ class Engine:
             save_timing_cache=timing_cache,
         )
         self.engine = engine
-
+        
     def save(self):
         save_engine(self.engine, path=self.engine_path)
 
@@ -167,11 +178,11 @@ class Engine:
                 self.output_names.append(binding)
                 dtype = trt_to_torch_dtype_dict[self.engine.get_tensor_dtype(binding)]
                 self.dtypes.append(dtype)
-        self.cur_profile = profile_num
+        self.cur_profile = profile_num        
         # L_.info(self.input_names)
         # L_.info(self.output_names)
-
-    def allocate_buffers(self, device):
+        
+    def allocate_buffers(self, device):        
         # allocate outputs
         ctx = self.context
 
@@ -298,7 +309,7 @@ class TRTWrapper(torch.nn.Module):
 
     """
 
-    def __init__(self, path, exp, use_cuda_graph=False):
+    def __init__(self, path, exp, use_cuda_graph=False, timestamp=None):
         super().__init__()
         self.exp_wrapper = None
         self.prev_wrapper = None
@@ -308,6 +319,16 @@ class TRTWrapper(torch.nn.Module):
         self.onnx_runner = None
         self.path = path
         self.use_cuda_graph = use_cuda_graph
+        
+        if os.path.exists(self.onnx_path):
+            ftime=os.path.getmtime(self.onnx_path)
+            if timestamp is not None and ftime < timestamp:
+                os.remove(self.onnx_path)
+            else:
+                timestamp = ftime
+        if timestamp is not None and os.path.exists(self.engine_path) and os.path.getmtime(self.engine_path) < timestamp:
+            os.remove(self.engine_path)
+
         if exp is not None:
             self.attach(exp)
 
@@ -553,17 +574,25 @@ class TRTWrapper(torch.nn.Module):
         enable_all_tactics=True,
     ):
         if not self.has_engine():
-            if not self.has_onnx():
-                self.onnx_export(
-                    input_example,
-                    dynamo=dynamo,
-                    verbose=verbose,
-                )
-            self.build_engine(
-                fp16=fp16,
-                tf32=tf32,
-                direct_io=direct_io,
-                builder_optimization_level=5,
-                enable_all_tactics=enable_all_tactics,
-            )
-            self.engine.save()
+            try:
+                if not self.has_onnx():
+                    self.onnx_export(
+                        input_example,
+                        dynamo=dynamo,
+                        dynamic_shapes=get_dynamic_axes(input_profiles),
+                        verbose=verbose,
+                    )
+                self.build_engine(
+                    input_profiles=input_profiles,
+                    fp16=fp16, tf32=tf32,
+                    direct_io=direct_io,
+                    builder_optimization_level=5,
+                    enable_all_tactics=enable_all_tactics)
+                self.engine.save()
+                os.remove(self.onnx_path)
+            except Exception as e:
+                raise e
+                pass
+
+
+
