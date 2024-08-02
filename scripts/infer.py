@@ -35,9 +35,10 @@ from .utils.trans_utils import VistaPostTransform, get_largest_connected_compone
 
 try:
     from .utils.trt_utils import ExportWrapper, TRTWrapper
-    TRT_AVAILABLE=True
+
+    TRT_AVAILABLE = True
 except Exception:
-    TRT_AVAILABLE=False
+    TRT_AVAILABLE = False
 
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
@@ -137,13 +138,15 @@ class InferClass:
         self.prev_mask = None
         self.batch_data = None
         if self.trt and TRT_AVAILABLE:
-            ts=os.path.getmtime(config_file)
+            ts = os.path.getmtime(config_file)
             en_wrapper = ExportWrapper.wrap(
                 self.model.image_encoder.encoder,
                 input_names=["x"],
                 output_names=["x_out"],
             )
-            self.model.image_encoder.encoder = TRTWrapper("Encoder", en_wrapper, timestamp=ts)
+            self.model.image_encoder.encoder = TRTWrapper(
+                "Encoder", en_wrapper, timestamp=ts
+            )
             self.model.image_encoder.encoder.load_engine()
 
             cls_wrapper = ExportWrapper.wrap(
