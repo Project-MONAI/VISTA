@@ -212,12 +212,11 @@ def livecell_process_files(dataset_dir):
                 img = Image.open(os.path.join(img_path, im["file_name"])).convert("L")
                 height.append(img.size[0])
                 width.append(img.size[1])
-                # arr = np.asarray(img) #? not used
-                # msk = np.zeros(arr.shape)
+
                 # load and display instance annotations
                 annIds = annotation.getAnnIds(imgIds=im["id"], iscrowd=None)
                 anns = annotation.loadAnns(annIds)
-                idx = 1
+
                 medians = []
                 masks = []
                 k = 0
@@ -235,9 +234,6 @@ def livecell_process_files(dataset_dir):
                         )
                     )
                     k += 1
-                    # add instance mask to image mask
-                    # msk = np.add(msk, mask*idx)
-                    # idx += 1
 
                 masks = np.array(masks).astype(np.int8)
                 medians = np.array(medians)
@@ -440,7 +436,7 @@ def main():
             try:
                 if os.path.exists(in_path):
                     print(f"File exists at: {in_path}")
-            except:
+            except Exception as err:
                 print(f"File: {in_path} was not found")
             out_path = os.path.join(dataset_path)
             extract_zip(in_path, out_path)

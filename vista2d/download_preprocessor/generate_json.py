@@ -1103,7 +1103,7 @@ def main():
             try:
                 if os.path.exists(in_path):
                     print(f"File exists at: {in_path}")
-            except:
+            except Exception as err:
                 print(f"File: {in_path} was not found")
             out_path = os.path.join(dataset_path)
             extract_zip(in_path, out_path)
