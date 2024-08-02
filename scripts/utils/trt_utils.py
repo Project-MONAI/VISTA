@@ -73,6 +73,21 @@ trt_to_torch_dtype_dict = {
 }
 
 
+def get_dynamic_axes(profiles, extra_axes={}):
+    dynamic_axes = extra_axes
+    for profile in profiles:
+        for key in profile:
+            axes = []
+            vals = profile[key]
+            for i in range(len(vals[0])):
+                if vals[0][i] != vals[2][i]:
+                    axes.append(i)
+            if len(axes) > 0:
+                dynamic_axes[key] = axes
+        # print(f"Dynamic axes = {dynamic_axes}")
+        return dynamic_axes
+
+
 def CUASSERT(cuda_ret):
     err = cuda_ret[0]
     if err != 0:
@@ -298,7 +313,7 @@ class TRTWrapper(torch.nn.Module):
 
     """
 
-    def __init__(self, path, exp, use_cuda_graph=False):
+    def __init__(self, path, exp, use_cuda_graph=False, timestamp=None):
         super().__init__()
         self.exp_wrapper = None
         self.prev_wrapper = None
@@ -308,6 +323,20 @@ class TRTWrapper(torch.nn.Module):
         self.onnx_runner = None
         self.path = path
         self.use_cuda_graph = use_cuda_graph
+
+        if os.path.exists(self.onnx_path):
+            ftime = os.path.getmtime(self.onnx_path)
+            if timestamp is not None and ftime < timestamp:
+                os.remove(self.onnx_path)
+            else:
+                timestamp = ftime
+        if (
+            timestamp is not None
+            and os.path.exists(self.engine_path)
+            and os.path.getmtime(self.engine_path) < timestamp
+        ):
+            os.remove(self.engine_path)
+
         if exp is not None:
             self.attach(exp)
 
@@ -553,17 +582,24 @@ class TRTWrapper(torch.nn.Module):
         enable_all_tactics=True,
     ):
         if not self.has_engine():
-            if not self.has_onnx():
-                self.onnx_export(
-                    input_example,
-                    dynamo=dynamo,
-                    verbose=verbose,
+            try:
+                if not self.has_onnx():
+                    self.onnx_export(
+                        input_example,
+                        dynamo=dynamo,
+                        dynamic_shapes=get_dynamic_axes(input_profiles),
+                        verbose=verbose,
+                    )
+                self.build_engine(
+                    input_profiles=input_profiles,
+                    fp16=fp16,
+                    tf32=tf32,
+                    direct_io=direct_io,
+                    builder_optimization_level=5,
+                    enable_all_tactics=enable_all_tactics,
                 )
-            self.build_engine(
-                fp16=fp16,
-                tf32=tf32,
-                direct_io=direct_io,
-                builder_optimization_level=5,
-                enable_all_tactics=enable_all_tactics,
-            )
-            self.engine.save()
+                self.engine.save()
+                os.remove(self.onnx_path)
+            except Exception as e:
+                raise e
+                pass

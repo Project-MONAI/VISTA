@@ -32,7 +32,13 @@ from vista3d import vista_model_registry
 from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .train import CONFIG
 from .utils.trans_utils import VistaPostTransform, get_largest_connected_component_point
-from .utils.trt_utils import ExportWrapper, TRTWrapper
+
+try:
+    from .utils.trt_utils import ExportWrapper, TRTWrapper
+
+    TRT_AVAILABLE = True
+except Exception:
+    TRT_AVAILABLE = False
 
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
@@ -131,13 +137,16 @@ class InferClass:
         self.save_transforms = transforms.Compose(save_transforms)
         self.prev_mask = None
         self.batch_data = None
-        if self.trt:
+        if self.trt and TRT_AVAILABLE:
+            ts = os.path.getmtime(config_file)
             en_wrapper = ExportWrapper.wrap(
                 self.model.image_encoder.encoder,
                 input_names=["x"],
                 output_names=["x_out"],
             )
-            self.model.image_encoder.encoder = TRTWrapper("Encoder", en_wrapper)
+            self.model.image_encoder.encoder = TRTWrapper(
+                "Encoder", en_wrapper, timestamp=ts
+            )
             self.model.image_encoder.encoder.load_engine()
 
             cls_wrapper = ExportWrapper.wrap(
@@ -145,7 +154,7 @@ class InferClass:
                 input_names=["src", "class_vector"],
                 output_names=["masks", "class_embedding"],
             )
-            self.model.class_head = TRTWrapper("ClassHead", cls_wrapper)
+            self.model.class_head = TRTWrapper("ClassHead", cls_wrapper, timestamp=ts)
             self.model.class_head.load_engine()
         return
 
