@@ -235,7 +235,7 @@ class Engine:
 
         left = ctx.infer_shapes()
         assert len(left) == 0
-            
+
     def infer(self, stream, use_cuda_graph=False):
         if use_cuda_graph:
             if self.cuda_graph_instance is not None:
@@ -454,7 +454,7 @@ class TRTWrapper(torch.nn.Module):
         ret = list(ret.values())
         ret = [r.cuda() for r in ret]
         # check = [check_m(r) for r in ret]
-        if len(ret)==1:
+        if len(ret) == 1:
             ret = ret[0]
         return ret
 
