@@ -9,6 +9,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# export CUDA_VISIBLE_DEVICES=0;torchrun --nnodes=1 --nproc_per_node=1 -m scripts.validation.val_multigpu_sam2_point_iterative run --config_file "['configs/supported_eval/infer_sam2_point.yaml']"
+
 from __future__ import annotations
 
 import json
@@ -16,10 +18,10 @@ import logging
 import os
 import sys
 from datetime import timedelta
-from functools import partial
 from typing import Optional, Sequence, Union
 
 import monai
+from PIL import Image
 import torch
 import torch.distributed as dist
 from monai import transforms
@@ -30,15 +32,78 @@ from monai.bundle.scripts import _pop_args, _update_args
 from monai.data import DataLoader, partition_dataset
 from monai.metrics import compute_dice
 from monai.utils import set_determinism
-from torch.cuda.amp import autocast
-from torch.nn.parallel import DistributedDataParallel
+import numpy as np
+from sam2.build_sam import build_sam2_video_predictor
+from scipy.ndimage import binary_erosion
 
-from vista3d import vista_model_registry
-
-from ..sliding_window import sliding_window_inference
-from ..train import CONFIG, infer_wrapper
+from ..train import CONFIG
 from ..utils.workflow_utils import generate_prompt_pairs_val, get_next_points_val
 
+def save_nifti_frames_to_jpg(data, output_folder=None):
+    data = torch.squeeze(data)
+    # Ensure output folder exists
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder, exist_ok=True)
+    # Loop through each frame in the 3D image
+    for i in range(data.shape[2]):
+        save_name = os.path.join(output_folder, f'{i + 1:04d}.jpg')
+        if os.path.exists(save_name):
+            continue
+        frame = data[:, :, i]
+        # Normalize the frame to the range 0-255
+        frame = frame.astype(np.uint8)
+        # Save the frame as a JPEG image
+        img = Image.fromarray(frame)
+        img.save(save_name)
+
+    return output_folder
+
+
+def get_points_from_label(labels, index=1):
+    """ Sample the starting point 
+        label [1, H, W, ...]
+    """
+    plabels = labels == index
+    plabels = monai.transforms.utils.get_largest_connected_component_mask(
+        plabels
+    )
+    plabelpoints = torch.nonzero(plabels)
+    pmean = plabelpoints.float().mean(0)
+    pdis = ((plabelpoints - pmean) ** 2).sum(-1)
+    _, sorted_indices = torch.sort(pdis)
+    point = plabelpoints[sorted_indices[0]]
+    return point
+
+def get_points_from_false_pred(pred, gt, _point, _label):
+    # handle false postive 
+    fp_mask = torch.logical_and(torch.logical_not(gt), pred)
+    # Define the structuring element (kernel) of size 5x5
+    structuring_element = np.ones((20, 20), dtype=np.uint8)
+    # Perform erosion
+    eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
+    plabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
+    if len(plabelpoints) > 0:
+        pdis = ((plabelpoints - torch.tensor([_point[0][1], _point[0][0]] ,device=plabelpoints.device)) ** 2).sum(-1)
+        _, sorted_indices = torch.sort(pdis)
+        npoint = plabelpoints[sorted_indices[0]]
+        _point.append([npoint[1], npoint[0]])
+        _label.append(0)
+    
+    # handle false negative 
+    fp_mask = torch.logical_and(torch.logical_not(pred), gt)
+    # Define the structuring element (kernel) of size 5x5
+    structuring_element = np.ones((20, 20), dtype=np.uint8)
+    # Perform erosion
+    eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
+    plabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
+    if len(plabelpoints) > 0:
+        pdis = ((plabelpoints - torch.tensor([_point[0][1], _point[0][0]] ,device=plabelpoints.device)) ** 2).sum(-1)
+        _, sorted_indices = torch.sort(pdis)
+        npoint = plabelpoints[sorted_indices[0]]
+        _point.append([npoint[1], npoint[0]])
+        _label.append(1)
+
+    return _point, _label
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
@@ -50,6 +115,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         dist.barrier()
     else:
         world_size = 1
+    
+    # use bfloat16
+    torch.autocast(device_type="cuda", dtype=torch.bfloat16).__enter__()
+
+    if torch.cuda.get_device_properties(0).major >= 8:
+        # turn on tfloat32 for Ampere GPUs (https://pytorch.org/docs/stable/notes/cuda.html#tensorfloat-32-tf32-on-ampere-devices)
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
 
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
@@ -63,7 +136,8 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     parser.read_config(config_file_)
     parser.update(pairs=_args)
 
-    amp = parser.get_parsed_content("amp")
+    sam2_checkpoint = parser.get_parsed_content("ckpt")
+    model_cfg = parser.get_parsed_content("model_cfg")
     data_file_base_dir = parser.get_parsed_content("data_file_base_dir")
     data_list_file_path = parser.get_parsed_content("data_list_file_path")
     fold = parser.get_parsed_content("fold")
@@ -73,13 +147,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     five_fold = parser.get_parsed_content("five_fold", default=True)
     remove_out = parser.get_parsed_content("remove_out", default=True)
     use_center = parser.get_parsed_content("use_center", default=True)
-    MAX_ITER = parser.get_parsed_content("max_iter", default=10)
+    output_path = parser.get_parsed_content("output_path")
+    dataset_name = parser.get_parsed_content("dataset_name", default=None)
+    MAX_ITER = parser.get_parsed_content("max_iter", default=1)
 
     if label_set is None:
         label_mapping = parser.get_parsed_content(
-            "label_mapping", default="./data/jsons_final_update/label_mappings.json"
+            "label_mapping", default="./data/jsons/label_mappings.json"
         )
-        dataset_name = parser.get_parsed_content("dataset_name", default=None)
         with open(label_mapping, "r") as f:
             label_mapping = json.load(f)
         label_set = [0] + [_xx[0] for _xx in label_mapping[dataset_name]]
@@ -145,7 +220,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
         print(f"Total files {len(process_files)}")
         print(process_files)
-    overlap = parser.get_parsed_content("overlap", default=0.0)
     if torch.cuda.device_count() > 1:
         process_files = partition_dataset(
             data=process_files,
@@ -168,44 +242,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         else torch.device("cuda:0")
     )
 
-    model = vista_model_registry[model_registry](
-        in_channels=input_channels, image_size=patch_size
-    )
+    predictor = build_sam2_video_predictor(model_cfg, sam2_checkpoint)
 
-    model = model.to(device)
-
-    if torch.cuda.device_count() > 1:
-        model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
-
-    post_transform = transforms.Invertd(
-        keys="pred",
-        transform=transforms_infer,
-        orig_keys="image",
-        meta_keys="pred_meta_dict",
-        orig_meta_keys="image_meta_dict",
-        meta_key_postfix="meta_dict",
-        nearest_interp=False,
-        to_tensor=True,
-    )
+    predictor = predictor.to(device)
 
     post_pred = transforms.AsDiscrete(threshold=0.0, dtype=torch.uint8)
 
-    if torch.cuda.device_count() > 1:
-        model = DistributedDataParallel(
-            model, device_ids=[device], find_unused_parameters=True
-        )
-
-    if torch.cuda.device_count() > 1:
-        model.module.load_state_dict(
-            torch.load(ckpt, map_location=device), strict=False
-        )
-    else:
-        model.load_state_dict(torch.load(ckpt, map_location=device), strict=False)
-
-    model.eval()
     max_iters = MAX_ITER
     metric_dim = len(label_set) - 1
-    model_inferer = partial(infer_wrapper, model=model)
     log_string = []
     with torch.no_grad():
         obj_num = len(val_loader)
@@ -214,7 +258,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             output_tensor = [torch.zeros_like(size_tensor) for _ in range(world_size)]
             dist.barrier()
             dist.all_gather(output_tensor, size_tensor)
-            # total_size_tensor = sum(output_tensor)
             obj_num = max(output_tensor)
         metric = (
             torch.zeros(
@@ -222,106 +265,132 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             )
             + torch.nan
         )
-        point_num = (
-            torch.zeros(obj_num, metric_dim, dtype=torch.float, device=device)
-            + torch.nan
-        )
+
         _index = 0
         for val_data in val_loader:
             val_filename = val_data["image"].meta["filename_or_obj"][0]
             _index += 1
+            name_parts = val_filename.split("/")
+            video_dir=os.path.join(output_path, dataset_name, 
+                                       name_parts[-2]+ "_" + name_parts[-1].split(".")[0])
+            save_nifti_frames_to_jpg(val_data["image"], video_dir)
+            # scan all the JPEG frame names in this directory
+            frame_names = [
+                p for p in os.listdir(video_dir)
+                if os.path.splitext(p)[-1] in [".jpg", ".jpeg", ".JPG", ".JPEG"]
+            ]
+            frame_names.sort(key=lambda p: int(os.path.splitext(p)[0]))
+            inference_state = predictor.init_state(video_path=video_dir)
+            # loop through the label_set
+            for i in range(1, len(label_set)):
+                predictor.reset_state(inference_state)
+                label_index = label_set[i]
+                label = torch.squeeze((val_data["label"] == label_index).to(torch.uint8))
+                for idx in range(max_iters):
+                    if idx == 0:
+                        predictor.reset_state(inference_state)
+                        # select initial points from the center of ROI
+                        point = get_points_from_label(label)
+                        _point = [[point[1], point[0]]]
+                        _label = [1]
+                        ann_frame_idx = point[-1]
+                        ann_obj_id = 1 
+                        points = np.array(_point, dtype=np.float32)
+                        labels = np.array(_label, np.int32)
+                        _, out_obj_ids, out_mask_logits = predictor.add_new_points(
+                            inference_state=inference_state,
+                            frame_idx=ann_frame_idx,
+                            obj_id=ann_obj_id,
+                            points=points,
+                            labels=labels,
+                        )
+                        pred = (out_mask_logits[0] > 0.0).cpu()[0]
+                        gt = label[:,:,point[-1]] == 1
+                        _point, _label = get_points_from_false_pred(pred, gt, _point, _label)
+                       
+                    else:
+                        predictor.reset_state(inference_state)
+                        # select points from the slice with smallest dice
+                        point = get_points_from_label(label[..., lowerest_dice_index])
 
-            val_outputs = None
-            for idx in range(max_iters):
-                if idx == 0:
-                    point, point_label = generate_prompt_pairs_val(
-                        val_data["label"].to(device),
-                        label_set,
-                        max_ppoint=1,
-                        use_center=use_center,
+                        # select initial points from the center of ROI
+                        point = get_points_from_label(label)
+                        _point_additional = [[point[1], point[0]]]
+                        _label_additional = [1]
+                        ann_frame_idx = point[-1]
+                        ann_obj_id = 1 
+                        points = np.array(_point, dtype=np.float32)
+                        labels = np.array(_label, np.int32)
+                        _, out_obj_ids, out_mask_logits = predictor.add_new_points(
+                            inference_state=inference_state,
+                            frame_idx=ann_frame_idx,
+                            obj_id=ann_obj_id,
+                            points=points,
+                            labels=labels,
+                        )
+                        pred = (out_mask_logits[0] > 0.0).cpu()[0]
+                        gt = label[:,:,point[-1]] == 1
+                        _point += _point_additional
+                        _label += _label_additional
+                        _point, _label = get_points_from_false_pred(pred, gt, _point, _label)
+
+                    points = np.array(_point, dtype=np.float32)
+                    labels = np.array(_label, np.int32)
+                    # run propagation throughout the video and collect the results in a dict
+                    predictor.reset_state(inference_state)
+                    # The add_new_points must rerun to reset the state
+                    _, out_obj_ids, out_mask_logits = predictor.add_new_points(
+                        inference_state=inference_state,
+                        frame_idx=ann_frame_idx,
+                        obj_id=ann_obj_id,
+                        points=points,
+                        labels=labels,
                     )
-                    point = point.to(device)
-                    point_label = point_label.to(device)
-                else:
-                    # val_outputs is from model_inferer which moved the batch_dim to 0.
-                    _point, _point_label = get_next_points_val(
-                        val_outputs.transpose(1, 0),
-                        val_data["label"].to(device),
-                        torch.tensor(label_set).to(device),
-                        point,
-                        point_label,
-                        use_center=False,
-                    )
-                    # if labels other than 0 didn't get new points, skip
-                    skip_this_iter = torch.all(_point_label[1:, -1] == -1)
-                    if skip_this_iter:
-                        if idx < 10:
-                            _point, _point_label = get_next_points_val(
-                                val_outputs.transpose(1, 0),
-                                val_data["label"].to(device),
-                                torch.tensor(label_set).to(device),
-                                point,
-                                point_label,
-                                use_center=False,
-                                erosion2d=True,
+                    video_segments = {}  # video_segments contains the per-frame segmentation results
+                    for out_frame_idx, out_obj_ids, out_mask_logits in predictor.propagate_in_video(inference_state, reverse=False):
+                        video_segments[out_frame_idx] = {
+                            out_obj_id: (out_mask_logits[i] > 0.0).cpu().numpy()
+                            for i, out_obj_id in enumerate(out_obj_ids)
+                        }
+                    for out_frame_idx, out_obj_ids, out_mask_logits in predictor.propagate_in_video(inference_state, reverse=True):
+                        video_segments[out_frame_idx] = {
+                            out_obj_id: (out_mask_logits[i] > 0.0).cpu().numpy()
+                            for i, out_obj_id in enumerate(out_obj_ids)
+                        }
+                    ####
+                    pred = [video_segments[i][ann_obj_id][0] for i in sorted(list(video_segments.keys()))]
+                    pred = torch.from_numpy(np.stack(pred).transpose(1,2,0))
+
+                    # compute per-frame dice
+                    lowerest_dice = 1000
+                    for d in range(pred.shape[-1]):
+                        if torch.sum(label[..., d]) > 0:
+                            pt_frame_dice = compute_dice(
+                                y_pred=pred[..., d].unsqueeze(0).unsqueeze(0), 
+                                y=label[..., d].unsqueeze(0).unsqueeze(0),
+                                include_background=False
                             )
-                            skip_this_iter = torch.all(_point_label[1:, -1] == -1)
-                            if skip_this_iter:
-                                print(f"iteration end at {idx}")
-                                break
-                    point, point_label = _point, _point_label
+                            if pt_frame_dice < lowerest_dice:
+                                lowerest_dice_index = d
+                                lowerest_dice = pt_frame_dice
 
-                with autocast(enabled=amp):
-                    val_outputs = None
-                    val_outputs = sliding_window_inference(
-                        inputs=val_data["image"].to(device),
-                        roi_size=patch_size,
-                        sw_batch_size=1,
-                        predictor=model_inferer,
-                        mode="gaussian",
-                        overlap=overlap,
-                        sw_device=device,
-                        device=device,
-                        point_coords=point,  # not None
-                        point_labels=point_label,
-                        class_vector=None,
-                        prompt_class=torch.ones(len(label_set), 1).to(device)
-                        * 600,  # will not be used when val_point_sampler is not None
-                        labels=None,
-                        label_set=None,
-                        use_cfp=True,
-                        brush_radius=None,
-                        prev_mask=None,
-                        val_point_sampler=None,
-                    )  # making sure zero-shot
-                # val_outputs = get_largest_connected_component_point(val_outputs, point_coords=point, point_labels=point_label, post_idx=post_idx)
-                val_pred = post_transform(
-                    {"image": val_data["image"][0], "pred": val_outputs[0]}
-                )["pred"]
-                val_pred = post_pred(val_pred)[None, ...]
-                val_outputs = post_pred(val_outputs[0, ...])
-                val_outputs = val_outputs[None, ...]
-                if remove_out:
-                    # remove false positive in slices with no gt
-                    for i in range(1, len(label_set)):
-                        gt = val_data["label"].to(val_outputs.device) == label_set[i]
-                        remove_slice = gt[0, 0].sum(0).sum(0) == 0
-                        val_outputs[:, i, :, :, remove_slice] = 0
-                for i in range(1, len(label_set)):
-                    gt = val_data["label_gt"].to(val_outputs.device) == label_set[i]
-                    y_pred = val_pred[:, [i]]
-                    remove_slice = gt[0, 0].sum(0).sum(0) == 0
-                    y_pred[:, :, :, :, remove_slice] = 0
+                    # compue volume dice
+                    pt_volume_dice = compute_dice(
+                            y_pred=pred.unsqueeze(0).unsqueeze(0), 
+                            y=label.unsqueeze(0).unsqueeze(0),
+                            include_background=False
+                        )
+                    
+                    print(f"iter {idx}, pt_volume_dice", pt_volume_dice)
 
-                    metric[_index - 1, i - 1, idx] = compute_dice(
-                        y_pred=y_pred, y=gt, include_background=False
-                    )
-                    point_num[_index - 1, i - 1] = idx + 1
-                string = f"Validation Dice score : {idx} / {_index} / {len(val_loader)}/ {val_filename}: {metric[_index-1,:,idx]}"
-                print(string)
-                log_string.append(string)
-                # move all to cpu to avoid potential out memory in invert transform
-                torch.cuda.empty_cache()
+                    metric[_index - 1, i - 1, idx] = pt_volume_dice
+
+                    string = f"Validation Dice score : {idx} / {_index} / {len(val_loader)}/ {val_filename}: {metric[_index-1,:,idx]}"
+                    print(string)
+                    log_string.append(string)
+                    # move all to cpu to avoid potential out memory in invert transform
+                    torch.cuda.empty_cache()
+
         log_string = sorted(log_string)
         for _ in log_string:
             logger.debug(_)
@@ -333,12 +402,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             ]
             dist.all_gather(tensor_list=global_combined_tensor, tensor=metric)
             metric = torch.vstack(global_combined_tensor)
-            dist.barrier()
-            global_combined_tensor = [
-                torch.zeros_like(point_num) for _ in range(world_size)
-            ]
-            dist.all_gather(tensor_list=global_combined_tensor, tensor=point_num)
-            point_num = torch.vstack(global_combined_tensor)
 
         if torch.cuda.device_count() == 1 or dist.get_rank() == 0:
             # remove metric that's all NaN
@@ -363,16 +426,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             logger.debug(
                 f"point needed, {point_num.tolist()}, mean is {point_num.nanmean(0).tolist()}"
             )
-            """ Note: the zero-shot plots in the paper is using the saved pt file. For the j-th point, the results might be worse due to random point selection. We chose
-            the best dice from point 1 to j, e.g. point i and treat i as the point click number.
-            data = torch.load(path_to_pt_file)['metric']
-            for j in range(1, max_iters):
-                data_notnan = torch.nan_to_num(data_[:,:j],0)
-                data_notnan = data_notnan.max(1)[0]
-                y.append(data_notnan.mean())
-                x.append((~torch.isnan(data_[:,:j])).sum()/data_.shape[0])
-            plot(x, y)
-            """
+
     torch.cuda.empty_cache()
     if torch.cuda.device_count() > 1:
         dist.barrier()

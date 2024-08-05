@@ -1,13 +1,16 @@
 amp: true
 exps: models
-output_path: "$'/workspace/vista3d/' + @exps"
-dataset_name: "TotalSegmentatorV2"
+output_path: "/mnt/drive1/pengfeig/code/outputs"
+ckpt: '../../segment-anything-2/checkpoints/sam2_hiera_large.pt'
+model_cfg: 'sam2_hiera_l.yaml'
+dataset_name: "Task06"
 label_set: null
 json_name: "$@dataset_name + '_5_folds.json'"
-data_file_base_dir: "$'/data/' + @dataset_name"
+data_file_base_dir: "/mnt/drive1/pengfeig/Task06"
 data_list_file_path: "$'./data/jsons/' + @json_name"
 log_output_file: "$@output_path + '/validation_auto_' + @dataset_name + '.log'"
 list_key: 'testing'
+max_iter: 3
 argmax_first: false
 fold: 0
 image_key: image
