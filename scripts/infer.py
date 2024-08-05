@@ -37,7 +37,6 @@ try:
     from monai.utils import TRTWrapper
     TRT_AVAILABLE=True
 except Exception as e:
-    raise e
     TRT_AVAILABLE=False
 
 rearrange, _ = optional_import("einops", name="rearrange")
