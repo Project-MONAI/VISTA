@@ -34,9 +34,10 @@ from .train import CONFIG
 from .utils.trans_utils import VistaPostTransform, get_largest_connected_component_point
 
 try:
-    from .utils.trt_utils import ExportWrapper, TRTWrapper
+    from monai.utils import TRTWrapper
     TRT_AVAILABLE=True
-except Exception:
+except Exception as e:
+    raise e
     TRT_AVAILABLE=False
 
 rearrange, _ = optional_import("einops", name="rearrange")
@@ -138,20 +139,18 @@ class InferClass:
         self.batch_data = None
         if self.trt and TRT_AVAILABLE:
             ts=os.path.getmtime(config_file)
-            en_wrapper = ExportWrapper.wrap(
-                self.model.image_encoder.encoder,
-                input_names=["x"],
-                output_names=["x_out"],
-            )
-            self.model.image_encoder.encoder = TRTWrapper("Encoder", en_wrapper, timestamp=ts)
+            self.model.image_encoder.encoder = TRTWrapper("Encoder",
+                                                          self.model.image_encoder.encoder,
+                                                          input_names=["x"],
+                                                          output_names=["x_out"],
+                                                          timestamp=ts)
             self.model.image_encoder.encoder.load_engine()
 
-            cls_wrapper = ExportWrapper.wrap(
-                self.model.class_head,
-                input_names=["src", "class_vector"],
-                output_names=["masks", "class_embedding"],
-            )
-            self.model.class_head = TRTWrapper("ClassHead", cls_wrapper, timestamp=ts)
+            self.model.class_head = TRTWrapper("ClassHead",
+                                               self.model.class_head,  
+                                               input_names=["src", "class_vector"],
+                                               output_names=["masks", "class_embedding"],
+                                               timestamp=ts)
             self.model.class_head.load_engine()
         return
 
