@@ -327,7 +327,7 @@ class VISTA3D2(nn.Module):
                     builder_optimization_level=5,
                     precision_constraints="obey",
                 )
-                
+
             logits, _ = self.class_head(src=out_auto, class_vector=class_vector)
 
             if point_coords is not None:
