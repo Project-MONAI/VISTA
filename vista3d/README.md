@@ -12,7 +12,7 @@ limitations under the License.
 -->
 
 # MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
-[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Container`](https://docs.nvidia.com/ai-enterprise/nim-medical-imaging/latest/vista-3d.html)]
+[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Container`](https://docs.nvidia.com/ai-enterprise/nim-medical-imaging/latest/vista-3d.html)] [[`MONAI bundle`]](https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d) [[`Checkpoint`]](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing)
 ## Overview
 
 The **VISTA3D** is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. It provides accurate out-of-the-box segmentation that matches state-of-the-art supervised models which are trained on each dataset. The model also achieves state-of-the-art zero-shot interactive segmentation in 3D, representing a promising step toward developing a versatile medical image foundation model.
@@ -76,7 +76,7 @@ docker pull projectmonai/monai:1.3.2
 
 ### Inference
 We provide two ways to use the model for inference.
-1. We recommend users to use the optimized and standardized [MONAI bundle]() model. The bundle provides a unified API for inference.
+1. We recommend users to use the optimized and standardized [MONAI bundle]((https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d)) model. The bundle provides a unified API for inference.
 The [VISTA3D NVIDIA Inference Microservices (NIM)](https://build.nvidia.com/nvidia/vista-3d) deploys the bundle with an interactive front-end.
 2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM](https://build.nvidia.com/nvidia/vista-3d) and [monai bundle]() developments and those functions will be deprecated in the future.
 ```
