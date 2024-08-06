@@ -26,14 +26,13 @@ from monai.bundle import ConfigParser
 from monai.bundle.scripts import _pop_args, _update_args
 from monai.data import decollate_batch, list_data_collate, partition_dataset
 from monai.utils import optional_import
-
-TRTWrapper, TRT_AVAILABLE = optional_import("monai.utils", name="TRTWrapper")
-
 from vista3d import vista_model_registry
 
 from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .train import CONFIG
 from .utils.trans_utils import VistaPostTransform, get_largest_connected_component_point
+
+TRTWrapper, TRT_AVAILABLE = optional_import("monai.utils", name="TRTWrapper")
 
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
