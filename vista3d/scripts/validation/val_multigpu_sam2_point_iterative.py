@@ -20,7 +20,7 @@ import sys
 import random
 from datetime import timedelta
 from typing import Optional, Sequence, Union
-
+from matplotlib import pyplot as plt
 import monai
 from PIL import Image
 import torch
@@ -34,11 +34,11 @@ from monai.data import DataLoader, partition_dataset
 from monai.metrics import compute_dice
 from monai.utils import set_determinism
 import numpy as np
+import pdb
 from sam2.build_sam import build_sam2_video_predictor
 from scipy.ndimage import binary_erosion
 
 from ..train import CONFIG
-from ..utils.workflow_utils import generate_prompt_pairs_val, get_next_points_val
 
 def save_nifti_frames_to_jpg(data, output_folder=None):
     data = torch.squeeze(data)
@@ -59,6 +59,17 @@ def save_nifti_frames_to_jpg(data, output_folder=None):
 
     return output_folder
 
+def plot(pred, label, point, point_label, name):
+    fig, (ax1, ax2) = plt.subplots(1,2)
+    ax1.imshow(pred)
+    for p,l in zip(point, point_label):
+        ax1.scatter(p[0],p[1],c='r' if l==1 else 'g')
+    ax2.imshow(label)
+    for p,l in zip(point, point_label):
+        ax2.scatter(p[0],p[1],c='r' if l==1 else 'g')  
+    plt.show()
+    plt.savefig(name)
+    plt.close()
 
 def get_points_from_label(labels, index=1):
     """ Sample the starting point 
@@ -112,10 +123,10 @@ def get_points_from_false_pred(pred, gt, num_point=1):
             npoint = get_center_points(plabelpoints)
             _point.append([npoint[1], npoint[0]])
             _label.append(0)    
-        points = nlabelpoints if len(nlabelpoints) > len(plabelpoints) else plabelpoints
+        p = nlabelpoints if len(nlabelpoints) > len(plabelpoints) else plabelpoints
         l = 1 if len(nlabelpoints) > len(plabelpoints) else 0
-        if len(points) > 0:
-            p = random.choice(points)
+        if len(p) > 0:
+            p = random.choice(p)
             _point.append([p[1], p[0]])
             _label.append(l)    
     return _point, _label
@@ -130,9 +141,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         dist.barrier()
     else:
         world_size = 1
-    
+        
+    device = (
+        torch.device(f"cuda:{os.environ['LOCAL_RANK']}")
+        if world_size > 1
+        else torch.device("cuda:0")
+    )    
     # use bfloat16
-    torch.autocast(device_type="cuda", dtype=torch.bfloat16).__enter__()
+    torch.autocast(device_type=str(device), dtype=torch.bfloat16).__enter__()
 
     if torch.cuda.get_device_properties(0).major >= 8:
         # turn on tfloat32 for Ampere GPUs (https://pytorch.org/docs/stable/notes/cuda.html#tensorfloat-32-tf32-on-ampere-devices)
@@ -251,16 +267,12 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         shuffle=False,
     )
 
-    device = (
-        torch.device(f"cuda:{os.environ['LOCAL_RANK']}")
-        if world_size > 1
-        else torch.device("cuda:0")
-    )
+
 
     predictor = build_sam2_video_predictor(model_cfg, sam2_checkpoint)
 
     predictor = predictor.to(device)
-
+#     predictor.fill_hole_area = 0
     post_pred = transforms.AsDiscrete(threshold=0.0, dtype=torch.uint8)
 
     max_iters = MAX_ITER
@@ -309,7 +321,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         _label = [1]
                         ann_frame_idx = point[-1]
                         ann_obj_id = 1 
-                        for _ in range(2):
+                        for rounds in range(2):
                             points = np.array(_point, dtype=np.float32)
                             labels = np.array(_label, np.int32)
                             predictor.reset_state(inference_state)
@@ -327,12 +339,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 break
                             _point.extend(new_point)
                             _label.extend(new_label)
+#                             plot(pred, gt, _point, _label, f'{idx}_{rounds}.png')
                     else:
                         ann_frame_idx = lowerest_dice_index
                         # select points from the slice with smallest dice
                         new_point, new_label = get_points_from_false_pred(pred[..., ann_frame_idx], 
                                                                           label[..., ann_frame_idx], 
                                                                           num_point=3)
+#                         plot(pred[..., ann_frame_idx], label[..., ann_frame_idx], new_point, new_label, f'{idx}_{rounds}.png')
                         if len(new_point) > 0:
                             points = np.array(new_point, dtype=np.float32)
                             labels = np.array(new_label, np.int32)
@@ -344,7 +358,8 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 labels=labels,
                             )
                         else:
-                            print("cannot find new points!")
+                            print("cannot find new points! End the iteration")
+                            break
 
                     video_segments = {}  # video_segments contains the per-frame segmentation results
                     for out_frame_idx, out_obj_ids, out_mask_logits in predictor.propagate_in_video(inference_state, reverse=False):
@@ -380,6 +395,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 if max_error_pixel < error_pixel:
                                     lowerest_dice_index = d
                                     max_error_pixel = error_pixel
+                    print(f'lowest dice {lowerest_dice} at {lowerest_dice_index}')
 
 
 
