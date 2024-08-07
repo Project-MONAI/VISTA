@@ -17,6 +17,7 @@ import json
 import logging
 import os
 import sys
+import random
 from datetime import timedelta
 from typing import Optional, Sequence, Union
 
@@ -74,35 +75,49 @@ def get_points_from_label(labels, index=1):
     point = plabelpoints[sorted_indices[0]]
     return point
 
-def get_points_from_false_pred(pred, gt, _point, _label):
-    # handle false postive 
-    fp_mask = torch.logical_and(torch.logical_not(gt), pred)
-    # Define the structuring element (kernel) of size 5x5
-    structuring_element = np.ones((20, 20), dtype=np.uint8)
-    # Perform erosion
-    eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
-    plabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
-    if len(plabelpoints) > 0:
-        pdis = ((plabelpoints - torch.tensor([_point[0][1], _point[0][0]] ,device=plabelpoints.device)) ** 2).sum(-1)
-        _, sorted_indices = torch.sort(pdis)
-        npoint = plabelpoints[sorted_indices[0]]
-        _point.append([npoint[1], npoint[0]])
-        _label.append(0)
-    
-    # handle false negative 
-    fp_mask = torch.logical_and(torch.logical_not(pred), gt)
-    # Define the structuring element (kernel) of size 5x5
-    structuring_element = np.ones((20, 20), dtype=np.uint8)
-    # Perform erosion
-    eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
-    plabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
-    if len(plabelpoints) > 0:
-        pdis = ((plabelpoints - torch.tensor([_point[0][1], _point[0][0]] ,device=plabelpoints.device)) ** 2).sum(-1)
-        _, sorted_indices = torch.sort(pdis)
-        npoint = plabelpoints[sorted_indices[0]]
-        _point.append([npoint[1], npoint[0]])
-        _label.append(1)
+def get_center_points(plabelpoints):
+    pmean = plabelpoints.float().mean()
+    pdis = ((plabelpoints - pmean) ** 2).sum(-1)
+    _, sorted_indices = torch.sort(pdis)
+    return plabelpoints[sorted_indices[0]]
 
+def get_points_from_false_pred(pred, gt, _point, _label, num_point=1):
+    """ sample points from false negative and positive.
+    """
+    # Define the structuring element (kernel) of size 5x5
+    structuring_element = np.ones((5, 5), dtype=np.uint8)
+    # handle false positive
+    fp_mask = torch.logical_and(torch.logical_not(gt), pred)
+    eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
+    plabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
+    # handle false negative 
+    fn_mask = torch.logical_and(torch.logical_not(pred), gt)
+    eroded_image = binary_erosion(fn_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
+    nlabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
+    _point = []
+    _label = []
+    if num_point == 1:
+        p = nlabelpoints if len(nlabelpoints) > len(plabelpoints) else plabelpoints
+        l = 1 if len(nlabelpoints) > len(plabelpoints) else 0
+        if len(p) > 0:
+            p = get_center_points(p)
+            _point.append([p[1], p[0]])
+            _label.append(l)       
+    if num_point == 3:
+        if len(nlabelpoints) > 0:
+            ppoint = get_center_points(nlabelpoints)
+            _point.append([ppoint[1], ppoint[0]])
+            _label.append(1)
+        if len(plabelpoints) > 0:
+            npoint = get_center_points(plabelpoints)
+            _point.append([npoint[1], npoint[0]])
+            _label.append(0)    
+        p = nlabelpoints if len(nlabelpoints) > len(plabelpoints) else plabelpoints
+        l = 1 if len(nlabelpoints) > len(plabelpoints) else 0
+        if len(p) > 0:
+            p = random.choice(p, k=1)
+            _point.append([p[1], p[0]])
+            _label.append(l)    
     return _point, _label
 
 def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
@@ -288,39 +303,40 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 label = torch.squeeze((val_data["label"] == label_index).to(torch.uint8))
                 for idx in range(max_iters):
                     if idx == 0:
-                        predictor.reset_state(inference_state)
+                        
                         # select initial points from the center of ROI
                         point = get_points_from_label(label)
                         _point = [[point[1], point[0]]]
                         _label = [1]
                         ann_frame_idx = point[-1]
                         ann_obj_id = 1 
-                        points = np.array(_point, dtype=np.float32)
-                        labels = np.array(_label, np.int32)
-                        _, out_obj_ids, out_mask_logits = predictor.add_new_points(
-                            inference_state=inference_state,
-                            frame_idx=ann_frame_idx,
-                            obj_id=ann_obj_id,
-                            points=points,
-                            labels=labels,
-                        )
-                        pred = (out_mask_logits[0] > 0.0).cpu()[0]
-                        gt = label[:,:,point[-1]] == 1
-                        _point, _label = get_points_from_false_pred(pred, gt, _point, _label)
-                       
+                        for _ in range(2):
+                            points = np.array(_point, dtype=np.float32)
+                            labels = np.array(_label, np.int32)
+                            predictor.reset_state(inference_state)
+                            _, out_obj_ids, out_mask_logits = predictor.add_new_points(
+                                inference_state=inference_state,
+                                frame_idx=ann_frame_idx,
+                                obj_id=ann_obj_id,
+                                points=points,
+                                labels=labels,
+                            )
+                            pred = (out_mask_logits[0] > 0.0).cpu()[0]
+                            gt = label[:,:,point[-1]]
+                            new_point, new_label = get_points_from_false_pred(pred, gt, num_point=1)
+                            if len(new_label) == 0:
+                                break
+                            _point.extend(new_point)
+                            _label.extend(new_label)
                     else:
-                        predictor.reset_state(inference_state)
+                        ann_frame_idx = lowerest_dice_index
                         # select points from the slice with smallest dice
-                        point = get_points_from_label(label[..., lowerest_dice_index])
+                        new_point, new_label = get_points_from_false_pred(pred[..., ann_frame_idx], 
+                                                                          label[..., ann_frame_idx], 
+                                                                          num_point=3)
 
-                        # select initial points from the center of ROI
-                        point = get_points_from_label(label)
-                        _point_additional = [[point[1], point[0]]]
-                        _label_additional = [1]
-                        ann_frame_idx = point[-1]
-                        ann_obj_id = 1 
-                        points = np.array(_point, dtype=np.float32)
-                        labels = np.array(_label, np.int32)
+                        points = np.array(new_point, dtype=np.float32)
+                        labels = np.array(new_label, np.int32)
                         _, out_obj_ids, out_mask_logits = predictor.add_new_points(
                             inference_state=inference_state,
                             frame_idx=ann_frame_idx,
@@ -328,24 +344,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             points=points,
                             labels=labels,
                         )
-                        pred = (out_mask_logits[0] > 0.0).cpu()[0]
-                        gt = label[:,:,point[-1]] == 1
-                        _point += _point_additional
-                        _label += _label_additional
-                        _point, _label = get_points_from_false_pred(pred, gt, _point, _label)
 
-                    points = np.array(_point, dtype=np.float32)
-                    labels = np.array(_label, np.int32)
-                    # run propagation throughout the video and collect the results in a dict
-                    predictor.reset_state(inference_state)
-                    # The add_new_points must rerun to reset the state
-                    _, out_obj_ids, out_mask_logits = predictor.add_new_points(
-                        inference_state=inference_state,
-                        frame_idx=ann_frame_idx,
-                        obj_id=ann_obj_id,
-                        points=points,
-                        labels=labels,
-                    )
                     video_segments = {}  # video_segments contains the per-frame segmentation results
                     for out_frame_idx, out_obj_ids, out_mask_logits in predictor.propagate_in_video(inference_state, reverse=False):
                         video_segments[out_frame_idx] = {
@@ -363,6 +362,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
                     # compute per-frame dice
                     lowerest_dice = 1000
+                    max_error_pixel = 0
                     for d in range(pred.shape[-1]):
                         if torch.sum(label[..., d]) > 0:
                             pt_frame_dice = compute_dice(
@@ -373,8 +373,16 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             if pt_frame_dice < lowerest_dice:
                                 lowerest_dice_index = d
                                 lowerest_dice = pt_frame_dice
+                                max_error_pixel = torch.abs(pred[..., d] - label[..., d]).sum()
+                            elif pt_frame_dice == lowerest_dice:
+                                error_pixel = torch.abs(pred[..., d] - label[..., d]).sum()
+                                if max_error_pixel < error_pixel:
+                                    lowerest_dice_index = d
+                                    max_error_pixel = error_pixel
 
-                    # compue volume dice
+
+
+                    # compute volume dice
                     pt_volume_dice = compute_dice(
                             y_pred=pred.unsqueeze(0).unsqueeze(0), 
                             y=label.unsqueeze(0).unsqueeze(0),
