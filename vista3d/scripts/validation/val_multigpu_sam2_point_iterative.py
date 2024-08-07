@@ -81,7 +81,7 @@ def get_center_points(plabelpoints):
     _, sorted_indices = torch.sort(pdis)
     return plabelpoints[sorted_indices[0]]
 
-def get_points_from_false_pred(pred, gt, _point, _label, num_point=1):
+def get_points_from_false_pred(pred, gt, num_point=1):
     """ sample points from false negative and positive.
     """
     # Define the structuring element (kernel) of size 5x5
@@ -112,10 +112,10 @@ def get_points_from_false_pred(pred, gt, _point, _label, num_point=1):
             npoint = get_center_points(plabelpoints)
             _point.append([npoint[1], npoint[0]])
             _label.append(0)    
-        p = nlabelpoints if len(nlabelpoints) > len(plabelpoints) else plabelpoints
+        points = nlabelpoints if len(nlabelpoints) > len(plabelpoints) else plabelpoints
         l = 1 if len(nlabelpoints) > len(plabelpoints) else 0
-        if len(p) > 0:
-            p = random.choice(p, k=1)
+        if len(points) > 0:
+            p = random.choice(points)
             _point.append([p[1], p[0]])
             _label.append(l)    
     return _point, _label
@@ -303,7 +303,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 label = torch.squeeze((val_data["label"] == label_index).to(torch.uint8))
                 for idx in range(max_iters):
                     if idx == 0:
-                        
                         # select initial points from the center of ROI
                         point = get_points_from_label(label)
                         _point = [[point[1], point[0]]]
@@ -334,16 +333,18 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         new_point, new_label = get_points_from_false_pred(pred[..., ann_frame_idx], 
                                                                           label[..., ann_frame_idx], 
                                                                           num_point=3)
-
-                        points = np.array(new_point, dtype=np.float32)
-                        labels = np.array(new_label, np.int32)
-                        _, out_obj_ids, out_mask_logits = predictor.add_new_points(
-                            inference_state=inference_state,
-                            frame_idx=ann_frame_idx,
-                            obj_id=ann_obj_id,
-                            points=points,
-                            labels=labels,
-                        )
+                        if len(new_point) > 0:
+                            points = np.array(new_point, dtype=np.float32)
+                            labels = np.array(new_label, np.int32)
+                            _, out_obj_ids, out_mask_logits = predictor.add_new_points(
+                                inference_state=inference_state,
+                                frame_idx=ann_frame_idx,
+                                obj_id=ann_obj_id,
+                                points=points,
+                                labels=labels,
+                            )
+                        else:
+                            print("cannot find new points!")
 
                     video_segments = {}  # video_segments contains the per-frame segmentation results
                     for out_frame_idx, out_obj_ids, out_mask_logits in predictor.propagate_in_video(inference_state, reverse=False):
@@ -358,7 +359,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         }
                     ####
                     pred = [video_segments[i][ann_obj_id][0] for i in sorted(list(video_segments.keys()))]
-                    pred = torch.from_numpy(np.stack(pred).transpose(1,2,0))
+                    pred = torch.from_numpy(np.stack(pred).transpose(1,2,0)).to(torch.uint8)
 
                     # compute per-frame dice
                     lowerest_dice = 1000
