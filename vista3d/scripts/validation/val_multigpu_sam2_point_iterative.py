@@ -39,6 +39,7 @@ from sam2.build_sam import build_sam2_video_predictor
 from scipy.ndimage import binary_erosion
 
 from ..train import CONFIG
+from ..utils.workflow_utils import generate_prompt_pairs_val, get_next_points_val
 
 def save_nifti_frames_to_jpg(data, output_folder=None):
     data = torch.squeeze(data)
@@ -141,22 +142,21 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         dist.barrier()
     else:
         world_size = 1
-        
     device = (
         torch.device(f"cuda:{os.environ['LOCAL_RANK']}")
         if world_size > 1
         else torch.device("cuda:0")
-    )    
+    )  
+    torch.cuda.set_device(device)
     # use bfloat16
     torch.autocast(device_type=str(device), dtype=torch.bfloat16).__enter__()
-
+    
     if torch.cuda.get_device_properties(0).major >= 8:
         # turn on tfloat32 for Ampere GPUs (https://pytorch.org/docs/stable/notes/cuda.html#tensorfloat-32-tf32-on-ampere-devices)
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
 
     logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-
     if isinstance(config_file, str) and "," in config_file:
         config_file = config_file.split(",")
 
@@ -199,10 +199,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     CONFIG["handlers"]["file"]["filename"] = parser.get_parsed_content(
         "log_output_file"
     )
+    # remove rank filter
+    CONFIG["handlers"]["file"].pop('filters') 
+    CONFIG["handlers"]["console"].pop('filters') 
     logging.config.dictConfig(CONFIG)
     logging.getLogger("torch.distributed.distributed_c10d").setLevel(logging.WARNING)
     logger.debug(f"Number of GPUs: {torch.cuda.device_count()}")
     logger.debug(f"World_size: {world_size}")
+    
     if five_fold:
         train_files, val_files = datafold_read(
             datalist=data_list_file_path,
@@ -270,11 +274,10 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
 
     predictor = build_sam2_video_predictor(model_cfg, sam2_checkpoint)
-
     predictor = predictor.to(device)
-#     predictor.fill_hole_area = 0
+    # need to uncomment this one if run first time and failed. comment out after first run.
+    # predictor.fill_hole_area = 0
     post_pred = transforms.AsDiscrete(threshold=0.0, dtype=torch.uint8)
-
     max_iters = MAX_ITER
     metric_dim = len(label_set) - 1
     log_string = []
@@ -395,9 +398,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 if max_error_pixel < error_pixel:
                                     lowerest_dice_index = d
                                     max_error_pixel = error_pixel
-                    print(f'lowest dice {lowerest_dice} at {lowerest_dice_index}')
-
-
 
                     # compute volume dice
                     pt_volume_dice = compute_dice(
@@ -432,7 +432,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             # remove metric that's all NaN
             keep_index = ~torch.isnan(metric).all(1).all(1)
             metric = metric[keep_index]
-            point_num = point_num[keep_index]
             if max_iters > 1:
                 metric_best = torch.nan_to_num(metric, 0).max(2)[0]
             else:
@@ -440,18 +439,13 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             for i in range(metric.shape[0]):
                 logger.debug(f"object {i}: {metric[i].tolist()}")
                 logger.debug(f"object {i}: {metric_best[i].tolist()}")
-            print("point_number", point_num, point_num.nanmean(0))
             torch.save(
-                {"metric": metric.cpu(), "point": point_num.cpu()},
+                {"metric": metric.cpu()},
                 parser.get_parsed_content("log_output_file").replace("log", "pt"),
             )
             logger.debug(
                 f"Best metric {metric_best.nanmean(0).tolist()}, best avg {metric_best.nanmean(0).nanmean().tolist()}"
             )
-            logger.debug(
-                f"point needed, {point_num.tolist()}, mean is {point_num.nanmean(0).tolist()}"
-            )
-
     torch.cuda.empty_cache()
     if torch.cuda.device_count() > 1:
         dist.barrier()
