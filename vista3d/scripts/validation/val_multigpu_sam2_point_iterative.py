@@ -181,7 +181,10 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     output_path = parser.get_parsed_content("output_path")
     dataset_name = parser.get_parsed_content("dataset_name", default=None)
     MAX_ITER = parser.get_parsed_content("max_iter", default=1)
-
+    
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+    
     if label_set is None:
         label_mapping = parser.get_parsed_content(
             "label_mapping", default="./data/jsons/label_mappings.json"
@@ -316,6 +319,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 predictor.reset_state(inference_state)
                 label_index = label_set[i]
                 label = torch.squeeze((val_data["label"] == label_index).to(torch.uint8))
+                if torch.sum(label) == 0:
+                    # skip labels that do not exist in this case
+                    continue
                 for idx in range(max_iters):
                     if idx == 0:
                         # select initial points from the center of ROI
