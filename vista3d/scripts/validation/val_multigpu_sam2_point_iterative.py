@@ -97,7 +97,7 @@ def get_points_from_false_pred(pred, gt, num_point=1):
     """ sample points from false negative and positive.
     """
     # Define the structuring element (kernel) of size 5x5
-    structuring_element = np.ones((5, 5), dtype=np.uint8)
+    structuring_element = np.ones((3, 3), dtype=np.uint8)
     # handle false positive
     fp_mask = torch.logical_and(torch.logical_not(gt), pred)
     eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
@@ -324,7 +324,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         _label = [1]
                         ann_frame_idx = point[-1]
                         ann_obj_id = 1 
-                        for rounds in range(2):
+                        for rounds in range(4):
                             points = np.array(_point, dtype=np.float32)
                             labels = np.array(_label, np.int32)
                             predictor.reset_state(inference_state)
@@ -342,14 +342,14 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                                 break
                             _point.extend(new_point)
                             _label.extend(new_label)
-#                             plot(pred, gt, _point, _label, f'{idx}_{rounds}.png')
+                            # plot(pred, gt, _point, _label, f'{idx}_{rounds}_{os.path.basename(video_dir)}.png')
                     else:
                         ann_frame_idx = lowerest_dice_index
                         # select points from the slice with smallest dice
                         new_point, new_label = get_points_from_false_pred(pred[..., ann_frame_idx], 
                                                                           label[..., ann_frame_idx], 
                                                                           num_point=3)
-#                         plot(pred[..., ann_frame_idx], label[..., ann_frame_idx], new_point, new_label, f'{idx}_{rounds}.png')
+                        # plot(pred[..., ann_frame_idx], label[..., ann_frame_idx], new_point, new_label, f'{idx}_{rounds}.png')
                         if len(new_point) > 0:
                             points = np.array(new_point, dtype=np.float32)
                             labels = np.array(new_label, np.int32)
