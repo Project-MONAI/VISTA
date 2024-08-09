@@ -81,7 +81,7 @@ The output of this step is multiple JSON files, each file corresponds
 to one dataset.
 
 ##### 2. Add label_dict.json and label_mapping.json
-Add new class indexes to `label_dict.json` and the local to global mapping to `label_mapping.json`. 
+Add new class indexes to `label_dict.json` and the local to global mapping to `label_mapping.json`.
 
 ## SupverVoxel Generation
 1. Download the segment anything repo and download the ViT-H weights
