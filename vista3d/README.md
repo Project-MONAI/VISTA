@@ -75,8 +75,8 @@ docker pull projectmonai/monai:1.3.2
 
 
 ### Inference
-We provide two ways to use the model for inference.
-1. We recommend users to use the optimized and standardized [MONAI bundle]((https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d)) model. The bundle provides a unified API for inference.
+We provide two ways to use the model for inference. The label definition can be found at [label_dict](./data/jsons/label_dict.json).
+1. We recommend users to use the optimized and standardized [MONAI bundle](https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d) model. The bundle provides a unified API for inference.
 The [VISTA3D NVIDIA Inference Microservices (NIM)](https://build.nvidia.com/nvidia/vista-3d) deploys the bundle with an interactive front-end.
 2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM](https://build.nvidia.com/nvidia/vista-3d) and [monai bundle]() developments and those functions will be deprecated in the future.
 ```
