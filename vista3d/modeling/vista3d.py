@@ -296,18 +296,8 @@ class VISTA3D2(nn.Module):
         ):
             out, out_auto = self.image_embeddings, None
         else:
-            # Support for TRT wrappping
-            if hasattr(self.image_encoder.encoder, "build_and_save"):
-                self.image_encoder.encoder.build_and_save(
-                    (input_images,),
-                    fp16=True,
-                    tf32=True,
-                    builder_optimization_level=5,
-                    precision_constraints="obey",
-                )
-
             out, out_auto = self.image_encoder(
-                x=input_images,
+                input_images,
                 with_point=point_coords is not None,
                 with_label=class_vector is not None,
             )
@@ -316,19 +306,7 @@ class VISTA3D2(nn.Module):
         # force releasing memories that set to None
         torch.cuda.empty_cache()
         if class_vector is not None:
-            if hasattr(self.class_head, "build_and_save"):
-                self.class_head.build_and_save(
-                    (
-                        out_auto,
-                        class_vector,
-                    ),
-                    fp16=True,
-                    tf32=True,
-                    builder_optimization_level=5,
-                    precision_constraints="obey",
-                )
-
-            logits, _ = self.class_head(src=out_auto, class_vector=class_vector)
+            logits, _ = self.class_head(out_auto, class_vector=class_vector)
 
             if point_coords is not None:
                 point_logits = self.point_head(

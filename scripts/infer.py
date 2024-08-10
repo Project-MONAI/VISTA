@@ -133,24 +133,28 @@ class InferClass:
         self.prev_mask = None
         self.batch_data = None
         if self.trt and TRT_AVAILABLE:
+            bundle_root = parser.get_parsed_content("bundle_root")
             ts = os.path.getmtime(config_file)
             self.model.image_encoder.encoder = TRTWrapper(
-                "Encoder",
+                f"{bundle_root}/image_encoder",
                 self.model.image_encoder.encoder,
-                input_names=["x"],
-                output_names=["x_out"],
+                precision="fp16",
+                build_args={
+                    "builder_optimization_level": 5,
+                    "precision_constraints":"obey"
+                },
                 timestamp=ts,
             )
-            self.model.image_encoder.encoder.load_engine()
-
             self.model.class_head = TRTWrapper(
-                "ClassHead",
+                f"{bundle_root}/class_head",
                 self.model.class_head,
-                input_names=["src", "class_vector"],
-                output_names=["masks", "class_embedding"],
+                precision="fp16",
+                build_args={
+                    "builder_optimization_level": 5,
+                    "precision_constraints":"obey"
+                },
                 timestamp=ts,
             )
-            self.model.class_head.load_engine()
         return
 
     def clear_cache(self):
