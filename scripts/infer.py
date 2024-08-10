@@ -143,7 +143,7 @@ class InferClass:
                 precision="fp16",
                 build_args={
                     "builder_optimization_level": 5,
-                    "precision_constraints":"obey"
+                    "precision_constraints": "obey",
                 },
                 timestamp=ts,
             )
@@ -153,7 +153,7 @@ class InferClass:
                 precision="fp16",
                 build_args={
                     "builder_optimization_level": 5,
-                    "precision_constraints":"obey"
+                    "precision_constraints": "obey",
                 },
                 timestamp=ts,
             )
