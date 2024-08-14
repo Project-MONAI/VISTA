@@ -180,8 +180,13 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     use_center = parser.get_parsed_content("use_center", default=True)
     output_path = parser.get_parsed_content("output_path")
     dataset_name = parser.get_parsed_content("dataset_name", default=None)
+    saliency = parser.get_parsed_content("saliency", default=False)
+    start_file = parser.get_parsed_content("start_from", default=0)
+    end_file = parser.get_parsed_content("end_file", default=-1)
     MAX_ITER = parser.get_parsed_content("max_iter", default=1)
-    
+    log_output_file = parser.get_parsed_content("log_output_file").replace(".log", f"_{start_file}_{end_file}_s{saliency}.log")
+    parser.update(pairs={'log_output_file': log_output_file})
+
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     
@@ -249,6 +254,10 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         "all": train_files + val_files + test_files,
     }
     process_files = process_dict[list_key]
+    # batch process
+    process_files = process_files[start_file:end_file]
+    logger.info(f'Working on files from {start_file} to {end_file}: {process_files}')
+
     for i in range(len(process_files)):
         if (
             isinstance(process_files[i]["image"], list)
@@ -313,16 +322,25 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                 if os.path.splitext(p)[-1] in [".jpg", ".jpeg", ".JPG", ".JPEG"]
             ]
             frame_names.sort(key=lambda p: int(os.path.splitext(p)[0]))
-            inference_state = predictor.init_state(video_path=video_dir)
-            # loop through the label_set
-            for i in range(1, len(label_set)):
+            if not saliency:
+                inference_state = predictor.init_state(video_path=video_dir, z_slice=z_slice)
                 predictor.reset_state(inference_state)
-                label_index = label_set[i]
+            # loop through the label_set
+            exist_label = sorted(val_data["label"].unique().numpy().tolist())
+            if len(exist_label) == 1:
+                continue
+            for i in range(1, len(exist_label)):
+                label_index = exist_label[i]
                 label = torch.squeeze((val_data["label"] == label_index).to(torch.uint8))
-                if torch.sum(label) == 0:
-                    # skip labels that do not exist in this case
-                    continue
-                for idx in range(max_iters):
+                # remove 
+                if saliency:
+                    print('removing label without foreground')
+                    z_slice = label.sum(0).sum(0) > 0
+                    label = label[:,:,z_slice]
+                    inference_state = predictor.init_state(video_path=video_dir, z_slice=z_slice)
+                    predictor.reset_state(inference_state)
+
+                for idx in range(max_iters): 
                     if idx == 0:
                         # select initial points from the center of ROI
                         point = get_points_from_label(label)
@@ -416,8 +434,9 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
 
                     metric[_index - 1, i - 1, idx] = pt_volume_dice
 
-                    string = f"Validation Dice score : {idx} / {_index} / {len(val_loader)}/ {val_filename}: {metric[_index-1,:,idx]}"
+                    string = f"Validation Dice score : iter {idx} / file {_index} / label {label_index} / total label {len(exist_label)} / total file {len(val_loader)}/ {val_filename}: {metric[_index-1,:,idx]}"
                     print(string)
+                    logger.debug(string)
                     log_string.append(string)
                     # move all to cpu to avoid potential out memory in invert transform
                     torch.cuda.empty_cache()
