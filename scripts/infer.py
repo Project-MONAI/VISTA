@@ -33,8 +33,8 @@ from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .train import CONFIG
 from .utils.trans_utils import VistaPostTransform, get_largest_connected_component_point
 
-TRTWrapper, TRT_AVAILABLE = optional_import(
-    "monai.networks.trt_wrapper", name="TRTWrapper"
+trt_wrap, TRT_AVAILABLE = optional_import(
+    "monai.networks", name="trt_wrap"
 )
 
 rearrange, _ = optional_import("einops", name="rearrange")
@@ -137,25 +137,24 @@ class InferClass:
         if self.trt and TRT_AVAILABLE:
             bundle_root = parser.get_parsed_content("bundle_root")
             ts = os.path.getmtime(config_file)
-            self.model.image_encoder.encoder = TRTWrapper(
+            trt_args = {
+                "precision": "fp16",
+                "build_args": {
+                    "builder_optimization_level": 5,
+                    "precision_constraints": "obey",
+                },
+                "timestamp": ts
+            }
+
+            trt_wrap(
                 self.model.image_encoder.encoder,
                 f"{bundle_root}/image_encoder",
-                precision="fp16",
-                build_args={
-                    "builder_optimization_level": 5,
-                    "precision_constraints": "obey",
-                },
-                timestamp=ts,
+                args=trt_args,
             )
-            self.model.class_head = TRTWrapper(
+            trt_wrap(
                 self.model.class_head,
                 f"{bundle_root}/class_head",
-                precision="fp16",
-                build_args={
-                    "builder_optimization_level": 5,
-                    "precision_constraints": "obey",
-                },
-                timestamp=ts,
+                args=trt_args,
             )
         return
 
