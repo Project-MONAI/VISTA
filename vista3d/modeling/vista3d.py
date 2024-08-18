@@ -306,7 +306,8 @@ class VISTA3D2(nn.Module):
         # force releasing memories that set to None
         torch.cuda.empty_cache()
         if class_vector is not None:
-            logits, _ = self.class_head(out_auto, class_vector)
+            logits, _ = self.class_head(out_auto, class_vector=class_vector)
+
             if point_coords is not None:
                 point_logits = self.point_head(
                     out, point_coords, point_labels, class_vector=prompt_class

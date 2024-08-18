@@ -12,7 +12,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Union
+from typing import List, Tuple, Union
 
 import numpy as np
 import torch
@@ -473,7 +473,7 @@ class SegResNetDS2(nn.Module):
                 f"Input spatial dims {x.shape} must be divisible by {self.shape_factor()}"
             )
 
-        x_down = self.encoder(x)
+        x_down = self.encoder(x=x)
 
         x_down.reverse()
         x = x_down.pop(0)
@@ -483,8 +483,9 @@ class SegResNetDS2(nn.Module):
 
         outputs: list[torch.Tensor] = []
         outputs_auto: list[torch.Tensor] = []
-        x_ = x.clone()
+
         if with_point:
+            x_ = x.clone()
             i = 0
             for level in self.up_layers:
                 x = level["upsample"](x)
@@ -496,7 +497,8 @@ class SegResNetDS2(nn.Module):
                 i = i + 1
 
             outputs.reverse()
-        x = x_
+            x = x_
+
         if with_label:
             i = 0
             for level in self.up_layers_auto:
@@ -522,7 +524,7 @@ class SegResNetDS2(nn.Module):
 
     def forward(
         self, x: torch.Tensor, with_point=True, with_label=True, **kwargs
-    ) -> Union[None, torch.Tensor, list[torch.Tensor]]:
+    ) -> Tuple[List[torch.Tensor], List[torch.Tensor]]:
         return self._forward(x, with_point, with_label)
 
     def set_auto_grad(self, auto_freeze=False, point_freeze=False):
