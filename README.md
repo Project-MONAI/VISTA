@@ -12,4 +12,4 @@ limitations under the License.
 -->
 
 # MONAI VISTA Repository
-This is the repository for VISTA3D and VISTA2D For the older VISTA2.5d code, please checkout the vista2.5d branch
+This is the repository for VISTA3D and VISTA2D. For the older VISTA2.5d code, please checkout the vista2.5d branch

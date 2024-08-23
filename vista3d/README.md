@@ -12,7 +12,7 @@ limitations under the License.
 -->
 
 # MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
-[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Container`](https://docs.nvidia.com/ai-enterprise/nim-medical-imaging/latest/vista-3d.html)]
+[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Checkpoint`]](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing)
 ## Overview
 
 The **VISTA3D** is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. It provides accurate out-of-the-box segmentation that matches state-of-the-art supervised models which are trained on each dataset. The model also achieves state-of-the-art zero-shot interactive segmentation in 3D, representing a promising step toward developing a versatile medical image foundation model.
@@ -68,21 +68,37 @@ VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Onc
 ## Usage
 
 ### Installation
-The code requires `monai>=1.3`. Download the [model checkpoint](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing) and save it at ./models/model.pt.
+To perform inference locally with a debugger GUI, simply install
+```
+git clone https://github.com/Project-MONAI/VISTA.git;
+cd ./VISTA/vista3d;
+pip intall -r requirements.txt
+```
+Download the [model checkpoint](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing) and save it at ./models/model.pt.
+
+### Inference
+The [NIM Demo (VISTA3D NVIDIA Inference Microservices)](https://build.nvidia.com/nvidia/vista-3d) does not support medical data upload due to legal concerns. 
+We provide scripts for inference locally. The automatic segmentation label definition can be found at [label_dict](./data/jsons/label_dict.json). 
+1. We provide the `infer.py` script and its light-weight front-end `debugger.py`. User can directly lauch a local interface for both automatic and interactive segmentation.
+```
+ python -m scripts.debugger run
+```
+or directly call infer.py to generate automatic segmentation. To segment a liver (label_prompt=1 as defined in [label_dict](./data/jsons/label_dict.json)), run
+```
+export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --label_prompt "[1]" --save_mask true
+```
+To segment everything, run
+```
+export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
+```
+
+The output path and other configs can be changed in the `configs/infer.yaml`
+
+2. The [MONAI bundle](https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d) wraps VISTA3D and provides a unified API for inference, and the [NIM Demo](https://build.nvidia.com/nvidia/vista-3d) deploys the bundle with an interactive front-end. Although NIM Demo cannot run locally, the bundle is available and can run locally. The running enviroment requires a monai docker. The MONAI bundle is more suitable for automatic segmentattion in batch.
 ```
 docker pull projectmonai/monai:1.3.2
 ```
 
-
-### Inference
-We provide two ways to use the model for inference.
-1. We recommend users to use the optimized and standardized [MONAI bundle]() model. The bundle provides a unified API for inference.
-The [VISTA3D NVIDIA Inference Microservices (NIM)](https://build.nvidia.com/nvidia/vista-3d) deploys the bundle with an interactive front-end.
-2. For quick debugging and model development purposes, we also provide the `infer.py` script and its light-weight front-end `debugger.py`. `python -m scripts.debugger run`. Note we will prioritize [NIM](https://build.nvidia.com/nvidia/vista-3d) and [monai bundle]() developments and those functions will be deprecated in the future.
-```
-export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --label_prompt [1] --save_mask true
-export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
-```
 
 ### Training
 #### Dataset and SuperVoxel Curation
