@@ -118,6 +118,33 @@ For finetuning, user need to change `label_set` and `mapped_label_set` in the js
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.train_finetune run --config_file "['configs/finetune/train_finetune_word.yaml']"
 ```
 
+### NEW! SAM2 Benchmark
+We provide scripts to run SAM2 evaluation. Modify SAM2 source code to support background remove: Add `z_slice` to `sam2_video_predictor.py`.
+```
+    @torch.inference_mode()
+    def init_state(
+        self,
+        video_path,
+        offload_video_to_cpu=False,
+        offload_state_to_cpu=False,
+        async_loading_frames=False,
+        z_slice=None
+    ):
+        """Initialize a inference state."""
+        images, video_height, video_width = load_video_frames(
+            video_path=video_path,
+            image_size=self.image_size,
+            offload_video_to_cpu=offload_video_to_cpu,
+            async_loading_frames=async_loading_frames,
+        )
+        if z_slice is not None:
+            images = images[z_slice]  
+```
+Run evaluation
+```
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_sam2_point_iterative run --config_file "['configs/zeroshot_eval/infer_iter_point_hcc.yaml']"
+```
+
 
 ## Community
 

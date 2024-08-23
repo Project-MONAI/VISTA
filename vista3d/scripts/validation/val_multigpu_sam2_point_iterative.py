@@ -39,7 +39,6 @@ from sam2.build_sam import build_sam2_video_predictor
 from scipy.ndimage import binary_erosion
 
 from ..train import CONFIG
-from ..utils.workflow_utils import generate_prompt_pairs_val, get_next_points_val
 
 def save_nifti_frames_to_jpg(data, output_folder=None):
     data = torch.squeeze(data)
@@ -100,10 +99,13 @@ def get_points_from_false_pred(pred, gt, num_point=1):
     structuring_element = np.ones((3, 3), dtype=np.uint8)
     # handle false positive
     fp_mask = torch.logical_and(torch.logical_not(gt), pred)
+    # sample from largest connected components did not show much difference.
+    # fp_mask = monai.transforms.utils.get_largest_connected_component_mask(fp_mask)
     eroded_image = binary_erosion(fp_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
     plabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
     # handle false negative 
     fn_mask = torch.logical_and(torch.logical_not(pred), gt)
+    # fn_mask = monai.transforms.utils.get_largest_connected_component_mask(fn_mask)
     eroded_image = binary_erosion(fn_mask.cpu().numpy(), structure=structuring_element).astype(np.uint8)
     nlabelpoints = torch.nonzero(torch.from_numpy(eroded_image))
     _point = []
@@ -136,7 +138,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
     if torch.cuda.device_count() > 1:
         dist.init_process_group(
-            backend="nccl", init_method="env://", timeout=timedelta(seconds=10000)
+            backend="nccl", init_method="env://", timeout=timedelta(seconds=1000000)
         )
         world_size = dist.get_world_size()
         dist.barrier()
@@ -180,9 +182,13 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     use_center = parser.get_parsed_content("use_center", default=True)
     output_path = parser.get_parsed_content("output_path")
     dataset_name = parser.get_parsed_content("dataset_name", default=None)
+    # remove slices without foreground 
     saliency = parser.get_parsed_content("saliency", default=False)
-    start_file = parser.get_parsed_content("start_from", default=0)
+    start_file = parser.get_parsed_content("start_file", default=0)
     end_file = parser.get_parsed_content("end_file", default=-1)
+    # merge tumors into organs to avoid some confusions, e.g. merge liver tumor into liver thus
+    # may improve liver seg results. Not showing large difference. 
+    merge_tumors = parser.get_parsed_content("merge_tumors", default=False)
     MAX_ITER = parser.get_parsed_content("max_iter", default=1)
     log_output_file = parser.get_parsed_content("log_output_file").replace(".log", f"_{start_file}_{end_file}_s{saliency}.log")
     parser.update(pairs={'log_output_file': log_output_file})
@@ -255,6 +261,8 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     }
     process_files = process_dict[list_key]
     # batch process
+    if end_file == -1:
+        end_file = len(process_files)
     process_files = process_files[start_file:end_file]
     logger.info(f'Working on files from {start_file} to {end_file}: {process_files}')
 
@@ -323,15 +331,21 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
             ]
             frame_names.sort(key=lambda p: int(os.path.splitext(p)[0]))
             if not saliency:
-                inference_state = predictor.init_state(video_path=video_dir, z_slice=z_slice)
+                inference_state = predictor.init_state(video_path=video_dir)
                 predictor.reset_state(inference_state)
             # loop through the label_set
             exist_label = sorted(val_data["label"].unique().numpy().tolist())
+            exist_label =  list(set(exist_label).intersection(label_set))
             if len(exist_label) == 1:
                 continue
             for i in range(1, len(exist_label)):
                 label_index = exist_label[i]
                 label = torch.squeeze((val_data["label"] == label_index).to(torch.uint8))
+                if merge_tumors:
+                    # Can only be used for Task3, Task7. Disabled by default.
+                    logger.debug('merging tumors')
+                    if label_index == 1:
+                        label = label + torch.squeeze((val_data["label"] == 2).to(torch.uint8))
                 # remove 
                 if saliency:
                     print('removing label without foreground')
@@ -484,3 +498,80 @@ if __name__ == "__main__":
 
     fire, _ = optional_import("fire")
     fire.Fire()
+
+
+#####  functions to plot 
+# import torch
+# import numpy as np
+# import matplotlib.pyplot as plt
+# from scipy.stats import sem
+# import pdb
+# def plot_func(clip, noclip, classes, dataset, start=0, end=-1):
+#     if type(clip) is list:
+#         dataclip = []
+#         for i in clip:
+#             dataclip.append(torch.load(i)['metric'])
+#         dataclip = torch.vstack(dataclip).numpy()
+#         print('total clip number', len(dataclip))
+#     else:
+#         dataclip = torch.load(clip)['metric'].numpy()
+        
+#     if type(noclip) is list:
+#         datanoclip = []
+#         for i in noclip:
+#             datanoclip.append(torch.load(i)['metric'])
+#         datanoclip = torch.vstack(datanoclip).numpy()
+#         print('total no clip number', len(datanoclip))
+#     else:
+#         datanoclip = torch.load(noclip)['metric'].numpy()
+#     pdb.set_trace()
+#     for i in range(dataclip.shape[0]):
+#         for j in range(dataclip.shape[1]):
+#             for z in range(dataclip.shape[2]):
+#     #             data[i,j,z] = np.nanmax(data[i,j,:z+1])
+#                 if np.isnan(dataclip[i,j,z]):
+#                     dataclip[i,j,z] = dataclip[i,j,z-1]
+#     for i in range(datanoclip.shape[0]):
+#         for j in range(datanoclip.shape[1]):
+#             for z in range(datanoclip.shape[2]):
+#     #             data[i,j,z] = np.nanmax(data[i,j,:z+1])
+#                 if np.isnan(datanoclip[i,j,z]):
+#                     datanoclip[i,j,z] = datanoclip[i,j,z-1]
+#     mean_dataclip = np.nanmean(dataclip, axis=0)
+#     mean_datanoclip = np.nanmean(datanoclip, axis=0)
+#     # Calculate the standard error of the mean (SEM)
+#     sem_dataclip = sem(dataclip, axis=0, nan_policy='omit')
+#     sem_datanoclip = sem(datanoclip, axis=0, nan_policy='omit')
+
+#     # Determine the X values
+#     x_values = np.arange(datanoclip.shape[2])
+
+#     # Plotting
+#     fig, axes = plt.subplots(1, 2, figsize=(20, 6))
+#     if end == -1:
+#         end = dataclip.shape[1]
+#     for i in range(start, end):
+#         axes[0].plot(x_values, mean_dataclip[i], label=f'{classes[i]}')
+#         axes[0].fill_between(x_values, mean_dataclip[i] - 1.96 * sem_datanoclip[i], 
+#                                      mean_dataclip[i] + 1.96 * sem_datanoclip[i], 
+#                          alpha=0.2)
+#         axes[0].set_xlabel('Number of annotated slices')
+#         axes[0].set_ylabel('Mean Dice Value')
+#         axes[0].legend()
+#         axes[0].grid(True)
+#         axes[0].set_title(f'{dataset} results with background removal')
+        
+#         axes[1].plot(x_values, mean_datanoclip[i], label=f'{classes[i]}')
+#         axes[1].fill_between(x_values, mean_datanoclip[i] - 1.96 * sem_datanoclip[i], 
+#                                      mean_datanoclip[i] + 1.96 * sem_datanoclip[i], 
+#                          alpha=0.2)
+
+#         axes[1].set_xlabel('Number of annotated slices without background removal')
+#         axes[1].set_ylabel(f'{classes[i]}')
+#         axes[1].legend()
+#         axes[1].grid(True)
+#         axes[1].set_title(f'{dataset} results without background removal')
+
+#     plt.show()    
+# #task07
+# plot_func('validation_auto_clipTask07.pt', 'validation_auto_Task07.pt', ['Task07 Pancreas', 'Task07 Pancreas Tumor'], 'MSD Task07')
