@@ -134,8 +134,8 @@ For finetuning, user need to change `label_set` and `mapped_label_set` in the js
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.train_finetune run --config_file "['configs/finetune/train_finetune_word.yaml']"
 ```
 
-### NEW! SAM2 Benchmark
-We provide scripts to run SAM2 evaluation. Modify SAM2 source code to support background remove: Add `z_slice` to `sam2_video_predictor.py`.
+### NEW! [SAM2 Benchmark Tech Report](https://arxiv.org/abs/2408.11210)
+We provide scripts to run SAM2 evaluation. Modify SAM2 source code to support background remove: Add `z_slice` to `sam2_video_predictor.py`. Require SAM2 package [installation](https://github.com/facebookresearch/segment-anything-2)
 ```
     @torch.inference_mode()
     def init_state(
@@ -158,8 +158,15 @@ We provide scripts to run SAM2 evaluation. Modify SAM2 source code to support ba
 ```
 Run evaluation
 ```
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_sam2_point_iterative run --config_file "['configs/zeroshot_eval/infer_iter_point_hcc.yaml']"
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_sam2_point_iterative run --config_file "['configs/supported_eval/infer_sam2_point.yaml']" --saliency False --dataset_name 'Task06'
 ```
+<div align="center">
+<figure>
+  <img
+  src="assets/imgs/sam2.png">
+  <figcaption> Initial comparison with SAM2's zero-shot performance. </figcaption>
+</figure>
+</div>
 
 
 ## Community
