@@ -72,7 +72,7 @@ To perform inference locally with a debugger GUI, simply install
 ```
 git clone https://github.com/Project-MONAI/VISTA.git;
 cd ./VISTA/vista3d;
-pip intall -r requirements.txt
+pip install -r requirements.txt
 ```
 Download the [model checkpoint](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing) and save it at ./models/model.pt.
 
