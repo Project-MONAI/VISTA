@@ -77,8 +77,8 @@ pip install -r requirements.txt
 Download the [model checkpoint](https://drive.google.com/file/d/1eLIxQwnxGsjggxiVjdcAyNvJ5DYtqmdc/view?usp=sharing) and save it at ./models/model.pt.
 
 ### Inference
-The [NIM Demo (VISTA3D NVIDIA Inference Microservices)](https://build.nvidia.com/nvidia/vista-3d) does not support medical data upload due to legal concerns. 
-We provide scripts for inference locally. The automatic segmentation label definition can be found at [label_dict](./data/jsons/label_dict.json). 
+The [NIM Demo (VISTA3D NVIDIA Inference Microservices)](https://build.nvidia.com/nvidia/vista-3d) does not support medical data upload due to legal concerns.
+We provide scripts for inference locally. The automatic segmentation label definition can be found at [label_dict](./data/jsons/label_dict.json).
 1. We provide the `infer.py` script and its light-weight front-end `debugger.py`. User can directly lauch a local interface for both automatic and interactive segmentation.
 ```
  python -m scripts.debugger run
@@ -154,7 +154,7 @@ We provide scripts to run SAM2 evaluation. Modify SAM2 source code to support ba
             async_loading_frames=async_loading_frames,
         )
         if z_slice is not None:
-            images = images[z_slice]  
+            images = images[z_slice]
 ```
 Run evaluation
 ```
