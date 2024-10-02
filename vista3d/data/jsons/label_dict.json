@@ -1,6 +1,5 @@
 {
     "liver": 1,
-    "kidney": 2,
     "spleen": 3,
     "pancreas": 4,
     "right kidney": 5,
@@ -14,12 +13,8 @@
     "duodenum": 13,
     "left kidney": 14,
     "bladder": 15,
-    "prostate or uterus (deprecated)": 16,
     "portal vein and splenic vein": 17,
-    "rectum (deprecated)": 18,
     "small bowel": 19,
-    "lung": 20,
-    "bone": 21,
     "brain": 22,
     "lung tumor": 23,
     "pancreatic tumor": 24,
@@ -127,8 +122,5 @@
     "thyroid gland": 126,
     "vertebrae S1": 127,
     "bone lesion": 128,
-    "kidney mass (deprecated)": 129,
-    "liver tumor (deprecated)": 130,
-    "vertebrae L6 (deprecated)": 131,
     "airway": 132
 }
