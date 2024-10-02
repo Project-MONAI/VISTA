@@ -104,7 +104,7 @@ To segment everything, run
 ```
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
 ```
-The output path and other configs can be changed in the `configs/infer.yaml`. 
+The output path and other configs can be changed in the `configs/infer.yaml`.
 
 
 ```
