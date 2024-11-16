@@ -12,7 +12,7 @@ limitations under the License.
 -->
 
 # MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
-[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Checkpoint`]](https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_vista3d.pt)
+[[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Checkpoint`]](https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing)
 ## Overview
 
 The **VISTA3D** is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. It provides accurate out-of-the-box segmentation that matches state-of-the-art supervised models which are trained on each dataset. The model also achieves state-of-the-art zero-shot interactive segmentation in 3D, representing a promising step toward developing a versatile medical image foundation model.
@@ -74,7 +74,7 @@ git clone https://github.com/Project-MONAI/VISTA.git;
 cd ./VISTA/vista3d;
 pip install -r requirements.txt
 ```
-Download the [model checkpoint](https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_vista3d.pt) and save it at ./models/model.pt.
+Download the [model checkpoint](https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing) and save it at ./models/model.pt.
 
 ### Inference
 The [NIM Demo (VISTA3D NVIDIA Inference Microservices)](https://build.nvidia.com/nvidia/vista-3d) does not support medical data upload due to legal concerns.
