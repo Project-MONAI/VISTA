@@ -11,6 +11,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+> ⚠️ **VISTA2D Production Version Available**
+>
+> This is the research implementation of VISTA2D. The model is now available as a MONAI product in:
+> - [MONAI Core](https://github.com/Project-MONAI/MONAI) - Contains the maintained implementation
+> - [MONAI Model Zoo](https://github.com/Project-MONAI/model-zoo) - Provides pre-trained VISTA2D models as MONAI Bundles
+> - [MONAI Tutorials](https://github.com/Project-MONAI/tutorials) - Contains examples and tutorials for using VISTA2D
+>
+> For new projects, we recommend using the official implementation which includes optimizations and regular maintenance.
+
+
 ## Overview
 
 The **VISTA2D** is a cell segmentation training and inference pipeline for cell imaging [[`Blog`](https://developer.nvidia.com/blog/advancing-cell-segmentation-and-morphology-analysis-with-nvidia-ai-foundation-model-vista-2d/)].
