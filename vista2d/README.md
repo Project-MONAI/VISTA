@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-> ⚠️ **VISTA2D Production Version Available**
+> ⚠️ **Research Repository Notice**
 >
 > This is the research implementation of VISTA2D. The model is now officially available in MONAI in:
 > - [MONAI Core](https://github.com/Project-MONAI/MONAI) - Contains the maintained implementation
