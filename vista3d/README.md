@@ -11,6 +11,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+> ⚠️ **VISTA3D Production Version Available**
+>
+> This is the research implementation of VISTA3D. The model is now available as a MONAI product in:
+> - [MONAI Core](https://github.com/Project-MONAI/MONAI) - Contains the maintained implementation
+> - [MONAI Model Zoo](https://github.com/Project-MONAI/model-zoo) - Provides pre-trained VISTA3D models as MONAI Bundles
+> - [MONAI Tutorials](https://github.com/Project-MONAI/tutorials) - Contains examples and tutorials for using VISTA3D
+>
+> For new projects, we recommend using the official implementation which includes optimizations and regular maintenance.
+
 # MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 [[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Checkpoint`]](https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing)
 ## Overview
