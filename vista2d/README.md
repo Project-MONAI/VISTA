@@ -13,13 +13,12 @@ limitations under the License.
 
 > ⚠️ **VISTA2D Production Version Available**
 >
-> This is the research implementation of VISTA2D. The model is now available as a MONAI product in:
+> This is the research implementation of VISTA2D. The model is now officially available in MONAI in:
 > - [MONAI Core](https://github.com/Project-MONAI/MONAI) - Contains the maintained implementation
 > - [MONAI Model Zoo](https://github.com/Project-MONAI/model-zoo) - Provides pre-trained VISTA2D models as MONAI Bundles
 > - [MONAI Tutorials](https://github.com/Project-MONAI/tutorials) - Contains examples and tutorials for using VISTA2D
 >
 > For new projects, we recommend using the official implementation which includes optimizations and regular maintenance.
-
 
 ## Overview
 
