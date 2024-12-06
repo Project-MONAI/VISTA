@@ -12,4 +12,13 @@ limitations under the License.
 -->
 
 # MONAI VISTA Repository
-This is the repository for VISTA3D and VISTA2D. For the older VISTA2.5d code, please checkout the vista2.5d branch
+
+> ⚠️ **Research Repository Notice**
+>
+> This is the original research repository for VISTA2D and VISTA3D models. For production use, these models are now officially supported in:
+> - [MONAI Core](https://github.com/Project-MONAI/MONAI) - Contains the integrated model implementations
+> - [MONAI Model Zoo](https://github.com/Project-MONAI/model-zoo) - Provides pre-trained models as MONAI Bundles
+>
+> We recommend using the official implementations for new projects. This repository is maintained for research reference purposes.
+
+This is the repository for VISTA3D and VISTA2D. For the older VISTA2.5d code, please checkout the vista2.5d branch.
