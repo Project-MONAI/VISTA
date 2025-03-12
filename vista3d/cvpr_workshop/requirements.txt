@@ -1,0 +1,13 @@
+tensorboard
+matplotlib
+monai
+torchvision
+nibabel
+torch
+connected-components-3d
+pandas
+numpy
+scipy
+cupy-cuda12x
+cucim
+tqdm
