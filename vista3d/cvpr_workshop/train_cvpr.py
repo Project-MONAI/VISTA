@@ -104,23 +104,25 @@ class NPZDataset(Dataset):
         return data
 # Training function
 def train():
+    json_file = "subset.json"  # Update with your JSON file
     epoch_number = 100
-    start_epoch = 30
+    start_epoch = 0
     lr = 2e-5
     checkpoint_dir = "checkpoints"
+    start_checkpoint = '/workspace/CPRR25_vista3D_model_final_10percent_data.pth'
+
     os.makedirs(checkpoint_dir, exist_ok=True)
     dist.init_process_group(backend="nccl")
     world_size = int(os.environ["WORLD_SIZE"])
     local_rank = int(os.environ["LOCAL_RANK"])
     torch.cuda.set_device(local_rank)
     device = torch.device(f"cuda:{local_rank}")
-    json_file = "subset.json"  # Update with your JSON file
     dataset = NPZDataset(json_file)
     sampler = torch.utils.data.distributed.DistributedSampler(dataset, num_replicas=world_size, rank=local_rank)
     dataloader = DataLoader(dataset, batch_size=1, sampler=sampler, num_workers=32)
     model = vista3d132(in_channels=1).to(device)
-    # pretrained_ckpt = torch.load('/workspace/VISTA/vista3d/bundles/vista3d/models/model.pt', map_location=device)
-    pretrained_ckpt = torch.load(os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth"))
+    pretrained_ckpt = torch.load(start_checkpoint, map_location=device)
+    # pretrained_ckpt = torch.load(os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth"))
     model = DDP(model, device_ids=[local_rank], find_unused_parameters=True)
     model.load_state_dict(pretrained_ckpt['model'], strict=True)
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1.0e-05)

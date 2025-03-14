@@ -15,7 +15,7 @@ limitations under the License.
 This repository is written for the "CVPR 2025: Foundation Models for Interactive 3D Biomedical Image Segmentation"([link](https://www.codabench.org/competitions/5263/)) challenge. It 
 is based on MONAI 1.4. Many of the functions in the main VISTA3D repository are moved to MONAI 1.4 and this simplified folder will directly use components from MONAI.
 
-It is overly simplied to train interactive segmentation models across different modalities. The sophisticated transforms and recipes used for VISTA3D are removed. 
+It is simplified to train interactive segmentation models across different modalities. The sophisticated transforms and recipes used for VISTA3D are removed. The finetuned VISTA3D checkpoint on the challenge subsets is available [here](https://drive.google.com/file/d/1r2KvHP_30nHR3LU7NJEdscVnlZ2hTtcd/view?usp=sharing)
 
 # Setup
 ```
@@ -23,12 +23,17 @@ pip install -r requirements.txt
 ```
 
 # Training
-Download VISTA3D pretrained checkpoint or from scratch. Generate a json list that contains your traning data.
+Download the challenge subsets finetuned [checkpoint](https://drive.google.com/file/d/1r2KvHP_30nHR3LU7NJEdscVnlZ2hTtcd/view?usp=sharing) or VISTA3D original [checkpoint]((https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing)). Generate a json list that contains your traning data and update the json file path in the script.
 ```
 torchrun --nnodes=1 --nproc_per_node=8 train_cvpr.py
 ```
 
 # Inference
-We provide a Dockerfile to satisfy the challenge format. For more details, refer to the [challenge website]((https://www.codabench.org/competitions/5263/))
+You can directly download the [docker file](https://drive.google.com/file/d/1r2KvHP_30nHR3LU7NJEdscVnlZ2hTtcd/view?usp=sharing) for the challenge baseline.
+We provide a Dockerfile to satisfy the challenge format. For more details, refer to the [challenge website]((https://www.codabench.org/competitions/5263/)).
+```
+docker build -t vista3d:latest .
+docker save -o vista3d.tar.gz vista3d:latest
+```
 
 
