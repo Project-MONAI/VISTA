@@ -15,7 +15,6 @@ limitations under the License.
 This repository is written for the "CVPR 2025: Foundation Models for Interactive 3D Biomedical Image Segmentation"([link](https://www.codabench.org/competitions/5263/)) challenge. It 
 is based on MONAI 1.4. Many of the functions in the main VISTA3D repository are moved to MONAI 1.4 and this simplified folder will directly use components from MONAI.
 
-
 It is simplified to train interactive segmentation models across different modalities. The sophisticated transforms and recipes used for VISTA3D are removed. The finetuned VISTA3D checkpoint on the challenge subsets is available [here](https://drive.google.com/file/d/1r2KvHP_30nHR3LU7NJEdscVnlZ2hTtcd/view?usp=sharing)
 
 # Setup
@@ -36,6 +35,5 @@ We provide a Dockerfile to satisfy the challenge format. For more details, refer
 docker build -t vista3d:latest .
 docker save -o vista3d.tar.gz vista3d:latest
 ```
-
 
 
