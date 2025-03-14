@@ -110,7 +110,6 @@ def train():
     lr = 2e-5
     checkpoint_dir = "checkpoints"
     start_checkpoint = '/workspace/CPRR25_vista3D_model_final_10percent_data.pth'
-
     os.makedirs(checkpoint_dir, exist_ok=True)
     dist.init_process_group(backend="nccl")
     world_size = int(os.environ["WORLD_SIZE"])
