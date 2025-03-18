@@ -23,7 +23,7 @@ pip install -r requirements.txt
 ```
 
 # Training
-Download the challenge subsets finetuned [checkpoint](https://drive.google.com/file/d/1r2KvHP_30nHR3LU7NJEdscVnlZ2hTtcd/view?usp=sharing) or VISTA3D original [checkpoint]((https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing)). Generate a json list that contains your traning data and update the json file path in the script.
+Download the challenge subsets finetuned [checkpoint](https://drive.google.com/file/d/1hQ8imaf4nNSg_43dYbPSJT0dr7JgAKWX/view?usp=sharing) or VISTA3D original [checkpoint]((https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing)). Generate a json list that contains your traning data and update the json file path in the script.
 ```
 torchrun --nnodes=1 --nproc_per_node=8 train_cvpr.py
 ```
@@ -35,5 +35,6 @@ We provide a Dockerfile to satisfy the challenge format. For more details, refer
 docker build -t vista3d:latest .
 docker save -o vista3d.tar.gz vista3d:latest
 ```
+You can also directly run `predict.sh`. Download the finetuned checkpoint and modify the `--model=/your_downloaded_checkpoint'.
 
 
