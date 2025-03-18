@@ -27,6 +27,8 @@ Download the challenge subsets finetuned [checkpoint](https://drive.google.com/f
 ```
 torchrun --nnodes=1 --nproc_per_node=8 train_cvpr.py
 ```
+The checkpoint saved by train_cvpr.py can be updated by `update_ckpt.py` to remove the additional `module` key due to multi-gpu training. 
+
 
 # Inference
 You can directly download the [docker file](https://drive.google.com/file/d/1r2KvHP_30nHR3LU7NJEdscVnlZ2hTtcd/view?usp=sharing) for the challenge baseline.
@@ -35,6 +37,6 @@ We provide a Dockerfile to satisfy the challenge format. For more details, refer
 docker build -t vista3d:latest .
 docker save -o vista3d.tar.gz vista3d:latest
 ```
-You can also directly run `predict.sh`. Download the finetuned checkpoint and modify the `--model=/your_downloaded_checkpoint'.
+You can also directly run `predict.sh`. Download the finetuned checkpoint and modify the `--model=/your_downloaded_checkpoint`. Change `save_data=True` in `infer_cvpr.py` to save predictions to nifti files for visualization. 
 
 
