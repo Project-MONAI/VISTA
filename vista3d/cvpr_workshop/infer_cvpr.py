@@ -15,7 +15,6 @@ tqdm, _ = optional_import("tqdm", name="tqdm")
 import os
 
 
-
 def convert_clicks(alldata):
     # indexes = list(alldata.keys())
     # data = [alldata[i] for i in indexes]
