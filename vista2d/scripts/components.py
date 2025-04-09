@@ -90,7 +90,7 @@ class LoadTiffd(MapTransform):
 
             meta_data = {
                 ImageMetaKey.FILENAME_OR_OBJ: filename,
-                ImageMetaKey.SPATIAL_SHAPE: image_size,
+                ImageMetaKey.SPATIAL_SHAPE: img_array.shape[-2:],
             }
             d[key] = MetaTensor.ensure_torch_and_prune_meta(img_array, meta_data)
 
