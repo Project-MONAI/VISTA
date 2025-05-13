@@ -12,7 +12,7 @@ COPY train_cvpr.py /workspace/train.py
 COPY update_ckpt.py /workspace/update_ckpt.py
 COPY Dockerfile /workspace/Dockerfile
 COPY requirements.txt /workspace/
-COPY model_final.pth /workspace
+COPY model_epoch40.pth /workspace
 # Install Python dependencies
 RUN pip3 install -r requirements.txt
 

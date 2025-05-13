@@ -21,8 +21,8 @@ warnings.simplefilter("ignore")
 
 import matplotlib.pyplot as plt
 
-NUM_PATCHES_PER_IMAGE = 4
-
+NUM_PATCHES_PER_IMAGE = 2
+ROI_SIZE= [128, 128, 128]
 
 def plot_to_tensorboard(writer, epoch, inputs, labels, points, outputs):
     """
@@ -78,7 +78,8 @@ class NPZDataset(Dataset):
     def __init__(self, json_file):
         with open(json_file, "r") as f:
             self.file_paths = json.load(f)
-        self.base_path = "/workspace/VISTA/CVPR-MedSegFMCompetition/trainsubset"
+        # self.base_path = "/home/projects/healthcareeng_monai/datasets/CVPR-BiomedSegFM/3D_train_npz_all/"
+        self.base_path = "/data/"
 
     def __len__(self):
         return len(self.file_paths)
@@ -86,7 +87,11 @@ class NPZDataset(Dataset):
     def __getitem__(self, idx):
         img = np.load(os.path.join(self.base_path, self.file_paths[idx]))
         img_array = torch.from_numpy(img["imgs"]).unsqueeze(0).to(torch.float32)
-        label = torch.from_numpy(img["gts"]).unsqueeze(0).to(torch.int32)
+        try:
+            label = torch.from_numpy(img["gts"]).unsqueeze(0).to(torch.int32)
+        except:
+            label = torch.zeros_like(img_array, dtype=torch.int32)
+            print(f"Warning: No label found for {self.file_paths[idx]}. Using zeros.")
         data = {"image": img_array, "label": label, "filename": self.file_paths[idx]}
         affine = np.diag(img["spacing"].tolist() + [1])  # 4x4 affine matrix
         transforms = monai.transforms.Compose(
@@ -97,13 +102,14 @@ class NPZDataset(Dataset):
                 monai.transforms.SpatialPadd(
                     mode=["constant", "constant"],
                     keys=["image", "label"],
-                    spatial_size=[128, 128, 128],
+                    spatial_size=ROI_SIZE,
                 ),
                 monai.transforms.RandCropByLabelClassesd(
-                    spatial_size=[128, 128, 128],
+                    spatial_size=ROI_SIZE,
                     keys=["image", "label"],
                     label_key="label",
                     num_classes=label.max() + 1,
+                    ratios=tuple(float(i > 0) for i in range(label.max()+1)),
                     num_samples=NUM_PATCHES_PER_IMAGE,
                 ),
                 monai.transforms.RandScaleIntensityd(
@@ -127,22 +133,42 @@ class NPZDataset(Dataset):
                 monai.transforms.RandRotate90d(
                     max_k=3, prob=0.2, keys=["image", "label"]
                 ),
+                monai.transforms.SpatialPadd(
+                    mode=["constant", "constant"],
+                    keys=["image", "label"],
+                    spatial_size=ROI_SIZE,
+                )
             ]
         )
         data = transforms(data)
         return data
 
+import re
+
+def get_latest_epoch(directory):
+    # Pattern to match filenames like 'model_epoch<number>.pth'
+    pattern = re.compile(r'model_epoch(\d+)\.pth')
+    max_epoch = -1
+
+    for filename in os.listdir(directory):
+        match = pattern.match(filename)
+        if match:
+            epoch = int(match.group(1))
+            if epoch > max_epoch:
+                max_epoch = epoch
+
+    return max_epoch if max_epoch != -1 else None
 
 # Training function
 def train():
-    json_file = "subset.json"  # Update with your JSON file
-    json_file = "subset.json"  # Update with your JSON file
+    json_file = "allset.json"  # Update with your JSON file
     epoch_number = 100
-    start_epoch = 0
-    lr = 2e-5
+    lr = 2e-6
+    save_interval = 1
     checkpoint_dir = "checkpoints"
-    start_checkpoint = "/workspace/CPRR25_vista3D_model_final_10percent_data.pth"
-    start_checkpoint = "/workspace/CPRR25_vista3D_model_final_10percent_data.pth"
+    start_epoch = get_latest_epoch(checkpoint_dir)
+    start_checkpoint = "./CPRR25_vista3D_model_final_10percent_data.pth"
+
 
     os.makedirs(checkpoint_dir, exist_ok=True)
     dist.init_process_group(backend="nccl")
@@ -156,12 +182,18 @@ def train():
     )
     dataloader = DataLoader(dataset, batch_size=1, sampler=sampler, num_workers=32)
     model = vista3d132(in_channels=1).to(device)
-    pretrained_ckpt = torch.load(start_checkpoint, map_location=device)
-    # pretrained_ckpt = torch.load(os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth"))
-    pretrained_ckpt = torch.load(start_checkpoint, map_location=device)
-    # pretrained_ckpt = torch.load(os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth"))
+    if start_epoch is None:
+        print(f"Loading pretrained model from {start_checkpoint}")
+        start_epoch = 0
+        pretrained_ckpt = torch.load(start_checkpoint, map_location=device)
+        model.load_state_dict(pretrained_ckpt, strict=True)
+    else:
+        print(f"Resuming from epoch {start_epoch}")
+        pretrained_ckpt = torch.load(os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth"))
+        model.load_state_dict(pretrained_ckpt['model'], strict=True)
     model = DDP(model, device_ids=[local_rank], find_unused_parameters=True)
-    model.load_state_dict(pretrained_ckpt["model"], strict=True)
+
+    
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1.0e-05)
     lr_scheduler = monai.optimizers.WarmupCosineSchedule(
         optimizer=optimizer,
@@ -232,15 +264,24 @@ def train():
                 step += 1
                 if local_rank == 0:
                     writer.add_scalar("loss", loss.item(), step)
-        if local_rank == 0 and epoch % 5 == 0:
-            checkpoint_path = os.path.join(checkpoint_dir, f"model_epoch{epoch}.pth")
-            torch.save(
-                {"model": model.state_dict(), "epoch": epoch, "step": step},
-                checkpoint_path,
-            )
-            print(
-                f"Rank {local_rank}, Epoch {epoch}, Loss: {loss.item()}, Checkpoint saved: {checkpoint_path}"
-            )
+        if local_rank == 0 and (epoch + 1) % save_interval == 0:
+            checkpoint_path = os.path.join(checkpoint_dir, f"model_epoch{epoch + 1}.pth")
+            if world_size > 1:
+                torch.save(
+                    {"model": model.module.state_dict(), "epoch": epoch + 1, "step": step},
+                    checkpoint_path,
+                )
+                print(
+                    f"Rank {local_rank}, Epoch {epoch + 1}, Loss: {loss.item()}, Checkpoint saved: {checkpoint_path}"
+                )
+            else:
+                torch.save(
+                    {"model": model.state_dict(), "epoch": epoch + 1, "step": step},
+                    checkpoint_path,
+                )
+                print(
+                    f"Rank {local_rank}, Epoch {epoch + 1}, Loss: {loss.item()}, Checkpoint saved: {checkpoint_path}"
+                )
         lr_scheduler.step()
 
     dist.destroy_process_group()

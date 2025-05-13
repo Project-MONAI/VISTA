@@ -14,7 +14,7 @@ from monai.utils import optional_import
 tqdm, _ = optional_import("tqdm", name="tqdm")
 import os
 
-
+from train_cvpr import ROI_SIZE
 
 def convert_clicks(alldata):
     # indexes = list(alldata.keys())
@@ -54,7 +54,6 @@ if __name__ == "__main__":
     # set to true to save nifti files for visualization
     save_data = False
     point_inferer = True  # use point based inferen
-    roi_size = [128, 128, 128]
     parser = argparse.ArgumentParser()
     parser.add_argument("--test_img_path", type=str, default="./tests")
     parser.add_argument("--save_path", type=str, default="./outputs/")
@@ -102,7 +101,7 @@ if __name__ == "__main__":
                 # directly using slidingwindow inferer is not optimal.
                 val_outputs = (
                     SlidingWindowInfererAdapt(
-                        roi_size=roi_size,
+                        roi_size=ROI_SIZE,
                         sw_batch_size=1,
                         with_coord=True,
                         padding_mode="replicate",
@@ -127,7 +126,7 @@ if __name__ == "__main__":
                     val_outputs = (
                         point_based_window_inferer(
                             inputs=img_array.to(device),
-                            roi_size=roi_size,
+                            roi_size=ROI_SIZE,
                             transpose=True,
                             with_coord=True,
                             predictor=model.to(device),
