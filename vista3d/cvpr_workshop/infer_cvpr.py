@@ -16,6 +16,7 @@ import os
 
 from train_cvpr import ROI_SIZE
 
+
 def convert_clicks(alldata):
     # indexes = list(alldata.keys())
     # data = [alldata[i] for i in indexes]
