@@ -13,6 +13,7 @@ limitations under the License.
 
 # MONAI **V**ersatile **I**maging **S**egmen**T**ation and **A**nnotation
 [[`Paper`](https://arxiv.org/pdf/2406.05285)] [[`Demo`](https://build.nvidia.com/nvidia/vista-3d)] [[`Checkpoint`]](https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing)
+<div align="center"> <img src="./assets/imgs/workflow.png" width="100%"/> </div>
 
 ## News!
 [03/12/2025] We provide VISTA3D as a baseline for the challenge "CVPR 2025: Foundation Models for Interactive 3D Biomedical Image Segmentation"([link](https://www.codabench.org/competitions/5263/)). The simplified code based on MONAI 1.4 is provided in the [here](./cvpr_workshop/).
@@ -21,7 +22,7 @@ limitations under the License.
 ## Overview
 
 The **VISTA3D** is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. It provides accurate out-of-the-box segmentation that matches state-of-the-art supervised models which are trained on each dataset. The model also achieves state-of-the-art zero-shot interactive segmentation in 3D, representing a promising step toward developing a versatile medical image foundation model.
-<div align="center"> <img src="./assets/imgs/scores.png" width="800"/> </div>
+
 
 ### Out-of box automatic segmentation
 For supported 127 classes, the model can perform highly accurate out-of-box segmentation. The fully automated process adopts a patch-based sliding-window inference and only requires a class prompt.
@@ -66,52 +67,124 @@ This capability makes the model even more flexible and accelerates practical seg
 </figure>
 </div>
 
-### Fine-tuning
-VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Once a few annotated examples are provided, user can start finetune with the VISTA3D checkpoint.
-<div align="center"> <img src="./assets/imgs/finetune.png" width="600"/> </div>
 
 ## Usage
 
-### Installation
+## Installation
 To perform inference locally with a debugger GUI, simply install
-```
-git clone https://github.com/Project-MONAI/VISTA.git;
-cd ./VISTA/vista3d;
+```bash
+git clone https://github.com/Project-MONAI/VISTA.git
+cd ./VISTA/vista3d
+conda create -n -y vista3d python=3.9
+conda activate vista3d
 pip install -r requirements.txt
 ```
 Download the [model checkpoint](https://drive.google.com/file/d/1DRYA2-AI-UJ23W1VbjqHsnHENGi0ShUl/view?usp=sharing) and save it at ./models/model.pt.
 
-### Inference
-The [NIM Demo (VISTA3D NVIDIA Inference Microservices)](https://build.nvidia.com/nvidia/vista-3d) does not support medical data upload due to legal concerns.
-We provide scripts for inference locally. The automatic segmentation label definition can be found at [label_dict](./data/jsons/label_dict.json). For exact number of supported automatic segmentation class and the reason, please to refer to [issue](https://github.com/Project-MONAI/VISTA/issues/41).
+## Inference
+The current repo is the research codebase for the CVPR2025 paper, which is built on MONAI1.3.  We converted the model into [MONAI bundle](https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d) with improved GPU utilization and speed (the backend for the [demo](https://build.nvidia.com/nvidia/vista-3d)). The automatic segmentation label definition can be found at [label_dict](./data/jsons/label_dict.json). For exact number of supported automatic segmentation class and the reason, please to refer to [issue](https://github.com/Project-MONAI/VISTA/issues/41).
+<div align="center"> <img src="./assets/imgs/scores.png" width="800"/> </div>
 
-####  MONAI Bundle
+### 1. Recommend: MONAI Bundle (model zoo)
 
-For automatic segmentation and batch processing, we highly recommend using the MONAI model zoo. The [MONAI bundle](https://github.com/Project-MONAI/model-zoo/tree/dev/models/vista3d) wraps VISTA3D and provides a unified API for inference, and the [NIM Demo](https://build.nvidia.com/nvidia/vista-3d) deploys the bundle with an interactive front-end. Although NIM Demo cannot run locally, the bundle is available and can run locally. The following command will download the vista3d standalone bundle. The documentation in the bundle contains a detailed explanation for finetuning and inference.
-
+```bash
+# use the same conda env as this repo
+conda activate vista3d
+pip install monai==1.4
+git clone https://github.com/Project-MONAI/model-zoo.git
+mv model-zoo/models/vista3d vista3dbundle & rm -rf model-zoo
+cd vista3dbundle
+mkdir models
+# minor model weights naming conversion due to monai version change
+wget -O models/model.pt https://developer.download.nvidia.com/assets/Clara/monai/tutorials/model_zoo/model_vista3d.pt 
 ```
-pip install "monai[fire]"
-python -m monai.bundle download "vista3d" --bundle_dir "bundles/"
+MONAI bundle accepts multiple json config files and input arguments. The latter configs/arguments will overide the previous configs/arguments if they have overlapping keys. 
+```python
+# Automatic Segment everything
+python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'spleen_03.nii.gz'}
+```
+```python
+# Automatic Segment specific class
+python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'spleen_03.nii.gz','label_prompt':[3]}
+```
+```python
+# Interactive segmentation 
+# Points must be three dimensional (x,y,z) in the shape of [[x,y,z],...,[x,y,z]]. Point labels can only be -1(ignore), 0(negative), 1(positive) and 2(negative for special overlaped class like tumor), 3(positive for special class). Only supporting 1 class per inference. The output 255 represents NaN value which means not processed region.
+python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'spleen_03.nii.gz','points':[[128,128,16], [100,100,16]],'point_labels':[1, 0]}"
+```
+```python
+# Automatic Batch segmentation for the whole folder
+python -m monai.bundle run --config_file="['configs/inference.json', 'configs/batch_inference.json']" --input_dir="/data/Task09_Spleen/imagesTr" --output_dir="./eval_task09"
+```
+```python
+# Automatic Batch segmentation for the whole folder with multi-gpu support. mgpu_inference.json is below.
+python -m monai.bundle run --config_file="['configs/inference.json', 'configs/batch_inference.json', 'configs/mgpu_inference.json']" --input_dir="/data/Task09_Spleen/imagesTr" --output_dir="./eval_task09"
+```
+<details>
+  <summary><b>Click to see mgpu_inference.json</b></summary>
+
+  ```json
+    {
+        "device": "$torch.device('cuda:' + os.environ['LOCAL_RANK'])",
+        "network": {
+            "_target_": "torch.nn.parallel.DistributedDataParallel",
+            "module": "$@network_def.to(@device)",
+            "device_ids": [
+                "@device"
+            ]
+        },
+        "sampler": {
+            "_target_": "DistributedSampler",
+            "dataset": "@dataset",
+            "even_divisible": false,
+            "shuffle": false
+        },
+        "dataloader#sampler": "@sampler",
+        "initialize": [
+            "$import torch.distributed as dist",
+            "$dist.is_initialized() or dist.init_process_group(backend='nccl')",
+            "$torch.cuda.set_device(@device)"
+        ],
+        "run": [
+            "$@evaluator.run()"
+        ],
+        "finalize": [
+            "$dist.is_initialized() and dist.destroy_process_group()"
+        ]
+    }
+  ```
+</details>
+
+### 1.1 Overlapped classes and postprocessing with [ShapeKit](https://arxiv.org/pdf/2506.24003)
+VISTA3D is trained with binary segmentation, and may produce false positives due to weak false positive supervision. ShapeKit solves this problem with sophisticated postprocessing. ShapeKit requires segmentation mask for each class. VISTA3D by default performs argmax and collaps overlapping classes. Change the `monai.apps.vista3d.transforms.VistaPostTransformd` in `inference.json` to save each class segmentation as a separate channel. Then follow [ShapeKit](https://github.com/BodyMaps/ShapeKit) codebase for processing.
+```json
+{ 
+  "_target_": "Activationsd",
+  "sigmoid": true,
+  "keys": "pred"
+},
 ```
 
-#### Debugger
+### 2. VISTA3D Research repository (this repo)
 
 We provide the `infer.py` script and its light-weight front-end `debugger.py`. User can directly lauch a local interface for both automatic and interactive segmentation.
 
-```
+```bash
  python -m scripts.debugger run
 ```
 or directly call infer.py to generate automatic segmentation. To segment a liver (label_prompt=1 as defined in [label_dict](./data/jsons/label_dict.json)), run
-```
+```bash
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --label_prompt "[1]" --save_mask true
 ```
 To segment everything, run
-```
+```bash
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
 ```
+To segment based on point clicks, provide `point` and `point_label`. 
+```bash
+export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --point "[[128,128,16],[100,100,6]]" --point_label "[1,0]" --save_mask true
+```
 The output path and other configs can be changed in the `configs/infer.yaml`.
-
-
 ```
 NOTE: `infer.py`  does not support `lung`, `kidney`, and `bone` class segmentation while MONAI bundle supports those classes. MONAI bundle uses better memory management and will not easily face OOM issue.
 ```
@@ -146,6 +219,8 @@ For zero-shot, we perform iterative point sampling. To create a new zero-shot ev
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_point_iterative run --config_file "['configs/zeroshot_eval/infer_iter_point_hcc.yaml']"
 ```
 ### Finetune
+VISTA3D checkpoint showed improvements when finetuning in few-shot settings. Once a few annotated examples are provided, user can start finetune with the VISTA3D checkpoint.
+<div align="center"> <img src="./assets/imgs/finetune.png" width="600"/> </div>
 For finetuning, user need to change `label_set` and `mapped_label_set` in the json config, where `label_set` matches the index values in the groundtruth files. The `mapped_label_set` can be random selected but we recommend pick the most related global index defined in [label_dict](./data/jsons/label_dict.json). User should modify the transforms, resolutions, patch sizes e.t.c regarding to their dataset for optimal finetuning performances, we recommend using configs generated by auto3dseg. The learning rate 5e-5 should be good enough for finetuning purposes.
 ```
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.train_finetune run --config_file "['configs/finetune/train_finetune_word.yaml']"
@@ -154,40 +229,6 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node
 ```
 Note: MONAI bundle also provides a unified API for finetuning, but the results in the table and paper are from this research repository.
 ```
-
-### NEW! [SAM2 Benchmark Tech Report](https://arxiv.org/abs/2408.11210)
-We provide scripts to run SAM2 evaluation. Modify SAM2 source code to support background remove: Add `z_slice` to `sam2_video_predictor.py`. Require SAM2 package [installation](https://github.com/facebookresearch/segment-anything-2)
-```
-    @torch.inference_mode()
-    def init_state(
-        self,
-        video_path,
-        offload_video_to_cpu=False,
-        offload_state_to_cpu=False,
-        async_loading_frames=False,
-        z_slice=None
-    ):
-        """Initialize a inference state."""
-        images, video_height, video_width = load_video_frames(
-            video_path=video_path,
-            image_size=self.image_size,
-            offload_video_to_cpu=offload_video_to_cpu,
-            async_loading_frames=async_loading_frames,
-        )
-        if z_slice is not None:
-            images = images[z_slice]
-```
-Run evaluation
-```
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7;torchrun --nnodes=1 --nproc_per_node=8 -m scripts.validation.val_multigpu_sam2_point_iterative run --config_file "['configs/supported_eval/infer_sam2_point.yaml']" --saliency False --dataset_name 'Task06'
-```
-<div align="center">
-<figure>
-  <img
-  src="assets/imgs/sam2.png">
-  <figcaption> Initial comparison with SAM2's zero-shot performance. </figcaption>
-</figure>
-</div>
 
 
 ## Community
@@ -205,10 +246,10 @@ The codebase is under Apache 2.0 Licence. The model weight is released under [NV
 
 ```
 @article{he2024vista3d,
-  title={VISTA3D: Versatile Imaging SegmenTation and Annotation model for 3D Computed Tomography},
+  title={VISTA3D: A Unified Segmentation Foundation Model For 3D Medical Imaging},
   author={He, Yufan and Guo, Pengfei and Tang, Yucheng and Myronenko, Andriy and Nath, Vishwesh and Xu, Ziyue and Yang, Dong and Zhao, Can and Simon, Benjamin and Belue, Mason and others},
-  journal={arXiv preprint arXiv:2406.05285},
-  year={2024}
+  journal={CVPR},
+  year={2025}
 }
 ```
 

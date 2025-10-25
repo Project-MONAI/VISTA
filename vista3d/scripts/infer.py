@@ -96,7 +96,7 @@ class InferClass:
         self.model = model.to(self.device)
 
         pretrained_ckpt = torch.load(ckpt_name, map_location=self.device)
-        self.model.load_state_dict(pretrained_ckpt, strict=False)
+        self.model.load_state_dict(pretrained_ckpt, strict=True)
         logger.debug(f"[debug] checkpoint {ckpt_name:s} loaded")
         post_transforms = [
             VistaPostTransform(keys="pred"),
