@@ -56,8 +56,12 @@ cd ./VISTA/vista3d
 conda create -y -n vista3d python=3.9
 conda activate vista3d
 pip install -r requirements.txt
+mkdir models
+hf download nvidia/NV-Segment-CT vista3d_pretrained_model/model_monai1.3.pt --local-dir models/ && \
+mv models/vista3d_pretrained_model/model_monai1.3.pt models/model.pt && \
+rmdir models/vista3d_pretrained_model
 ```
-Download the [model checkpoint](https://huggingface.co/nvidia/NV-Segment-CT/resolve/main/vista3d_pretrained_model/model_monai1.3.pt) and save it at ./models/model.pt. The researh repo ussed monai1.3 checkpoint while NVSegment-CTMR used monai1.4, which has subtle layer naming difference.
+The researh repo ussed monai1.3 checkpoint while NVSegment-CTMR used monai1.4, which has subtle layer naming difference.
 
 ## Inferencce
 

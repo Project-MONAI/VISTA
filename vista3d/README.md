@@ -18,21 +18,44 @@ limitations under the License.
 <div align="center"> <img src="./assets/imgs/workflow.png" width="100%"/> </div>
 
 ## News!
-[10/27/2025] We release VISTA3D-CTMR, a joint CT-MR automatic segmentation model trained on over 30K CT and MRI scans, supporting over 300 classes. 
+[10/27/2025] We release NV-Segment-CTMR, a joint CT-MR automatic segmentation model trained on over 30K CT and MRI scans, supporting over 300 classes. 
 
 [03/12/2025] We provide VISTA3D as a baseline for the challenge "CVPR 2025: Foundation Models for Interactive 3D Biomedical Image Segmentation"([link](https://www.codabench.org/competitions/5263/)). The simplified code based on MONAI 1.4 is provided in the [here](./cvpr_workshop/).
 
 [02/26/2025] VISTA3D paper has been accepted by **CVPR2025**!
 
 ## Overview
-**VISTA3D-CT** ([`Paper`](https://arxiv.org/pdf/2406.05285)) is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. The model provides State-of-the-art performances on:
+
+## Model Comparison
+
+
+| Feature | VISTA3D | NV-Segment-CT | NV-Segment-CTMR |
+|---------|---------------|-----------------|---------------|
+| **Anatomical Classes** | [132 classes (7 types of tumors)](data/jsons/label_dict.json) | Same as VISTA3D | [345+ classes](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/metadata.json) [Details](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json) |
+| **Modalities** | CT only | Same as VISTA3D |  CT + MRI (body & brain) |
+| **Segmentation Type** |  Automatic + Interactive (point-click) | Same as VISTA3D | Automatic only |
+| **Model Weights**    | [NV-Segment-CT on HuggingFace (MONAI 1.3)](https://huggingface.co/nvidia/NV-Segment-CT) |  [NV-Segment-CT on HuggingFace (MONAI1.4, minor layer naming change)](https://huggingface.co/nvidia/NV-Segment-CT) | [NV-Segment-CTMR on HuggingFace](https://huggingface.co/nvidia/NV-Segment-CTMR) |
+| **Implementation**| Current Repo: MONAI1.3 research code | Optimized MONAI Bundle (MONAI>=1.4) | Optimized MONAI Bundle (MONAI>=1.4) |
+| **Usage**| Full training for all models, inference and finetune | Optimized and fast inference. Light weight finetune. Wrapped into config and bundle | Same as NV-Segment-CT |
+| **License**     | [Commercial Friendly](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/) | Same as VISTA3D | [Non-Commercial](https://developer.download.nvidia.com/licenses/NVIDIA-OneWay-Noncommercial-License-22Mar2022.pdf?t=eyJscyI6InJlZiIsImxzZCI6IlJFRi1naXRodWIuY29tL252aWRpYS1ob2xvc2NhbiJ9) |
+
+```
+We recommend users to use NV-Segment-CTMR for large scale automatic segmentation for CT and MRI scans because it is trained with large and diverse datasets. For CT tumor or interactive refinement, user should try NV-Segment-CT. 
+``` 
+
+**VISTA3D/NV-Segment-CT** ([`Paper`](https://arxiv.org/pdf/2406.05285)) is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. The model provides State-of-the-art performances on:
+
 - out-of-the-box automatic segmentation on 3D CT scans
 - zero-shot interactive segmentation in 3D CT scans
 - automatic segemntation + interactive refinement
 
-**VISTA3D-CTMR** starts from VISTA3D-CT checkpoint and finetuned on over 30K CT and MRI scans, supporting over 300 classes.  
+**NV-Segment-CTMR** starts from NV-Segment-CT checkpoint and finetuned on over 30K CT and MRI scans, supporting over 300 classes.
+
 - out-of-the-box automatic segmentation on 3D CT scans
 - share the same architecture with VISTA3D-CT model but we only trained the automatic segmentation branch with larger CT and MRI datasets.
+
+<div align="center"> <img src="./assets/imgs/ctmr.png" width="49%"/><img src="./assets/imgs/ctmr2.png" width="49%"/> </div>
+
 
 <div align="center"> <img src="./assets/imgs/benchmarkct.png" width="49%"/><img src="./assets/imgs/benchmarkmr.png" width="49%"/> </div>
 
@@ -51,12 +74,17 @@ cd NV-Segment-CTMR/NV-Segment-CTMR;
 pip install -r requirements.txt;
 cd ..;
 mkdir NV-Segment-CT/models;mkdir NV-Segment-CTMR/models
-# download from huggingface link
-wget -O NV-Segment-CT/models/model.pt https://huggingface.co/nvidia/NV-Segment-CT/resolve/main/vista3d_pretrained_model/model.pt
-wget -O NV-Segment-CTMR/models/model.pt https://huggingface.co/nvidia/NV-Segment-CTMR/resolve/main/vista3d_pretrained_model/model.pt
+# download from huggingface link for CT
+hf download nvidia/NV-Segment-CT vista3d_pretrained_model/model.pt --local-dir NV-Segment-CT/models/ && \
+mv NV-Segment-CT/models/vista3d_pretrained_model/model.pt NV-Segment-CT/models/model.pt && \
+rmdir NV-Segment-CT/models/vista3d_pretrained_model
+# download from huggingface link for CTMR
+hf download nvidia/NV-Segment-CTMR vista3d_pretrained_model/model.pt --local-dir NV-Segment-CTMR/models/ && \
+mv NV-Segment-CTMR/models/vista3d_pretrained_model/model.pt NV-Segment-CTMR/models/model.pt && \
+rmdir NV-Segment-CTMR/models/vista3d_pretrained_model
 ```
 
-## 1.1 **VISTA3D-CT**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CT)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CT)
+## 1.1 **NV-Segment-CT**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CT)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CT)
 
 #### Automatic Segmentation (support multi-gpu batch processing)
 [class definition](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CT/configs/label_dict.json)
@@ -81,8 +109,15 @@ python -m monai.bundle run --config_file configs/inference.json --input_dict "{'
 **NOTE** MONAI bundle accepts multiple json config files and input arguments. The latter configs/arguments will overide the previous configs/arguments if they have overlapping keys. 
 
 
-## 1.2 **VISTA3D-CTMR**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CTMR/tree/main)
-We defined 345 classes as in [label_dict.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json). It shows the label organ name, index, training dataset, modality and evaluation dice score. If a class only comes from CT training dataset, it may not perform well on MRI, but the actual performance will vary case by case. We support three type of segment everything "CT_BODY", "MRI_BODY", and "MRI_BRAIN". "CT_BODY" is the previous VISTA3D bundle supported 132 CT classes. "MRI_BODY" shares the same 50 label class as TotalsegmentatorMR. "MRI_BRAIN" is trained on skull stripped [LUMIR](https://github.com/JHU-MedImage-Reg/LUMIR_L2R) dataset and will segment brain MRI substructures. Preprocessing is needed. Following [tutorials](https://github.com/junyuchen245/MIR/tree/main/tutorials/brain_MRI_preprocessing)
+## 1.2 **NV-Segment-CTMR**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CTMR/tree/main)
+Please read the complete usage in the NV-Segment-CTMR [[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR) repo. 
+
+We defined 345 classes as in [metadata.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/metadata.json) and details in [label_dict.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json). It shows the label organ name, index, training dataset, modality and evaluation dice score. If a class only comes from CT training dataset, it may not perform well on MRI, but the actual performance will vary case by case. We support three type of segment everything "CT_BODY", "MRI_BODY", and "MRI_BRAIN". 
+
+- "CT_BODY" is the previous VISTA3D bundle supported 132 CT classes. Same as NV-Segment-CT everything prompts. 
+- "MRI_BODY" shares the same 50 label class as TotalsegmentatorMR. 
+- "MRI_BRAIN" is trained on skull stripped [LUMIR](https://github.com/JHU-MedImage-Reg/LUMIR_L2R) dataset and will segment 133 brain MRI substructures.  We followed [MIR Preprocessing](https://github.com/junyuchen245/MIR/tree/main/tutorials/brain_MRI_preprocessing) tutorials and put the corresponding components into this repo. `All contrasts of brain MRI are supported`
+
 ### Quick Start
 #### Automatic Segmentation (support multi-gpu batch processing)
 [class definition](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json)
@@ -101,35 +136,9 @@ torchrun --nproc_per_node=2 --nnodes=1 -m monai.bundle run --config_file="['conf
 ```
 
 #### Brain MRI segmentation
-For brain MRI segmentation, we only support T1 and require preprocessing.
+For brain MRI segmentation, skull stripping, bias correction and MNI space alignment is included in the codebase. Skull stripping requires docker enviroments. More details can be found in run_brain_segmentation.sh.
 ```bash
-# Install required preprocessing packages.
-cd NV-Segment-CTMR;
-conda activate vista3d-nv
-git clone https://github.com/junyuchen245/MIR.git
-# For MRI brain T1 segmentation, we need preprocessing
-cd MIR; pip install -e . --no-deps
-pip install antspyx pymedio pydicom SimpleITK
-# skull strip docker file
-curl -O https://raw.githubusercontent.com/freesurfer/freesurfer/dev/mri_synthstrip/synthstrip-docker && chmod +x synthstrip-docker
-cd ..;
-```
-
-```bash
-# Run preprocessing, segmentation, and revert results back.
-input=example/brain_t1.nii.gz # change to your file path
-output=example/brain_t1_preprocessed.nii.gz # intermediate results save path
-# segmentation results will be saved to ./eval/$output_trans.nii.gz. User can modify saved name in inference.json file.
-segmentation_saved=eval/brain_t1_preprocessed/brain_t1_preprocessed_trans.nii.gz
-# Skull stripping with SynthStrip. Skip if already skull stripped.
-./MIR/synthstrip-docker -i $input -o $output
-# Affine align to the LUMIR template
-python MIR/tutorials/brain_MRI_preprocessing/preprocess.py $output MIR/tutorials/brain_MRI_preprocessing/LUMIR_template.nii.gz $output --save-preprocess $output.preprocess.json
-# Segment the brain
-python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'$output'}" --modality MRI_BRAIN
-# Revert the image back
-# Revert a processed mask back to the original space
-python MIR/tutorials/brain_MRI_preprocessing/revert_preprocess.py $output --out $output.revert.nii.gz --mask $segmentation_saved --mask-out $segmentation_saved --meta $output.preprocess.json
+./brain_t1_preprocess/run_brain_segmentation.sh --input example/brain_t1.nii.gz --output_dir results/
 ```
 
 ## 2. CVPR2025 research repo (current codebase, CT only)
