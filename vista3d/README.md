@@ -75,13 +75,14 @@ pip install -r requirements.txt;
 cd ..;
 mkdir NV-Segment-CT/models;mkdir NV-Segment-CTMR/models
 # download from huggingface link for CT
-hf download nvidia/NV-Segment-CT vista3d_pretrained_model/model.pt --local-dir NV-Segment-CT/models/ && \
-mv NV-Segment-CT/models/vista3d_pretrained_model/model.pt NV-Segment-CT/models/model.pt && \
-rmdir NV-Segment-CT/models/vista3d_pretrained_model
+cd NV-Segment-CT
+# Option 1: Download using hf and move to expected location
+hf download nvidia/NV-Segment-CT --local-dir models/ && \
+mv models/vista3d_pretrained_model/model.pt models/model.pt
 # download from huggingface link for CTMR
-hf download nvidia/NV-Segment-CTMR vista3d_pretrained_model/model.pt --local-dir NV-Segment-CTMR/models/ && \
-mv NV-Segment-CTMR/models/vista3d_pretrained_model/model.pt NV-Segment-CTMR/models/model.pt && \
-rmdir NV-Segment-CTMR/models/vista3d_pretrained_model
+cd ../NV-Segment-CTMR
+hf download nvidia/NV-Segment-CTMR --local-dir models/ && \
+mv models/vista3d_pretrained_model/model.pt models/model.pt
 ```
 
 ## 1.1 **NV-Segment-CT**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CT)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CT)
