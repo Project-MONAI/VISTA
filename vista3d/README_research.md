@@ -80,7 +80,7 @@ To segment everything, run
 ```bash
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer_everything --image_file 'example-1.nii.gz'
 ```
-To segment based on point clicks, provide `point` and `point_label`. 
+To segment based on point clicks, provide `point` and `point_label`.
 ```bash
 export CUDA_VISIBLE_DEVICES=0; python -m scripts.infer --config_file 'configs/infer.yaml' - infer --image_file 'example-1.nii.gz' --point "[[128,128,16],[100,100,6]]" --point_label "[1,0]" --save_mask true
 ```
