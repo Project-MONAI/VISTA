@@ -67,7 +67,7 @@ We wrapped VISTA3D-CT and VISTA3D-CTMR into a more structured MONAI bundle forma
 #### Installation
 ```bash
 # use the same conda env as this repo
-conda create -y -n vista3d-nv python=3.9
+conda create -y -n vista3d-nv python=3.11
 conda activate vista3d-nv
 git clone https://github.com/NVIDIA-Medtech/NV-Segment-CTMR.git
 cd NV-Segment-CTMR/NV-Segment-CTMR;
