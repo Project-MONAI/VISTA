@@ -73,17 +73,9 @@ git clone https://github.com/NVIDIA-Medtech/NV-Segment-CTMR.git
 cd NV-Segment-CTMR/NV-Segment-CTMR;
 pip install -r requirements.txt;
 cd ..;
-mkdir NV-Segment-CT/models;mkdir NV-Segment-CTMR/models
-# download from huggingface link for CT
-cd NV-Segment-CT
-# Option 1: Download using hf and move to expected location
-hf download nvidia/NV-Segment-CT --local-dir models/ && \
-mv models/vista3d_pretrained_model/model.pt models/model.pt
-# download from huggingface link for CTMR
-cd ../NV-Segment-CTMR
-hf download nvidia/NV-Segment-CTMR --local-dir models/ && \
-mv models/vista3d_pretrained_model/model.pt models/model.pt
 ```
+
+Model weights are prepared automatically during inference. The first run downloads the checkpoint from Hugging Face into the local Hugging Face cache and links or copies it to each bundle's `models/model.pt`; later runs reuse the cached weights.
 
 ## 1.1 **NV-Segment-CT**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CT)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CT)
 
@@ -144,6 +136,8 @@ For brain MRI segmentation, skull stripping, bias correction and MNI space align
 
 ## 2. CVPR2025 research repo (current codebase, CT only)
 This research repo is for reproducing results for the CVPR2025 [paper](https://arxiv.org/pdf/2406.05285) with all the model training and evaluation code, built upon MONAI1.3. We will not update this repo in the future. See [details](./README_research.md)
+
+For local `scripts.infer` usage in this research code, inference now prepares the MONAI 1.3 VISTA3D checkpoint automatically from Hugging Face file `nvidia/NV-Segment-CT/vista3d_pretrained_model/model_monai1.3.pt` when `models/model.pt` is missing. The helper also touches the Hugging Face download counter on each inference initialization. Set `huggingface.enabled: false` in `configs/infer.yaml` if you want to require a local checkpoint only.
 
 
 

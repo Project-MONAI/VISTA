@@ -6,6 +6,11 @@ fold: 0
 infer: {ckpt_name: $@bundle_root + '/model.pt',
         output_path: $@bundle_root + '/prediction',
         log_output_file: $@bundle_root + '/inference.log'}
+huggingface: {enabled: true,
+              repo_id: 'nvidia/NV-Segment-CT',
+              checkpoint_file: 'vista3d_pretrained_model/model_monai1.3.pt',
+              download_counter_file: 'vista3d_pretrained_model/config.json',
+              revision: 'main'}
 resample_to_spacing: [1.5, 1.5, 1.5]
 model: "vista3d_segresnet_d"
 image_key: "image"

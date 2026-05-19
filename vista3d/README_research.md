@@ -56,11 +56,11 @@ cd ./VISTA/vista3d
 conda create -y -n vista3d python=3.9
 conda activate vista3d
 pip install -r requirements.txt
-mkdir models
-hf download nvidia/NV-Segment-CT --local-dir models/ && \
-mv models/vista3d_pretrained_model/model_monai1.3.pt models/model.pt
 ```
-The researh repo ussed monai1.3 checkpoint while NVSegment-CTMR used monai1.4, which has subtle layer naming difference.
+
+Model weights are prepared automatically during inference. The first run downloads `nvidia/NV-Segment-CT/vista3d_pretrained_model/model_monai1.3.pt` from Hugging Face into the local Hugging Face cache and links or copies it to `./models/model.pt`; later runs reuse the cached weights.
+
+The research repo uses the MONAI 1.3 checkpoint while NV-Segment-CTMR uses the MONAI 1.4+ bundle checkpoint, which has subtle layer naming differences.
 
 ## Inferencce
 

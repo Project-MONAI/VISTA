@@ -15,3 +15,4 @@ ml-collections
 timm
 pytorch-ignite
 tensorboardX
+huggingface_hub

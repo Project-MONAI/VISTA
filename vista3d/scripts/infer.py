@@ -32,6 +32,11 @@ from .sliding_window import point_based_window_inferer, sliding_window_inference
 from .train import CONFIG
 from .utils.trans_utils import VistaPostTransform, get_largest_connected_component_point
 
+try:
+    from .huggingface_download import prepare_huggingface_checkpoint
+except ImportError:
+    from huggingface_download import prepare_huggingface_checkpoint
+
 rearrange, _ = optional_import("einops", name="rearrange")
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 IGNORE_PROMPT = set(
@@ -78,6 +83,18 @@ class InferClass:
         self.patch_size = patch_size
 
         ckpt_name = parser.get_parsed_content("infer")["ckpt_name"]
+        try:
+            huggingface_config = parser.get_parsed_content("huggingface")
+        except KeyError:
+            huggingface_config = {}
+        if huggingface_config and huggingface_config.get("enabled", True):
+            ckpt_name = prepare_huggingface_checkpoint(
+                repo_id=huggingface_config["repo_id"],
+                checkpoint_filename=huggingface_config["checkpoint_file"],
+                local_checkpoint_path=ckpt_name,
+                counter_filename=huggingface_config["download_counter_file"],
+                revision=huggingface_config.get("revision", "main"),
+            )
         output_path = parser.get_parsed_content("infer")["output_path"]
         if not os.path.exists(output_path):
             os.makedirs(output_path, exist_ok=True)
