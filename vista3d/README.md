@@ -18,7 +18,7 @@ limitations under the License.
 <div align="center"> <img src="./assets/imgs/workflow.png" width="100%"/> </div>
 
 ## News!
-[10/27/2025] We release NV-Segment-CTMR, a joint CT-MR automatic segmentation model trained on over 30K CT and MRI scans, supporting over 300 classes. 
+[10/27/2025] We release NV-Segment-CTMR, a joint CT-MR automatic segmentation model trained on over 30K CT and MRI scans, supporting over 300 classes.
 
 [03/12/2025] We provide VISTA3D as a baseline for the challenge "CVPR 2025: Foundation Models for Interactive 3D Biomedical Image Segmentation"([link](https://www.codabench.org/competitions/5263/)). The simplified code based on MONAI 1.4 is provided in the [here](./cvpr_workshop/).
 
@@ -40,8 +40,8 @@ limitations under the License.
 | **License**     | [Commercial Friendly](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/) | Same as VISTA3D | [Non-Commercial](https://developer.download.nvidia.com/licenses/NVIDIA-OneWay-Noncommercial-License-22Mar2022.pdf?t=eyJscyI6InJlZiIsImxzZCI6IlJFRi1naXRodWIuY29tL252aWRpYS1ob2xvc2NhbiJ9) |
 
 ```
-We recommend users to use NV-Segment-CTMR for large scale automatic segmentation for CT and MRI scans because it is trained with large and diverse datasets. For CT tumor or interactive refinement, user should try NV-Segment-CT. 
-``` 
+We recommend users to use NV-Segment-CTMR for large scale automatic segmentation for CT and MRI scans because it is trained with large and diverse datasets. For CT tumor or interactive refinement, user should try NV-Segment-CT.
+```
 
 **VISTA3D/NV-Segment-CT** ([`Paper`](https://arxiv.org/pdf/2406.05285)) is a foundation model trained systematically on 11,454 volumes encompassing 127 types of human anatomical structures and various lesions. The model provides State-of-the-art performances on:
 
@@ -93,22 +93,22 @@ python -m monai.bundle run --config_file="['configs/inference.json', 'configs/ba
 # Automatic Batch segmentation for the whole folder with multi-gpu support. mgpu_inference.json is below. change nproc_per_node to your GPU number.
 torchrun --nproc_per_node=2 --nnodes=1 -m monai.bundle run --config_file="['configs/inference.json', 'configs/batch_inference.json', 'configs/mgpu_inference.json']" --input_dir="example/" --output_dir="example/"
 ```
-#### Interactive segmentation 
+#### Interactive segmentation
 ```bash
 # Points must be three dimensional (x,y,z) in the shape of [[x,y,z],...,[x,y,z]]. Point labels can only be -1(ignore), 0(negative), 1(positive) and 2(negative for special overlaped class like tumor), 3(positive for special class). Only supporting 1 class per inference. The output 255 represents NaN value which means not processed region.
 cd NV-Segment-CT
 python -m monai.bundle run --config_file configs/inference.json --input_dict "{'image':'example/spleen_03.nii.gz','points':[[128,128,16], [100,100,16]],'point_labels':[1, 0]}"
 ```
-**NOTE** MONAI bundle accepts multiple json config files and input arguments. The latter configs/arguments will overide the previous configs/arguments if they have overlapping keys. 
+**NOTE** MONAI bundle accepts multiple json config files and input arguments. The latter configs/arguments will overide the previous configs/arguments if they have overlapping keys.
 
 
 ## 1.2 **NV-Segment-CTMR**[[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR)[[Huggingface]](https://huggingface.co/nvidia/NV-Segment-CTMR/tree/main)
-Please read the complete usage in the NV-Segment-CTMR [[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR) repo. 
+Please read the complete usage in the NV-Segment-CTMR [[Github]](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/tree/main/NV-Segment-CTMR) repo.
 
-We defined 345 classes as in [metadata.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/metadata.json) and details in [label_dict.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json). It shows the label organ name, index, training dataset, modality and evaluation dice score. If a class only comes from CT training dataset, it may not perform well on MRI, but the actual performance will vary case by case. We support three type of segment everything "CT_BODY", "MRI_BODY", and "MRI_BRAIN". 
+We defined 345 classes as in [metadata.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/metadata.json) and details in [label_dict.json](https://github.com/NVIDIA-Medtech/NV-Segment-CTMR/blob/main/NV-Segment-CTMR/configs/label_dict.json). It shows the label organ name, index, training dataset, modality and evaluation dice score. If a class only comes from CT training dataset, it may not perform well on MRI, but the actual performance will vary case by case. We support three type of segment everything "CT_BODY", "MRI_BODY", and "MRI_BRAIN".
 
-- "CT_BODY" is the previous VISTA3D bundle supported 132 CT classes. Same as NV-Segment-CT everything prompts. 
-- "MRI_BODY" shares the same 50 label class as TotalsegmentatorMR. 
+- "CT_BODY" is the previous VISTA3D bundle supported 132 CT classes. Same as NV-Segment-CT everything prompts.
+- "MRI_BODY" shares the same 50 label class as TotalsegmentatorMR.
 - "MRI_BRAIN" is trained on skull stripped [LUMIR](https://github.com/JHU-MedImage-Reg/LUMIR_L2R) dataset and will segment 133 brain MRI substructures.  We followed [MIR Preprocessing](https://github.com/junyuchen245/MIR/tree/main/tutorials/brain_MRI_preprocessing) tutorials and put the corresponding components into this repo. `All contrasts of brain MRI are supported`
 
 ### Quick Start
@@ -144,7 +144,7 @@ For local `scripts.infer` usage in this research code, inference now prepares th
 ## 3. VISTA3D results postprocessing with [ShapeKit](https://arxiv.org/pdf/2506.24003)
 VISTA3D is trained with binary segmentation, and may produce false positives due to weak false positive supervision. ShapeKit solves this problem with sophisticated postprocessing. ShapeKit requires segmentation mask for each class. VISTA3D by default performs argmax and collaps overlapping classes. Change the `monai.apps.vista3d.transforms.VistaPostTransformd` in `inference.json` to save each class segmentation as a separate channel. Then follow [ShapeKit](https://github.com/BodyMaps/ShapeKit) codebase for processing.
 ```json
-{ 
+{
   "_target_": "Activationsd",
   "sigmoid": true,
   "keys": "pred"
