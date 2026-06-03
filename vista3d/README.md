@@ -159,7 +159,7 @@ Ask and answer questions on [MONAI VISTA's GitHub discussions tab](https://githu
 
 ## License
 
-The codebase is under Apache 2.0 Licence. The model weight is released under [NVIDIA OneWay Noncommercial License](./NVIDIA%20OneWay%20Noncommercial%20License.txt).
+The codebase is under Apache 2.0 Licence. The model weight is released under commercial friendly [NVIDIA open models license](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/)
 
 ## Reference
 
