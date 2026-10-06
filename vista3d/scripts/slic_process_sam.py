@@ -65,7 +65,6 @@ class InferClass:
             self.device
         )
         self.model = SamPredictor(self.sam)
-        return
 
     @torch.no_grad()
     @torch.cuda.amp.autocast()

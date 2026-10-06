@@ -1,7 +1,6 @@
 import os
 import shutil
 from pathlib import Path
-from typing import Optional
 
 
 def _is_rank_zero() -> bool:
@@ -17,7 +16,7 @@ def touch_huggingface_download_counter(
     filename: str,
     revision: str = "main",
     rank_zero_only: bool = True,
-) -> Optional[str]:
+) -> str | None:
     """Force a tiny Hugging Face file request without re-downloading model weights."""
 
     if rank_zero_only and not _is_rank_zero():
@@ -26,7 +25,9 @@ def touch_huggingface_download_counter(
     try:
         from huggingface_hub import hf_hub_download
     except ImportError:
-        print("[vista3d] warning: huggingface_hub is not installed; skipping Hugging Face download counter touch.")
+        print(
+            "[vista3d] warning: huggingface_hub is not installed; skipping Hugging Face download counter touch."
+        )
         return None
 
     try:
@@ -37,8 +38,10 @@ def touch_huggingface_download_counter(
             revision=revision,
             force_download=True,
         )
-    except Exception as exc:  # noqa: BLE001
-        print(f"[vista3d] warning: could not touch Hugging Face download counter for {repo_id}/{filename}: {exc}")
+    except Exception as exc:
+        print(
+            f"[vista3d] warning: could not touch Hugging Face download counter for {repo_id}/{filename}: {exc}"
+        )
         return None
 
     print(f"[vista3d] touched Hugging Face download counter for {repo_id}/{filename}")
@@ -60,14 +63,18 @@ def prepare_huggingface_checkpoint(
     if rank_zero_only and not _is_rank_zero():
         return str(local_path)
 
-    touch_huggingface_download_counter(repo_id, counter_filename, revision, rank_zero_only=False)
+    touch_huggingface_download_counter(
+        repo_id, counter_filename, revision, rank_zero_only=False
+    )
     if local_path.exists():
         return str(local_path)
 
     try:
         from huggingface_hub import hf_hub_download
     except ImportError as exc:
-        raise RuntimeError(f"{local_path} does not exist and huggingface_hub is not installed; cannot download {repo_id}.") from exc
+        raise RuntimeError(
+            f"{local_path} does not exist and huggingface_hub is not installed; cannot download {repo_id}."
+        ) from exc
 
     checkpoint_path = hf_hub_download(
         repo_id=repo_id,

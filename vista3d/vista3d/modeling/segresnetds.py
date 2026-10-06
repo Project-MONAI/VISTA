@@ -12,15 +12,14 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Union
 
 import numpy as np
 import torch
-import torch.nn as nn
 from monai.networks.blocks.upsample import UpSample
 from monai.networks.layers.factories import Act, Conv, Norm, split_args
 from monai.networks.layers.utils import get_act_layer, get_norm_layer
 from monai.utils import UpsampleMode, has_option
+from torch import nn
 
 __all__ = ["SegResNetDS2"]
 
@@ -464,7 +463,7 @@ class SegResNetDS2(nn.Module):
 
     def _forward(
         self, x: torch.Tensor, with_point, with_label
-    ) -> Union[None, torch.Tensor, list[torch.Tensor]]:
+    ) -> None | torch.Tensor | list[torch.Tensor]:
         if self.preprocess is not None:
             x = self.preprocess(x)
 
@@ -522,7 +521,7 @@ class SegResNetDS2(nn.Module):
 
     def forward(
         self, x: torch.Tensor, with_point=True, with_label=True, **kwargs
-    ) -> Union[None, torch.Tensor, list[torch.Tensor]]:
+    ) -> None | torch.Tensor | list[torch.Tensor]:
         return self._forward(x, with_point, with_label)
 
     def set_auto_grad(self, auto_freeze=False, point_freeze=False):

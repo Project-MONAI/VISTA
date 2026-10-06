@@ -18,9 +18,9 @@ import os
 import sys
 import time
 import warnings
+from collections.abc import Sequence
 from datetime import timedelta
 from functools import partial
-from typing import Optional, Sequence, Union
 
 import monai
 import nibabel as nib
@@ -54,7 +54,7 @@ from .utils.workflow_utils import (
 nib.imageglobals.logger.setLevel(40)
 
 
-def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
+def run(config_file: str | Sequence[str] | None = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
     if torch.cuda.device_count() > 1:
         dist.init_process_group(
@@ -765,9 +765,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                             yaml.dump([dict_file], stream=out_file)
 
                     logger.debug(
-                        "Current epoch: {} current mean dice: {:.4f} best mean dice: {:.4f} at epoch {}".format(
-                            epoch, avg_metric, best_metric, best_metric_epoch
-                        )
+                        f"Current epoch: {epoch} current mean dice: {avg_metric:.4f} best mean dice: {best_metric:.4f} at epoch {best_metric_epoch}"
                     )
 
                     current_time = time.time()
@@ -776,14 +774,7 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
                         os.path.join(ckpt_path, "accuracy_history.csv"), "a"
                     ) as f:
                         f.write(
-                            "{:d}\t{:.5f}\t{:.5f}\t{:.5f}\t{:.1f}\t{:d}\n".format(
-                                epoch,
-                                avg_metric,
-                                loss_torch_epoch,
-                                lr,
-                                elapsed_time,
-                                idx_iter,
-                            )
+                            f"{epoch:d}\t{avg_metric:.5f}\t{loss_torch_epoch:.5f}\t{lr:.5f}\t{elapsed_time:.1f}\t{idx_iter:d}\n"
                         )
 
                 if world_size > 1:
@@ -804,7 +795,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
     if world_size > 1:
         dist.destroy_process_group()
 
-    return
 
 
 if __name__ == "__main__":

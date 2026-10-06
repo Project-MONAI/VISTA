@@ -46,13 +46,13 @@ cp_ndarray, _ = optional_import("cupy", name="ndarray")
 exposure, has_skimage = optional_import("skimage.exposure")
 
 __all__ = [
-    "get_largest_connected_component_mask",
     "RandCropByLabelClassesShiftd",
-    "erode3d",
-    "erode2d",
-    "dilate3d",
     "VistaPostTransform",
     "convert_points_to_disc",
+    "dilate3d",
+    "erode2d",
+    "erode3d",
+    "get_largest_connected_component_mask",
 ]
 
 

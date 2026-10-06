@@ -389,7 +389,7 @@ def get_next_points_val(
         if mapped:
             # if in the global index, some supported classes need modification.
             neg_id, pos_id = get_point_label(prompt_class[id])
-            if prompt_class[id].item() in MERGE_LIST.keys():
+            if prompt_class[id].item() in MERGE_LIST:
                 for m in MERGE_LIST[prompt_class[id].item()]:
                     _gt = torch.logical_or(_gt, (gt == m)[0, 0])
         fn_mask = torch.logical_and(_gt, pred[id][0] < pred_thresh)
@@ -464,12 +464,12 @@ def get_next_points_auto_point(
             # if in the global index, some supported classes need modification. prompt_class is the local index
             if class_vector is not None:
                 neg_id, pos_id = get_point_label(class_vector[id])
-                if class_vector[id].item() in MERGE_LIST.keys():
+                if class_vector[id].item() in MERGE_LIST:
                     for m in MERGE_LIST[class_vector[id].item()]:
                         _gt = torch.logical_or(_gt, (gt == m)[0, 0])
             else:
                 neg_id, pos_id = get_point_label(prompt_class[id])
-                if prompt_class[id].item() in MERGE_LIST.keys():
+                if prompt_class[id].item() in MERGE_LIST:
                     for m in MERGE_LIST[prompt_class[id].item()]:
                         _gt = torch.logical_or(_gt, (gt == m)[0, 0])
         if (prompt_class[id] == 0 and not include_background) or _gt.sum() == 0:
@@ -568,7 +568,7 @@ def get_next_points(
         if mapped:
             # if in the global index, some supported classes need modification.
             neg_id, pos_id = get_point_label(prompt_class[id])
-            if prompt_class[id].item() in MERGE_LIST.keys():
+            if prompt_class[id].item() in MERGE_LIST:
                 for m in MERGE_LIST[prompt_class[id].item()]:
                     _gt = torch.logical_or(_gt, (gt == m)[0, 0])
         fn_mask = torch.logical_and(_gt, pred[id][0] < pred_thresh)

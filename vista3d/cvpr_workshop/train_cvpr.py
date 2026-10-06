@@ -7,10 +7,10 @@ import monai.transforms
 import numpy as np
 import torch
 import torch.distributed as dist
-import torch.optim as optim
 from monai.apps.vista3d.sampler import sample_prompt_pairs
 from monai.data import DataLoader
 from monai.networks.nets import vista3d132
+from torch import optim
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import Dataset
 from torch.utils.tensorboard import SummaryWriter
@@ -22,7 +22,8 @@ warnings.simplefilter("ignore")
 import matplotlib.pyplot as plt
 
 NUM_PATCHES_PER_IMAGE = 2
-ROI_SIZE= [128, 128, 128]
+ROI_SIZE = [128, 128, 128]
+
 
 def plot_to_tensorboard(writer, epoch, inputs, labels, points, outputs):
     """
@@ -109,7 +110,7 @@ class NPZDataset(Dataset):
                     keys=["image", "label"],
                     label_key="label",
                     num_classes=label.max() + 1,
-                    ratios=tuple(float(i > 0) for i in range(label.max()+1)),
+                    ratios=tuple(float(i > 0) for i in range(label.max() + 1)),
                     num_samples=NUM_PATCHES_PER_IMAGE,
                 ),
                 monai.transforms.RandScaleIntensityd(
@@ -137,27 +138,29 @@ class NPZDataset(Dataset):
                     mode=["constant", "constant"],
                     keys=["image", "label"],
                     spatial_size=ROI_SIZE,
-                )
+                ),
             ]
         )
         data = transforms(data)
         return data
 
+
 import re
+
 
 def get_latest_epoch(directory):
     # Pattern to match filenames like 'model_epoch<number>.pth'
-    pattern = re.compile(r'model_epoch(\d+)\.pth')
+    pattern = re.compile(r"model_epoch(\d+)\.pth")
     max_epoch = -1
 
     for filename in os.listdir(directory):
         match = pattern.match(filename)
         if match:
             epoch = int(match.group(1))
-            if epoch > max_epoch:
-                max_epoch = epoch
+            max_epoch = max(max_epoch, epoch)
 
     return max_epoch if max_epoch != -1 else None
+
 
 # Training function
 def train():
@@ -168,7 +171,6 @@ def train():
     checkpoint_dir = "checkpoints"
     start_epoch = get_latest_epoch(checkpoint_dir)
     start_checkpoint = "./CPRR25_vista3D_model_final_10percent_data.pth"
-
 
     os.makedirs(checkpoint_dir, exist_ok=True)
     dist.init_process_group(backend="nccl")
@@ -189,11 +191,12 @@ def train():
         model.load_state_dict(pretrained_ckpt, strict=True)
     else:
         print(f"Resuming from epoch {start_epoch}")
-        pretrained_ckpt = torch.load(os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth"))
-        model.load_state_dict(pretrained_ckpt['model'], strict=True)
+        pretrained_ckpt = torch.load(
+            os.path.join(checkpoint_dir, f"model_epoch{start_epoch}.pth")
+        )
+        model.load_state_dict(pretrained_ckpt["model"], strict=True)
     model = DDP(model, device_ids=[local_rank], find_unused_parameters=True)
 
-    
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1.0e-05)
     lr_scheduler = monai.optimizers.WarmupCosineSchedule(
         optimizer=optimizer,
@@ -265,10 +268,16 @@ def train():
                 if local_rank == 0:
                     writer.add_scalar("loss", loss.item(), step)
         if local_rank == 0 and (epoch + 1) % save_interval == 0:
-            checkpoint_path = os.path.join(checkpoint_dir, f"model_epoch{epoch + 1}.pth")
+            checkpoint_path = os.path.join(
+                checkpoint_dir, f"model_epoch{epoch + 1}.pth"
+            )
             if world_size > 1:
                 torch.save(
-                    {"model": model.module.state_dict(), "epoch": epoch + 1, "step": step},
+                    {
+                        "model": model.module.state_dict(),
+                        "epoch": epoch + 1,
+                        "step": step,
+                    },
                     checkpoint_path,
                 )
                 print(

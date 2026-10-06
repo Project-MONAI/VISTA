@@ -17,9 +17,9 @@ import json
 import logging
 import os
 import sys
+from collections.abc import Sequence
 from datetime import timedelta
 from functools import partial
-from typing import Optional, Sequence, Union
 
 import monai
 import numpy as np
@@ -46,7 +46,7 @@ from ..utils.trans_utils import VistaPostTransform
 from ..utils.workflow_utils import sample_points_patch_val
 
 
-def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
+def run(config_file: str | Sequence[str] | None = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
     if torch.cuda.device_count() > 1:
         dist.init_process_group(
@@ -460,7 +460,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         logger.debug(f"Final Evaluated Cases {_final_count}")
         dist.destroy_process_group()
 
-    return
 
 
 if __name__ == "__main__":
