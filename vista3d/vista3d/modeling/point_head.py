@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 import torch
-import torch.nn as nn
 from monai.utils import optional_import
+from torch import nn
 
 from .sam_blocks import MLP, PositionEmbeddingRandom, TwoWayTransformer
 

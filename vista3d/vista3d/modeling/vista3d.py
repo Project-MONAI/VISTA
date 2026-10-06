@@ -14,11 +14,11 @@ from __future__ import annotations
 import monai
 import numpy as np
 import torch
-import torch.nn as nn
 from monai.utils import optional_import
 from scripts.utils.trans_utils import convert_points_to_disc
 from scripts.utils.trans_utils import get_largest_connected_component_mask as lcc
 from scripts.utils.workflow_utils import sample_points_patch_val
+from torch import nn
 
 rearrange, _ = optional_import("einops", name="rearrange")
 NINF_VALUE = -9999

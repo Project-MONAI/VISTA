@@ -13,8 +13,8 @@ from __future__ import annotations
 
 import copy
 import itertools
-from collections.abc import Callable, Mapping, Sequence
-from typing import Any, Iterable
+from collections.abc import Callable, Iterable, Mapping, Sequence
+from typing import Any
 
 import monai
 import numpy as np
@@ -42,7 +42,7 @@ from monai.utils import (
 tqdm, _ = optional_import("tqdm", name="tqdm")
 _nearest_mode = "nearest-exact" if pytorch_after(1, 11) else "nearest"
 
-__all__ = ["sliding_window_inference", "point_based_window_inferer"]
+__all__ = ["point_based_window_inferer", "sliding_window_inference"]
 
 
 def get_window_idx_c(p, roi, s):
@@ -355,21 +355,21 @@ def sliding_window_inference(
             mode=look_up_option(padding_mode, PytorchPadMode),
             value=cval,
         )
-        if "labels" in kwargs.keys() and kwargs["labels"] is not None:
+        if "labels" in kwargs and kwargs["labels"] is not None:
             kwargs["labels"] = F.pad(
                 kwargs["labels"],
                 pad=pad_size,
                 mode=look_up_option(padding_mode, PytorchPadMode),
                 value=cval,
             )
-        if "prev_mask" in kwargs.keys() and kwargs["prev_mask"] is not None:
+        if "prev_mask" in kwargs and kwargs["prev_mask"] is not None:
             kwargs["prev_mask"] = F.pad(
                 kwargs["prev_mask"],
                 pad=pad_size,
                 mode=look_up_option(padding_mode, PytorchPadMode),
                 value=cval,
             )
-        if "point_coords" in kwargs.keys() and kwargs["point_coords"] is not None:
+        if "point_coords" in kwargs and kwargs["point_coords"] is not None:
             kwargs["point_coords"] = kwargs["point_coords"] + torch.tensor(
                 [pad_size[-2], pad_size[-4], pad_size[-6]]
             ).to(kwargs["point_coords"].device)

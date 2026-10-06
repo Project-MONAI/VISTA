@@ -15,9 +15,9 @@ import json
 import logging
 import os
 import sys
+from collections.abc import Sequence
 from datetime import timedelta
 from functools import partial
-from typing import Optional, Sequence, Union
 
 import monai
 import torch
@@ -40,7 +40,7 @@ from ..train import CONFIG, infer_wrapper
 from ..utils.workflow_utils import generate_prompt_pairs_val, get_next_points_val
 
 
-def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
+def run(config_file: str | Sequence[str] | None = None, **override):
     # Initialize distributed and scale parameters based on GPU memory
     if torch.cuda.device_count() > 1:
         dist.init_process_group(
@@ -382,7 +382,6 @@ def run(config_file: Optional[Union[str, Sequence[str]]] = None, **override):
         dist.barrier()
         dist.destroy_process_group()
 
-    return
 
 
 if __name__ == "__main__":

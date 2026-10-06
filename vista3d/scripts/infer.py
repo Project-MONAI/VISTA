@@ -145,7 +145,6 @@ class InferClass:
         self.save_transforms = transforms.Compose(save_transforms)
         self.prev_mask = None
         self.batch_data = None
-        return
 
     def clear_cache(self):
         self.prev_mask = None

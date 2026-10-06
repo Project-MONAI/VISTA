@@ -49,7 +49,7 @@ def download_files(url_dict, directory):
 
             print(f"Saved to {file_path}")
         except Exception as e:
-            print(f"Failed to download from {key} ({url}). Reason: {str(e)}")
+            print(f"Failed to download from {key} ({url}). Reason: {e!s}")
 
 
 def main():
